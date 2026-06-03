@@ -1,0 +1,1403 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reporte Ejecutivo - Auditoría Digital Grupo Sibru</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            color: #264653;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #1B5E20 0%, #2E7D32 50%, #000000 100%);
+            color: white;
+            padding: 60px 40px;
+            border-radius: 20px;
+            margin-bottom: 40px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            text-align: center;
+        }
+
+        .header h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 3em;
+            font-weight: 800;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .header .subtitle {
+            font-size: 1.3em;
+            opacity: 0.95;
+            margin-bottom: 20px;
+        }
+
+        .header .period {
+            background: rgba(255,255,255,0.2);
+            display: inline-block;
+            padding: 10px 30px;
+            border-radius: 50px;
+            font-weight: 600;
+            margin-top: 10px;
+        }
+
+        .logo-container {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            margin-bottom: 40px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 30px;
+        }
+
+        .logo-sibru {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2.5em;
+            font-weight: 800;
+            color: #1B5E20;
+        }
+
+        .section {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 40px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            border-left: 8px solid #1B5E20;
+        }
+
+        .section.critical {
+            border-left-color: #E76F51;
+        }
+
+        .section.success {
+            border-left-color: #66BB6A;
+        }
+
+        .section-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2em;
+            font-weight: 700;
+            color: #1B5E20;
+            margin-bottom: 30px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .section-title.critical {
+            color: #E76F51;
+        }
+
+        .section-title.success {
+            color: #2E7D32;
+        }
+
+        .kpi-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+
+        .kpi-card {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            border-top: 5px solid #1B5E20;
+            transition: transform 0.3s, box-shadow 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .kpi-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+        }
+
+        .kpi-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(27,94,32,0.05) 0%, rgba(0,0,0,0.05) 100%);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .kpi-card:hover::before {
+            opacity: 1;
+        }
+
+        .kpi-value {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 3em;
+            font-weight: 800;
+            color: #1B5E20;
+            margin: 10px 0;
+        }
+
+        .kpi-value.positive {
+            color: #2E7D32;
+        }
+
+        .kpi-value.negative {
+            color: #E76F51;
+        }
+
+        .kpi-label {
+            font-size: 1em;
+            color: #666;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .kpi-change {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-weight: 700;
+            font-size: 0.9em;
+        }
+
+        .kpi-change.positive {
+            background: #66BB6A;
+            color: white;
+        }
+
+        .kpi-change.negative {
+            background: #E76F51;
+            color: white;
+        }
+
+        .charts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .chart-container {
+            background: #f8f9fa;
+            padding: 30px;
+            border-radius: 15px;
+            position: relative;
+            height: 400px;
+        }
+
+        .chart-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.3em;
+            font-weight: 700;
+            color: #264653;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+        }
+
+        th {
+            background: linear-gradient(135deg, #1B5E20 0%, #000000 100%);
+            color: white;
+            padding: 18px;
+            text-align: left;
+            font-weight: 700;
+            font-family: 'Montserrat', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.9em;
+        }
+
+        td {
+            padding: 15px 18px;
+            border-bottom: 1px solid #e9ecef;
+        }
+
+        tr:hover {
+            background: #f8f9fa;
+        }
+
+        tr:nth-child(even) {
+            background: #f8f9fa;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        .badge-success {
+            background: #66BB6A;
+            color: white;
+        }
+
+        .badge-warning {
+            background: #F4A261;
+            color: white;
+        }
+
+        .badge-danger {
+            background: #E76F51;
+            color: white;
+        }
+
+        .badge-info {
+            background: #2A9D8F;
+            color: white;
+        }
+
+        .insight-box {
+            background: linear-gradient(135deg, #264653 0%, #1B5E20 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
+            margin: 30px 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .insight-box::before {
+            content: '💡';
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 3em;
+            opacity: 0.2;
+        }
+
+        .insight-box h3 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.4em;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin: 30px 0;
+        }
+
+        .comparison-card {
+            padding: 30px;
+            border-radius: 15px;
+            border: 3px solid;
+        }
+
+        .comparison-card.facebook {
+            background: linear-gradient(135deg, rgba(27,94,32,0.05) 0%, rgba(0,0,0,0.05) 100%);
+            border-color: #1B5E20;
+        }
+
+        .comparison-card.instagram {
+            background: linear-gradient(135deg, rgba(231,111,81,0.05) 0%, rgba(0,0,0,0.05) 100%);
+            border-color: #E76F51;
+        }
+
+        .comparison-card h3 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.5em;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .comparison-card.facebook h3 {
+            color: #1B5E20;
+        }
+
+        .comparison-card.instagram h3 {
+            color: #E76F51;
+        }
+
+        .metric-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 12px 0;
+            border-bottom: 1px solid #e9ecef;
+        }
+
+        .metric-row:last-child {
+            border-bottom: none;
+        }
+
+        .metric-label {
+            font-weight: 600;
+            color: #666;
+        }
+
+        .metric-value {
+            font-weight: 700;
+            color: #264653;
+        }
+
+        .recommendations-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .recommendations-list li {
+            padding: 20px;
+            margin: 15px 0;
+            background: #f8f9fa;
+            border-radius: 10px;
+            border-left: 5px solid #1B5E20;
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            transition: all 0.3s;
+        }
+
+        .recommendations-list li:hover {
+            background: #e9ecef;
+            transform: translateX(5px);
+        }
+
+        .recommendations-list li.critical {
+            border-left-color: #E76F51;
+            background: linear-gradient(135deg, rgba(231,111,81,0.1) 0%, rgba(248,249,250,1) 100%);
+        }
+
+        .priority-badge {
+            background: #1B5E20;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.75em;
+            font-weight: 800;
+            text-transform: uppercase;
+            white-space: nowrap;
+        }
+
+        .priority-badge.critical {
+            background: #E76F51;
+        }
+
+        .priority-badge.high {
+            background: #F4A261;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 30px;
+            background: #e9ecef;
+            border-radius: 15px;
+            overflow: hidden;
+            margin: 10px 0;
+            position: relative;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #1B5E20 0%, #66BB6A 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+            transition: width 1s ease;
+        }
+
+        .footer {
+            background: linear-gradient(135deg, #1B5E20 0%, #000000 100%);
+            color: white;
+            padding: 40px;
+            border-radius: 20px;
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        .footer-logo {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2em;
+            font-weight: 800;
+            margin-bottom: 10px;
+        }
+
+        @media print {
+            body {
+                background: white;
+            }
+            .section {
+                break-inside: avoid;
+                box-shadow: none;
+                border: 2px solid #1B5E20;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2em;
+            }
+            .charts-grid {
+                grid-template-columns: 1fr;
+            }
+            .comparison-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <h1>📊 Reporte Ejecutivo</h1>
+            <div class="subtitle">Auditoría de Redes Sociales - Grupo Sibru</div>
+            <div class="period">Período: 6 Mayo - 2 Junio 2026</div>
+        </div>
+
+        <!-- Logo Section -->
+        <div class="logo-container">
+            <div class="logo-sibru" style="color: #1B5E20;">GRUPO SIBRÜ</div>
+            <div style="color: #666; font-size: 1.2em;">
+                <strong>30 años</strong> alimentando a México con calidad y confianza
+            </div>
+        </div>
+
+        <!-- Executive Summary -->
+        <div class="section">
+            <h2 class="section-title">📋 Resumen Ejecutivo</h2>
+            <div class="insight-box">
+                <h3>Visión General del Desempeño Digital</h3>
+                <p>Grupo Sibru muestra un <strong>crecimiento significativo en Facebook</strong> (+59% visualizaciones, +339% interacciones) mientras que <strong>Instagram presenta una oportunidad de crecimiento</strong> con alcance orgánico del 70.7% pero solo 3 seguidores. La estrategia dual B2B+B2C requiere consolidación de presencia digital.</p>
+            </div>
+            
+            <div class="kpi-grid">
+                <div class="kpi-card">
+                    <div class="kpi-label">Visualizaciones Facebook</div>
+                    <div class="kpi-value positive">8,785</div>
+                    <span class="kpi-change positive">↑ +59%</span>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-label">Interacciones Totales</div>
+                    <div class="kpi-value positive">325</div>
+                    <span class="kpi-change positive">↑ +339%</span>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-label">Seguidores Facebook</div>
+                    <div class="kpi-value">1,870</div>
+                    <span class="kpi-change positive">↑ +5 netos</span>
+                </div>
+                <div class="kpi-card critical">
+                    <div class="kpi-label">Seguidores Instagram</div>
+                    <div class="kpi-value negative">3</div>
+                    <span class="kpi-change negative">⚠ Crítico</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Facebook Performance -->
+        <div class="section success">
+            <h2 class="section-title success">✅ Facebook - Desempeño Destacado</h2>
+            
+            <div class="charts-grid">
+                <div class="chart-container">
+                    <div class="chart-title">Visualizaciones por Tipo de Contenido</div>
+                    <canvas id="fbContentType"></canvas>
+                </div>
+                <div class="chart-container">
+                    <div class="chart-title">Audiencia: Seguidores vs No Seguidores</div>
+                    <canvas id="fbAudience"></canvas>
+                </div>
+                <div class="chart-container">
+                    <div class="chart-title">Interacciones por Tipo</div>
+                    <canvas id="fbInteractions"></canvas>
+                </div>
+                <div class="chart-container">
+                    <div class="chart-title">Desempeño por Formato</div>
+                    <canvas id="fbFormats"></canvas>
+                </div>
+            </div>
+
+            <h3 style="font-family: 'Montserrat', sans-serif; color: #1B5E20; margin: 30px 0 20px 0;">Métricas Detalladas Facebook</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Métrica</th>
+                        <th>Valor</th>
+                        <th>Crecimiento</th>
+                        <th>Estado</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Visualizaciones Totales</strong></td>
+                        <td>8,785</td>
+                        <td><span class="badge badge-success">↑ +59%</span></td>
+                        <td><span class="badge badge-success">Excelente</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Reproducciones 3 segundos</strong></td>
+                        <td>483</td>
+                        <td><span class="badge badge-success">↑ +130%</span></td>
+                        <td><span class="badge badge-success">Muy Bueno</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Tiempo de Reproducción</strong></td>
+                        <td>2h 1min</td>
+                        <td><span class="badge badge-success">↑ +132%</span></td>
+                        <td><span class="badge badge-success">Excelente</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Reacciones</strong></td>
+                        <td>83</td>
+                        <td><span class="badge badge-info">59.7%</span></td>
+                        <td><span class="badge badge-success">Bueno</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Comentarios</strong></td>
+                        <td>53</td>
+                        <td><span class="badge badge-info">38.1%</span></td>
+                        <td><span class="badge badge-success">Bueno</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Compartidos</strong></td>
+                        <td>3</td>
+                        <td><span class="badge badge-warning">2.2%</span></td>
+                        <td><span class="badge badge-warning">Mejorable</span></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="insight-box" style="background: linear-gradient(135deg, #2E7D32 0%, #1B5E20 100%);">
+                <h3>💡 Hallazgo Clave Facebook</h3>
+                <p>El <strong>41.6% del alcance proviene de no seguidores</strong>, lo que indica excelente potencial viral orgánico. Las fotos generan 62.4% de visualizaciones pero los Reels tienen mayor crecimiento (+134%).</p>
+            </div>
+        </div>
+
+        <!-- Instagram Performance -->
+        <div class="section critical">
+            <h2 class="section-title critical">⚠️ Instagram - Oportunidad Crítica</h2>
+            
+            <div class="charts-grid">
+                <div class="chart-container">
+                    <div class="chart-title">Visualizaciones por Contenido</div>
+                    <canvas id="igContentType"></canvas>
+                </div>
+                <div class="chart-container">
+                    <div class="chart-title">Interacciones por Plataforma</div>
+                    <canvas id="igInteractions"></canvas>
+                </div>
+            </div>
+
+            <h3 style="font-family: 'Montserrat', sans-serif; color: #E76F51; margin: 30px 0 20px 0;">Métricas Detalladas Instagram</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Métrica</th>
+                        <th>Valor</th>
+                        <th>Comparación Facebook</th>
+                        <th>Estado</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Seguidores Totales</strong></td>
+                        <td>3</td>
+                        <td>1,870 (Facebook)</td>
+                        <td><span class="badge badge-danger">🔴 Crítico</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Visualizaciones</strong></td>
+                        <td>314</td>
+                        <td>8,785 (Facebook)</td>
+                        <td><span class="badge badge-warning">🟡 Muy Bajo</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Interacciones</strong></td>
+                        <td>18</td>
+                        <td>325 (Facebook)</td>
+                        <td><span class="badge badge-danger">🔴 Crítico</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Alcance No Seguidores</strong></td>
+                        <td>70.7%</td>
+                        <td>41.6% (Facebook)</td>
+                        <td><span class="badge badge-success">✅ Potencial</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Visitas al Perfil</strong></td>
+                        <td>9</td>
+                        <td>713 (Facebook)</td>
+                        <td><span class="badge badge-danger">🔴 Muy Bajo</span></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="insight-box" style="background: linear-gradient(135deg, #E76F51 0%, #264653 100%);">
+                <h3>🚨 Alerta Estratégica</h3>
+                <p>Instagram está <strong>prácticamente abandonado</strong> con solo 3 seguidores vs 1,870 en Facebook. Sin embargo, el 70.7% de alcance orgánico indica que el algoritmo favorece el contenido pero no hay estrategia de conversión.</p>
+            </div>
+        </div>
+
+        <!-- Comparative Analysis -->
+        <div class="section">
+            <h2 class="section-title">📊 Análisis Comparativo: Facebook vs Instagram</h2>
+            
+            <div class="comparison-grid">
+                <div class="comparison-card facebook">
+                    <h3>📘 Facebook</h3>
+                    <div class="metric-row">
+                        <span class="metric-label">Seguidores</span>
+                        <span class="metric-value">1,870</span>
+                    </div>
+                    <div class="metric-row">
+                        <span class="metric-label">Visualizaciones</span>
+                        <span class="metric-value">8,785</span>
+                    </div>
+                    <div class="metric-row">
+                        <span class="metric-label">Interacciones</span>
+                        <span class="metric-value">325</span>
+                    </div>
+                    <div class="metric-row">
+                        <span class="metric-label">Alcance Orgánico</span>
+                        <span class="metric-value">41.6%</span>
+                    </div>
+                    <div class="metric-row">
+                        <span class="metric-label">Crecimiento</span>
+                        <span class="metric-value" style="color: #2E7D32;">+59%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 85%;">85%</div>
+                    </div>
+                    <div style="text-align: center; margin-top: 10px; font-weight: 700; color: #1B5E20;">Desempeño Sólido</div>
+                </div>
+
+                <div class="comparison-card instagram">
+                    <h3>📷 Instagram</h3>
+                    <div class="metric-row">
+                        <span class="metric-label">Seguidores</span>
+                        <span class="metric-value">3</span>
+                    </div>
+                    <div class="metric-row">
+                        <span class="metric-label">Visualizaciones</span>
+                        <span class="metric-value">314</span>
+                    </div>
+                    <div class="metric-row">
+                        <span class="metric-label">Interacciones</span>
+                        <span class="metric-value">18</span>
+                    </div>
+                    <div class="metric-row">
+                        <span class="metric-label">Alcance Orgánico</span>
+                        <span class="metric-value">70.7%</span>
+                    </div>
+                    <div class="metric-row">
+                        <span class="metric-label">Crecimiento</span>
+                        <span class="metric-value" style="color: #E76F51;">Estancado</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 15%; background: linear-gradient(90deg, #E76F51 0%, #F4A261 100%);">15%</div>
+                    </div>
+                    <div style="text-align: center; margin-top: 10px; font-weight: 700; color: #E76F51;">Oportunidad Sin Explotar</div>
+                </div>
+            </div>
+
+            <h3 style="font-family: 'Montserrat', sans-serif; color: #264653; margin: 30px 0 20px 0;">Brecha de Desempeño</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Métrica</th>
+                        <th>Facebook</th>
+                        <th>Instagram</th>
+                        <th>Diferencia</th>
+                        <th>Implicación</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Base de Seguidores</strong></td>
+                        <td>1,870</td>
+                        <td>3</td>
+                        <td style="color: #E76F51; font-weight: 800;">623x más en FB</td>
+                        <td><span class="badge badge-danger">Urgente</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Alcance Total</strong></td>
+                        <td>8,785</td>
+                        <td>314</td>
+                        <td style="color: #E76F51; font-weight: 800;">28x más en FB</td>
+                        <td><span class="badge badge-warning">Prioritario</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Engagement</strong></td>
+                        <td>325</td>
+                        <td>18</td>
+                        <td style="color: #E76F51; font-weight: 800;">18x más en FB</td>
+                        <td><span class="badge badge-warning">Prioritario</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Alcance No Seguidores</strong></td>
+                        <td>41.6%</td>
+                        <td>70.7%</td>
+                        <td style="color: #2E7D32; font-weight: 800;">+29% en IG</td>
+                        <td><span class="badge badge-success">Oportunidad</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Audience Demographics -->
+        <div class="section">
+            <h2 class="section-title">👥 Demografía de Audiencia Facebook</h2>
+            
+            <div class="charts-grid">
+                <div class="chart-container">
+                    <div class="chart-title">Distribución por Edad</div>
+                    <canvas id="ageDistribution"></canvas>
+                </div>
+                <div class="chart-container">
+                    <div class="chart-title">Distribución Geográfica</div>
+                    <canvas id="geoDistribution"></canvas>
+                </div>
+            </div>
+
+            <h3 style="font-family: 'Montserrat', sans-serif; color: #1B5E20; margin: 30px 0 20px 0;">Principales Ciudades</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Ciudad</th>
+                        <th>Porcentaje</th>
+                        <th>Implicación Estratégica</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Cuautitlán Izcalli</strong></td>
+                        <td>61.4%</td>
+                        <td><span class="badge badge-success">Mercado Principal - Hiperlocal</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Ciudad de México</strong></td>
+                        <td>12%</td>
+                        <td><span class="badge badge-info">Expansión Potencial</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>López Mateos</strong></td>
+                        <td>6.1%</td>
+                        <td><span class="badge badge-info">Zona Secundaria</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Tepotzotlán</strong></td>
+                        <td>6.1%</td>
+                        <td><span class="badge badge-info">Zona Secundaria</span></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="insight-box">
+                <h3>🎯 Insight Demográfico Clave</h3>
+                <p>El <strong>74.6% de la audiencia tiene entre 25-54 años</strong> (edad productiva y de decisión de compra). La concentración del 61.4% en Cuautitlán Izcalli valida la estrategia de contenido hiperlocal y la ubicación física de sucursales.</p>
+            </div>
+        </div>
+
+        <!-- Brand Perception -->
+        <div class="section">
+            <h2 class="section-title">🎨 Percepción de Marca - Auditoría</h2>
+            
+            <div class="charts-grid">
+                <div class="chart-container">
+                    <div class="chart-title">Percepción Actual vs Deseada</div>
+                    <canvas id="brandPerception"></canvas>
+                </div>
+                <div class="chart-container">
+                    <div class="chart-title">Brechas de Marca Prioritarias</div>
+                    <canvas id="brandGaps"></canvas>
+                </div>
+            </div>
+
+            <h3 style="font-family: 'Montserrat', sans-serif; color: #1B5E20; margin: 30px 0 20px 0;">Atributos de Marca</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Atributo</th>
+                        <th>Percepción Actual</th>
+                        <th>Percepción Deseada</th>
+                        <th>Brecha</th>
+                        <th>Prioridad</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Calidad del Producto</strong></td>
+                        <td><div class="progress-bar"><div class="progress-fill" style="width: 85%;">85%</div></div></td>
+                        <td>Mantener excelencia</td>
+                        <td style="color: #2E7D32;">-</td>
+                        <td><span class="badge badge-success">Mantenimiento</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Conexión Emocional</strong></td>
+                        <td><div class="progress-bar"><div class="progress-fill" style="width: 35%; background: linear-gradient(90deg, #E76F51 0%, #F4A261 100%);">35%</div></div></td>
+                        <td>Alta cercanía</td>
+                        <td style="color: #E76F51; font-weight: 800;">+50%</td>
+                        <td><span class="badge badge-danger">Crítica</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Presencia Digital</strong></td>
+                        <td><div class="progress-bar"><div class="progress-fill" style="width: 30%; background: linear-gradient(90deg, #E76F51 0%, #F4A261 100%);">30%</div></div></td>
+                        <td>Referente digital</td>
+                        <td style="color: #E76F51; font-weight: 800;">+55%</td>
+                        <td><span class="badge badge-danger">Crítica</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Confianza</strong></td>
+                        <td><div class="progress-bar"><div class="progress-fill" style="width: 80%;">80%</div></div></td>
+                        <td>Líder del sector</td>
+                        <td style="color: #F4A261; font-weight: 800;">+15%</td>
+                        <td><span class="badge badge-warning">Media</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Modernidad</strong></td>
+                        <td><div class="progress-bar"><div class="progress-fill" style="width: 40%; background: linear-gradient(90deg, #F4A261 0%, #E76F51 100%);">40%</div></div></td>
+                        <td>Marca contemporánea</td>
+                        <td style="color: #E76F51; font-weight: 800;">+45%</td>
+                        <td><span class="badge badge-warning">Alta</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Cercanía Humana</strong></td>
+                        <td><div class="progress-bar"><div class="progress-fill" style="width: 45%; background: linear-gradient(90deg, #F4A261 0%, #66BB6A 100%);">45%</div></div></td>
+                        <td>Marca cercana</td>
+                        <td style="color: #F4A261; font-weight: 800;">+40%</td>
+                        <td><span class="badge badge-warning">Alta</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Strategic Recommendations -->
+        <div class="section critical">
+            <h2 class="section-title critical">🚀 Recomendaciones Estratégicas Priorizadas</h2>
+            
+            <ul class="recommendations-list">
+                <li class="critical">
+                    <span class="priority-badge critical">Crítico</span>
+                    <div>
+                        <strong style="font-size: 1.2em; color: #264653;">Optimización Inmediata de Instagram</strong>
+                        <p style="margin-top: 10px; color: #666;">Importar base de Facebook (1,870 seguidores), implementar cross-promotion agresiva, y crear estrategia de contenido con 3-4 Reels semanales. Meta: 100 seguidores en 30 días.</p>
+                    </div>
+                </li>
+                <li class="critical">
+                    <span class="priority-badge critical">Crítico</span>
+                    <div>
+                        <strong style="font-size: 1.2em; color: #264653;">Sesión Fotográfica Profesional</strong>
+                        <p style="margin-top: 10px; color: #666;">Banco de imágenes de alta calidad: equipo de trabajo, instalaciones, productos frescos, procesos. ROI: Muy Alto. Inversión única con impacto inmediato en todas las plataformas.</p>
+                    </div>
+                </li>
+                <li class="critical">
+                    <span class="priority-badge critical">Crítico</span>
+                    <div>
+                        <strong style="font-size: 1.2em; color: #264653;">WhatsApp Business Optimizado</strong>
+                        <p style="margin-top: 10px; color: #666;">Implementar catálogo digital, respuestas automáticas, segmentación de clientes y broadcasts promocionales. Canal preferido en México para conversiones.</p>
+                    </div>
+                </li>
+                <li>
+                    <span class="priority-badge high">Alta</span>
+                    <div>
+                        <strong style="font-size: 1.2em; color: #264653;">Rediseño Sitio Web Responsive</strong>
+                        <p style="margin-top: 10px; color: #666;">Sitio moderno, SEO optimizado, enfocado en conversión. Meta: reducir tasa de rebote de 65% a 40% y aumentar conversiones de 5 a 50 mensuales.</p>
+                    </div>
+                </li>
+                <li>
+                    <span class="priority-badge high">Alta</span>
+                    <div>
+                        <strong style="font-size: 1.2em; color: #264653;">Estrategia de Contenidos Emocionales</strong>
+                        <p style="margin-top: 10px; color: #666;">Calendario editorial con storytelling: "Del Origen a tu Mesa", testimonios B2B, recetas, behind-the-scenes. Transformar percepción de "proveedor" a "aliado alimentario".</p>
+                    </div>
+                </li>
+                <li>
+                    <span class="priority-badge high">Alta</span>
+                    <div>
+                        <strong style="font-size: 1.2em; color: #264653;">Mejorar Tasa de Respuesta Messenger</strong>
+                        <p style="margin-top: 10px; color: #666;">Actual: 50%. Meta: 90% en menos de 30 minutos. Implementar chatbot básico y protocolos de atención para no perder oportunidades de venta.</p>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Action Plan -->
+        <div class="section">
+            <h2 class="section-title">📅 Plan de Acción 90 Días</h2>
+            
+            <h3 style="font-family: 'Montserrat', sans-serif; color: #1B5E20; margin: 30px 0 20px 0;">Roadmap Estratégico</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Fase</th>
+                        <th>Semanas</th>
+                        <th>Acciones Clave</th>
+                        <th>Entregables</th>
+                        <th>Responsable</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Fase 1: Fundamentos</strong></td>
+                        <td>1-3</td>
+                        <td>
+                            • Sesión fotográfica profesional<br>
+                            • Creación manual de marca<br>
+                            • Optimización WhatsApp Business<br>
+                            • Diseño plantillas redes
+                        </td>
+                        <td>
+                            <span class="badge badge-success">Banco Imágenes</span><br>
+                            <span class="badge badge-success">Manual Marca</span><br>
+                            <span class="badge badge-success">Kit Digital</span>
+                        </td>
+                        <td>Marketing + Desarrollo</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Fase 2: Lanzamiento</strong></td>
+                        <td>4-6</td>
+                        <td>
+                            • Rediseño sitio web responsive<br>
+                            • Campaña #DelOrigenATuMesa<br>
+                            • Activación Instagram/TikTok<br>
+                            • Email marketing B2B
+                        </td>
+                        <td>
+                            <span class="badge badge-info">Web Nueva</span><br>
+                            <span class="badge badge-info">Campaña Activa</span><br>
+                            <span class="badge badge-success">+50% Engagement</span>
+                        </td>
+                        <td>Marketing + Desarrollo</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Fase 3: Consolidación</strong></td>
+                        <td>7-12</td>
+                        <td>
+                            • Contenido editorial mensual<br>
+                            • Programa testimonios B2B<br>
+                            • SEO y posicionamiento<br>
+                            • Análisis métricas y ajustes
+                        </td>
+                        <td>
+                            <span class="badge badge-info">Calendario Contenido</span><br>
+                            <span class="badge badge-success">10+ Testimonios</span><br>
+                            <span class="badge badge-info">Reporte ROI</span>
+                        </td>
+                        <td>Marketing + Ventas</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="insight-box" style="background: linear-gradient(135deg, #1B5E20 0%, #2A9D8F 100%);">
+                <h3>📈 Retorno Esperado (12 meses)</h3>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin-top: 20px;">
+                    <div style="background: rgba(255,255,255,0.2); padding: 20px; border-radius: 10px; text-align: center;">
+                        <div style="font-size: 2.5em; font-weight: 800;">+40-60%</div>
+                        <div>Ventas B2C</div>
+                    </div>
+                    <div style="background: rgba(255,255,255,0.2); padding: 20px; border-radius: 10px; text-align: center;">
+                        <div style="font-size: 2.5em; font-weight: 800;">+50-80%</div>
+                        <div>Clientes B2B</div>
+                    </div>
+                    <div style="background: rgba(255,255,255,0.2); padding: 20px; border-radius: 10px; text-align: center;">
+                        <div style="font-size: 2.5em; font-weight: 800;">+40%</div>
+                        <div>Reconocimiento</div>
+                    </div>
+                    <div style="background: rgba(255,255,255,0.2); padding: 20px; border-radius: 10px; text-align: center;">
+                        <div style="font-size: 2.5em; font-weight: 800;">250-350%</div>
+                        <div>ROI Estimado</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            <div class="footer-logo">GRUPO SIBRÜ</div>
+            <div style="font-size: 1.3em; margin-bottom: 10px;">Alimentamos Confianza</div>
+            <div style="opacity: 0.9; margin-bottom: 20px;">
+                30 años alimentando a México con calidad, calidez y compromiso
+            </div>
+            <div style="border-top: 1px solid rgba(255,255,255,0.3); padding-top: 20px; margin-top: 20px; font-size: 0.9em;">
+                Reporte Ejecutivo de Auditoría Digital | Mayo 2026<br>
+                Documento Confidencial - Uso Interno
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Chart.js Default Configuration
+        Chart.defaults.font.family = "'Open Sans', sans-serif";
+        Chart.defaults.color = '#264653';
+        
+        // Facebook Content Type Pie Chart
+        new Chart(document.getElementById('fbContentType'), {
+            type: 'pie',
+            data: {
+                labels: ['Fotos', 'Reels', 'Historias', 'Varias Fotos', 'Enlaces'],
+                datasets: [{
+                    data: [62.4, 17.8, 9, 6.3, 4.6],
+                    backgroundColor: [
+                        '#1B5E20',
+                        '#66BB6A',
+                        '#F4A261',
+                        '#2A9D8F',
+                        '#264653'
+                    ],
+                    borderWidth: 3,
+                    borderColor: '#fff'
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                        labels: {
+                            padding: 15,
+                            font: { size: 12 }
+                        }
+                    }
+                }
+            }
+        });
+
+        // Facebook Audience Pie Chart
+        new Chart(document.getElementById('fbAudience'), {
+            type: 'doughnut',
+            data: {
+                labels: ['Seguidores', 'No Seguidores'],
+                datasets: [{
+                    data: [58.4, 41.6],
+                    backgroundColor: [
+                        '#1B5E20',
+                        '#66BB6A'
+                    ],
+                    borderWidth: 3,
+                    borderColor: '#fff'
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                        labels: {
+                            padding: 15,
+                            font: { size: 12 }
+                        }
+                    }
+                }
+            }
+        });
+
+        // Facebook Interactions Pie Chart
+        new Chart(document.getElementById('fbInteractions'), {
+            type: 'pie',
+            data: {
+                labels: ['Reacciones', 'Comentarios', 'Compartidos'],
+                datasets: [{
+                    data: [59.7, 38.1, 2.2],
+                    backgroundColor: [
+                        '#1B5E20',
+                        '#2A9D8F',
+                        '#F4A261'
+                    ],
+                    borderWidth: 3,
+                    borderColor: '#fff'
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                        labels: {
+                            padding: 15,
+                            font: { size: 12 }
+                        }
+                    }
+                }
+            }
+        });
+
+        // Facebook Formats Bar Chart
+        new Chart(document.getElementById('fbFormats'), {
+            type: 'bar',
+            data: {
+                labels: ['Publicaciones', 'Reels', 'Historias'],
+                datasets: [{
+                    label: 'Visualizaciones',
+                    data: [8012, 1544, 773],
+                    backgroundColor: [
+                        '#1B5E20',
+                        '#66BB6A',
+                        '#F4A261'
+                    ],
+                    borderWidth: 0
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        display: false
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+
+        // Instagram Content Type Pie Chart
+        new Chart(document.getElementById('igContentType'), {
+            type: 'pie',
+            data: {
+                labels: ['Reels', 'Publicaciones', 'Historias'],
+                datasets: [{
+                    data: [63.1, 25.3, 11.6],
+                    backgroundColor: [
+                        '#E76F51',
+                        '#F4A261',
+                        '#2A9D8F'
+                    ],
+                    borderWidth: 3,
+                    borderColor: '#fff'
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                        labels: {
+                            padding: 15,
+                            font: { size: 12 }
+                        }
+                    }
+                }
+            }
+        });
+
+        // Instagram Interactions Pie Chart
+        new Chart(document.getElementById('igInteractions'), {
+            type: 'doughnut',
+            data: {
+                labels: ['Publicaciones', 'Historias', 'Reels'],
+                datasets: [{
+                    data: [50, 27.8, 22.2],
+                    backgroundColor: [
+                        '#E76F51',
+                        '#F4A261',
+                        '#2A9D8F'
+                    ],
+                    borderWidth: 3,
+                    borderColor: '#fff'
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                        labels: {
+                            padding: 15,
+                            font: { size: 12 }
+                        }
+                    }
+                }
+            }
+        });
+
+        // Age Distribution Horizontal Bar
+        new Chart(document.getElementById('ageDistribution'), {
+            type: 'bar',
+            data: {
+                labels: ['35-44', '25-34', '45-54', '55-64', '+65', '18-24'],
+                datasets: [{
+                    label: 'Porcentaje',
+                    data: [38.6, 23.3, 22.7, 9, 4.2, 2.2],
+                    backgroundColor: [
+                        '#1B5E20',
+                        '#2E7D32',
+                        '#66BB6A',
+                        '#2A9D8F',
+                        '#F4A261',
+                        '#E76F51'
+                    ],
+                    borderWidth: 0
+                }]
+            },
+            options: {
+                indexAxis: 'y',
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        display: false
+                    }
+                },
+                scales: {
+                    x: {
+                        beginAtZero: true,
+                        max: 40
+                    }
+                }
+            }
+        });
+
+        // Geographic Distribution Pie Chart
+        new Chart(document.getElementById('geoDistribution'), {
+            type: 'pie',
+            data: {
+                labels: ['Cuautitlán Izcalli', 'CDMX', 'López Mateos', 'Tepotzotlán', 'Otras'],
+                datasets: [{
+                    data: [61.4, 12, 6.1, 6.1, 14.4],
+                    backgroundColor: [
+                        '#1B5E20',
+                        '#2E7D32',
+                        '#66BB6A',
+                        '#2A9D8F',
+                        '#F4A261'
+                    ],
+                    borderWidth: 3,
+                    borderColor: '#fff'
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                        labels: {
+                            padding: 15,
+                            font: { size: 11 }
+                        }
+                    }
+                }
+            }
+        });
+
+        // Brand Perception Radar
+        new Chart(document.getElementById('brandPerception'), {
+            type: 'radar',
+            data: {
+                labels: ['Calidad', 'Conexión Emocional', 'Modernidad', 'Confianza', 'Presencia Digital', 'Cercanía'],
+                datasets: [
+                    {
+                        label: 'Percepción Actual',
+                        data: [85, 35, 40, 80, 30, 45],
+                        backgroundColor: 'rgba(231, 111, 81, 0.2)',
+                        borderColor: '#E76F51',
+                        pointBackgroundColor: '#E76F51',
+                        borderWidth: 3
+                    },
+                    {
+                        label: 'Percepción Deseada',
+                        data: [85, 85, 85, 95, 85, 85],
+                        backgroundColor: 'rgba(27, 94, 32, 0.2)',
+                        borderColor: '#1B5E20',
+                        pointBackgroundColor: '#1B5E20',
+                        borderWidth: 3
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                        labels: {
+                            padding: 15,
+                            font: { size: 12 }
+                        }
+                    }
+                },
+                scales: {
+                    r: {
+                        beginAtZero: true,
+                        max: 100
+                    }
+                }
+            }
+        });
+
+        // Brand Gaps Bar Chart
+        new Chart(document.getElementById('brandGaps'), {
+            type: 'bar',
+            data: {
+                labels: ['Conexión Emocional', 'Presencia Digital', 'Modernidad', 'Cercanía Humana', 'Confianza'],
+                datasets: [{
+                    label: 'Brecha a Cerrar (%)',
+                    data: [50, 55, 45, 40, 15],
+                    backgroundColor: [
+                        '#E76F51',
+                        '#E76F51',
+                        '#F4A261',
+                        '#F4A261',
+                        '#66BB6A'
+                    ],
+                    borderWidth: 0
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        display: false
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
