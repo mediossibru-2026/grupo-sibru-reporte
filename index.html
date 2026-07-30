@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grupo SIBRÜ | Portal Estratégico 2026</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --green-dark: #1B5E20;
+            --green-light: #2E7D32;
+            --orange: #F4A261;
+            --black: #000000;
+            --gray-bg: #f0f2f5;
+            --white: #ffffff;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            background-color: var(--gray-bg);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .menu-container {
+            background: var(--white);
+            width: 100%;
+            max-width: 700px;
+            border-radius: 25px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.12);
+            text-align: center;
+        }
+
+        .header {
+            background: linear-gradient(135deg, var(--green-dark) 0%, var(--black) 100%);
+            color: var(--white);
+            padding: 50px 30px;
+        }
+
+        .logo-text {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2.5em;
+            font-weight: 800;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            font-size: 1.1em;
+            opacity: 0.9;
+            font-weight: 400;
+        }
+
+        .content {
+            padding: 40px 30px;
+        }
+
+        .doc-card {
+            display: block;
+            background: var(--white);
+            border: 2px solid #eee;
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 20px;
+            text-decoration: none;
+            color: var(--black);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            text-align: left;
+        }
+
+        .doc-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--green-dark);
+            box-shadow: 0 10px 30px rgba(27, 94, 32, 0.1);
+        }
+
+        .doc-card::before {
+            content: '';
+            position: absolute;
+            left: 0; top: 0; bottom: 0;
+            width: 6px;
+            background: var(--green-dark);
+        }
+
+        .doc-card.event::before { background: var(--orange); }
+
+        .doc-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.3em;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: var(--green-dark);
+        }
+
+        .doc-card.event .doc-title { color: #d35400; }
+
+        .doc-desc {
+            font-size: 0.95em;
+            color: #666;
+            line-height: 1.5;
+            margin-bottom: 15px;
+        }
+
+        .doc-meta {
+            font-size: 0.8em;
+            color: #999;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .footer {
+            padding: 20px;
+            background: #fafafa;
+            border-top: 1px solid #eee;
+            font-size: 0.8em;
+            color: #aaa;
+        }
+
+        @media (max-width: 480px) {
+            .logo-text { font-size: 2em; }
+            .doc-title { font-size: 1.1em; }
+            .content { padding: 30px 20px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="menu-container">
+        <div class="header">
+            <div class="logo-text">GRUPO SIBRÜ</div>
+            <div class="subtitle">Portal Estratégico & Documentación Interna</div>
+        </div>
+
+        <div class="content">
+            <!-- Link al Reporte Ejecutivo -->
+            <a href="reporte_ejecutivo.html" class="doc-card">
+                <div class="doc-title">📊 Reporte Ejecutivo: Auditoría Digital</div>
+                <div class="doc-desc">
+                    Análisis integral de percepción de marca, desempeño en redes sociales (Facebook, Instagram, Google Maps) y estrategia de branding emocional. Incluye KPIs, FODA y roadmap 2026.
+                </div>
+                <div class="doc-meta">Documento Confidencial • Mayo 2026</div>
+            </a>
+
+            <!-- Link a la Propuesta Fiesta Mexicana -->
+            <a href="invitacion_proveedores.html" class="doc-card event">
+                <div class="doc-title">🎉 Propuesta: Fiesta Mexicana SIBRÜ 2026</div>
+                <div class="doc-desc">
+                    Campaña integral "Las fiestas se celebran con el mejor sabor". Incluye concepto creativo, cronograma, desglose presupuestal (Escenarios A y B) y logística del evento presencial.
+                </div>
+                <div class="doc-meta">Propuesta Comercial • Septiembre 2026</div>
+            </a>
+        </div>
+
+        <div class="footer">
+            Documento Confidencial - Uso Interno Exclusivo<br>
+            Elaborado por: Sergio Isaac Alvarez Molina
+        </div>
+    </div>
+</body>
+</html>
