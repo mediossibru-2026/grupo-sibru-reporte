@@ -10,6 +10,7 @@
             --green-dark: #1B5E20;
             --green-light: #2E7D32;
             --orange: #F4A261;
+            --red-mex: #E76F51;
             --black: #000000;
             --gray-bg: #f0f2f5;
             --white: #ffffff;
@@ -90,7 +91,7 @@
             background: var(--green-dark);
         }
 
-        .doc-card.event::before { background: var(--orange); }
+        .doc-card.invitation::before { background: var(--orange); }
 
         .doc-title {
             font-family: 'Montserrat', sans-serif;
@@ -100,7 +101,7 @@
             color: var(--green-dark);
         }
 
-        .doc-card.event .doc-title { color: #d35400; }
+        .doc-card.invitation .doc-title { color: #d35400; }
 
         .doc-desc {
             font-size: 0.95em;
@@ -140,22 +141,22 @@
         </div>
 
         <div class="content">
-            <!-- Link al Reporte Ejecutivo -->
-            <a href="reporte_ejecutivo.html" class="doc-card">
-                <div class="doc-title">📊 Reporte Ejecutivo: Auditoría Digital</div>
-                <div class="doc-desc">
-                    Análisis integral de percepción de marca, desempeño en redes sociales (Facebook, Instagram, Google Maps) y estrategia de branding emocional. Incluye KPIs, FODA y roadmap 2026.
-                </div>
-                <div class="doc-meta">Documento Confidencial • Mayo 2026</div>
-            </a>
-
             <!-- Link a la Propuesta Fiesta Mexicana -->
-            <a href="invitacion_proveedores.html" class="doc-card event">
+            <a href="reporte_ejecutivo.html" class="doc-card">
                 <div class="doc-title">🎉 Propuesta: Fiesta Mexicana SIBRÜ 2026</div>
                 <div class="doc-desc">
                     Campaña integral "Las fiestas se celebran con el mejor sabor". Incluye concepto creativo, cronograma, desglose presupuestal (Escenarios A y B) y logística del evento presencial.
                 </div>
-                <div class="doc-meta">Propuesta Comercial • Septiembre 2026</div>
+                <div class="doc-meta">PROPUESTA COMERCIAL • SEPTIEMBRE 2026</div>
+            </a>
+
+            <!-- Link a la Invitación de Proveedores -->
+            <a href="invitacion_proveedores.html" class="doc-card invitation">
+                <div class="doc-title">📨 Invitación a Proveedores</div>
+                <div class="doc-desc">
+                    Documento formal de invitación para proveedores participantes. Incluye detalles logísticos, solicitudes de activación y beneficios de participación en la campaña.
+                </div>
+                <div class="doc-meta">DOCUMENTO FORMAL • SEPTIEMBRE 2026</div>
             </a>
         </div>
 
