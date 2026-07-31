@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SIBRÜ Food Experience 2026 | Business Case</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --green-dark: #1B5E20;
+            --green-light: #2E7D32;
+            --orange: #F4A261;
+            --black: #000000;
+            --gray-bg: #f8f9fa;
+            --white: #ffffff;
+            --text-main: #264653;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            background-color: var(--gray-bg);
+            color: var(--text-main);
+            line-height: 1.6;
+        }
+
+        .container { max-width: 1100px; margin: 0 auto; padding: 40px 20px; }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, var(--green-dark) 0%, var(--black) 100%);
+            color: var(--white);
+            padding: 60px 40px;
+            border-radius: 20px;
+            text-align: center;
+            margin-bottom: 40px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 3em;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+        }
+
+        .header .subtitle {
+            font-size: 1.4em;
+            color: var(--orange);
+            font-style: italic;
+            margin-bottom: 20px;
+        }
+
+        .badge-version {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            padding: 8px 20px;
+            border-radius: 50px;
+            font-size: 0.9em;
+            font-weight: 600;
+        }
+
+        /* Sections */
+        .section {
+            background: var(--white);
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            border-left: 8px solid var(--green-dark);
+        }
+
+        .section-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.8em;
+            font-weight: 700;
+            color: var(--green-dark);
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        /* Grids & Cards */
+        .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; margin: 20px 0; }
+        .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin: 20px 0; }
+
+        .card {
+            background: var(--gray-bg);
+            padding: 25px;
+            border-radius: 15px;
+            border-top: 4px solid var(--orange);
+            transition: transform 0.3s;
+        }
+
+        .card:hover { transform: translateY(-5px); }
+        
+        .card h3 {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--green-dark);
+            margin-bottom: 10px;
+            font-size: 1.2em;
+        }
+
+        /* Tables */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background: var(--white);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+
+        th {
+            background: linear-gradient(135deg, var(--green-dark), var(--black));
+            color: var(--white);
+            padding: 18px;
+            text-align: left;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: 0.9em;
+        }
+
+        td { padding: 15px 18px; border-bottom: 1px solid #eee; }
+        tr:nth-child(even) { background-color: #fafafa; }
+
+        /* KPIs */
+        .kpi-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .kpi-card {
+            background: linear-gradient(135deg, var(--green-dark), var(--green-light));
+            color: white;
+            padding: 25px;
+            border-radius: 15px;
+            text-align: center;
+        }
+
+        .kpi-value {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2.5em;
+            font-weight: 800;
+            margin: 10px 0;
+        }
+
+        /* Timeline */
+        .timeline {
+            display: flex;
+            justify-content: space-between;
+            margin: 40px 0;
+            position: relative;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            top: 25px; left: 0; right: 0;
+            height: 4px;
+            background: #eee;
+            z-index: 0;
+        }
+
+        .timeline-item {
+            flex: 1;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .timeline-dot {
+            width: 50px; height: 50px;
+            background: var(--green-dark);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 15px;
+            font-weight: 800;
+            font-family: 'Montserrat', sans-serif;
+            border: 4px solid white;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--black);
+            color: white;
+            padding: 40px;
+            border-radius: 20px;
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 { font-size: 2em; }
+            .timeline { flex-direction: column; gap: 30px; }
+            .timeline::before { display: none; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <h1>SIBRÜ FOOD EXPERIENCE</h1>
+            <div class="subtitle">Desarrollo de Mercado para Productos de Valor Agregado</div>
+            <div class="badge-version">BUSINESS CASE 2026 | VERSIÓN 1.0</div>
+        </div>
+
+        <!-- Resumen Ejecutivo -->
+        <div class="section">
+            <h2 class="section-title">🎯 Resumen Ejecutivo</h2>
+            <p style="font-size: 1.1em; margin-bottom: 20px;">
+                Como parte de la estrategia de crecimiento comercial de GRUPO SIBRÜ, se propone implementar <strong>SIBRÜ Food Experience</strong>, un programa de desarrollo de mercado orientado al sector restaurantero de Cuautitlán Izcalli y municipios aledaños.
+            </p>
+            <p>
+                El proyecto busca acelerar la comercialización de productos de valor agregado de nuestros socios estratégicos <strong>Simplot</strong> y <strong>Rich's</strong>, utilizando una experiencia gastronómica de alto impacto que combine demostraciones culinarias, capacitación comercial y generación de oportunidades de negocio. Más que un evento, es una herramienta comercial diseñada para incrementar la rentabilidad de nuestros clientes.
+            </p>
+        </div>
+
+        <!-- Justificación y Objetivos -->
+        <div class="section">
+            <h2 class="section-title">💡 Justificación y Objetivos Estratégicos</h2>
+            
+            <div class="grid-2">
+                <div class="card">
+                    <h3>Oportunidad de Crecimiento</h3>
+                    <ul style="margin-left: 20px;">
+                        <li>Baja penetración de valor agregado en cartera actual.</li>
+                        <li>Dependencia de productos tradicionales con menor margen.</li>
+                        <li>Oportunidad de incrementar ticket promedio vía venta cruzada.</li>
+                        <li>Necesidad de captar nuevos clientes HORECA.</li>
+                    </ul>
+                </div>
+                <div class="card" style="border-top-color: var(--green-dark);">
+                    <h3>Objetivo General</h3>
+                    <p>Incrementar las ventas y la rentabilidad mediante la incorporación de productos de valor agregado en clientes actuales y la generación de nuevos clientes del sector restaurantero.</p>
+                </div>
+            </div>
+
+            <h3 style="color: var(--green-dark); margin: 30px 0 15px; font-family: Montserrat;">Objetivos Específicos</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Eje Estratégico</th>
+                        <th>Metas Clave</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Clientes Actuales</strong></td>
+                        <td>Incrementar ticket promedio (+15%), frecuencia de compra y diversificar portafolio.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Nuevos Clientes</strong></td>
+                        <td>Generar prospectos calificados, desarrollar relaciones y obtener ≥15% conversión a clientes activos.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Posicionamiento</strong></td>
+                        <td>Convertir a SIBRÜ en referente regional de soluciones comerciales e innovación gastronómica.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Concepto y Portafolio -->
+        <div class="section" style="border-left-color: var(--orange);">
+            <h2 class="section-title">🍽️ Concepto del Evento y Portafolio</h2>
+            <p style="margin-bottom: 25px; font-size: 1.1em;">
+                Una experiencia comercial donde los asistentes descubrirán cómo incrementar la rentabilidad de sus negocios mediante productos innovadores. La sesión integrará cocina en vivo, degustaciones, casos reales de rentabilidad y networking empresarial.
+            </p>
+
+            <div class="grid-2">
+                <div class="card">
+                    <h3>Portafolio SIMPLOT</h3>
+                    <ul style="margin-left: 20px;">
+                        <li>Papa Gajo / Waffle</li>
+                        <li>Papa Corte Recto / Ondulado</li>
+                        <li>Papa con Cáscara Marinada en Sal</li>
+                        <li>Papa Blue Ribbon</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h3>Portafolio RICH'S</h3>
+                    <ul style="margin-left: 20px;">
+                        <li>On Top Original / Baileys</li>
+                        <li>Dedos de Queso FarmRich</li>
+                        <li>Postres Bellini</li>
+                        <li>Pizza Crunch</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Público Objetivo -->
+        <div class="section">
+            <h2 class="section-title">👥 Público Objetivo y Zona de Influencia</h2>
+            <div class="grid-2">
+                <div>
+                    <h3 style="color: var(--green-dark); font-family: Montserrat; margin-bottom: 10px;">Segmentación</h3>
+                    <p><strong>Clientes Actuales:</strong> Restaurantes con potencial de crecimiento.</p>
+                    <p><strong>Prospectos HORECA:</strong> Hamburgueserías, Cafeterías, Pizzerías, Bares, Sport Bars, Hoteles, Dark Kitchens, Comedores Industriales.</p>
+                </div>
+                <div>
+                    <h3 style="color: var(--green-dark); font-family: Montserrat; margin-bottom: 10px;">Zona Geográfica</h3>
+                    <p>Cuautitlán Izcalli, Cuautitlán, Tultitlán, Tepotzotlán, Atizapán, Nicolás Romero, Tlalnepantla.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- KPIs -->
+        <div class="section success">
+            <h2 class="section-title">📊 Indicadores de Éxito (KPIs)</h2>
+            
+            <div class="kpi-grid">
+                <div class="kpi-card">
+                    <div>Asistencia Mínima</div>
+                    <div class="kpi-value">30</div>
+                    <div>De 40 invitados (75%)</div>
+                </div>
+                <div class="kpi-card">
+                    <div>Cotizaciones</div>
+                    <div class="kpi-value">30</div>
+                    <div>100% de asistentes</div>
+                </div>
+                <div class="kpi-card">
+                    <div>Pruebas Producto</div>
+                    <div class="kpi-value">20</div>
+                    <div>Programadas post-evento</div>
+                </div>
+                <div class="kpi-card">
+                    <div>Conversión Venta</div>
+                    <div class="kpi-value">≥50%</div>
+                    <div>Cotización → Pedido</div>
+                </div>
+            </div>
+
+            <h3 style="color: var(--green-dark); margin: 30px 0 15px; font-family: Montserrat;">Crecimiento Comercial (90 días)</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Métrica</th>
+                        <th>Meta</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Clientes actuales con nuevo producto</td>
+                        <td>50%</td>
+                    </tr>
+                    <tr>
+                        <td>Incremento ticket promedio</td>
+                        <td>+15%</td>
+                    </tr>
+                    <tr>
+                        <td>Incremento ventas productos proyecto</td>
+                        <td>+20%</td>
+                    </tr>
+                    <tr>
+                        <td>Calificación satisfacción evento</td>
+                        <td>≥90%</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Plan Comercial Posterior -->
+        <div class="section">
+            <h2 class="section-title">️ Plan Comercial Posterior y Cronograma</h2>
+            
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-dot">S1</div>
+                    <div class="timeline-content">
+                        <h4>Semana 1</h4>
+                        <p>Agradecimiento + Material digital + Catálogo</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot">S2</div>
+                    <div class="timeline-content">
+                        <h4>Semana 2</h4>
+                        <p>Visitas comerciales + Pedidos + Cotizaciones</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot">S3-4</div>
+                    <div class="timeline-content">
+                        <h4>Semanas 3-4</h4>
+                        <p>Seguimiento pruebas + Cierre negociaciones</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot">90</div>
+                    <div class="timeline-content">
+                        <h4>Día 90</h4>
+                        <p>Medición KPIs + Casos éxito + Reporte ROI</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Recursos e Inversión -->
+        <div class="section">
+            <h2 class="section-title">💰 Recursos e Inversión Estimada</h2>
+            
+            <div class="grid-2">
+                <div class="card">
+                    <h3>Recursos Humanos</h3>
+                    <p>Dirección Comercial, Ventas, Marketing, Operaciones, Chef Simplot, Chef Rich's.</p>
+                </div>
+                <div class="card">
+                    <h3>Recursos Materiales</h3>
+                    <p>Cocina móvil, equipo preparación, pantallas, audio, material POP, catálogos, kits asistentes.</p>
+                </div>
+            </div>
+
+            <div style="background: #e8f5e9; padding: 25px; border-radius: 15px; margin-top: 30px; border-left: 5px solid var(--green-dark);">
+                <h3 style="color: var(--green-dark); font-family: Montserrat; margin-bottom: 10px;">Modelo de Financiamiento Compartido</h3>
+                <p>La inversión será compartida estratégicamente entre <strong>GRUPO SIBRÜ, Simplot y Rich's</strong>, priorizando el desarrollo de mercado conjunto.</p>
+                <p style="margin-top: 10px;"><strong>Conceptos principales:</strong> Renta salón, coffee break, insumos degustación, material promocional, producción audiovisual, logística y equipo de cocina.</p>
+            </div>
+        </div>
+
+        <!-- Riesgos y Factores Críticos -->
+        <div class="section critical">
+            <h2 class="section-title">️ Gestión de Riesgos y Factores de Éxito</h2>
+            
+            <table>
+                <thead>
+                    <tr>
+                        <th>Riesgo</th>
+                        <th>Acción de Mitigación</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Baja asistencia</td>
+                        <td>Confirmaciones anticipadas y recordatorios WhatsApp/Email</td>
+                    </tr>
+                    <tr>
+                        <td>Baja conversión</td>
+                        <td>Seguimiento comercial intensivo semanas 2-4</td>
+                    </tr>
+                    <tr>
+                        <td>Falta de inventario</td>
+                        <td>Planeación de abastecimiento con proveedores</td>
+                    </tr>
+                    <tr>
+                        <td>Poca adopción productos</td>
+                        <td>Programas de prueba y promociones exclusivas post-evento</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3 style="color: var(--green-dark); margin: 30px 0 15px; font-family: Montserrat;">Factores Críticos de Éxito</h3>
+            <div class="grid-3">
+                <div class="card" style="padding: 15px;">✅ Selección adecuada clientes</div>
+                <div class="card" style="padding: 15px;">✅ Participación activa proveedores</div>
+                <div class="card" style="padding: 15px;">✅ Chef con enfoque comercial</div>
+                <div class="card" style="padding: 15px;">✅ Material técnico apoyo</div>
+                <div class="card" style="padding: 15px;">✅ Promociones exclusivas</div>
+                <div class="card" style="padding: 15px;">✅ Seguimiento estructurado</div>
+            </div>
+        </div>
+
+        <!-- Conclusión -->
+        <div class="section">
+            <h2 class="section-title">🚀 Conclusión y Recomendación</h2>
+            <p style="font-size: 1.1em; margin-bottom: 20px;">
+                SIBRÜ Food Experience representa una iniciativa estratégica para acelerar el crecimiento comercial mediante un modelo basado en experiencias, capacitación y generación de valor real para el cliente.
+            </p>
+            <div style="background: linear-gradient(135deg, var(--green-dark), var(--black)); color: white; padding: 30px; border-radius: 15px; text-align: center;">
+                <h3 style="font-family: Montserrat; font-size: 1.4em; margin-bottom: 15px;">Recomendación Estratégica</h3>
+                <p style="font-size: 1.1em;">Iniciar como programa <strong>PILOTO en Cuautitlán Izcalli</strong>. Con base en resultados obtenidos, institucionalizarlo como modelo de desarrollo comercial replicable en otras zonas de operación.</p>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            <div style="font-family: Montserrat; font-size: 2em; font-weight: 800; margin-bottom: 10px;">GRUPO SIBRÜ</div>
+            <div style="font-size: 1.2em; margin-bottom: 20px;">Alimentamos Confianza</div>
+            <div style="opacity: 0.8; font-size: 0.9em;">
+                Documento Confidencial - Uso Interno<br>
+                Elaborado por: Sergio Isaac Alvarez Molina | Mayo 2026
+            </div>
+        </div>
+    </div>
+</body>
+</html>
