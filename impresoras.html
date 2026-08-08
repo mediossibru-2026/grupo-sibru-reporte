@@ -227,6 +227,28 @@
         .comparison-card.badgy h3 { color: var(--orange-dark); }
         .comparison-card.zebra h3 { color: var(--blue-dark); }
 
+        /* Galería de productos */
+        .img-container {
+            background: #ffffff;
+            border: 2px solid #e9ecef;
+            border-radius: 12px;
+            height: 280px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .img-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            transition: transform 0.3s;
+        }
+
+        .comparison-card:hover .img-container img { transform: scale(1.05); }
+
         /* Footer */
         .footer {
             background: linear-gradient(135deg, var(--blue-dark), var(--black));
@@ -267,6 +289,27 @@
             <h1>Comparativa Impresoras PVC</h1>
             <div class="subtitle">Evolis Badgy 100 vs Zebra ZC300 Dual</div>
             <div class="badge-version">ANÁLISIS EJECUTIVO | AGOSTO 2026</div>
+        </div>
+
+        <!-- Galería de Equipos -->
+        <div class="section" style="border-left-color: var(--orange);">
+            <h2 class="section-title">📷 Equipos Analizados</h2>
+            <div class="comparison-grid">
+                <div class="comparison-card badgy">
+                    <div class="img-container">
+                        <img src="img/badgy-100.jpg" alt="Impresora Evolis Badgy 100" loading="lazy">
+                    </div>
+                    <h3>Evolis Badgy 100</h3>
+                    <p>Gama de entrada · 1 cara · <strong>$10,829 MXN</strong></p>
+                </div>
+                <div class="comparison-card zebra">
+                    <div class="img-container">
+                        <img src="img/zebra-zc300.jpg" alt="Impresora Zebra ZC300 Dual" loading="lazy">
+                    </div>
+                    <h3>Zebra ZC300 Dual</h3>
+                    <p>Profesional · Dúplex automático · <strong>$29,999 MXN</strong></p>
+                </div>
+            </div>
         </div>
 
         <!-- KPIs Principales -->
@@ -579,7 +622,7 @@
                 <div style="background: white; padding: 25px; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.08); border-top: 4px solid var(--orange);">
                     <h4 style="color: var(--orange-dark); font-family: Montserrat; margin-bottom: 10px;">Elige Badgy 100 SI:</h4>
                     <ul style="margin-left: 20px;">
-                        <li>Tu volumen es < 2,000 tarjetas/año</li>
+                        <li>Tu volumen es &lt; 2,000 tarjetas/año</li>
                         <li>Solo imprimes de una cara</li>
                         <li>Tienes presupuesto limitado</li>
                         <li>No te importa cargar tarjetas constantemente</li>
@@ -588,7 +631,7 @@
                 <div style="background: white; padding: 25px; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.08); border-top: 4px solid var(--blue-dark);">
                     <h4 style="color: var(--blue-dark); font-family: Montserrat; margin-bottom: 10px;">Elige ZC300 Dual SI:</h4>
                     <ul style="margin-left: 20px;">
-                        <li>Tu volumen es > 2,200 tarjetas/año</li>
+                        <li>Tu volumen es &gt; 2,200 tarjetas/año</li>
                         <li>Necesitas impresión dúplex</li>
                         <li>Valoras el tiempo de tu personal</li>
                         <li>Piensas en el largo plazo</li>
