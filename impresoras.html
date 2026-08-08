@@ -241,39 +241,29 @@
         .comparison-card.badgy h3 { color: var(--orange-dark); }
         .comparison-card.zebra h3 { color: var(--blue-dark); }
 
-        /* Galería de productos */
+        /* Galería de productos - Con imágenes reales */
         .img-container {
-            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            background: #ffffff;
             border: 2px solid #e9ecef;
             border-radius: 12px;
-            height: 220px;
+            height: 280px;
             overflow: hidden;
             display: flex;
-            flex-direction: column;
             align-items: center;
             justify-content: center;
-            margin-bottom: 15px;
+            margin-bottom: 20px;
+            padding: 15px;
+        }
+
+        .img-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
             transition: transform 0.3s;
         }
 
-        .comparison-card:hover .img-container { transform: scale(1.02); }
-
-        .printer-icon {
-            font-size: 4em;
-            margin-bottom: 10px;
-        }
-
-        .printer-label {
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 700;
-            font-size: 1em;
-            color: var(--blue-dark);
-        }
-
-        .printer-spec {
-            font-size: 0.85em;
-            color: #666;
-            margin-top: 5px;
+        .comparison-card:hover .img-container img {
+            transform: scale(1.05);
         }
 
         /* Footer */
@@ -384,11 +374,8 @@
             }
             
             .img-container {
-                height: 180px;
-            }
-            
-            .printer-icon {
-                font-size: 3em;
+                height: 200px;
+                padding: 10px;
             }
             
             .status-badge {
@@ -431,6 +418,10 @@
                 min-width: 450px;
                 font-size: 0.8em;
             }
+            
+            .img-container {
+                height: 180px;
+            }
         }
     </style>
 </head>
@@ -449,18 +440,14 @@
             <div class="comparison-grid">
                 <div class="comparison-card badgy">
                     <div class="img-container">
-                        <div class="printer-icon">🖨️</div>
-                        <div class="printer-label">Evolis Badgy 100</div>
-                        <div class="printer-spec">Gama de entrada · 1 cara</div>
+                        <img src="img/badgy-100.jpg" alt="Impresora Evolis Badgy 100" loading="lazy">
                     </div>
                     <h3>Evolis Badgy 100</h3>
                     <p>Gama de entrada · 1 cara · <strong>$10,829 MXN</strong></p>
                 </div>
                 <div class="comparison-card zebra">
                     <div class="img-container">
-                        <div class="printer-icon">️</div>
-                        <div class="printer-label">Zebra ZC300 Dual</div>
-                        <div class="printer-spec">Profesional · Dúplex automático</div>
+                        <img src="img/zebra-zc300.jpg" alt="Impresora Zebra ZC300 Dual" loading="lazy">
                     </div>
                     <h3>Zebra ZC300 Dual</h3>
                     <p>Profesional · Dúplex automático · <strong>$29,999 MXN</strong></p>
@@ -560,7 +547,7 @@
 
         <!-- Análisis de Costos -->
         <div class="section" style="border-left-color: var(--orange);">
-            <h2 class="section-title">💰 Análisis de Costos por Tarjeta</h2>
+            <h2 class="section-title"> Análisis de Costos por Tarjeta</h2>
             
             <div class="charts-grid">
                 <div class="chart-container">
@@ -574,7 +561,7 @@
             </div>
 
             <div class="highlight-box">
-                <h3 style="color: var(--orange-dark); font-family: Montserrat; margin-bottom: 15px; font-size: 1.1em;"> Hallazgo Crítico</h3>
+                <h3 style="color: var(--orange-dark); font-family: Montserrat; margin-bottom: 15px; font-size: 1.1em;">💡 Hallazgo Crítico</h3>
                 <p style="font-size: 1em;">La <strong>Badgy 100 tiene un costo por tarjeta 3.75 veces mayor</strong> que la ZC300. Mientras que con la Badgy gastas $12.00 MXN por credencial a color, con la ZC300 solo gastas $3.20 MXN. Este es el factor que define la rentabilidad a largo plazo.</p>
             </div>
 
@@ -626,7 +613,7 @@
 
         <!-- Análisis TCO -->
         <div class="section">
-            <h2 class="section-title"> Costo Total de Propiedad (TCO) a 3 Años</h2>
+            <h2 class="section-title">📈 Costo Total de Propiedad (TCO) a 3 Años</h2>
             
             <div class="chart-container" style="height: 400px; margin-bottom: 25px;">
                 <div class="chart-title">Evolución del Costo Total: Equipo + Insumos</div>
@@ -811,7 +798,7 @@
             </div>
 
             <div class="highlight-box" style="margin-top: 25px;">
-                <h3 style="color: var(--orange-dark); font-family: Montserrat; margin-bottom: 15px; font-size: 1.1em;">⚡ Factor Productividad (No cuantificado en números)</h3>
+                <h3 style="color: var(--orange-dark); font-family: Montserrat; margin-bottom: 15px; font-size: 1.1em;"> Factor Productividad (No cuantificado en números)</h3>
                 <p style="font-size: 1em;">La ZC300 elimina el trabajo manual de voltear tarjetas y recargar cada 25 unidades. Para 3,000 credenciales a doble cara, la Badgy requiere <strong>240 intervenciones manuales</strong> vs <strong>60 intervenciones</strong> de la ZC300. El ahorro en tiempo de personal puede superar el costo del equipo.</p>
             </div>
         </div>
