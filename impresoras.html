@@ -30,22 +30,22 @@
             line-height: 1.6;
         }
 
-        .container { max-width: 1200px; margin: 0 auto; padding: 40px 20px; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 20px; }
 
         /* Header */
         .header {
             background: linear-gradient(135deg, var(--green-dark) 0%, var(--blue-dark) 50%, var(--black) 100%);
             color: var(--white);
-            padding: 60px 40px;
+            padding: 40px 20px;
             border-radius: 20px;
             text-align: center;
-            margin-bottom: 40px;
+            margin-bottom: 30px;
             box-shadow: 0 10px 40px rgba(27, 94, 32, 0.3);
         }
 
         .header h1 {
             font-family: 'Montserrat', sans-serif;
-            font-size: 2.8em;
+            font-size: 2em;
             font-weight: 800;
             text-transform: uppercase;
             letter-spacing: 2px;
@@ -53,18 +53,18 @@
         }
 
         .header .subtitle {
-            font-size: 1.3em;
+            font-size: 1.1em;
             color: var(--orange);
             font-style: italic;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
         }
 
         .badge-version {
             display: inline-block;
             background: rgba(244, 162, 97, 0.3);
-            padding: 8px 20px;
+            padding: 6px 15px;
             border-radius: 50px;
-            font-size: 0.9em;
+            font-size: 0.85em;
             font-weight: 600;
             border: 2px solid var(--orange);
         }
@@ -73,35 +73,35 @@
         .section {
             background: var(--white);
             border-radius: 20px;
-            padding: 40px;
-            margin-bottom: 30px;
+            padding: 25px 20px;
+            margin-bottom: 25px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.08);
             border-left: 8px solid var(--green-dark);
         }
 
         .section-title {
             font-family: 'Montserrat', sans-serif;
-            font-size: 1.8em;
+            font-size: 1.4em;
             font-weight: 700;
             color: var(--green-dark);
-            margin-bottom: 25px;
+            margin-bottom: 20px;
             display: flex;
             align-items: center;
-            gap: 15px;
+            gap: 10px;
         }
 
         /* KPI Cards */
         .kpi-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 20px;
-            margin: 30px 0;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 25px 0;
         }
 
         .kpi-card {
             background: linear-gradient(135deg, var(--green-dark), var(--green-medium));
             color: white;
-            padding: 25px;
+            padding: 20px 15px;
             border-radius: 15px;
             text-align: center;
             box-shadow: 0 5px 15px rgba(27, 94, 32, 0.2);
@@ -128,71 +128,84 @@
 
         .kpi-value {
             font-family: 'Montserrat', sans-serif;
-            font-size: 2.5em;
+            font-size: 2em;
             font-weight: 800;
-            margin: 10px 0;
+            margin: 8px 0;
         }
 
         /* Charts Grid */
         .charts-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-            gap: 30px;
-            margin: 30px 0;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 25px 0;
         }
 
         .chart-container {
             background: var(--gray-bg);
-            padding: 30px;
+            padding: 20px;
             border-radius: 15px;
             position: relative;
-            height: 400px;
+            height: 350px;
             border: 2px solid #e9ecef;
         }
 
         .chart-title {
             font-family: 'Montserrat', sans-serif;
-            font-size: 1.2em;
+            font-size: 1.1em;
             font-weight: 700;
             color: var(--blue-dark);
-            margin-bottom: 20px;
+            margin-bottom: 15px;
             text-align: center;
         }
 
-        /* Tables */
+        /* Tables - Responsive */
+        .table-wrapper {
+            width: 100%;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            margin: 20px 0;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+
         table {
             width: 100%;
             border-collapse: collapse;
-            margin: 20px 0;
+            min-width: 600px;
             background: var(--white);
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
         }
 
         th {
             background: linear-gradient(135deg, var(--green-dark), var(--blue-dark));
             color: var(--white);
-            padding: 18px;
+            padding: 15px 12px;
             text-align: left;
             font-family: 'Montserrat', sans-serif;
             font-weight: 700;
             text-transform: uppercase;
+            font-size: 0.85em;
+            white-space: nowrap;
+        }
+
+        td { 
+            padding: 12px; 
+            border-bottom: 1px solid #eee;
             font-size: 0.9em;
         }
 
-        td { padding: 15px 18px; border-bottom: 1px solid #eee; }
         tr:nth-child(even) { background-color: #fafafa; }
         tr:hover { background-color: #f0f7f0; }
 
         /* Status Badges */
         .status-badge {
             display: inline-block;
-            padding: 5px 12px;
+            padding: 4px 10px;
             border-radius: 20px;
-            font-size: 0.8em;
+            font-size: 0.75em;
             font-weight: 700;
             text-transform: uppercase;
+            white-space: nowrap;
         }
 
         .status-ok { background: var(--green-light); color: white; }
@@ -203,14 +216,14 @@
         /* Comparison Cards */
         .comparison-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 25px;
-            margin: 30px 0;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin: 25px 0;
         }
 
         .comparison-card {
             background: white;
-            padding: 30px;
+            padding: 25px 20px;
             border-radius: 15px;
             box-shadow: 0 5px 15px rgba(0,0,0,0.08);
             border-top: 5px solid;
@@ -222,42 +235,43 @@
         .comparison-card h3 {
             font-family: 'Montserrat', sans-serif;
             margin-bottom: 15px;
+            font-size: 1.3em;
         }
 
         .comparison-card.badgy h3 { color: var(--orange-dark); }
         .comparison-card.zebra h3 { color: var(--blue-dark); }
 
-        /* Galería de productos - Representación visual sin imágenes externas */
+        /* Galería de productos */
         .img-container {
             background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
             border: 2px solid #e9ecef;
             border-radius: 12px;
-            height: 280px;
+            height: 220px;
             overflow: hidden;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
             transition: transform 0.3s;
         }
 
         .comparison-card:hover .img-container { transform: scale(1.02); }
 
         .printer-icon {
-            font-size: 6em;
-            margin-bottom: 15px;
+            font-size: 4em;
+            margin-bottom: 10px;
         }
 
         .printer-label {
             font-family: 'Montserrat', sans-serif;
             font-weight: 700;
-            font-size: 1.1em;
+            font-size: 1em;
             color: var(--blue-dark);
         }
 
         .printer-spec {
-            font-size: 0.9em;
+            font-size: 0.85em;
             color: #666;
             margin-top: 5px;
         }
@@ -266,15 +280,15 @@
         .footer {
             background: linear-gradient(135deg, var(--blue-dark), var(--black));
             color: white;
-            padding: 40px;
+            padding: 30px 20px;
             border-radius: 20px;
             text-align: center;
-            margin-top: 40px;
+            margin-top: 30px;
         }
 
         .highlight-box {
             background: linear-gradient(135deg, #fff3e0, #faf0e6);
-            padding: 25px;
+            padding: 20px;
             border-radius: 15px;
             border-left: 5px solid var(--orange-dark);
             margin: 20px 0;
@@ -283,15 +297,140 @@
         .winner-box {
             background: linear-gradient(135deg, var(--green-dark), var(--blue-dark));
             color: white;
-            padding: 30px;
+            padding: 25px 20px;
             border-radius: 15px;
-            margin: 30px 0;
+            margin: 25px 0;
             text-align: center;
         }
 
+        /* Responsive Design */
         @media (max-width: 768px) {
-            .header h1 { font-size: 2em; }
-            .charts-grid { grid-template-columns: 1fr; }
+            .container { padding: 15px; }
+            
+            .header {
+                padding: 30px 15px;
+                margin-bottom: 20px;
+            }
+            
+            .header h1 {
+                font-size: 1.5em;
+                letter-spacing: 1px;
+            }
+            
+            .header .subtitle {
+                font-size: 1em;
+            }
+            
+            .section {
+                padding: 20px 15px;
+                margin-bottom: 20px;
+                border-left-width: 6px;
+            }
+            
+            .section-title {
+                font-size: 1.2em;
+                margin-bottom: 15px;
+            }
+            
+            .kpi-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 10px;
+            }
+            
+            .kpi-card {
+                padding: 15px 10px;
+            }
+            
+            .kpi-value {
+                font-size: 1.5em;
+            }
+            
+            .charts-grid {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+            
+            .chart-container {
+                height: 300px;
+                padding: 15px;
+            }
+            
+            .chart-title {
+                font-size: 1em;
+                margin-bottom: 10px;
+            }
+            
+            .table-wrapper {
+                margin: 15px 0;
+                border-radius: 8px;
+            }
+            
+            table {
+                min-width: 500px;
+                font-size: 0.85em;
+            }
+            
+            th, td {
+                padding: 10px 8px;
+            }
+            
+            .comparison-grid {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+            
+            .comparison-card {
+                padding: 20px 15px;
+            }
+            
+            .img-container {
+                height: 180px;
+            }
+            
+            .printer-icon {
+                font-size: 3em;
+            }
+            
+            .status-badge {
+                font-size: 0.7em;
+                padding: 3px 8px;
+            }
+            
+            .highlight-box, .winner-box {
+                padding: 15px;
+                margin: 15px 0;
+            }
+            
+            .highlight-box h3, .winner-box h3 {
+                font-size: 1.1em;
+            }
+            
+            .highlight-box p, .winner-box p {
+                font-size: 0.95em;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .kpi-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .header h1 {
+                font-size: 1.3em;
+            }
+            
+            .section-title {
+                font-size: 1.1em;
+            }
+            
+            .chart-container {
+                height: 280px;
+            }
+            
+            table {
+                min-width: 450px;
+                font-size: 0.8em;
+            }
         }
     </style>
 </head>
@@ -319,7 +458,7 @@
                 </div>
                 <div class="comparison-card zebra">
                     <div class="img-container">
-                        <div class="printer-icon">🖨️</div>
+                        <div class="printer-icon">️</div>
                         <div class="printer-label">Zebra ZC300 Dual</div>
                         <div class="printer-spec">Profesional · Dúplex automático</div>
                     </div>
@@ -361,60 +500,62 @@
         <div class="section">
             <h2 class="section-title">⚙️ Especificaciones Técnicas Comparadas</h2>
             
-            <table>
-                <thead>
-                    <tr>
-                        <th>Característica</th>
-                        <th>Badgy 100</th>
-                        <th>ZC300 Dual</th>
-                        <th>Ganador</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><strong>Resolución</strong></td>
-                        <td>260 × 300 dpi</td>
-                        <td>300 × 300 dpi</td>
-                        <td><span class="status-badge status-best">ZC300</span></td>
-                    </tr>
-                    <tr>
-                        <td><strong>Velocidad Color (1 cara)</strong></td>
-                        <td>80 tarjetas/hora</td>
-                        <td>200 tarjetas/hora</td>
-                        <td><span class="status-badge status-best">ZC300</span></td>
-                    </tr>
-                    <tr>
-                        <td><strong>Impresión Dúplex</strong></td>
-                        <td>Manual (volteo manual)</td>
-                        <td><strong>Automático</strong></td>
-                        <td><span class="status-badge status-best">ZC300</span></td>
-                    </tr>
-                    <tr>
-                        <td><strong>Capacidad Alimentador</strong></td>
-                        <td>25 tarjetas</td>
-                        <td>100 tarjetas</td>
-                        <td><span class="status-badge status-best">ZC300</span></td>
-                    </tr>
-                    <tr>
-                        <td><strong>Conectividad</strong></td>
-                        <td>USB 2.0</td>
-                        <td>USB 2.0 + Ethernet</td>
-                        <td><span class="status-badge status-best">ZC300</span></td>
-                    </tr>
-                    <tr>
-                        <td><strong>Garantía</strong></td>
-                        <td>2 años</td>
-                        <td><strong>3 años</strong></td>
-                        <td><span class="status-badge status-best">ZC300</span></td>
-                    </tr>
-                    <tr>
-                        <td><strong>Peso</strong></td>
-                        <td>1.7 kg</td>
-                        <td>4.4 kg</td>
-                        <td><span class="status-badge status-ok">Badgy</span></td>
-                    </tr>
-                </tbody>
-            </table>
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Característica</th>
+                            <th>Badgy 100</th>
+                            <th>ZC300 Dual</th>
+                            <th>Ganador</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Resolución</strong></td>
+                            <td>260 × 300 dpi</td>
+                            <td>300 × 300 dpi</td>
+                            <td><span class="status-badge status-best">ZC300</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Velocidad Color (1 cara)</strong></td>
+                            <td>80 tarjetas/hora</td>
+                            <td>200 tarjetas/hora</td>
+                            <td><span class="status-badge status-best">ZC300</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Impresión Dúplex</strong></td>
+                            <td>Manual (volteo manual)</td>
+                            <td><strong>Automático</strong></td>
+                            <td><span class="status-badge status-best">ZC300</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Capacidad Alimentador</strong></td>
+                            <td>25 tarjetas</td>
+                            <td>100 tarjetas</td>
+                            <td><span class="status-badge status-best">ZC300</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Conectividad</strong></td>
+                            <td>USB 2.0</td>
+                            <td>USB 2.0 + Ethernet</td>
+                            <td><span class="status-badge status-best">ZC300</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Garantía</strong></td>
+                            <td>2 años</td>
+                            <td><strong>3 años</strong></td>
+                            <td><span class="status-badge status-best">ZC300</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Peso</strong></td>
+                            <td>1.7 kg</td>
+                            <td>4.4 kg</td>
+                            <td><span class="status-badge status-ok">Badgy</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
 
         <!-- Análisis de Costos -->
@@ -433,59 +574,61 @@
             </div>
 
             <div class="highlight-box">
-                <h3 style="color: var(--orange-dark); font-family: Montserrat; margin-bottom: 15px;">💡 Hallazgo Crítico</h3>
-                <p style="font-size: 1.1em;">La <strong>Badgy 100 tiene un costo por tarjeta 3.75 veces mayor</strong> que la ZC300. Mientras que con la Badgy gastas $12.00 MXN por credencial a color, con la ZC300 solo gastas $3.20 MXN. Este es el factor que define la rentabilidad a largo plazo.</p>
+                <h3 style="color: var(--orange-dark); font-family: Montserrat; margin-bottom: 15px; font-size: 1.1em;"> Hallazgo Crítico</h3>
+                <p style="font-size: 1em;">La <strong>Badgy 100 tiene un costo por tarjeta 3.75 veces mayor</strong> que la ZC300. Mientras que con la Badgy gastas $12.00 MXN por credencial a color, con la ZC300 solo gastas $3.20 MXN. Este es el factor que define la rentabilidad a largo plazo.</p>
             </div>
 
-            <table>
-                <thead>
-                    <tr>
-                        <th>Concepto</th>
-                        <th>Badgy 100</th>
-                        <th>ZC300 Dual</th>
-                        <th>Diferencia</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><strong>Ribbon Color (YMCKO)</strong></td>
-                        <td>$1,199 MXN</td>
-                        <td>$959 MXN</td>
-                        <td>Badgy +$240</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Impresiones por Ribbon</strong></td>
-                        <td>100 tarjetas</td>
-                        <td>300 tarjetas</td>
-                        <td><strong>ZC300: 3× más</strong></td>
-                    </tr>
-                    <tr>
-                        <td><strong>Costo por Tarjeta Color</strong></td>
-                        <td>$12.00 MXN</td>
-                        <td>$3.20 MXN</td>
-                        <td><strong>Ahorro: $8.80/tarjeta</strong></td>
-                    </tr>
-                    <tr>
-                        <td><strong>Ribbon Negro (1,000 impr.)</strong></td>
-                        <td>$325 MXN</td>
-                        <td>$800 MXN</td>
-                        <td>Badgy -$475</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Costo por Tarjeta Negra</strong></td>
-                        <td>$0.65 MXN</td>
-                        <td>$0.80 MXN</td>
-                        <td>Badgy -$0.15</td>
-                    </tr>
-                </tbody>
-            </table>
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Concepto</th>
+                            <th>Badgy 100</th>
+                            <th>ZC300 Dual</th>
+                            <th>Diferencia</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Ribbon Color (YMCKO)</strong></td>
+                            <td>$1,199 MXN</td>
+                            <td>$959 MXN</td>
+                            <td>Badgy +$240</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Impresiones por Ribbon</strong></td>
+                            <td>100 tarjetas</td>
+                            <td>300 tarjetas</td>
+                            <td><strong>ZC300: 3× más</strong></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Costo por Tarjeta Color</strong></td>
+                            <td>$12.00 MXN</td>
+                            <td>$3.20 MXN</td>
+                            <td><strong>Ahorro: $8.80/tarjeta</strong></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Ribbon Negro (1,000 impr.)</strong></td>
+                            <td>$325 MXN</td>
+                            <td>$800 MXN</td>
+                            <td>Badgy -$475</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Costo por Tarjeta Negra</strong></td>
+                            <td>$0.65 MXN</td>
+                            <td>$0.80 MXN</td>
+                            <td>Badgy -$0.15</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
 
         <!-- Análisis TCO -->
         <div class="section">
-            <h2 class="section-title">📈 Costo Total de Propiedad (TCO) a 3 Años</h2>
+            <h2 class="section-title"> Costo Total de Propiedad (TCO) a 3 Años</h2>
             
-            <div class="chart-container" style="height: 450px; margin-bottom: 30px;">
+            <div class="chart-container" style="height: 400px; margin-bottom: 25px;">
                 <div class="chart-title">Evolución del Costo Total: Equipo + Insumos</div>
                 <canvas id="tcoChart"></canvas>
             </div>
@@ -513,66 +656,68 @@
                 </div>
             </div>
 
-            <table>
-                <thead>
-                    <tr>
-                        <th>Volumen de Impresión</th>
-                        <th>Costo Total Badgy</th>
-                        <th>Costo Total ZC300</th>
-                        <th>Resultado</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><strong>500 tarjetas</strong></td>
-                        <td>$16,824 MXN</td>
-                        <td>$31,594 MXN</td>
-                        <td><span class="status-badge status-ok">Badgy gana $14,770</span></td>
-                    </tr>
-                    <tr>
-                        <td><strong>1,000 tarjetas</strong></td>
-                        <td>$22,819 MXN</td>
-                        <td>$33,189 MXN</td>
-                        <td><span class="status-badge status-ok">Badgy gana $10,370</span></td>
-                    </tr>
-                    <tr>
-                        <td><strong>2,000 tarjetas</strong></td>
-                        <td>$34,809 MXN</td>
-                        <td>$36,379 MXN</td>
-                        <td><span class="status-badge status-ok">Badgy gana $1,570</span></td>
-                    </tr>
-                    <tr>
-                        <td><strong>2,181 tarjetas</strong></td>
-                        <td>$36,978 MXN</td>
-                        <td>$36,978 MXN</td>
-                        <td><span class="status-badge status-warning">EMPATE</span></td>
-                    </tr>
-                    <tr style="background-color: #e8f5e9;">
-                        <td><strong>3,000 tarjetas</strong></td>
-                        <td>$46,799 MXN</td>
-                        <td>$39,569 MXN</td>
-                        <td><span class="status-badge status-best">ZC300 gana $7,230</span></td>
-                    </tr>
-                    <tr>
-                        <td><strong>5,000 tarjetas</strong></td>
-                        <td>$70,779 MXN</td>
-                        <td>$45,949 MXN</td>
-                        <td><span class="status-badge status-best">ZC300 gana $24,830</span></td>
-                    </tr>
-                    <tr>
-                        <td><strong>10,000 tarjetas</strong></td>
-                        <td>$130,729 MXN</td>
-                        <td>$61,899 MXN</td>
-                        <td><span class="status-badge status-best">ZC300 gana $68,830</span></td>
-                    </tr>
-                </tbody>
-            </table>
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Volumen de Impresión</th>
+                            <th>Costo Total Badgy</th>
+                            <th>Costo Total ZC300</th>
+                            <th>Resultado</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>500 tarjetas</strong></td>
+                            <td>$16,824 MXN</td>
+                            <td>$31,594 MXN</td>
+                            <td><span class="status-badge status-ok">Badgy gana $14,770</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>1,000 tarjetas</strong></td>
+                            <td>$22,819 MXN</td>
+                            <td>$33,189 MXN</td>
+                            <td><span class="status-badge status-ok">Badgy gana $10,370</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>2,000 tarjetas</strong></td>
+                            <td>$34,809 MXN</td>
+                            <td>$36,379 MXN</td>
+                            <td><span class="status-badge status-ok">Badgy gana $1,570</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>2,181 tarjetas</strong></td>
+                            <td>$36,978 MXN</td>
+                            <td>$36,978 MXN</td>
+                            <td><span class="status-badge status-warning">EMPATE</span></td>
+                        </tr>
+                        <tr style="background-color: #e8f5e9;">
+                            <td><strong>3,000 tarjetas</strong></td>
+                            <td>$46,799 MXN</td>
+                            <td>$39,569 MXN</td>
+                            <td><span class="status-badge status-best">ZC300 gana $7,230</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>5,000 tarjetas</strong></td>
+                            <td>$70,779 MXN</td>
+                            <td>$45,949 MXN</td>
+                            <td><span class="status-badge status-best">ZC300 gana $24,830</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>10,000 tarjetas</strong></td>
+                            <td>$130,729 MXN</td>
+                            <td>$61,899 MXN</td>
+                            <td><span class="status-badge status-best">ZC300 gana $68,830</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
 
         <!-- Comparativa Radar -->
         <div class="section" style="border-left-color: var(--blue-medium);">
-            <h2 class="section-title"> Perfil Comparativo Multidimensional</h2>
-            <div class="chart-container" style="height: 450px;">
+            <h2 class="section-title">📊 Perfil Comparativo Multidimensional</h2>
+            <div class="chart-container" style="height: 400px;">
                 <div class="chart-title">Evaluación por Criterios Clave (Escala 1-10)</div>
                 <canvas id="radarChart"></canvas>
             </div>
@@ -585,8 +730,8 @@
             <div class="comparison-grid">
                 <div class="comparison-card badgy">
                     <h3>Evolis Badgy 100</h3>
-                    <h4 style="color: var(--green-dark); margin: 15px 0 10px;">✅ Ventajas</h4>
-                    <ul style="margin-left: 20px; margin-bottom: 20px;">
+                    <h4 style="color: var(--green-dark); margin: 15px 0 10px; font-size: 1.1em;">✅ Ventajas</h4>
+                    <ul style="margin-left: 20px; margin-bottom: 20px; font-size: 0.9em;">
                         <li>Precio de entrada muy bajo</li>
                         <li>Muy compacta y ligera (1.7 kg)</li>
                         <li>Fácil de usar, curva de aprendizaje mínima</li>
@@ -595,8 +740,8 @@
                         <li>Ribbon negro muy económico</li>
                     </ul>
                     
-                    <h4 style="color: var(--red-alert); margin: 15px 0 10px;">❌ Desventajas</h4>
-                    <ul style="margin-left: 20px;">
+                    <h4 style="color: var(--red-alert); margin: 15px 0 10px; font-size: 1.1em;">❌ Desventajas</h4>
+                    <ul style="margin-left: 20px; font-size: 0.9em;">
                         <li><strong>Ribbon color muy caro</strong> por impresión</li>
                         <li>Solo imprime de una cara</li>
                         <li>Alimentador de solo 25 tarjetas</li>
@@ -609,8 +754,8 @@
 
                 <div class="comparison-card zebra">
                     <h3>Zebra ZC300 Dual</h3>
-                    <h4 style="color: var(--green-dark); margin: 15px 0 10px;">✅ Ventajas</h4>
-                    <ul style="margin-left: 20px; margin-bottom: 20px;">
+                    <h4 style="color: var(--green-dark); margin: 15px 0 10px; font-size: 1.1em;">✅ Ventajas</h4>
+                    <ul style="margin-left: 20px; margin-bottom: 20px; font-size: 0.9em;">
                         <li><strong>Impresión dúplex automática</strong></li>
                         <li>Alimentador de 100 tarjetas</li>
                         <li>Mayor velocidad (2.5× más rápida)</li>
@@ -622,8 +767,8 @@
                         <li>Software más potente</li>
                     </ul>
                     
-                    <h4 style="color: var(--red-alert); margin: 15px 0 10px;">❌ Desventajas</h4>
-                    <ul style="margin-left: 20px;">
+                    <h4 style="color: var(--red-alert); margin: 15px 0 10px; font-size: 1.1em;">❌ Desventajas</h4>
+                    <ul style="margin-left: 20px; font-size: 0.9em;">
                         <li>Precio de entrada alto (3× la Badgy)</li>
                         <li>Más grande y pesada (4.4 kg)</li>
                         <li>Ligeramente más ruidosa (55 dB)</li>
@@ -639,24 +784,24 @@
             <h2 class="section-title">🏆 Veredicto y Recomendación</h2>
             
             <div class="winner-box">
-                <h3 style="font-family: Montserrat; font-size: 1.8em; margin-bottom: 15px;">GANADORA: Zebra ZC300 Dual</h3>
-                <p style="font-size: 1.2em; margin-bottom: 15px;">Mejor relación costo-beneficio para operaciones serias</p>
-                <p style="opacity: 0.9;">La inversión inicial se recupera en 2,181 tarjetas. A partir de ahí, todo es ahorro neto.</p>
+                <h3 style="font-family: Montserrat; font-size: 1.5em; margin-bottom: 15px;">GANADORA: Zebra ZC300 Dual</h3>
+                <p style="font-size: 1.1em; margin-bottom: 15px;">Mejor relación costo-beneficio para operaciones serias</p>
+                <p style="opacity: 0.9; font-size: 0.95em;">La inversión inicial se recupera en 2,181 tarjetas. A partir de ahí, todo es ahorro neto.</p>
             </div>
 
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin-top: 30px;">
-                <div style="background: white; padding: 25px; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.08); border-top: 4px solid var(--orange);">
-                    <h4 style="color: var(--orange-dark); font-family: Montserrat; margin-bottom: 10px;">Elige Badgy 100 SI:</h4>
-                    <ul style="margin-left: 20px;">
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin-top: 25px;">
+                <div style="background: white; padding: 20px; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.08); border-top: 4px solid var(--orange);">
+                    <h4 style="color: var(--orange-dark); font-family: Montserrat; margin-bottom: 10px; font-size: 1.1em;">Elige Badgy 100 SI:</h4>
+                    <ul style="margin-left: 20px; font-size: 0.9em;">
                         <li>Tu volumen es &lt; 2,000 tarjetas/año</li>
                         <li>Solo imprimes de una cara</li>
                         <li>Tienes presupuesto limitado</li>
                         <li>No te importa cargar tarjetas constantemente</li>
                     </ul>
                 </div>
-                <div style="background: white; padding: 25px; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.08); border-top: 4px solid var(--blue-dark);">
-                    <h4 style="color: var(--blue-dark); font-family: Montserrat; margin-bottom: 10px;">Elige ZC300 Dual SI:</h4>
-                    <ul style="margin-left: 20px;">
+                <div style="background: white; padding: 20px; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.08); border-top: 4px solid var(--blue-dark);">
+                    <h4 style="color: var(--blue-dark); font-family: Montserrat; margin-bottom: 10px; font-size: 1.1em;">Elige ZC300 Dual SI:</h4>
+                    <ul style="margin-left: 20px; font-size: 0.9em;">
                         <li>Tu volumen es &gt; 2,200 tarjetas/año</li>
                         <li>Necesitas impresión dúplex</li>
                         <li>Valoras el tiempo de tu personal</li>
@@ -665,17 +810,17 @@
                 </div>
             </div>
 
-            <div class="highlight-box" style="margin-top: 30px;">
-                <h3 style="color: var(--orange-dark); font-family: Montserrat; margin-bottom: 15px;">⚡ Factor Productividad (No cuantificado en números)</h3>
-                <p style="font-size: 1.1em;">La ZC300 elimina el trabajo manual de voltear tarjetas y recargar cada 25 unidades. Para 3,000 credenciales a doble cara, la Badgy requiere <strong>240 intervenciones manuales</strong> vs <strong>60 intervenciones</strong> de la ZC300. El ahorro en tiempo de personal puede superar el costo del equipo.</p>
+            <div class="highlight-box" style="margin-top: 25px;">
+                <h3 style="color: var(--orange-dark); font-family: Montserrat; margin-bottom: 15px; font-size: 1.1em;">⚡ Factor Productividad (No cuantificado en números)</h3>
+                <p style="font-size: 1em;">La ZC300 elimina el trabajo manual de voltear tarjetas y recargar cada 25 unidades. Para 3,000 credenciales a doble cara, la Badgy requiere <strong>240 intervenciones manuales</strong> vs <strong>60 intervenciones</strong> de la ZC300. El ahorro en tiempo de personal puede superar el costo del equipo.</p>
             </div>
         </div>
 
         <!-- Footer -->
         <div class="footer">
-            <div style="font-family: Montserrat; font-size: 2em; font-weight: 800; margin-bottom: 10px;">GRUPO SIBRÜ</div>
-            <div style="font-size: 1.2em; margin-bottom: 20px;">Alimentamos Confianza</div>
-            <div style="opacity: 0.8; font-size: 0.9em;">
+            <div style="font-family: Montserrat; font-size: 1.5em; font-weight: 800; margin-bottom: 10px;">GRUPO SIBRÜ</div>
+            <div style="font-size: 1.1em; margin-bottom: 15px;">Alimentamos Confianza</div>
+            <div style="opacity: 0.8; font-size: 0.85em;">
                 Análisis Comparativo - Impresoras de Credenciales PVC<br>
                 Datos actualizados a Agosto 2026 | Precios en pesos mexicanos (MXN)<br>
                 Fuentes: MercadoLibre, distribuidores autorizados, fichas técnicas oficiales
@@ -767,7 +912,7 @@
                 plugins: { 
                     legend: { 
                         position: 'bottom',
-                        labels: { padding: 15, font: { size: 12 } }
+                        labels: { padding: 10, font: { size: 11 } }
                     }
                 },
                 scales: { 
@@ -786,7 +931,7 @@
         new Chart(document.getElementById('radarChart'), {
             type: 'radar',
             data: {
-                labels: ['Precio Inicial', 'Costo por Tarjeta', 'Velocidad', 'Calidad Impresión', 'Facilidad de Uso', 'Conectividad', 'Escalabilidad'],
+                labels: ['Precio', 'Costo/Tarjeta', 'Velocidad', 'Calidad', 'Facilidad', 'Conexión', 'Escala'],
                 datasets: [{
                     label: 'Badgy 100',
                     data: [9, 4, 5, 6, 9, 4, 3],
@@ -809,7 +954,7 @@
                 plugins: {
                     legend: {
                         position: 'bottom',
-                        labels: { padding: 15, font: { size: 12 } }
+                        labels: { padding: 10, font: { size: 11 } }
                     }
                 },
                 scales: {
