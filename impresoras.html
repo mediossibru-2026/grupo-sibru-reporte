@@ -227,27 +227,40 @@
         .comparison-card.badgy h3 { color: var(--orange-dark); }
         .comparison-card.zebra h3 { color: var(--blue-dark); }
 
-        /* Galería de productos */
+        /* Galería de productos - Representación visual sin imágenes externas */
         .img-container {
-            background: #ffffff;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
             border: 2px solid #e9ecef;
             border-radius: 12px;
             height: 280px;
             overflow: hidden;
             display: flex;
+            flex-direction: column;
             align-items: center;
             justify-content: center;
             margin-bottom: 20px;
-        }
-
-        .img-container img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
             transition: transform 0.3s;
         }
 
-        .comparison-card:hover .img-container img { transform: scale(1.05); }
+        .comparison-card:hover .img-container { transform: scale(1.02); }
+
+        .printer-icon {
+            font-size: 6em;
+            margin-bottom: 15px;
+        }
+
+        .printer-label {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 1.1em;
+            color: var(--blue-dark);
+        }
+
+        .printer-spec {
+            font-size: 0.9em;
+            color: #666;
+            margin-top: 5px;
+        }
 
         /* Footer */
         .footer {
@@ -297,14 +310,18 @@
             <div class="comparison-grid">
                 <div class="comparison-card badgy">
                     <div class="img-container">
-                        <img src="img/badgy-100.jpg" alt="Impresora Evolis Badgy 100" loading="lazy">
+                        <div class="printer-icon">🖨️</div>
+                        <div class="printer-label">Evolis Badgy 100</div>
+                        <div class="printer-spec">Gama de entrada · 1 cara</div>
                     </div>
                     <h3>Evolis Badgy 100</h3>
                     <p>Gama de entrada · 1 cara · <strong>$10,829 MXN</strong></p>
                 </div>
                 <div class="comparison-card zebra">
                     <div class="img-container">
-                        <img src="img/zebra-zc300.jpg" alt="Impresora Zebra ZC300 Dual" loading="lazy">
+                        <div class="printer-icon">🖨️</div>
+                        <div class="printer-label">Zebra ZC300 Dual</div>
+                        <div class="printer-spec">Profesional · Dúplex automático</div>
                     </div>
                     <h3>Zebra ZC300 Dual</h3>
                     <p>Profesional · Dúplex automático · <strong>$29,999 MXN</strong></p>
@@ -552,6 +569,15 @@
             </table>
         </div>
 
+        <!-- Comparativa Radar -->
+        <div class="section" style="border-left-color: var(--blue-medium);">
+            <h2 class="section-title"> Perfil Comparativo Multidimensional</h2>
+            <div class="chart-container" style="height: 450px;">
+                <div class="chart-title">Evaluación por Criterios Clave (Escala 1-10)</div>
+                <canvas id="radarChart"></canvas>
+            </div>
+        </div>
+
         <!-- Pros y Contras -->
         <div class="section" style="border-left-color: var(--blue-medium);">
             <h2 class="section-title">✅ Pros y Contras Detallados</h2>
@@ -647,9 +673,10 @@
 
         <!-- Footer -->
         <div class="footer">
-            <div style="font-family: Montserrat; font-size: 1.5em; font-weight: 800; margin-bottom: 10px;">ANÁLISIS COMPARATIVO</div>
-            <div style="font-size: 1.1em; margin-bottom: 20px;">Impresoras de Credenciales PVC</div>
+            <div style="font-family: Montserrat; font-size: 2em; font-weight: 800; margin-bottom: 10px;">GRUPO SIBRÜ</div>
+            <div style="font-size: 1.2em; margin-bottom: 20px;">Alimentamos Confianza</div>
             <div style="opacity: 0.8; font-size: 0.9em;">
+                Análisis Comparativo - Impresoras de Credenciales PVC<br>
                 Datos actualizados a Agosto 2026 | Precios en pesos mexicanos (MXN)<br>
                 Fuentes: MercadoLibre, distribuidores autorizados, fichas técnicas oficiales
             </div>
@@ -750,6 +777,46 @@
                     },
                     x: {
                         title: { display: true, text: 'Número de Tarjetas Impresas' }
+                    }
+                }
+            }
+        });
+
+        // Gráfica Radar Comparativa
+        new Chart(document.getElementById('radarChart'), {
+            type: 'radar',
+            data: {
+                labels: ['Precio Inicial', 'Costo por Tarjeta', 'Velocidad', 'Calidad Impresión', 'Facilidad de Uso', 'Conectividad', 'Escalabilidad'],
+                datasets: [{
+                    label: 'Badgy 100',
+                    data: [9, 4, 5, 6, 9, 4, 3],
+                    backgroundColor: 'rgba(244, 162, 97, 0.2)',
+                    borderColor: '#F4A261',
+                    borderWidth: 2,
+                    pointBackgroundColor: '#F4A261'
+                }, {
+                    label: 'ZC300 Dual',
+                    data: [5, 9, 9, 8, 7, 9, 9],
+                    backgroundColor: 'rgba(38, 70, 83, 0.2)',
+                    borderColor: '#264653',
+                    borderWidth: 2,
+                    pointBackgroundColor: '#264653'
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                        labels: { padding: 15, font: { size: 12 } }
+                    }
+                },
+                scales: {
+                    r: {
+                        beginAtZero: true,
+                        max: 10,
+                        ticks: { stepSize: 2 }
                     }
                 }
             }
