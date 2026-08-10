@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Reporte Ejecutivo Simplot | Grupo SIBRÜ</title>
+<title>Reporte de Planeación de Demanda Simplot | Grupo SIBRÜ</title>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
 <style>
@@ -16,7 +16,7 @@
     body{font-family:'Open Sans',sans-serif;background:linear-gradient(135deg,#f0f2f5 0%,#e2e8f0 100%);color:var(--blue-dark);line-height:1.6;}
     .container{max-width:1200px;margin:0 auto;padding:20px;}
     .header{background:linear-gradient(135deg,var(--green-dark) 0%,var(--blue-dark) 50%,#000 100%);color:var(--white);padding:40px 20px;border-radius:20px;text-align:center;margin-bottom:30px;box-shadow:0 10px 40px rgba(27,94,32,.3);}
-    .header h1{font-family:'Montserrat',sans-serif;font-size:2em;font-weight:800;text-transform:uppercase;letter-spacing:2px;margin-bottom:10px;}
+    .header h1{font-family:'Montserrat',sans-serif;font-size:1.9em;font-weight:800;text-transform:uppercase;letter-spacing:2px;margin-bottom:10px;}
     .header .subtitle{font-size:1.05em;color:var(--orange);font-style:italic;margin-bottom:15px;}
     .badge-version{display:inline-block;background:rgba(244,162,97,.3);padding:6px 15px;border-radius:50px;font-size:.85em;font-weight:600;border:2px solid var(--orange);}
     .section{background:var(--white);border-radius:20px;padding:25px 20px;margin-bottom:25px;box-shadow:0 10px 30px rgba(0,0,0,.08);border-left:8px solid var(--green-dark);}
@@ -55,7 +55,7 @@
     .action-card{background:#fff;padding:20px;border-radius:15px;box-shadow:0 5px 15px rgba(0,0,0,.08);}
     select{font-family:'Montserrat',sans-serif;font-size:.85em;padding:4px 10px;border-radius:8px;border:2px solid var(--green-medium);color:var(--green-dark);font-weight:700;background:#fff;}
     @media (max-width:768px){
-        .header h1{font-size:1.4em;} .kpi-grid{grid-template-columns:repeat(2,1fr);}
+        .header h1{font-size:1.3em;} .kpi-grid{grid-template-columns:repeat(2,1fr);}
         .charts-grid{grid-template-columns:1fr;} .chart-container{height:300px;}
         table{min-width:560px;font-size:.8em;}
     }
@@ -65,36 +65,36 @@
 <div class="container">
 
     <div class="header">
-        <h1>Reporte Ejecutivo Simplot</h1>
-        <div class="subtitle">Desplazamiento · Compras · Ventas · Abasto · Forecast | Ene–Ago 2026</div>
-        <div class="badge-version">CORTE 11/AGO/2026</div>
+        <h1>Planeación de Demanda y Abasto Simplot</h1>
+        <div class="subtitle">Entradas · Salidas · Rotación · Inventario · Resurtido · Forecast | Ene–Ago 2026</div>
+        <div class="badge-version">DATOS REALES · CORTE 11/AGO/2026 · UNIDADES: CAJAS/DÍAS</div>
     </div>
 
     <!-- 0. EL NEGOCIO DE UN VISTAZO -->
     <div class="section">
-        <h2 class="section-title">🥔 El Negocio de un Vistazo</h2>
-        <p style="font-size:.93em;margin-bottom:10px;">Distribuimos 6 presentaciones de papa congelada Simplot (mayoreo por caja, 6 bolsas por caja). Modelo actual: <strong>2 compras al año</strong> (14/ene y 23/abr) que abastecen la venta continua. Precios de venta mayorista por caja:</p>
+        <h2 class="section-title">🥔 El Negocio de un Vistazo (en unidades)</h2>
+        <p style="font-size:.93em;margin-bottom:10px;">Distribuimos 6 presentaciones de papa congelada Simplot (caja = 6 bolsas). Modelo actual: <strong>2 compras al año</strong> (14/ene y 23/abr) que abastecen la venta continua. Este reporte analiza <strong>solo volúmenes, tiempos y rotación</strong> para decidir compras y planeación de demanda.</p>
         <div class="sku-grid">
-            <div class="sku-card" style="border-top-color:#d32f2f;"><h4>GAJO 6/5</h4>13.6 kg · <strong>$900</strong><br>Clase A · Estrella</div>
-            <div class="sku-card"><h4>RECTA 3/8</h4>13.6 kg · <strong>$814</strong><br>Clase B</div>
-            <div class="sku-card"><h4>ONDULADA 3/8</h4>13.6 kg · <strong>$814</strong><br>Clase B</div>
-            <div class="sku-card"><h4>CÁSCARA C/SAL 3/8</h4>13.6 kg · <strong>$838</strong><br>Clase B · Lenta</div>
-            <div class="sku-card"><h4>BLUE RIBBON 1/4</h4>16.33 kg · <strong>$802</strong><br>Clase C</div>
-            <div class="sku-card"><h4>SAVORY WAFFLE</h4>12.25 kg · <strong>$850</strong><br>Clase C · Alta rotación</div>
+            <div class="sku-card" style="border-top-color:#d32f2f;"><h4>GAJO 6/5</h4>13.6 kg/caja · 3.11 cajas/día<br>Clase A · Estrella</div>
+            <div class="sku-card"><h4>RECTA 3/8</h4>13.6 kg/caja · 1.41 cajas/día<br>Clase B</div>
+            <div class="sku-card"><h4>ONDULADA 3/8</h4>13.6 kg/caja · 1.29 cajas/día<br>Clase B</div>
+            <div class="sku-card"><h4>CÁSCARA C/SAL 3/8</h4>13.6 kg/caja · 1.21 cajas/día<br>Clase B · Lenta</div>
+            <div class="sku-card"><h4>BLUE RIBBON 1/4</h4>16.33 kg/caja · 0.40 cajas/día<br>Clase C</div>
+            <div class="sku-card"><h4>SAVORY WAFFLE</h4>12.25 kg/caja · 0.28 cajas/día<br>Clase C · Alta rotación</div>
         </div>
-        <div class="insight">💡 <strong>Lectura del negocio:</strong> el 42.5% del ingreso lo genera un solo SKU (Gajo). El reto no es la demanda —es <strong>calibrar el abasto</strong>: hoy sobra inventario en SKUs lentos y falta en los rápidos.</div>
+        <div class="insight">💡 <strong>Lectura del negocio:</strong> el 40.3% del volumen vendido lo genera un solo SKU (Gajo). El reto no es la demanda —es <strong>calibrar el abasto</strong>: hoy sobra inventario en SKUs lentos y falta en los rápidos.</div>
     </div>
 
-    <!-- 1. DASHBOARD EJECUTIVO -->
+    <!-- 1. DASHBOARD -->
     <div class="section">
-        <h2 class="section-title">📊 Dashboard Ejecutivo (Semáforo)</h2>
+        <h2 class="section-title">📊 Dashboard Ejecutivo (Semáforo de Unidades)</h2>
         <div class="kpi-grid">
-            <div class="kpi-card"><div>Ingresos YTD</div><div class="kpi-value">$1.47M</div><div class="kpi-sub">1,719 cajas · 23,539 kg</div></div>
-            <div class="kpi-card blue"><div>Realización</div><div class="kpi-value">67.2%</div><div class="kpi-sub">Potencial comprado $2.18M</div></div>
+            <div class="kpi-card"><div>Salidas YTD</div><div class="kpi-value">1,719</div><div class="kpi-sub">cajas · 23,539 kg</div></div>
+            <div class="kpi-card blue"><div>Realización</div><div class="kpi-value">66.6%</div><div class="kpi-sub">1,719 vendidas de 2,583 compradas</div></div>
             <div class="kpi-card warning"><div>Rotación Anual.</div><div class="kpi-value">2.75x</div><div class="kpi-sub">Referencia saludable: 4.0x</div></div>
-            <div class="kpi-card warning"><div>Inventario</div><div class="kpi-value">864</div><div class="kpi-sub">cajas · $715K a precio venta</div></div>
+            <div class="kpi-card warning"><div>Inventario</div><div class="kpi-value">864</div><div class="kpi-sub">cajas · 112 días de cobertura</div></div>
             <div class="kpi-card alert"><div>Cobertura Gajo</div><div class="kpi-value">20 días</div><div class="kpi-sub">⚠️ Quiebre ~31/ago</div></div>
-            <div class="kpi-card alert"><div>Waffle</div><div class="kpi-value">QUIEBRE</div><div class="kpi-sub">Pérdida ≈ $240/día</div></div>
+            <div class="kpi-card alert"><div>Waffle</div><div class="kpi-value">QUIEBRE</div><div class="kpi-sub">agotado desde 01/ago</div></div>
         </div>
     </div>
 
@@ -108,7 +108,7 @@
         </div>
         <div class="charts-grid">
             <div class="chart-container"><div class="chart-title">Compras vs Ventas por Mes (cajas)</div><canvas id="flowChart"></canvas></div>
-            <div class="chart-container"><div class="chart-title">Ingresos por Mes (MXN)</div><canvas id="revenueChart"></canvas></div>
+            <div class="chart-container"><div class="chart-title">Vendido vs En Inventario (cajas)</div><canvas id="soldStockChart"></canvas></div>
         </div>
         <div class="table-wrapper">
             <table>
@@ -134,31 +134,7 @@
         <div class="insight">💡 El 100% del abasto entra en solo 2 fechas, mientras la venta es continua: ese descalce es la raíz de quiebres y sobre-stocks. Picos de venta: <strong>junio (459 cajas)</strong> y <strong>enero (378)</strong>.</div>
     </div>
 
-    <!-- 3. VENTAS E INGRESOS -->
-    <div class="section">
-        <h2 class="section-title">💵 Análisis de Ventas e Ingresos por SKU</h2>
-        <div class="charts-grid">
-            <div class="chart-container"><div class="chart-title">Mix de Volumen Vendido (%)</div><canvas id="mixVolChart"></canvas></div>
-            <div class="chart-container"><div class="chart-title">Mix de Ingresos (%)</div><canvas id="mixRevChart"></canvas></div>
-        </div>
-        <div class="table-wrapper">
-            <table>
-                <thead><tr><th>SKU</th><th>Cajas vendidas</th><th>% Vol</th><th>Precio/caja</th><th>Ingreso (MXN)</th><th>% Ingreso</th><th>Kg vendidos</th><th>Clase</th></tr></thead>
-                <tbody>
-                    <tr><td><strong>GAJO 6/5</strong></td><td>693</td><td>40.3%</td><td>$900</td><td>$623,700</td><td>42.5%</td><td>9,425</td><td><span class="status-badge status-critical">A</span></td></tr>
-                    <tr><td><strong>RECTA 3/8</strong></td><td>315</td><td>18.3%</td><td>$814</td><td>$256,410</td><td>17.5%</td><td>4,284</td><td><span class="status-badge status-warning">B</span></td></tr>
-                    <tr><td><strong>ONDULADA 3/8</strong></td><td>288</td><td>16.8%</td><td>$814</td><td>$234,432</td><td>16.0%</td><td>3,917</td><td><span class="status-badge status-warning">B</span></td></tr>
-                    <tr><td><strong>CÁSCARA C/SAL</strong></td><td>270</td><td>15.7%</td><td>$838</td><td>$226,260</td><td>15.4%</td><td>3,672</td><td><span class="status-badge status-warning">B</span></td></tr>
-                    <tr><td><strong>BLUE RIBBON</strong></td><td>90</td><td>5.2%</td><td>$802</td><td>$72,180</td><td>4.9%</td><td>1,470</td><td><span class="status-badge status-ok">C</span></td></tr>
-                    <tr><td><strong>WAFFLE</strong></td><td>63</td><td>3.7%</td><td>$850</td><td>$53,550</td><td>3.7%</td><td>772</td><td><span class="status-badge status-ok">C</span></td></tr>
-                    <tr style="background:#e8f5e9;"><td><strong>TOTAL</strong></td><td><strong>1,719</strong></td><td>100%</td><td>—</td><td><strong>$1,466,532</strong></td><td>100%</td><td><strong>23,539</strong></td><td>—</td></tr>
-                </tbody>
-            </table>
-        </div>
-        <div class="insight">💡 Ticket promedio <strong>$853/caja</strong> · <strong>$62.30/kg</strong>. Gajo vende 40% del volumen y aporta 42.5% del ingreso: es el corazón del negocio.</div>
-    </div>
-
-    <!-- 4. ROTACIÓN -->
+    <!-- 3. ROTACIÓN -->
     <div class="section" style="border-left-color:var(--orange);">
         <h2 class="section-title">⚖️ Análisis de Rotación por SKU</h2>
         <div class="charts-grid">
@@ -179,82 +155,75 @@
                 </tbody>
             </table>
         </div>
-        <div class="insight">💡 Waffle lidera rotación (5.39x) pero sin inventario: es venta perdida, no eficiencia. Cáscara tarda <strong>245 días</strong> en rotar: capital dormido. El portafolio rota 2.75x vs 4.0x de referencia.</div>
+        <div class="insight">💡 Waffle lidera rotación (5.39x) pero sin inventario: es demanda insatisfecha, no eficiencia. Cáscara tarda <strong>245 días</strong> en rotar: espacio de cámara ocupado sin retorno. El portafolio rota 2.75x vs 4.0x de referencia.</div>
+    </div>
+
+    <!-- 4. INVENTARIO Y NIVELES ÓPTIMOS -->
+    <div class="section" style="border-left-color:var(--blue-medium);">
+        <h2 class="section-title">🎯 Inventario vs Niveles Óptimos y Puntos de Reorden</h2>
+        <div class="chart-container" style="height:380px;margin-bottom:20px;"><div class="chart-title">Inventario actual vs Punto de Reorden (45d) vs Nivel Óptimo (90d)</div><canvas id="optimalChart"></canvas></div>
+        <div class="table-wrapper">
+            <table>
+                <thead><tr><th>SKU</th><th>Inventario</th><th>Cobertura</th><th>Pto. Reorden (45d)</th><th>Nivel Óptimo (90d)</th><th>Posición</th><th>Resurtido sugerido</th></tr></thead>
+                <tbody>
+                    <tr><td><strong>GAJO 6/5</strong></td><td>63</td><td>20 días</td><td>140</td><td>280</td><td><span class="status-badge status-critical">BAJO ROP</span></td><td><strong>252 (4 pallets)</strong></td></tr>
+                    <tr><td><strong>WAFFLE</strong></td><td>0</td><td>0 días</td><td>13</td><td>25</td><td><span class="status-badge status-critical">QUIEBRE</span></td><td><strong>63 (1 pallet)</strong></td></tr>
+                    <tr><td><strong>BLUE RIBBON</strong></td><td>36</td><td>89 días</td><td>18</td><td>36</td><td><span class="status-badge status-ok">EN ÓPTIMO</span></td><td>0 · monitorear</td></tr>
+                    <tr><td><strong>ONDULADA 3/8</strong></td><td>216</td><td>167 días</td><td>58</td><td>116</td><td><span class="status-badge status-warning">+100 sobre óptimo</span></td><td>0 · promover</td></tr>
+                    <tr><td><strong>RECTA 3/8</strong></td><td>252</td><td>178 días</td><td>64</td><td>127</td><td><span class="status-badge status-warning">+125 sobre óptimo</span></td><td>0 · promover</td></tr>
+                    <tr><td><strong>CÁSCARA C/SAL</strong></td><td>297</td><td>245 días</td><td>54</td><td>109</td><td><span class="status-badge status-critical">+188 sobre óptimo</span></td><td>0 · promover</td></tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="note-box">📐 <strong>Parámetros de planeación (ajustables):</strong> cobertura objetivo = 90 días · punto de reorden = 45 días (lead time supuesto 30d + seguridad 15d) · lote/pallet = 63 cajas. Cuando se cuente con el lead time real de Simplot, recalcular ROP con la fórmula del anexo.</div>
     </div>
 
     <!-- 5. PUNTOS CRÍTICOS -->
     <div class="section" style="border-left-color:var(--red-alert);">
-        <h2 class="section-title">⚠️ Puntos Críticos de Compras y Ventas</h2>
+        <h2 class="section-title">⚠️ Puntos Críticos y Demanda en Riesgo</h2>
         <div class="chart-container" style="height:340px;margin-bottom:15px;"><div class="chart-title">Inventario Actual vs Necesidad Ago–Dic (cajas)</div><canvas id="stockNeedChart"></canvas></div>
+        <div class="table-wrapper">
+            <table>
+                <thead><tr><th>SKU</th><th>Stock</th><th>Cobertura</th><th>Quiebre</th><th>Velocidad</th><th>Cajas no surtidas Ago–Dic (base / alta)</th></tr></thead>
+                <tbody>
+                    <tr><td><strong>GAJO 6/5</strong></td><td>63</td><td>20 días</td><td>~31/ago</td><td>3.11/día</td><td><strong>378 / 473</strong></td></tr>
+                    <tr><td><strong>WAFFLE</strong></td><td>0</td><td>0 días</td><td><span class="status-badge status-critical">ACTIVO</span></td><td>0.28/día</td><td><strong>40 / 49</strong></td></tr>
+                    <tr><td><strong>BLUE RIBBON</strong></td><td>36</td><td>89 días</td><td>~08/nov</td><td>0.40/día</td><td><strong>21 / 33</strong></td></tr>
+                    <tr style="background:#ffebee;"><td><strong>TOTAL</strong></td><td>—</td><td>—</td><td>—</td><td>—</td><td><strong>439 / 555 cajas</strong></td></tr>
+                </tbody>
+            </table>
+        </div>
         <div class="alert-box">
-            <h3 style="color:var(--orange-dark);font-family:Montserrat;margin-bottom:12px;">Alertas para Dirección</h3>
+            <h3 style="color:var(--orange-dark);font-family:Montserrat;margin-bottom:12px;">Alertas para Planeación</h3>
             <ul>
-                <li><strong>🔴 Quiebre Gajo 6/5 (~31/ago):</strong> 20 días de cobertura del SKU que aporta 42.5% del ingreso.</li>
-                <li><strong>🔴 Waffle en quiebre desde 01/ago:</strong> pérdida acumulada ≈ <strong>$2,641</strong> ($240/día) y creciendo.</li>
-                <li><strong>🟠 Compras concentradas:</strong> 100% del abasto en 2 fechas (14/ene, 23/abr) → ciclo sobre-stock → quiebre.</li>
-                <li><strong>🟠 Capital dormido:</strong> 88.5% del inventario (765 cajas / $629,838) está en los 3 SKUs de menor rotación.</li>
+                <li><strong>🔴 Gajo 6/5:</strong> quiebre ~31/ago; sin resurtido quedan sin surtir 378–473 cajas el resto del año.</li>
+                <li><strong>🔴 Waffle:</strong> quiebre activo desde 01/ago; 40–49 cajas de demanda insatisfecha.</li>
+                <li><strong>🟠 Compras concentradas:</strong> 100% del abasto en 2 fechas → ciclo sobre-stock → quiebre.</li>
+                <li><strong>🟠 Sobre-stock:</strong> 765 cajas (88.5% del inventario) en los 3 SKUs lentos ocupan cámara sin rotar.</li>
             </ul>
         </div>
     </div>
 
-    <!-- 6. COSTO POR NO RESURTIR -->
-    <div class="section" style="border-left-color:var(--red-alert);">
-        <h2 class="section-title">🚨 Costo por No Resurtir (Datos Duros)</h2>
-        <div class="table-wrapper">
-            <table>
-                <thead><tr><th>SKU</th><th>Stock (cajas)</th><th>Cobertura</th><th>Quiebre</th><th>$ en riesgo por día</th><th>Cajas no surtidas Ago–Dic</th><th>Ingreso perdido (base)</th><th>Ingreso perdido (temp. alta)</th></tr></thead>
-                <tbody>
-                    <tr><td><strong>GAJO 6/5</strong></td><td>63</td><td>20 días</td><td>~31/ago</td><td>$2,797/día</td><td>378 / 473</td><td>$340,200</td><td>$425,700</td></tr>
-                    <tr><td><strong>WAFFLE</strong></td><td>0</td><td>0 días</td><td><span class="status-badge status-critical">ACTIVO</span></td><td>$240/día</td><td>40 / 49</td><td>$34,000</td><td>$41,650</td></tr>
-                    <tr><td><strong>BLUE RIBBON</strong></td><td>36</td><td>89 días</td><td>~08/nov</td><td>$324/día</td><td>21 / 33</td><td>$16,842</td><td>$26,466</td></tr>
-                    <tr style="background:#ffebee;"><td><strong>TOTAL</strong></td><td>—</td><td>—</td><td>—</td><td>—</td><td><strong>439 / 555</strong></td><td><strong>$391,042</strong></td><td><strong>$493,816</strong></td></tr>
-                </tbody>
-            </table>
-        </div>
-        <div class="kpi-grid">
-            <div class="kpi-card alert"><div>Ingreso en riesgo</div><div class="kpi-value">$391K</div><div class="kpi-sub">hasta $494K en temp. alta</div></div>
-            <div class="kpi-card alert"><div>Gajo: quiebre en</div><div class="kpi-value">20 días</div><div class="kpi-sub">$2,797/día en juego desde el 31/ago</div></div>
-            <div class="kpi-card warning"><div>Waffle</div><div class="kpi-value">$2,641</div><div class="kpi-sub">perdidos al 11/ago · $240/día</div></div>
-        </div>
-        <div class="insight">💡 <strong>Dato duro:</strong> sin resurtir, el 2º semestre deja de facturar entre <strong>$391,042 y $493,816</strong>. Solo el Gajo representa $2,797 diarios de ingreso en riesgo a partir del 31 de agosto.</div>
-    </div>
-
-    <!-- 7. FINANCIERO -->
-    <div class="section">
-        <h2 class="section-title">💰 Análisis Financiero (basado en ingresos)</h2>
-        <div class="charts-grid">
-            <div class="chart-container"><div class="chart-title">Potencial Comprado: Realizado vs en Inventario</div><canvas id="realizationChart"></canvas></div>
-            <div class="chart-container"><div class="chart-title">Composición del Inventario (valor a precio de venta)</div><canvas id="invValueChart"></canvas></div>
-        </div>
-        <div class="kpi-grid">
-            <div class="kpi-card"><div>Ingreso realizado</div><div class="kpi-value">$1.47M</div><div class="kpi-sub">67.2% del potencial</div></div>
-            <div class="kpi-card warning"><div>En inventario</div><div class="kpi-value">$715K</div><div class="kpi-sub">864 cajas · 32.8%</div></div>
-            <div class="kpi-card blue"><div>Potencial total</div><div class="kpi-value">$2.18M</div><div class="kpi-sub">2,583 cajas compradas</div></div>
-            <div class="kpi-card"><div>$/kg promedio</div><div class="kpi-value">$62.3</div><div class="kpi-sub">23,539 kg vendidos</div></div>
-        </div>
-        <div class="insight">💡 Cada caja comprada ya tiene demanda potencial demostrada; el problema financiero no es vender, es <strong>tener el producto correcto en el momento correcto</strong>.</div>
-    </div>
-
-    <!-- 8. PLAN DE COMPRAS CIERRE 2026 -->
+    <!-- 6. PLAN DE RESURTIDO CIERRE 2026 -->
     <div class="section" style="border-left-color:var(--blue-medium);">
-        <h2 class="section-title">🛒 Plan Definido de Compras para Cerrar 2026</h2>
+        <h2 class="section-title">🛒 Plan de Resurtido para Cerrar 2026 (cajas)</h2>
         <div class="table-wrapper">
             <table>
-                <thead><tr><th>Pedido</th><th>Fecha sugerida</th><th>SKU</th><th>Cajas (base)</th><th>Cajas (temp. alta)</th><th>Pallets (63)</th><th>Valor a precio venta</th><th>Objetivo</th></tr></thead>
+                <thead><tr><th>Pedido</th><th>Fecha sugerida</th><th>SKU</th><th>Cajas (base)</th><th>Cajas (temp. alta)</th><th>Pallets (63)</th><th>Objetivo</th></tr></thead>
                 <tbody>
-                    <tr><td><strong>Pedido 3</strong></td><td>17/ago</td><td>GAJO 6/5</td><td>252</td><td>252</td><td>4</td><td>$226,800</td><td>Evita quiebre del 31/ago; cubre sep–nov</td></tr>
-                    <tr><td><strong>Pedido 3</strong></td><td>17/ago</td><td>WAFFLE</td><td>63</td><td>63</td><td>1</td><td>$53,550</td><td>Detiene pérdida de $240/día</td></tr>
-                    <tr><td><strong>Pedido 4</strong></td><td>10/oct</td><td>GAJO 6/5</td><td>126</td><td>252</td><td>2–4</td><td>$113,400–$226,800</td><td>Asegura nov–dic; se confirma en oct</td></tr>
-                    <tr><td><strong>Pedido 4</strong></td><td>10/oct</td><td>BLUE RIBBON</td><td>63</td><td>63</td><td>1</td><td>$50,526</td><td>Cubre déficit de 21–33 cajas</td></tr>
-                    <tr><td><strong>Sin compra</strong></td><td>—</td><td>RECTA / ONDULADA / CÁSCARA</td><td>0</td><td>0</td><td>0</td><td>$0</td><td>Promoción: cobertura 167–245 días</td></tr>
-                    <tr style="background:#e8f5e9;"><td colspan="3"><strong>TOTAL 2º SEMESTRE</strong></td><td><strong>504</strong></td><td><strong>630</strong></td><td><strong>8–10</strong></td><td><strong>$444,276–$557,676</strong></td><td>Protege $391K–$494K de ingreso</td></tr>
+                    <tr><td><strong>Pedido 3</strong></td><td>17/ago</td><td>GAJO 6/5</td><td>252</td><td>252</td><td>4</td><td>Evita quiebre del 31/ago; cubre sep–nov</td></tr>
+                    <tr><td><strong>Pedido 3</strong></td><td>17/ago</td><td>WAFFLE</td><td>63</td><td>63</td><td>1</td><td>Recupera venta perdida desde 01/ago</td></tr>
+                    <tr><td><strong>Pedido 4</strong></td><td>10/oct</td><td>GAJO 6/5</td><td>126</td><td>252</td><td>2–4</td><td>Asegura nov–dic; se confirma con venta real de sep</td></tr>
+                    <tr><td><strong>Pedido 4</strong></td><td>10/oct</td><td>BLUE RIBBON</td><td>63</td><td>63</td><td>1</td><td>Cubre déficit de 21–33 cajas</td></tr>
+                    <tr><td><strong>Sin compra</strong></td><td>—</td><td>RECTA / ONDULADA / CÁSCARA</td><td>0</td><td>0</td><td>0</td><td>Promoción: 167–245 días de cobertura</td></tr>
+                    <tr style="background:#e8f5e9;"><td colspan="3"><strong>TOTAL 2º SEMESTRE</strong></td><td><strong>504</strong></td><td><strong>630</strong></td><td><strong>8–10</strong></td><td>Protege 439–555 cajas de demanda</td></tr>
                 </tbody>
             </table>
         </div>
-        <div class="insight">💡 El Pedido 3 (315 cajas · $280,350 a precio de venta) es <strong>inmediato e innegociable</strong>: sin él, el Gajo quiebra el 31/ago. El Pedido 4 se dimensiona en octubre con la venta real de sep.</div>
+        <div class="insight">💡 El Pedido 3 (315 cajas) es <strong>inmediato</strong>: sin él, el Gajo quiebra el 31/ago. El Pedido 4 se dimensiona en octubre con la venta real de septiembre.</div>
     </div>
 
-    <!-- 9. DISTRIBUCIÓN ANUAL DE COMPRAS -->
+    <!-- 7. DISTRIBUCIÓN ANUAL -->
     <div class="section" style="border-left-color:var(--blue-medium);">
         <h2 class="section-title">🗓️ Propuesta de Distribución Anual de Compras (2027)</h2>
         <div class="chart-container" style="height:380px;margin-bottom:20px;"><div class="chart-title">Compras trimestrales estimadas por SKU (cajas)</div><canvas id="annualPlanChart"></canvas></div>
@@ -275,68 +244,71 @@
         <div class="note-box">📌 <strong>Nota metodológica:</strong> cifras <strong>estimadas</strong> a partir de la rotación anualizada observada (223 días). <strong>Revisar al cierre de diciembre 2026</strong> para validar la información anualizada, incorporar la estacionalidad real y ajustar el calendario 2027. Sustituye el modelo actual de 2 compras/año por 4 ciclos calibrados, eliminando los meses sin abasto.</div>
     </div>
 
-    <!-- 10. FORECAST -->
+    <!-- 8. FORECAST -->
     <div class="section">
-        <h2 class="section-title">🔮 Forecast Anualizado con Varianzas (Temporada Alta)</h2>
-        <div class="chart-container" style="height:380px;margin-bottom:20px;"><div class="chart-title">Proyección Ago–Dic: Escenario Base vs Temporada Alta (cajas)</div><canvas id="forecastChart"></canvas></div>
+        <h2 class="section-title">🔮 Forecast de Demanda Ago–Dic (cajas)</h2>
+        <div class="chart-container" style="height:380px;margin-bottom:20px;"><div class="chart-title">Proyección mensual: Escenario Base vs Temporada Alta</div><canvas id="forecastChart"></canvas></div>
         <div class="table-wrapper">
             <table>
-                <thead><tr><th>SKU</th><th>Esc. Base (cajas)</th><th>Temp. Alta ×1.5 Nov–Dic</th><th>Inventario vs Base</th><th>Ingreso Base</th><th>Ingreso Temp. Alta</th></tr></thead>
+                <thead><tr><th>SKU</th><th>Esc. Base (cajas)</th><th>Temp. Alta ×1.5 Nov–Dic</th><th>Inventario vs Base</th><th>Cobertura actual</th></tr></thead>
                 <tbody>
-                    <tr><td><strong>GAJO 6/5</strong></td><td>441</td><td>+95</td><td><span class="status-badge status-critical">−378</span></td><td>$396,900</td><td>$482,400</td></tr>
-                    <tr><td><strong>RECTA 3/8</strong></td><td>201</td><td>+43</td><td><span class="status-badge status-ok">+51</span></td><td>$163,614</td><td>$198,616</td></tr>
-                    <tr><td><strong>ONDULADA 3/8</strong></td><td>183</td><td>+39</td><td><span class="status-badge status-ok">+33</span></td><td>$148,962</td><td>$180,708</td></tr>
-                    <tr><td><strong>CÁSCARA C/SAL</strong></td><td>172</td><td>+37</td><td><span class="status-badge status-ok">+125</span></td><td>$144,136</td><td>$175,142</td></tr>
-                    <tr><td><strong>BLUE RIBBON</strong></td><td>57</td><td>+12</td><td><span class="status-badge status-warning">−21</span></td><td>$45,714</td><td>$55,338</td></tr>
-                    <tr><td><strong>WAFFLE</strong></td><td>40</td><td>+9</td><td><span class="status-badge status-critical">−40</span></td><td>$34,000</td><td>$41,650</td></tr>
-                    <tr style="background:#e8f5e9;"><td><strong>TOTAL</strong></td><td><strong>1,094</strong></td><td><strong>+235</strong></td><td><strong>−230</strong></td><td><strong>$933,326</strong></td><td><strong>$1,133,854</strong></td></tr>
+                    <tr><td><strong>GAJO 6/5</strong></td><td>441</td><td>+95</td><td><span class="status-badge status-critical">−378</span></td><td>20 días</td></tr>
+                    <tr><td><strong>RECTA 3/8</strong></td><td>201</td><td>+43</td><td><span class="status-badge status-ok">+51</span></td><td>178 días</td></tr>
+                    <tr><td><strong>ONDULADA 3/8</strong></td><td>183</td><td>+39</td><td><span class="status-badge status-ok">+33</span></td><td>167 días</td></tr>
+                    <tr><td><strong>CÁSCARA C/SAL</strong></td><td>172</td><td>+37</td><td><span class="status-badge status-ok">+125</span></td><td>245 días</td></tr>
+                    <tr><td><strong>BLUE RIBBON</strong></td><td>57</td><td>+12</td><td><span class="status-badge status-warning">−21</span></td><td>89 días</td></tr>
+                    <tr><td><strong>WAFFLE</strong></td><td>40</td><td>+9</td><td><span class="status-badge status-critical">−40</span></td><td>0 días</td></tr>
+                    <tr style="background:#e8f5e9;"><td><strong>TOTAL</strong></td><td><strong>1,094</strong></td><td><strong>+235</strong></td><td><strong>−230</strong></td><td>112 días</td></tr>
                 </tbody>
             </table>
         </div>
         <div class="kpi-grid">
-            <div class="kpi-card"><div>Cierre 2026 (Base)</div><div class="kpi-value">$2.40M</div><div class="kpi-sub">2,813 cajas anuales</div></div>
-            <div class="kpi-card blue"><div>Cierre 2026 (Temp. Alta)</div><div class="kpi-value">$2.60M</div><div class="kpi-sub">3,048 cajas anuales</div></div>
-            <div class="kpi-card warning"><div>Varianza Temp. Alta</div><div class="kpi-value">+21.5%</div><div class="kpi-sub">+$200,528 sobre base Ago–Dic</div></div>
+            <div class="kpi-card"><div>Demanda 2026 (Base)</div><div class="kpi-value">2,813</div><div class="kpi-sub">cajas anuales estimadas</div></div>
+            <div class="kpi-card blue"><div>Demanda 2026 (Alta)</div><div class="kpi-value">3,048</div><div class="kpi-sub">cajas con temp. alta</div></div>
+            <div class="kpi-card warning"><div>Varianza Alta</div><div class="kpi-value">+235</div><div class="kpi-sub">cajas (+21.5%) en Ago–Dic</div></div>
         </div>
         <div class="insight">💡 Supuesto explícito: multiplicador ×1.5 en nov–dic (ajustable con histórico). El inventario actual cubre solo 79% del escenario base → <strong>la compra de octubre es innegociable</strong>.</div>
     </div>
 
-    <!-- 11. RESUMEN -->
+    <!-- 9. RESUMEN -->
     <div class="section">
         <h2 class="section-title">📝 Resumen Ejecutivo y Decisiones Sugeridas</h2>
         <div style="background:linear-gradient(135deg,var(--green-dark),var(--blue-dark));color:#fff;padding:25px 20px;border-radius:15px;margin-bottom:25px;">
             <h3 style="font-family:Montserrat;font-size:1.2em;margin-bottom:12px;text-align:center;">Hallazgos Clave</h3>
             <ul style="margin-left:20px;font-size:.95em;">
-                <li>✅ Demanda sana: $1.47M en 223 días; Gajo 6/5 = 42.5% del ingreso.</li>
+                <li>✅ Demanda sana: 1,719 cajas en 223 días; Gajo 6/5 = 40.3% del volumen.</li>
                 <li>🔴 El modelo de 2 compras/año descalza abasto y demanda: quiebre en rápidos (Gajo, Waffle) y sobre-stock en lentos.</li>
-                <li>🚨 Costo por no resurtir el 2º semestre: <strong>$391K–$494K</strong> de ingreso perdido (datos duros).</li>
-                <li>🛒 Plan de cierre: Pedido 3 inmediato (315 cajas) + Pedido 4 en octubre (126–252 Gajo + 63 Blue Ribbon).</li>
+                <li>🚨 Sin resurtir, 439–555 cajas de demanda quedarán sin surtir el 2º semestre.</li>
+                <li>🎯 Inventario desbalanceado: 864 cajas totales, pero 765 en SKUs lentos y solo 63 en el SKU estrella.</li>
                 <li>🗓️ 2027: migrar a 4 ciclos trimestrales de ~756 cajas, validando al cierre de diciembre 2026.</li>
             </ul>
         </div>
         <div class="actions-grid">
             <div class="action-card" style="border-top:4px solid var(--red-alert);"><h4 style="color:var(--red-alert);font-family:Montserrat;margin-bottom:8px;">Decisión Inmediata</h4><p style="font-size:.88em;">Autorizar <strong>Pedido 3: 315 cajas</strong> (252 Gajo + 63 Waffle) antes del 20/ago.</p></div>
             <div class="action-card" style="border-top:4px solid var(--orange);"><h4 style="color:var(--orange-dark);font-family:Montserrat;margin-bottom:8px;">Decisión de Octubre</h4><p style="font-size:.88em;">Autorizar <strong>Pedido 4</strong> con la venta real de septiembre: 126 Gajo (base) o 252 (temp. alta) + 63 Blue Ribbon.</p></div>
-            <div class="action-card" style="border-top:4px solid var(--blue-medium);"><h4 style="color:var(--blue-dark);font-family:Montserrat;margin-bottom:8px;">Decisión Estratégica</h4><p style="font-size:.88em;">Adoptar calendario trimestral 2027 y promoción de SKUs lentos; validar en cierre dic-2026.</p></div>
+            <div class="action-card" style="border-top:4px solid var(--blue-medium);"><h4 style="color:var(--blue-dark);font-family:Montserrat;margin-bottom:8px;">Decisión Estratégica</h4><p style="font-size:.88em;">Adoptar calendario trimestral 2027, promoción de SKUs lentos y validar parámetros en cierre dic-2026.</p></div>
         </div>
     </div>
 
     <!-- ANEXO -->
     <div class="section anexo-section">
         <h2 class="section-title">📎 Anexo Técnico: Fórmulas y Validación</h2>
-        <p style="font-size:.9em;color:#666;margin-bottom:15px;">Periodo: 01/ene–11/ago/2026 = <strong>223 días</strong>. Lote/pallet = <strong>63 cajas</strong>. Forecast Ago–Dic = 142 días restantes.</p>
+        <p style="font-size:.9em;color:#666;margin-bottom:15px;">Periodo: 01/ene–11/ago/2026 = <strong>223 días</strong>. Lote/pallet = <strong>63 cajas</strong>. Forecast Ago–Dic = 142 días restantes. Alcance: unidades y días (sin datos financieros).</p>
         <div class="table-wrapper">
             <table>
                 <thead><tr><th>Indicador</th><th>Fórmula</th><th>Ejemplo (Gajo 6/5)</th><th>Resultado</th></tr></thead>
                 <tbody>
                     <tr><td>Velocidad diaria</td><td class="formula-cell">Salidas ÷ 223</td><td class="formula-cell">693 ÷ 223</td><td class="result-cell">3.11 cajas/día</td></tr>
-                    <tr><td>Rotación anualizada</td><td class="formula-cell">(Salidas ÷ Inv. prom.) × (365÷223)</td><td class="formula-cell">(693÷331) × 1.637</td><td class="result-cell">3.43x</td></tr>
+                    <tr><td>Inventario promedio</td><td class="formula-cell">Promedio saldos finales Ene–Ago</td><td class="formula-cell">(630+567+441+378+315+189+63+63)÷8</td><td class="result-cell">331 cajas</td></tr>
+                    <tr><td>Rotación del periodo</td><td class="formula-cell">Salidas ÷ Inv. promedio</td><td class="formula-cell">693 ÷ 331</td><td class="result-cell">2.10x</td></tr>
+                    <tr><td>Rotación anualizada</td><td class="formula-cell">Rot. periodo × (365÷223)</td><td class="formula-cell">2.10 × 1.637</td><td class="result-cell">3.43x</td></tr>
                     <tr><td>Cobertura (DOI)</td><td class="formula-cell">Inv. final ÷ Velocidad diaria</td><td class="formula-cell">63 ÷ 3.11</td><td class="result-cell">20 días</td></tr>
-                    <tr><td>Ingreso</td><td class="formula-cell">Salidas × Precio venta</td><td class="formula-cell">693 × $900</td><td class="result-cell">$623,700</td></tr>
-                    <tr><td>Costo por no resurtir</td><td class="formula-cell">(Demanda − Inventario) × Precio</td><td class="formula-cell">(441−63) × $900</td><td class="result-cell">$340,200</td></tr>
+                    <tr><td>Punto de reorden (ROP)</td><td class="formula-cell">Velocidad × 45 días</td><td class="formula-cell">3.11 × 45</td><td class="result-cell">140 cajas</td></tr>
+                    <tr><td>Nivel óptimo</td><td class="formula-cell">Velocidad × 90 días</td><td class="formula-cell">3.11 × 90</td><td class="result-cell">280 cajas</td></tr>
+                    <tr><td>Resurtido sugerido</td><td class="formula-cell">Óptimo − Inventario → múltiplo de 63</td><td class="formula-cell">280 − 63 = 217 → 252</td><td class="result-cell">252 cajas (4 pallets)</td></tr>
+                    <tr><td>Forecast base</td><td class="formula-cell">Velocidad × 142 días</td><td class="formula-cell">3.11 × 142</td><td class="result-cell">441 cajas</td></tr>
                     <tr><td>Demanda anual estimada</td><td class="formula-cell">Velocidad × 365</td><td class="formula-cell">3.11 × 365</td><td class="result-cell">1,134 cajas</td></tr>
                     <tr><td>Lote trimestral</td><td class="formula-cell">Demanda anual ÷ 4 → múltiplo de 63</td><td class="formula-cell">1,134 ÷ 4 ≈ 284 → 315</td><td class="result-cell">315 cajas (5 pallets)</td></tr>
-                    <tr><td>Forecast base</td><td class="formula-cell">Velocidad × 142 días</td><td class="formula-cell">3.11 × 142</td><td class="result-cell">441 cajas</td></tr>
                     <tr><td>Validación global</td><td class="formula-cell">Entradas − Salidas</td><td class="formula-cell">2,583 − 1,719</td><td class="result-cell">864 cajas ✔</td></tr>
                 </tbody>
             </table>
@@ -346,7 +318,7 @@
     <div class="footer">
         <div style="font-family:Montserrat;font-size:1.5em;font-weight:800;margin-bottom:10px;">GRUPO SIBRÜ</div>
         <div style="font-size:1.1em;margin-bottom:15px;">Alimentamos Confianza</div>
-        <div style="opacity:.8;font-size:.85em;">Reporte Ejecutivo Simplot · Datos reales Ene–Ago 2026<br>Elaborado por: Sergio Isaac Alvarez Molina | Agosto 2026</div>
+        <div style="opacity:.8;font-size:.85em;">Reporte de Planeación de Demanda y Abasto Simplot · Datos reales Ene–Ago 2026<br>Elaborado por: Sergio Isaac Alvarez Molina | Agosto 2026</div>
     </div>
 </div>
 
@@ -388,17 +360,9 @@ new Chart(document.getElementById('flowChart'), { type:'bar', data:{ labels:MESE
                {label:'Salidas (ventas)', data:[378,63,189,189,81,459,342,18], backgroundColor:'#F4A261'} ]},
     options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom'}},scales:{y:{beginAtZero:true}}}});
 
-new Chart(document.getElementById('revenueChart'), { type:'line', data:{ labels:MESES,
-    datasets:[{label:'Ingresos (MXN)', data:[320040,56700,164682,160776,72000,386946,290304,15084], borderColor:'#2A9D8F', backgroundColor:'rgba(42,157,143,.15)', fill:true, tension:.35}]},
-    options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{y:{beginAtZero:true,ticks:{callback:v=>'$'+(v/1000)+'K'}}}}});
-
-new Chart(document.getElementById('mixVolChart'), { type:'doughnut', data:{ labels:SKUS,
-    datasets:[{data:[693,63,90,288,315,270], backgroundColor:PALETTE, borderWidth:2, borderColor:'#fff'}]},
-    options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom',labels:{font:{size:10}}}}}});
-
-new Chart(document.getElementById('mixRevChart'), { type:'doughnut', data:{ labels:SKUS,
-    datasets:[{data:[623700,53550,72180,234432,256410,226260], backgroundColor:PALETTE, borderWidth:2, borderColor:'#fff'}]},
-    options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom',labels:{font:{size:10}}}}}});
+new Chart(document.getElementById('soldStockChart'), { type:'doughnut', data:{ labels:['Vendidas 1,719 cajas','En inventario 864 cajas'],
+    datasets:[{data:[1719,864], backgroundColor:['#2E7D32','#F4A261'], borderWidth:3, borderColor:'#fff'}]},
+    options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom'}}}});
 
 new Chart(document.getElementById('coverageChart'), { type:'bar', data:{ labels:SKUS,
     datasets:[ {label:'Cobertura (días)', data:[20,0,89,167,178,245], backgroundColor:['#d32f2f','#d32f2f','#66BB6A','#F4A261','#F4A261','#E76F51']},
@@ -410,20 +374,18 @@ new Chart(document.getElementById('rotationChart'), { type:'bar', data:{ labels:
                {label:'Referencia 4.0x', data:[4,4,4,4,4,4], type:'line', borderColor:'#264653', borderDash:[6,6], pointRadius:0, fill:false}]},
     options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom'}},scales:{y:{beginAtZero:true}}}});
 
+new Chart(document.getElementById('optimalChart'), { type:'bar', data:{ labels:SKUS,
+    datasets:[
+        {label:'Inventario actual', data:[63,0,36,216,252,297], backgroundColor:'#66BB6A'},
+        {label:'Punto de reorden (45d)', data:[140,13,18,58,64,54], backgroundColor:'#F4A261'},
+        {label:'Nivel óptimo (90d)', data:[280,25,36,116,127,109], backgroundColor:'#264653'} ]},
+    options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom'}},scales:{y:{beginAtZero:true}}}});
+
 new Chart(document.getElementById('stockNeedChart'), { type:'bar', data:{ labels:SKUS,
     datasets:[ {label:'Inventario actual', data:[63,0,36,216,252,297], backgroundColor:'#66BB6A'},
                {label:'Necesidad Ago–Dic (base)', data:[441,40,57,183,201,172], backgroundColor:'#E76F51'} ]},
     options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom'}},scales:{y:{beginAtZero:true}}}});
 
-new Chart(document.getElementById('realizationChart'), { type:'doughnut', data:{ labels:['Ingreso realizado $1.47M','En inventario $715K'],
-    datasets:[{data:[1466532,715410], backgroundColor:['#2E7D32','#F4A261'], borderWidth:3, borderColor:'#fff'}]},
-    options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom'}}}});
-
-new Chart(document.getElementById('invValueChart'), { type:'bar', data:{ labels:SKUS,
-    datasets:[{label:'Valor inventario (MXN)', data:[56700,0,28872,175824,205128,248886], backgroundColor:PALETTE}]},
-    options:{indexAxis:'y',responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{beginAtZero:true,ticks:{callback:v=>'$'+(v/1000)+'K'}}}}});
-
-/* Distribución anual de compras (apilado trimestral) */
 new Chart(document.getElementById('annualPlanChart'), { type:'bar', data:{ labels:['T1 (ene–mar)','T2 (abr–jun)','T3 (jul–sep)','T4 (oct–dic)'],
     datasets:[
         {label:'Gajo 6/5', data:[315,315,315,315], backgroundColor:'#1B5E20'},
