@@ -41,6 +41,7 @@
     .status-warning{background:var(--orange);color:#fff;}
     .status-critical{background:var(--red-alert);color:#fff;}
     .insight{background:#eef7ee;border-left:5px solid var(--green-medium);border-radius:10px;padding:14px 18px;margin:15px 0;font-size:.92em;}
+    .insight ul{margin-left:20px;}
     .note-box{background:#e8f0fe;border-left:5px solid var(--blue-medium);border-radius:10px;padding:14px 18px;margin:15px 0;font-size:.92em;}
     .alert-box{background:#fff3e0;border-left:5px solid var(--orange-dark);border-radius:10px;padding:18px 22px;margin:15px 0;}
     .alert-box ul{margin-left:20px;font-size:.93em;}
@@ -69,22 +70,27 @@
     <div class="header">
         <h1>Planeación de Demanda y Abasto Simplot</h1>
         <div class="subtitle">Entradas · Salidas · Rotación · Inventario · Resurtido · Forecast | Ene–Ago 2026</div>
-        <div class="badge-version">DATOS REALES · CORTE 11/AGO/2026 · UNIDADES: CAJAS/DÍAS</div>
+        <div class="badge-version">CORTE 11/AGO/2026 · UNIDADES: CAJAS/DÍAS</div>
     </div>
 
     <!-- 0. EL NEGOCIO DE UN VISTAZO -->
     <div class="section">
-        <h2 class="section-title">🥔 El Negocio de un Vistazo (en unidades)</h2>
+        <h2 class="section-title">🥔 El Negocio de un Vistazo (Cajas)</h2>
         <p style="font-size:.93em;margin-bottom:10px;">Distribuimos 6 presentaciones de papa congelada Simplot (caja = 6 bolsas). Modelo actual: <strong>2 compras al año</strong> (14/ene y 23/abr) que abastecen la venta continua. Este reporte analiza <strong>solo volúmenes, tiempos y rotación</strong> para decidir compras y planeación de demanda.</p>
         <div class="sku-grid">
-            <div class="sku-card" style="border-top-color:#d32f2f;"><h4>GAJO 6/5</h4>13.6 kg/caja · 3.11 cajas/día<br>Clase A · Estrella</div>
-            <div class="sku-card"><h4>RECTA 3/8</h4>13.6 kg/caja · 1.41 cajas/día<br>Clase B</div>
-            <div class="sku-card"><h4>ONDULADA 3/8</h4>13.6 kg/caja · 1.29 cajas/día<br>Clase B</div>
-            <div class="sku-card"><h4>CÁSCARA C/SAL 3/8</h4>13.6 kg/caja · 1.21 cajas/día<br>Clase B · Lenta</div>
-            <div class="sku-card"><h4>BLUE RIBBON 1/4</h4>16.33 kg/caja · 0.40 cajas/día<br>Clase C</div>
-            <div class="sku-card"><h4>SAVORY WAFFLE</h4>12.25 kg/caja · 0.28 cajas/día<br>Clase C · Alta rotación</div>
+            <div class="sku-card" style="border-top-color:#d32f2f;"><h4>GAJO 6/5</h4>3.11 cajas/día<br>Clase A · Estrella</div>
+            <div class="sku-card"><h4>RECTA 3/8</h4>1.41 cajas/día<br>Clase B</div>
+            <div class="sku-card"><h4>ONDULADA 3/8</h4>1.29 cajas/día<br>Clase B</div>
+            <div class="sku-card"><h4>CÁSCARA C/SAL 3/8</h4>1.21 cajas/día<br>Clase B · Lenta</div>
+            <div class="sku-card"><h4>BLUE RIBBON 1/4</h4>0.40 cajas/día<br>Clase C</div>
+            <div class="sku-card"><h4>SAVORY WAFFLE</h4>0.28 cajas/día<br>Clase C · Alta rotación</div>
         </div>
-        <div class="insight">💡 <strong>Lectura del negocio:</strong> el 40.3% del volumen vendido lo genera un solo SKU (Gajo). El reto no es la demanda —es <strong>calibrar el abasto</strong>: hoy sobra inventario en SKUs lentos y falta en los rápidos.</div>
+        <div class="insight">
+            <ul>
+                <li><strong>📖 Lectura del negocio:</strong> el 40.3% del volumen vendido lo genera un solo SKU (Gajo).</li>
+                <li><strong>🎯 Objetivo:</strong> calibrar el abasto — hoy sobra inventario en SKUs lentos y falta en los rápidos.</li>
+            </ul>
+        </div>
     </div>
 
     <!-- 1. DASHBOARD -->
@@ -127,6 +133,10 @@
             <div class="chart-title">Compras vs Ventas por Mes por SKU — <select id="skuSelect"></select></div>
             <canvas id="skuFlowChart"></canvas>
             <div id="skuFlowSummary" style="text-align:center;font-size:.85em;margin-top:10px;font-weight:600;color:var(--green-dark);"></div>
+        </div>
+        <div class="chart-container" style="height:400px;margin-bottom:20px;">
+            <div class="chart-title">Salidas por SKU y Mes — 🔴 picos de venta resaltados</div>
+            <canvas id="outBySkuChart"></canvas>
         </div>
         <div class="charts-grid">
             <div class="chart-container"><div class="chart-title">Compras vs Ventas por Mes (cajas)</div><canvas id="flowChart"></canvas></div>
@@ -376,6 +386,26 @@ function updateSkuFlow(){
     document.getElementById('skuFlowSummary').textContent = 'Entradas: '+te+' cajas · Salidas: '+ts+' cajas · Saldo: '+(te-ts)+' cajas';
 }
 sel.addEventListener('change', updateSkuFlow); updateSkuFlow();
+
+/* NUEVO: Salidas por SKU y mes con picos resaltados */
+const OUT = {
+    'Gajo 6/5':      [126,63,126,63,63,126,126,0],
+    'Recta 3/8':     [63,0,63,0,0,126,63,0],
+    'Ondulada 3/8':  [126,0,0,63,0,36,63,0],
+    'Cáscara c/Sal': [63,0,0,63,0,126,0,18],
+    'Blue Ribbon':   [0,0,0,0,0,45,45,0],
+    'Waffle':        [0,0,0,0,18,0,45,0]
+};
+const LINE_COLORS = {'Gajo 6/5':'#1B5E20','Recta 3/8':'#2E7D32','Ondulada 3/8':'#66BB6A','Cáscara c/Sal':'#2A9D8F','Blue Ribbon':'#F4A261','Waffle':'#E76F51'};
+new Chart(document.getElementById('outBySkuChart'), { type:'line',
+    data:{ labels:MESES, datasets:Object.keys(OUT).map(k=>{
+        const d = OUT[k], mx = Math.max(...d);
+        return { label:k, data:d, borderColor:LINE_COLORS[k], backgroundColor:LINE_COLORS[k], tension:.3, fill:false,
+            pointRadius:d.map(v=> (v===mx && v>0) ? 7 : 3),
+            pointBackgroundColor:d.map(v=> (v===mx && v>0) ? '#d32f2f' : LINE_COLORS[k]),
+            pointBorderColor:'#ffffff', pointBorderWidth:1 };
+    })},
+    options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom',labels:{font:{size:10}}}},scales:{y:{beginAtZero:true,title:{display:true,text:'Cajas'}}}}});
 
 new Chart(document.getElementById('flowChart'), { type:'bar', data:{ labels:MESES,
     datasets:[ {label:'Entradas (compras)', data:[1071,0,0,1512,0,0,0,0], backgroundColor:'#1B5E20'},
