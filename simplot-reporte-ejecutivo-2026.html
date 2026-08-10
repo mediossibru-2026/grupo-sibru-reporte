@@ -54,6 +54,8 @@
     .actions-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:20px;}
     .action-card{background:#fff;padding:20px;border-radius:15px;box-shadow:0 5px 15px rgba(0,0,0,.08);}
     select{font-family:'Montserrat',sans-serif;font-size:.85em;padding:4px 10px;border-radius:8px;border:2px solid var(--green-medium);color:var(--green-dark);font-weight:700;background:#fff;}
+    .bar-track{background:#e9ecef;border-radius:6px;height:10px;width:140px;overflow:hidden;}
+    .bar-fill{height:10px;border-radius:6px;}
     @media (max-width:768px){
         .header h1{font-size:1.3em;} .kpi-grid{grid-template-columns:repeat(2,1fr);}
         .charts-grid{grid-template-columns:1fr;} .chart-container{height:300px;}
@@ -98,7 +100,27 @@
         </div>
     </div>
 
-    <!-- 2. ENTRADAS Y SALIDAS -->
+    <!-- 2. HISTORIA DEL INVENTARIO (VISTA RÁPIDA) -->
+    <div class="section">
+        <h2 class="section-title">📦 Historia del Inventario por SKU (Vista Rápida)</h2>
+        <div class="table-wrapper">
+            <table>
+                <thead><tr><th>SKU</th><th>Compra total (cajas)</th><th>Ventas totales (cajas)</th><th>Inventario actual (cajas)</th><th>% Vendido</th><th>Desplazamiento de la compra</th></tr></thead>
+                <tbody>
+                    <tr><td><strong>WAFFLE</strong></td><td>63</td><td>63</td><td>0</td><td><strong>100%</strong></td><td><div class="bar-track"><div class="bar-fill" style="width:100%;background:#d32f2f;"></div></div></td></tr>
+                    <tr><td><strong>GAJO 6/5</strong></td><td>756</td><td>693</td><td>63</td><td><strong>91.7%</strong></td><td><div class="bar-track"><div class="bar-fill" style="width:91.7%;background:#d32f2f;"></div></div></td></tr>
+                    <tr><td><strong>BLUE RIBBON</strong></td><td>126</td><td>90</td><td>36</td><td><strong>71.4%</strong></td><td><div class="bar-track"><div class="bar-fill" style="width:71.4%;background:#F4A261;"></div></div></td></tr>
+                    <tr><td><strong>ONDULADA 3/8</strong></td><td>504</td><td>288</td><td>216</td><td><strong>57.1%</strong></td><td><div class="bar-track"><div class="bar-fill" style="width:57.1%;background:#66BB6A;"></div></div></td></tr>
+                    <tr><td><strong>RECTA 3/8</strong></td><td>567</td><td>315</td><td>252</td><td><strong>55.6%</strong></td><td><div class="bar-track"><div class="bar-fill" style="width:55.6%;background:#66BB6A;"></div></div></td></tr>
+                    <tr><td><strong>CÁSCARA C/SAL</strong></td><td>567</td><td>270</td><td>297</td><td><strong>47.6%</strong></td><td><div class="bar-track"><div class="bar-fill" style="width:47.6%;background:#66BB6A;"></div></div></td></tr>
+                    <tr style="background:#e8f5e9;"><td><strong>TOTAL</strong></td><td><strong>2,583</strong></td><td><strong>1,719</strong></td><td><strong>864</strong></td><td><strong>66.6%</strong></td><td><div class="bar-track"><div class="bar-fill" style="width:66.6%;background:#264653;"></div></div></td></tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="insight">💡 La barra muestra cuánto de cada compra ya se vendió: <strong>Waffle y Gajo agotaron su compra</strong> (urgencia de resurtir), mientras <strong>Cáscara, Recta y Ondulada conservan más de la mitad</strong> de lo comprado en cámara.</div>
+    </div>
+
+    <!-- 3. ENTRADAS Y SALIDAS -->
     <div class="section">
         <h2 class="section-title">📈 Análisis de Entradas y Salidas</h2>
         <div class="chart-container" style="height:360px;margin-bottom:20px;">
@@ -134,7 +156,7 @@
         <div class="insight">💡 El 100% del abasto entra en solo 2 fechas, mientras la venta es continua: ese descalce es la raíz de quiebres y sobre-stocks. Picos de venta: <strong>junio (459 cajas)</strong> y <strong>enero (378)</strong>.</div>
     </div>
 
-    <!-- 3. ROTACIÓN -->
+    <!-- 4. ROTACIÓN -->
     <div class="section" style="border-left-color:var(--orange);">
         <h2 class="section-title">⚖️ Análisis de Rotación por SKU</h2>
         <div class="charts-grid">
@@ -158,7 +180,7 @@
         <div class="insight">💡 Waffle lidera rotación (5.39x) pero sin inventario: es demanda insatisfecha, no eficiencia. Cáscara tarda <strong>245 días</strong> en rotar: espacio de cámara ocupado sin retorno. El portafolio rota 2.75x vs 4.0x de referencia.</div>
     </div>
 
-    <!-- 4. INVENTARIO Y NIVELES ÓPTIMOS -->
+    <!-- 5. NIVELES ÓPTIMOS -->
     <div class="section" style="border-left-color:var(--blue-medium);">
         <h2 class="section-title">🎯 Inventario vs Niveles Óptimos y Puntos de Reorden</h2>
         <div class="chart-container" style="height:380px;margin-bottom:20px;"><div class="chart-title">Inventario actual vs Punto de Reorden (45d) vs Nivel Óptimo (90d)</div><canvas id="optimalChart"></canvas></div>
@@ -178,7 +200,7 @@
         <div class="note-box">📐 <strong>Parámetros de planeación (ajustables):</strong> cobertura objetivo = 90 días · punto de reorden = 45 días (lead time supuesto 30d + seguridad 15d) · lote/pallet = 63 cajas. Cuando se cuente con el lead time real de Simplot, recalcular ROP con la fórmula del anexo.</div>
     </div>
 
-    <!-- 5. PUNTOS CRÍTICOS -->
+    <!-- 6. PUNTOS CRÍTICOS -->
     <div class="section" style="border-left-color:var(--red-alert);">
         <h2 class="section-title">⚠️ Puntos Críticos y Demanda en Riesgo</h2>
         <div class="chart-container" style="height:340px;margin-bottom:15px;"><div class="chart-title">Inventario Actual vs Necesidad Ago–Dic (cajas)</div><canvas id="stockNeedChart"></canvas></div>
@@ -204,7 +226,7 @@
         </div>
     </div>
 
-    <!-- 6. PLAN DE RESURTIDO CIERRE 2026 -->
+    <!-- 7. PLAN DE RESURTIDO CIERRE 2026 -->
     <div class="section" style="border-left-color:var(--blue-medium);">
         <h2 class="section-title">🛒 Plan de Resurtido para Cerrar 2026 (cajas)</h2>
         <div class="table-wrapper">
@@ -223,7 +245,7 @@
         <div class="insight">💡 El Pedido 3 (315 cajas) es <strong>inmediato</strong>: sin él, el Gajo quiebra el 31/ago. El Pedido 4 se dimensiona en octubre con la venta real de septiembre.</div>
     </div>
 
-    <!-- 7. DISTRIBUCIÓN ANUAL -->
+    <!-- 8. DISTRIBUCIÓN ANUAL -->
     <div class="section" style="border-left-color:var(--blue-medium);">
         <h2 class="section-title">🗓️ Propuesta de Distribución Anual de Compras (2027)</h2>
         <div class="chart-container" style="height:380px;margin-bottom:20px;"><div class="chart-title">Compras trimestrales estimadas por SKU (cajas)</div><canvas id="annualPlanChart"></canvas></div>
@@ -244,7 +266,7 @@
         <div class="note-box">📌 <strong>Nota metodológica:</strong> cifras <strong>estimadas</strong> a partir de la rotación anualizada observada (223 días). <strong>Revisar al cierre de diciembre 2026</strong> para validar la información anualizada, incorporar la estacionalidad real y ajustar el calendario 2027. Sustituye el modelo actual de 2 compras/año por 4 ciclos calibrados, eliminando los meses sin abasto.</div>
     </div>
 
-    <!-- 8. FORECAST -->
+    <!-- 9. FORECAST -->
     <div class="section">
         <h2 class="section-title">🔮 Forecast de Demanda Ago–Dic (cajas)</h2>
         <div class="chart-container" style="height:380px;margin-bottom:20px;"><div class="chart-title">Proyección mensual: Escenario Base vs Temporada Alta</div><canvas id="forecastChart"></canvas></div>
@@ -270,7 +292,7 @@
         <div class="insight">💡 Supuesto explícito: multiplicador ×1.5 en nov–dic (ajustable con histórico). El inventario actual cubre solo 79% del escenario base → <strong>la compra de octubre es innegociable</strong>.</div>
     </div>
 
-    <!-- 9. RESUMEN -->
+    <!-- 10. RESUMEN -->
     <div class="section">
         <h2 class="section-title">📝 Resumen Ejecutivo y Decisiones Sugeridas</h2>
         <div style="background:linear-gradient(135deg,var(--green-dark),var(--blue-dark));color:#fff;padding:25px 20px;border-radius:15px;margin-bottom:25px;">
