@@ -31,24 +31,22 @@
             line-height: 1.6;
         }
 
-        .container { max-width: 1200px; margin: 0 auto; padding: 40px 20px; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 20px; }
 
         /* Header */
         .header {
             background: linear-gradient(135deg, var(--green-dark) 0%, var(--blue-dark) 50%, var(--black) 100%);
             color: var(--white);
-            padding: 60px 40px;
+            padding: 40px 20px;
             border-radius: 20px;
             text-align: center;
-            margin-bottom: 40px;
-            position: relative;
-            overflow: hidden;
+            margin-bottom: 30px;
             box-shadow: 0 10px 40px rgba(27, 94, 32, 0.3);
         }
 
         .header h1 {
             font-family: 'Montserrat', sans-serif;
-            font-size: 3em;
+            font-size: 2em;
             font-weight: 800;
             text-transform: uppercase;
             letter-spacing: 2px;
@@ -56,18 +54,18 @@
         }
 
         .header .subtitle {
-            font-size: 1.4em;
+            font-size: 1.1em;
             color: var(--orange);
             font-style: italic;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
         }
 
         .badge-version {
             display: inline-block;
             background: rgba(244, 162, 97, 0.3);
-            padding: 8px 20px;
+            padding: 6px 15px;
             border-radius: 50px;
-            font-size: 0.9em;
+            font-size: 0.85em;
             font-weight: 600;
             border: 2px solid var(--orange);
         }
@@ -76,35 +74,35 @@
         .section {
             background: var(--white);
             border-radius: 20px;
-            padding: 40px;
-            margin-bottom: 30px;
+            padding: 25px 20px;
+            margin-bottom: 25px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.08);
             border-left: 8px solid var(--green-dark);
         }
 
         .section-title {
             font-family: 'Montserrat', sans-serif;
-            font-size: 1.8em;
+            font-size: 1.4em;
             font-weight: 700;
             color: var(--green-dark);
-            margin-bottom: 25px;
+            margin-bottom: 20px;
             display: flex;
             align-items: center;
-            gap: 15px;
+            gap: 10px;
         }
 
         /* KPI Cards */
         .kpi-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 20px;
-            margin: 30px 0;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 25px 0;
         }
 
         .kpi-card {
             background: linear-gradient(135deg, var(--green-dark), var(--green-medium));
             color: white;
-            padding: 25px;
+            padding: 20px 15px;
             border-radius: 15px;
             text-align: center;
             box-shadow: 0 5px 15px rgba(27, 94, 32, 0.2);
@@ -123,60 +121,72 @@
 
         .kpi-value {
             font-family: 'Montserrat', sans-serif;
-            font-size: 2.5em;
+            font-size: 2em;
             font-weight: 800;
-            margin: 10px 0;
+            margin: 8px 0;
         }
 
         /* Charts Grid */
         .charts-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-            gap: 30px;
-            margin: 30px 0;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 25px 0;
         }
 
         .chart-container {
             background: var(--gray-bg);
-            padding: 30px;
+            padding: 20px;
             border-radius: 15px;
             position: relative;
-            height: 400px;
+            height: 350px;
             border: 2px solid #e9ecef;
         }
 
         .chart-title {
             font-family: 'Montserrat', sans-serif;
-            font-size: 1.2em;
+            font-size: 1.1em;
             font-weight: 700;
             color: var(--blue-dark);
-            margin-bottom: 20px;
+            margin-bottom: 15px;
             text-align: center;
         }
 
-        /* Tables */
+        /* Tables - Responsive */
+        .table-wrapper {
+            width: 100%;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            margin: 20px 0;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+
         table {
             width: 100%;
             border-collapse: collapse;
-            margin: 20px 0;
+            min-width: 600px;
             background: var(--white);
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
         }
 
         th {
             background: linear-gradient(135deg, var(--green-dark), var(--blue-dark));
             color: var(--white);
-            padding: 18px;
+            padding: 15px 12px;
             text-align: left;
             font-family: 'Montserrat', sans-serif;
             font-weight: 700;
             text-transform: uppercase;
+            font-size: 0.85em;
+            white-space: nowrap;
+        }
+
+        td { 
+            padding: 12px; 
+            border-bottom: 1px solid #eee;
             font-size: 0.9em;
         }
 
-        td { padding: 15px 18px; border-bottom: 1px solid #eee; }
         tr:nth-child(even) { background-color: #fafafa; }
         tr:hover { background-color: #f0f7f0; }
 
@@ -226,10 +236,10 @@
         .footer {
             background: linear-gradient(135deg, var(--blue-dark), var(--black));
             color: white;
-            padding: 40px;
+            padding: 30px 20px;
             border-radius: 20px;
             text-align: center;
-            margin-top: 40px;
+            margin-top: 30px;
         }
 
         /* Rich's Section Specific Styles */
@@ -241,7 +251,7 @@
         .richs-box {
             background: linear-gradient(135deg, #fff3e0, #faf0e6);
             border-left: 6px solid var(--orange);
-            padding: 30px;
+            padding: 25px 20px;
             border-radius: 15px;
             margin: 25px 0;
         }
@@ -250,7 +260,7 @@
             color: var(--orange-dark);
             font-family: 'Montserrat', sans-serif;
             margin-bottom: 15px;
-            font-size: 1.3em;
+            font-size: 1.2em;
         }
 
         .richs-box ul {
@@ -271,7 +281,7 @@
         .simplot-box {
             background: linear-gradient(135deg, #e8f5e9, #f0f7f0);
             border-left: 6px solid var(--green-dark);
-            padding: 30px;
+            padding: 25px 20px;
             border-radius: 15px;
             margin: 25px 0;
         }
@@ -280,7 +290,7 @@
             color: var(--green-dark);
             font-family: 'Montserrat', sans-serif;
             margin-bottom: 15px;
-            font-size: 1.3em;
+            font-size: 1.2em;
         }
 
         .simplot-box ul {
@@ -302,7 +312,7 @@
 
         .showroom-card {
             background: white;
-            padding: 25px;
+            padding: 20px;
             border-radius: 15px;
             box-shadow: 0 5px 15px rgba(0,0,0,0.08);
             border-top: 4px solid var(--orange);
@@ -323,15 +333,141 @@
             line-height: 1.5;
         }
 
-        /* Responsive */
+        /* Responsive Design */
         @media (max-width: 768px) {
-            .header h1 { font-size: 2em; }
-            .charts-grid { grid-template-columns: 1fr; }
-            .timeline { flex-direction: column; gap: 30px; }
-            .timeline::before { display: none; }
-            .container { padding: 20px; }
-            .section { padding: 25px 20px; }
-            .showroom-grid { grid-template-columns: 1fr; }
+            .container { padding: 15px; }
+            
+            .header {
+                padding: 30px 15px;
+                margin-bottom: 20px;
+            }
+            
+            .header h1 {
+                font-size: 1.5em;
+                letter-spacing: 1px;
+            }
+            
+            .header .subtitle {
+                font-size: 1em;
+            }
+            
+            .section {
+                padding: 20px 15px;
+                margin-bottom: 20px;
+                border-left-width: 6px;
+            }
+            
+            .section-title {
+                font-size: 1.2em;
+                margin-bottom: 15px;
+            }
+            
+            .kpi-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 10px;
+            }
+            
+            .kpi-card {
+                padding: 15px 10px;
+            }
+            
+            .kpi-value {
+                font-size: 1.5em;
+            }
+            
+            .charts-grid {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+            
+            .chart-container {
+                height: 300px;
+                padding: 15px;
+            }
+            
+            .chart-title {
+                font-size: 1em;
+                margin-bottom: 10px;
+            }
+            
+            .table-wrapper {
+                margin: 15px 0;
+                border-radius: 8px;
+            }
+            
+            table {
+                min-width: 500px;
+                font-size: 0.85em;
+            }
+            
+            th, td {
+                padding: 10px 8px;
+            }
+            
+            .timeline {
+                flex-direction: column;
+                gap: 25px;
+            }
+            
+            .timeline::before {
+                display: none;
+            }
+            
+            .timeline-item {
+                display: flex;
+                align-items: center;
+                gap: 15px;
+                text-align: left;
+            }
+            
+            .timeline-dot {
+                margin: 0;
+                flex-shrink: 0;
+            }
+            
+            .showroom-grid {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+            
+            .showroom-card {
+                padding: 15px;
+            }
+            
+            .richs-box, .simplot-box {
+                padding: 20px 15px;
+            }
+            
+            .richs-box h3, .simplot-box h3 {
+                font-size: 1.1em;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .kpi-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .header h1 {
+                font-size: 1.3em;
+            }
+            
+            .section-title {
+                font-size: 1.1em;
+            }
+            
+            .chart-container {
+                height: 280px;
+            }
+            
+            table {
+                min-width: 450px;
+                font-size: 0.8em;
+            }
+            
+            .kpi-value {
+                font-size: 1.3em;
+            }
         }
     </style>
 </head>
@@ -390,46 +526,47 @@
                 </div>
             </div>
 
-            <table>
-                <thead>
-                    <tr>
-                        <th>Eje Estratégico</th>
-                        <th>Objetivos Clave</th>
-                        <th>KPI Principal</th>
-                        <th>Meta</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><strong>Desarrollo Clientes Actuales</strong></td>
-                        <td>Incrementar ticket, frecuencia y diversificar portafolio</td>
-                        <td>Ticket promedio</td>
-                        <td style="color: var(--green-dark); font-weight: bold;">+15%</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Captación Nuevos Clientes</strong></td>
-                        <td>Generar prospectos calificados HORECA</td>
-                        <td>Conversión a clientes</td>
-                        <td style="color: var(--orange); font-weight: bold;">≥15%</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Posicionamiento</strong></td>
-                        <td>Consolidar como referente regional</td>
-                        <td>Satisfacción evento</td>
-                        <td style="color: var(--blue-dark); font-weight: bold;">≥90%</td>
-                    </tr>
-                </tbody>
-            </table>
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Eje Estratégico</th>
+                            <th>Objetivos Clave</th>
+                            <th>KPI Principal</th>
+                            <th>Meta</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Desarrollo Clientes Actuales</strong></td>
+                            <td>Incrementar ticket, frecuencia y diversificar portafolio</td>
+                            <td>Ticket promedio</td>
+                            <td style="color: var(--green-dark); font-weight: bold;">+15%</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Captación Nuevos Clientes</strong></td>
+                            <td>Generar prospectos calificados HORECA</td>
+                            <td>Conversión a clientes</td>
+                            <td style="color: var(--orange); font-weight: bold;">≥15%</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Posicionamiento</strong></td>
+                            <td>Consolidar como referente regional</td>
+                            <td>Satisfacción evento</td>
+                            <td style="color: var(--blue-dark); font-weight: bold;">≥90%</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
 
-        <!-- ALIADO RICH'S - SECCIÓN CONSOLIDADA -->
+        <!-- ALIADO RICH'S -->
         <div class="section richs-section">
             <h2 class="section-title">🤝 Aliado RICH'S</h2>
             <p style="font-size: 1.1em; margin-bottom: 25px;">
                 Rich's participa activamente como aliado estratégico aportando experiencia culinaria, mixología profesional y herramientas prácticas de rentabilidad para los asistentes.
             </p>
 
-            <!-- Compromisos de Rich's -->
             <div class="richs-box">
                 <h3> Compromisos de Participación</h3>
                 <ul>
@@ -441,46 +578,46 @@
                 </ul>
             </div>
 
-            <!-- Portafolio Rich's -->
-            <h3 style="color: var(--orange-dark); font-family: Montserrat; margin: 30px 0 15px; font-size: 1.4em;"> Portafolio de Productos Rich's</h3>
+            <h3 style="color: var(--orange-dark); font-family: Montserrat; margin: 30px 0 15px; font-size: 1.3em;"> Portafolio de Productos Rich's</h3>
             <div class="chart-container" style="height: 350px; margin-bottom: 30px;">
                 <div class="chart-title">Distribución del Portafolio RICH'S</div>
                 <canvas id="richsChart"></canvas>
             </div>
 
-            <table>
-                <thead>
-                    <tr>
-                        <th>Producto</th>
-                        <th>Categoría</th>
-                        <th>Aplicación Principal</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><strong>On Top Original / Baileys</strong></td>
-                        <td>Toppings</td>
-                        <td>Postres, bebidas, decoración</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Dedos de Queso FarmRich</strong></td>
-                        <td>Appetizers</td>
-                        <td>Menú infantil, fiestas, bares</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Postres Bellini</strong></td>
-                        <td>Postres</td>
-                        <td>Cafeterías, restaurantes</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Pizza Crunch</strong></td>
-                        <td>Snacks</td>
-                        <td>Restaurantes deportivos, bares</td>
-                    </tr>
-                </tbody>
-            </table>
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Producto</th>
+                            <th>Categoría</th>
+                            <th>Aplicación Principal</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>On Top Original / Baileys</strong></td>
+                            <td>Toppings</td>
+                            <td>Postres, bebidas, decoración</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Dedos de Queso FarmRich</strong></td>
+                            <td>Appetizers</td>
+                            <td>Menú infantil, fiestas, bares</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Postres Bellini</strong></td>
+                            <td>Postres</td>
+                            <td>Cafeterías, restaurantes</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Pizza Crunch</strong></td>
+                            <td>Snacks</td>
+                            <td>Restaurantes deportivos, bares</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
 
-            <!-- Mini Show Room -->
             <div class="richs-box">
                 <h3> Mini Show Room Rich's</h3>
                 <p style="margin-bottom: 15px;">Espacio dedicado a mostrar la <strong>versatilidad del producto final emplatado</strong> con aplicaciones dirigidas a diferentes tipos de clientes:</p>
@@ -505,7 +642,6 @@
                 </div>
             </div>
 
-            <!-- Chef Ejecutivo Hugo Fresán - NUEVA SECCIÓN -->
             <div class="richs-box" style="background: linear-gradient(135deg, #fff8f0, #faf0e6); border-left-color: var(--green-medium);">
                 <h3 style="color: var(--green-dark);">👨‍🍳 Chef Ejecutivo Hugo Fresán</h3>
                 <p style="margin-bottom: 15px;">Liderazgo culinario a cargo del <strong>Chef Ejecutivo Hugo Fresán</strong>, responsable de la dirección creativa, organización y ejecución de todas las experiencias gastronómicas del evento:</p>
@@ -518,9 +654,8 @@
                 </ul>
             </div>
 
-            <!-- Experiencia de Bebidas -->
             <div class="richs-box" style="background: linear-gradient(135deg, #e3f2fd, #f0f7fa); border-left-color: var(--blue-medium);">
-                <h3 style="color: var(--blue-dark);">🍹 Estación de Mixología con Sergio Figueroa</h3>
+                <h3 style="color: var(--blue-dark);"> Estación de Mixología con Sergio Figueroa</h3>
                 <p style="margin-bottom: 15px;">Versatilidad de bebidas <strong>con y sin alcohol</strong>, con diversas presentaciones y cristalería:</p>
                 <ul>
                     <li><strong>Limonada de restaurante:</strong> Refrescante y rentable para menú diario.</li>
@@ -530,7 +665,6 @@
                 </ul>
             </div>
 
-            <!-- Ejercicios de Costeo -->
             <div class="richs-box" style="background: linear-gradient(135deg, #e8f5e9, #f0f7f0); border-left-color: var(--green-dark);">
                 <h3 style="color: var(--green-dark);"> Ejercicios de Costeo y Rentabilidad</h3>
                 <p style="margin-bottom: 15px;">Como valor agregado, Rich's proporcionará <strong>ejercicios prácticos de costeo</strong> para que los clientes observen de forma directa la viabilidad de venta y uso en sus negocios:</p>
@@ -550,44 +684,45 @@
                 Simplot participa como aliado estratégico en el desarrollo de mercado de productos de papa de alta calidad para el sector restaurantero.
             </p>
 
-            <!-- Portafolio Simplot -->
-            <h3 style="color: var(--green-dark); font-family: Montserrat; margin: 30px 0 15px; font-size: 1.4em;"> Portafolio de Productos Simplot</h3>
+            <h3 style="color: var(--green-dark); font-family: Montserrat; margin: 30px 0 15px; font-size: 1.3em;"> Portafolio de Productos Simplot</h3>
             <div class="chart-container" style="height: 350px; margin-bottom: 30px;">
                 <div class="chart-title">Distribución del Portafolio SIMPLOT</div>
                 <canvas id="simplotChart"></canvas>
             </div>
 
-            <table>
-                <thead>
-                    <tr>
-                        <th>Producto</th>
-                        <th>Categoría</th>
-                        <th>Aplicación Principal</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><strong>Papa Gajo</strong></td>
-                        <td>Papas especiales</td>
-                        <td>Restaurantes, bares, food service</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Papa Waffle</strong></td>
-                        <td>Papas especiales</td>
-                        <td>Menú infantil, restaurantes familiares</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Papa Corte Recto/Ondulado</strong></td>
-                        <td>Papas tradicionales</td>
-                        <td>Restaurantes, comedores, cafeterías</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Papa Blue Ribbon</strong></td>
-                        <td>Papas premium</td>
-                        <td>Restaurantes gourmet, hoteles</td>
-                    </tr>
-                </tbody>
-            </table>
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Producto</th>
+                            <th>Categoría</th>
+                            <th>Aplicación Principal</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Papa Gajo</strong></td>
+                            <td>Papas especiales</td>
+                            <td>Restaurantes, bares, food service</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Papa Waffle</strong></td>
+                            <td>Papas especiales</td>
+                            <td>Menú infantil, restaurantes familiares</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Papa Corte Recto/Ondulado</strong></td>
+                            <td>Papas tradicionales</td>
+                            <td>Restaurantes, comedores, cafeterías</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Papa Blue Ribbon</strong></td>
+                            <td>Papas premium</td>
+                            <td>Restaurantes gourmet, hoteles</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
 
             <div class="simplot-box">
                 <h3> Participación en el Evento</h3>
@@ -617,7 +752,7 @@
 
         <!-- KPIs Detallados -->
         <div class="section success">
-            <h2 class="section-title">📊 Indicadores de Éxito Detallados</h2>
+            <h2 class="section-title"> Indicadores de Éxito Detallados</h2>
             
             <div class="charts-grid">
                 <div class="chart-container">
@@ -630,54 +765,56 @@
                 </div>
             </div>
 
-            <table>
-                <thead>
-                    <tr>
-                        <th>Categoría</th>
-                        <th>KPI</th>
-                        <th>Línea Base</th>
-                        <th>Meta</th>
-                        <th>Impacto</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><strong>Participación</strong></td>
-                        <td>Tasa de asistencia</td>
-                        <td>-</td>
-                        <td style="color: var(--green-dark); font-weight: bold;">75%</td>
-                        <td>Alto</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Desarrollo Comercial</strong></td>
-                        <td>Cotizaciones emitidas</td>
-                        <td>0</td>
-                        <td style="color: var(--orange); font-weight: bold;">30</td>
-                        <td>Muy Alto</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Conversión</strong></td>
-                        <td>Evento → Cotización</td>
-                        <td>-</td>
-                        <td style="color: var(--blue-dark); font-weight: bold;">≥80%</td>
-                        <td>Crítico</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Crecimiento</strong></td>
-                        <td>Clientes con producto nuevo</td>
-                        <td>0%</td>
-                        <td style="color: var(--green-light); font-weight: bold;">50%</td>
-                        <td>Alto</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Satisfacción</strong></td>
-                        <td>Calificación evento</td>
-                        <td>-</td>
-                        <td style="color: var(--orange-dark); font-weight: bold;">≥90%</td>
-                        <td>Medio</td>
-                    </tr>
-                </tbody>
-            </table>
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Categoría</th>
+                            <th>KPI</th>
+                            <th>Línea Base</th>
+                            <th>Meta</th>
+                            <th>Impacto</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Participación</strong></td>
+                            <td>Tasa de asistencia</td>
+                            <td>-</td>
+                            <td style="color: var(--green-dark); font-weight: bold;">75%</td>
+                            <td>Alto</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Desarrollo Comercial</strong></td>
+                            <td>Cotizaciones emitidas</td>
+                            <td>0</td>
+                            <td style="color: var(--orange); font-weight: bold;">30</td>
+                            <td>Muy Alto</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Conversión</strong></td>
+                            <td>Evento → Cotización</td>
+                            <td>-</td>
+                            <td style="color: var(--blue-dark); font-weight: bold;">≥80%</td>
+                            <td>Crítico</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Crecimiento</strong></td>
+                            <td>Clientes con producto nuevo</td>
+                            <td>0%</td>
+                            <td style="color: var(--green-light); font-weight: bold;">50%</td>
+                            <td>Alto</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Satisfacción</strong></td>
+                            <td>Calificación evento</td>
+                            <td>-</td>
+                            <td style="color: var(--orange-dark); font-weight: bold;">≥90%</td>
+                            <td>Medio</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
 
         <!-- Plan Comercial -->
@@ -736,8 +873,8 @@
                 </div>
             </div>
 
-            <div style="background: linear-gradient(135deg, var(--green-dark), var(--blue-dark)); color: white; padding: 30px; border-radius: 15px; margin-top: 30px; text-align: center;">
-                <h3 style="font-family: Montserrat; font-size: 1.4em;">Modelo de Financiamiento Colaborativo</h3>
+            <div style="background: linear-gradient(135deg, var(--green-dark), var(--blue-dark)); color: white; padding: 25px; border-radius: 15px; margin-top: 30px; text-align: center;">
+                <h3 style="font-family: Montserrat; font-size: 1.3em;">Modelo de Financiamiento Colaborativo</h3>
             </div>
         </div>
 
@@ -750,42 +887,44 @@
                 <canvas id="risksChart"></canvas>
             </div>
 
-            <table>
-                <thead>
-                    <tr>
-                        <th>Riesgo</th>
-                        <th>Probabilidad</th>
-                        <th>Impacto</th>
-                        <th>Acción de Mitigación</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Baja asistencia</td>
-                        <td style="color: var(--orange);">Media</td>
-                        <td style="color: var(--orange-dark);">Alto</td>
-                        <td>Confirmaciones anticipadas + recordatorios</td>
-                    </tr>
-                    <tr>
-                        <td>Baja conversión</td>
-                        <td style="color: var(--orange);">Media</td>
-                        <td style="color: var(--orange-dark);">Alto</td>
-                        <td>Seguimiento comercial intensivo</td>
-                    </tr>
-                    <tr>
-                        <td>Falta de inventario</td>
-                        <td style="color: var(--green-light);">Baja</td>
-                        <td style="color: var(--orange-dark);">Alto</td>
-                        <td>Planeación de abastecimiento</td>
-                    </tr>
-                    <tr>
-                        <td>Poca adopción productos</td>
-                        <td style="color: var(--orange);">Media</td>
-                        <td style="color: var(--orange);">Medio</td>
-                        <td>Programas de prueba y promociones</td>
-                    </tr>
-                </tbody>
-            </table>
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Riesgo</th>
+                            <th>Probabilidad</th>
+                            <th>Impacto</th>
+                            <th>Acción de Mitigación</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Baja asistencia</td>
+                            <td style="color: var(--orange);">Media</td>
+                            <td style="color: var(--orange-dark);">Alto</td>
+                            <td>Confirmaciones anticipadas + recordatorios</td>
+                        </tr>
+                        <tr>
+                            <td>Baja conversión</td>
+                            <td style="color: var(--orange);">Media</td>
+                            <td style="color: var(--orange-dark);">Alto</td>
+                            <td>Seguimiento comercial intensivo</td>
+                        </tr>
+                        <tr>
+                            <td>Falta de inventario</td>
+                            <td style="color: var(--green-light);">Baja</td>
+                            <td style="color: var(--orange-dark);">Alto</td>
+                            <td>Planeación de abastecimiento</td>
+                        </tr>
+                        <tr>
+                            <td>Poca adopción productos</td>
+                            <td style="color: var(--orange);">Media</td>
+                            <td style="color: var(--orange);">Medio</td>
+                            <td>Programas de prueba y promociones</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
 
             <h3 style="color: var(--green-dark); margin: 30px 0 15px; font-family: Montserrat;">Factores Críticos de Éxito</h3>
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px;">
@@ -804,17 +943,17 @@
             <p style="font-size: 1.1em; margin-bottom: 20px;">
                 SIBRÜ Food Experience representa una iniciativa estratégica para acelerar el crecimiento comercial mediante un modelo basado en experiencias, capacitación y generación de valor real para el cliente.
             </p>
-            <div style="background: linear-gradient(135deg, var(--green-dark), var(--orange), var(--blue-dark)); color: white; padding: 30px; border-radius: 15px; text-align: center;">
-                <h3 style="font-family: Montserrat; font-size: 1.4em; margin-bottom: 15px;">Recomendación Estratégica</h3>
-                <p style="font-size: 1.1em;">Iniciar como programa <strong>PILOTO en Cuautitlán Izcalli</strong>. Con base en resultados obtenidos, institucionalizarlo como modelo de desarrollo comercial replicable en otras zonas de operación.</p>
+            <div style="background: linear-gradient(135deg, var(--green-dark), var(--orange), var(--blue-dark)); color: white; padding: 25px; border-radius: 15px; text-align: center;">
+                <h3 style="font-family: Montserrat; font-size: 1.3em; margin-bottom: 15px;">Recomendación Estratégica</h3>
+                <p style="font-size: 1em;">Iniciar como programa <strong>PILOTO en Cuautitlán Izcalli</strong>. Con base en resultados obtenidos, institucionalizarlo como modelo de desarrollo comercial replicable en otras zonas de operación.</p>
             </div>
         </div>
 
         <!-- Footer -->
         <div class="footer">
-            <div style="font-family: Montserrat; font-size: 2em; font-weight: 800; margin-bottom: 10px;">GRUPO SIBRÜ</div>
-            <div style="font-size: 1.2em; margin-bottom: 20px;">Alimentamos Confianza</div>
-            <div style="opacity: 0.8; font-size: 0.9em;">
+            <div style="font-family: Montserrat; font-size: 1.5em; font-weight: 800; margin-bottom: 10px;">GRUPO SIBRÜ</div>
+            <div style="font-size: 1.1em; margin-bottom: 15px;">Alimentamos Confianza</div>
+            <div style="opacity: 0.8; font-size: 0.85em;">
                 Business Case Actualizado - Agosto 2026<br>
                 Elaborado por: Sergio Isaac Alvarez Molina
             </div>
@@ -822,11 +961,9 @@
     </div>
 
     <script>
-        // Configuración global de Chart.js
         Chart.defaults.font.family = "'Open Sans', sans-serif";
         Chart.defaults.color = '#264653';
 
-        // Gráfica de Objetivos Estratégicos
         new Chart(document.getElementById('objectivesChart'), {
             type: 'doughnut',
             data: {
@@ -844,13 +981,12 @@
                 plugins: {
                     legend: {
                         position: 'bottom',
-                        labels: { padding: 15, font: { size: 11 } }
+                        labels: { padding: 10, font: { size: 10 } }
                     }
                 }
             }
         });
 
-        // Gráfica de Crecimiento Comercial
         new Chart(document.getElementById('growthChart'), {
             type: 'bar',
             data: {
@@ -865,16 +1001,11 @@
             options: {
                 responsive: true,
                 maintainAspectRatio: false,
-                plugins: {
-                    legend: { display: false }
-                },
-                scales: {
-                    y: { beginAtZero: true }
-                }
+                plugins: { legend: { display: false } },
+                scales: { y: { beginAtZero: true } }
             }
         });
 
-        // Gráfica SIMPLOT
         new Chart(document.getElementById('simplotChart'), {
             type: 'pie',
             data: {
@@ -892,13 +1023,12 @@
                 plugins: {
                     legend: {
                         position: 'bottom',
-                        labels: { padding: 12, font: { size: 10 } }
+                        labels: { padding: 10, font: { size: 10 } }
                     }
                 }
             }
         });
 
-        // Gráfica RICH'S
         new Chart(document.getElementById('richsChart'), {
             type: 'pie',
             data: {
@@ -916,13 +1046,12 @@
                 plugins: {
                     legend: {
                         position: 'bottom',
-                        labels: { padding: 12, font: { size: 10 } }
+                        labels: { padding: 10, font: { size: 10 } }
                     }
                 }
             }
         });
 
-        // Gráfica de Audiencia
         new Chart(document.getElementById('audienceChart'), {
             type: 'bar',
             data: {
@@ -943,16 +1072,13 @@
                 plugins: {
                     legend: {
                         position: 'bottom',
-                        labels: { padding: 15 }
+                        labels: { padding: 10 }
                     }
                 },
-                scales: {
-                    y: { beginAtZero: true }
-                }
+                scales: { y: { beginAtZero: true } }
             }
         });
 
-        // Gráfica Funnel de Conversión
         new Chart(document.getElementById('funnelChart'), {
             type: 'bar',
             data: {
@@ -968,16 +1094,11 @@
                 indexAxis: 'y',
                 responsive: true,
                 maintainAspectRatio: false,
-                plugins: {
-                    legend: { display: false }
-                },
-                scales: {
-                    x: { beginAtZero: true, max: 35 }
-                }
+                plugins: { legend: { display: false } },
+                scales: { x: { beginAtZero: true, max: 35 } }
             }
         });
 
-        // Gráfica KPIs por Categoría
         new Chart(document.getElementById('kpiChart'), {
             type: 'doughnut',
             data: {
@@ -995,13 +1116,12 @@
                 plugins: {
                     legend: {
                         position: 'bottom',
-                        labels: { padding: 10, font: { size: 9 } }
+                        labels: { padding: 8, font: { size: 9 } }
                     }
                 }
             }
         });
 
-        // Gráfica de Timeline
         new Chart(document.getElementById('timelineChart'), {
             type: 'line',
             data: {
@@ -1018,16 +1138,11 @@
             options: {
                 responsive: true,
                 maintainAspectRatio: false,
-                plugins: {
-                    legend: { display: false }
-                },
-                scales: {
-                    y: { beginAtZero: true, max: 10 }
-                }
+                plugins: { legend: { display: false } },
+                scales: { y: { beginAtZero: true, max: 10 } }
             }
         });
 
-        // Gráfica de Recursos
         new Chart(document.getElementById('resourcesChart'), {
             type: 'pie',
             data: {
@@ -1045,13 +1160,12 @@
                 plugins: {
                     legend: {
                         position: 'bottom',
-                        labels: { padding: 12, font: { size: 10 } }
+                        labels: { padding: 10, font: { size: 10 } }
                     }
                 }
             }
         });
 
-        // Gráfica de ROI
         new Chart(document.getElementById('roiChart'), {
             type: 'line',
             data: {
@@ -1077,16 +1191,13 @@
                 plugins: {
                     legend: {
                         position: 'bottom',
-                        labels: { padding: 15 }
+                        labels: { padding: 10, font: { size: 10 } }
                     }
                 },
-                scales: {
-                    y: { beginAtZero: true }
-                }
+                scales: { y: { beginAtZero: true } }
             }
         });
 
-        // Gráfica de Riesgos (Matriz)
         new Chart(document.getElementById('risksChart'), {
             type: 'scatter',
             data: {
@@ -1116,16 +1227,8 @@
                     }
                 },
                 scales: {
-                    x: {
-                        min: 0,
-                        max: 10,
-                        title: { display: true, text: 'Probabilidad' }
-                    },
-                    y: {
-                        min: 0,
-                        max: 10,
-                        title: { display: true, text: 'Impacto' }
-                    }
+                    x: { min: 0, max: 10, title: { display: true, text: 'Probabilidad' } },
+                    y: { min: 0, max: 10, title: { display: true, text: 'Impacto' } }
                 }
             }
         });
