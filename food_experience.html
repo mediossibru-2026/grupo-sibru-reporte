@@ -72,18 +72,6 @@
             border: 2px solid var(--orange);
         }
 
-        .badge-new {
-            display: inline-block;
-            background: var(--orange);
-            color: white;
-            padding: 4px 12px;
-            border-radius: 20px;
-            font-size: 0.75em;
-            font-weight: 700;
-            margin-left: 10px;
-            text-transform: uppercase;
-        }
-
         /* Sections */
         .section {
             background: var(--white);
@@ -244,7 +232,12 @@
             margin-top: 40px;
         }
 
-        /* Alianza Rich's Box */
+        /* Rich's Section Specific Styles */
+        .richs-section {
+            border-left-color: var(--orange);
+            background: linear-gradient(to right, #fff8f0, #ffffff);
+        }
+
         .richs-box {
             background: linear-gradient(135deg, #fff3e0, #faf0e6);
             border-left: 6px solid var(--orange);
@@ -257,6 +250,7 @@
             color: var(--orange-dark);
             font-family: 'Montserrat', sans-serif;
             margin-bottom: 15px;
+            font-size: 1.3em;
         }
 
         .richs-box ul {
@@ -264,6 +258,36 @@
         }
 
         .richs-box li {
+            margin-bottom: 10px;
+            padding-left: 5px;
+        }
+
+        /* Simplot Section Specific Styles */
+        .simplot-section {
+            border-left-color: var(--green-dark);
+            background: linear-gradient(to right, #f0f7f0, #ffffff);
+        }
+
+        .simplot-box {
+            background: linear-gradient(135deg, #e8f5e9, #f0f7f0);
+            border-left: 6px solid var(--green-dark);
+            padding: 30px;
+            border-radius: 15px;
+            margin: 25px 0;
+        }
+
+        .simplot-box h3 {
+            color: var(--green-dark);
+            font-family: 'Montserrat', sans-serif;
+            margin-bottom: 15px;
+            font-size: 1.3em;
+        }
+
+        .simplot-box ul {
+            margin-left: 20px;
+        }
+
+        .simplot-box li {
             margin-bottom: 10px;
             padding-left: 5px;
         }
@@ -291,6 +315,12 @@
             color: var(--orange-dark);
             font-family: 'Montserrat', sans-serif;
             margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+
+        .showroom-card p {
+            font-size: 0.95em;
+            line-height: 1.5;
         }
 
         /* Responsive */
@@ -301,6 +331,7 @@
             .timeline::before { display: none; }
             .container { padding: 20px; }
             .section { padding: 25px 20px; }
+            .showroom-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -310,27 +341,15 @@
         <div class="header">
             <h1>SIBRÜ Food Experience</h1>
             <div class="subtitle">Desarrollo de Mercado para Productos de Valor Agregado</div>
-            <div class="badge-version">BUSINESS CASE 2026 | VERSIÓN 2.0 <span class="badge-new">Actualizado</span></div>
+            <div class="badge-version">BUSINESS CASE 2026 | VERSIÓN 2.0</div>
         </div>
 
         <!-- Resumen Ejecutivo -->
         <div class="section">
-            <h2 class="section-title">🎯 Resumen Ejecutivo</h2>
+            <h2 class="section-title"> Resumen Ejecutivo</h2>
             <p style="font-size: 1.1em; margin-bottom: 20px;">
                 <strong>SIBRÜ Food Experience</strong> es un programa estratégico de desarrollo de mercado orientado al sector restaurantero que combina demostraciones culinarias, capacitación comercial y generación de oportunidades de negocio para acelerar la comercialización de productos de valor agregado.
             </p>
-            
-            <div class="richs-box">
-                <h3>🤝 Alianza Estratégica Confirmada: Rich's</h3>
-                <p style="margin-bottom: 15px;">Rich's ha confirmado su participación activa en el proyecto con los siguientes compromisos:</p>
-                <ul>
-                    <li><strong>Chef Ejecutivo Hugo Fresán:</strong> Participación a nivel creativo, organización y ejecución culinaria.</li>
-                    <li><strong>Mixólogo Sergio Figueroa:</strong> Diseño y ejecución de experiencias de bebidas con y sin alcohol.</li>
-                    <li><strong>Kit de promocionales</strong> para clientes asistentes.</li>
-                    <li><strong>Insumos completos</strong> para elaboración de producto terminado y degustación.</li>
-                    <li><strong>Material de ambientación:</strong> Banners, manteles y elementos para vestir el lugar.</li>
-                </ul>
-            </div>
 
             <div class="kpi-grid">
                 <div class="kpi-card">
@@ -403,33 +422,72 @@
             </table>
         </div>
 
-        <!-- Concepto del Evento Enriquecido -->
-        <div class="section" style="border-left-color: var(--orange);">
-            <h2 class="section-title">️ Concepto del Evento: Experiencia Integral</h2>
-            <p style="margin-bottom: 25px; font-size: 1.1em;">
-                Una experiencia comercial inmersiva donde los asistentes descubrirán cómo incrementar la rentabilidad de sus negocios mediante productos innovadores, demostraciones en vivo y ejercicios prácticos de costeo.
+        <!-- ALIADO RICH'S - SECCIÓN CONSOLIDADA -->
+        <div class="section richs-section">
+            <h2 class="section-title">🤝 Aliado RICH'S</h2>
+            <p style="font-size: 1.1em; margin-bottom: 25px;">
+                Rich's participa activamente como aliado estratégico aportando experiencia culinaria, mixología profesional y herramientas prácticas de rentabilidad para los asistentes.
             </p>
 
-            <h3 style="color: var(--green-dark); font-family: Montserrat; margin: 25px 0 15px;">🎪 Componentes del Evento</h3>
-            <div class="charts-grid">
-                <div class="chart-container">
-                    <div class="chart-title">Distribución del Portafolio SIMPLOT</div>
-                    <canvas id="simplotChart"></canvas>
-                </div>
-                <div class="chart-container">
-                    <div class="chart-title">Distribución del Portafolio RICH'S</div>
-                    <canvas id="richsChart"></canvas>
-                </div>
+            <!-- Compromisos de Rich's -->
+            <div class="richs-box">
+                <h3> Compromisos de Participación</h3>
+                <ul>
+                    <li><strong>Chef Ejecutivo Hugo Fresán:</strong> Participación a nivel creativo, organización y ejecución culinaria.</li>
+                    <li><strong>Mixólogo Sergio Figueroa:</strong> Diseño y ejecución de experiencias de bebidas con y sin alcohol.</li>
+                    <li><strong>Kit de promocionales</strong> para clientes asistentes.</li>
+                    <li><strong>Insumos completos</strong> para elaboración de producto terminado y degustación.</li>
+                    <li><strong>Material de ambientación:</strong> Banners, manteles y elementos para vestir el lugar.</li>
+                </ul>
             </div>
+
+            <!-- Portafolio Rich's -->
+            <h3 style="color: var(--orange-dark); font-family: Montserrat; margin: 30px 0 15px; font-size: 1.4em;"> Portafolio de Productos Rich's</h3>
+            <div class="chart-container" style="height: 350px; margin-bottom: 30px;">
+                <div class="chart-title">Distribución del Portafolio RICH'S</div>
+                <canvas id="richsChart"></canvas>
+            </div>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Producto</th>
+                        <th>Categoría</th>
+                        <th>Aplicación Principal</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>On Top Original / Baileys</strong></td>
+                        <td>Toppings</td>
+                        <td>Postres, bebidas, decoración</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Dedos de Queso FarmRich</strong></td>
+                        <td>Appetizers</td>
+                        <td>Menú infantil, fiestas, bares</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Postres Bellini</strong></td>
+                        <td>Postres</td>
+                        <td>Cafeterías, restaurantes</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Pizza Crunch</strong></td>
+                        <td>Snacks</td>
+                        <td>Restaurantes deportivos, bares</td>
+                    </tr>
+                </tbody>
+            </table>
 
             <!-- Mini Show Room -->
             <div class="richs-box">
-                <h3>🏪 Mini Show Room Rich's <span class="badge-new">Nuevo</span></h3>
+                <h3> Mini Show Room Rich's</h3>
                 <p style="margin-bottom: 15px;">Espacio dedicado a mostrar la <strong>versatilidad del producto final emplatado</strong> con aplicaciones dirigidas a diferentes tipos de clientes:</p>
                 
                 <div class="showroom-grid">
                     <div class="showroom-card">
-                        <h4>👶 Menú Infantil</h4>
+                        <h4> Menú Infantil</h4>
                         <p>Dedos de queso Mostarillo presentados en formato divertido y porciones adecuadas para niños.</p>
                     </div>
                     <div class="showroom-card">
@@ -447,9 +505,22 @@
                 </div>
             </div>
 
+            <!-- Chef Ejecutivo Hugo Fresán - NUEVA SECCIÓN -->
+            <div class="richs-box" style="background: linear-gradient(135deg, #fff8f0, #faf0e6); border-left-color: var(--green-medium);">
+                <h3 style="color: var(--green-dark);">👨‍🍳 Chef Ejecutivo Hugo Fresán</h3>
+                <p style="margin-bottom: 15px;">Liderazgo culinario a cargo del <strong>Chef Ejecutivo Hugo Fresán</strong>, responsable de la dirección creativa, organización y ejecución de todas las experiencias gastronómicas del evento:</p>
+                <ul>
+                    <li><strong>Dirección creativa:</strong> Diseño del menú de demostraciones y degustaciones.</li>
+                    <li><strong>Organización operativa:</strong> Coordinación de tiempos, estaciones y flujo del evento.</li>
+                    <li><strong>Ejecución culinaria:</strong> Preparación en vivo de platillos con productos Rich's.</li>
+                    <li><strong>Presentación de aplicaciones:</strong> Demostración de versatilidad del portafolio en diferentes formatos de servicio.</li>
+                    <li><strong>Interacción con asistentes:</strong> Sesiones de preguntas y respuestas sobre técnicas y rentabilidad.</li>
+                </ul>
+            </div>
+
             <!-- Experiencia de Bebidas -->
             <div class="richs-box" style="background: linear-gradient(135deg, #e3f2fd, #f0f7fa); border-left-color: var(--blue-medium);">
-                <h3 style="color: var(--blue-dark);">🍹 Estación de Mixología con Sergio Figueroa <span class="badge-new">Nuevo</span></h3>
+                <h3 style="color: var(--blue-dark);">🍹 Estación de Mixología con Sergio Figueroa</h3>
                 <p style="margin-bottom: 15px;">Versatilidad de bebidas <strong>con y sin alcohol</strong>, con diversas presentaciones y cristalería:</p>
                 <ul>
                     <li><strong>Limonada de restaurante:</strong> Refrescante y rentable para menú diario.</li>
@@ -461,13 +532,70 @@
 
             <!-- Ejercicios de Costeo -->
             <div class="richs-box" style="background: linear-gradient(135deg, #e8f5e9, #f0f7f0); border-left-color: var(--green-dark);">
-                <h3>💰 Ejercicios de Costeo y Rentabilidad <span class="badge-new">Nuevo</span></h3>
+                <h3 style="color: var(--green-dark);"> Ejercicios de Costeo y Rentabilidad</h3>
                 <p style="margin-bottom: 15px;">Como valor agregado, Rich's proporcionará <strong>ejercicios prácticos de costeo</strong> para que los clientes observen de forma directa la viabilidad de venta y uso en sus negocios:</p>
                 <ul>
                     <li>Costo por porción vs. precio de venta sugerido.</li>
                     <li>Margen de contribución por producto.</li>
-                    <li>ROI de incorporar productos Rich's/Simplot al menú.</li>
+                    <li>ROI de incorporar productos Rich's al menú.</li>
                     <li>Casos reales de restaurantes exitosos usando estos productos.</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- ALIADO SIMPLOT -->
+        <div class="section simplot-section">
+            <h2 class="section-title"> Aliado SIMPLOT</h2>
+            <p style="font-size: 1.1em; margin-bottom: 25px;">
+                Simplot participa como aliado estratégico en el desarrollo de mercado de productos de papa de alta calidad para el sector restaurantero.
+            </p>
+
+            <!-- Portafolio Simplot -->
+            <h3 style="color: var(--green-dark); font-family: Montserrat; margin: 30px 0 15px; font-size: 1.4em;"> Portafolio de Productos Simplot</h3>
+            <div class="chart-container" style="height: 350px; margin-bottom: 30px;">
+                <div class="chart-title">Distribución del Portafolio SIMPLOT</div>
+                <canvas id="simplotChart"></canvas>
+            </div>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Producto</th>
+                        <th>Categoría</th>
+                        <th>Aplicación Principal</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Papa Gajo</strong></td>
+                        <td>Papas especiales</td>
+                        <td>Restaurantes, bares, food service</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Papa Waffle</strong></td>
+                        <td>Papas especiales</td>
+                        <td>Menú infantil, restaurantes familiares</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Papa Corte Recto/Ondulado</strong></td>
+                        <td>Papas tradicionales</td>
+                        <td>Restaurantes, comedores, cafeterías</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Papa Blue Ribbon</strong></td>
+                        <td>Papas premium</td>
+                        <td>Restaurantes gourmet, hoteles</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="simplot-box">
+                <h3> Participación en el Evento</h3>
+                <p>Simplot apoya el evento con:</p>
+                <ul>
+                    <li>Productos para demostraciones y degustaciones.</li>
+                    <li>Material técnico y comercial.</li>
+                    <li>Apoyo en la presentación de aplicaciones culinarias.</li>
                 </ul>
             </div>
         </div>
@@ -608,31 +736,14 @@
                 </div>
             </div>
 
-            <div style="background: linear-gradient(135deg, var(--green-dark), var(--blue-dark)); color: white; padding: 30px; border-radius: 15px; margin-top: 30px;">
-                <h3 style="font-family: Montserrat; font-size: 1.4em; margin-bottom: 15px; text-align: center;">Modelo de Financiamiento Compartido</h3>
-                <p style="text-align: center; font-size: 1.1em; margin-bottom: 20px;">
-                    La inversión será compartida estratégicamente entre <strong>GRUPO SIBRÜ, Simplot y Rich's</strong>
-                </p>
-                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; text-align: center;">
-                    <div style="background: rgba(255,255,255,0.1); padding: 20px; border-radius: 10px;">
-                        <div style="font-size: 2em; font-weight: 800;">33%</div>
-                        <div>GRUPO SIBRÜ</div>
-                    </div>
-                    <div style="background: rgba(255,255,255,0.1); padding: 20px; border-radius: 10px;">
-                        <div style="font-size: 2em; font-weight: 800;">33%</div>
-                        <div>SIMPLOT</div>
-                    </div>
-                    <div style="background: rgba(255,255,255,0.1); padding: 20px; border-radius: 10px;">
-                        <div style="font-size: 2em; font-weight: 800;">34%</div>
-                        <div>RICH'S</div>
-                    </div>
-                </div>
+            <div style="background: linear-gradient(135deg, var(--green-dark), var(--blue-dark)); color: white; padding: 30px; border-radius: 15px; margin-top: 30px; text-align: center;">
+                <h3 style="font-family: Montserrat; font-size: 1.4em;">Modelo de Financiamiento Colaborativo</h3>
             </div>
         </div>
 
         <!-- Riesgos y Factores Críticos -->
         <div class="section critical">
-            <h2 class="section-title">️ Gestión de Riesgos y Factores de Éxito</h2>
+            <h2 class="section-title">⚠️ Gestión de Riesgos y Factores de Éxito</h2>
             
             <div class="chart-container" style="height: 350px; margin-bottom: 30px;">
                 <div class="chart-title">Matriz de Riesgos: Probabilidad vs Impacto</div>
