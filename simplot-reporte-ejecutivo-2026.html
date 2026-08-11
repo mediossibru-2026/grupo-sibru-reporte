@@ -59,6 +59,16 @@
     select{font-family:'Montserrat',sans-serif;font-size:.85em;padding:4px 10px;border-radius:8px;border:2px solid var(--green-medium);color:var(--green-dark);font-weight:700;background:#fff;}
     .bar-track{background:#e9ecef;border-radius:6px;height:10px;width:140px;overflow:hidden;}
     .bar-fill{height:10px;border-radius:6px;}
+    /* Controles de tablas interactivas */
+    .tbl-controls{display:flex;flex-wrap:wrap;gap:16px;align-items:center;margin:16px 0 6px;}
+    .ctl-label{font-family:'Montserrat',sans-serif;font-weight:700;font-size:.78em;color:#1B5E20;text-transform:uppercase;letter-spacing:.5px;}
+    .sku-chips{display:flex;flex-wrap:wrap;gap:6px;}
+    .sku-chips label{display:inline-flex;align-items:center;gap:6px;background:#f8f9fa;border:2px solid #e9ecef;border-radius:20px;padding:4px 12px;font-size:.78em;font-weight:600;cursor:pointer;user-select:none;}
+    .sku-chips label:hover{border-color:#66BB6A;}
+    .sku-chips input{accent-color:#2E7D32;width:14px;height:14px;cursor:pointer;}
+    th.sortable{cursor:pointer;}
+    th.sortable:hover{background:#2E7D32;}
+    .arr{font-size:.85em;margin-left:4px;color:#F4A261;}
     @media (max-width:768px){
         .header h1{font-size:1.3em;} .kpi-grid{grid-template-columns:repeat(2,1fr);}
         .charts-grid{grid-template-columns:1fr;} .chart-container{height:300px;}
@@ -109,7 +119,7 @@
         </div>
     </div>
 
-    <!-- 2. HISTORIA DEL INVENTARIO (VISTA RÁPIDA) -->
+    <!-- 2. HISTORIA DEL INVENTARIO -->
     <div class="section">
         <h2 class="section-title">📦 Historia del Inventario por SKU (Vista Rápida)</h2>
         <div class="table-wrapper">
@@ -129,11 +139,10 @@
         <div class="insight">💡 La barra muestra cuánto de cada compra ya se vendió: <strong>Waffle y Gajo agotaron su compra</strong> (urgencia de resurtir), mientras <strong>Cáscara, Recta y Ondulada conservan más de la mitad</strong> de lo comprado en cámara.</div>
     </div>
 
-    <!-- 3. ENTRADAS Y SALIDAS -->
+    <!-- 3. ENTRADAS Y SALIDAS (TABLA INTERACTIVA) -->
     <div class="section">
         <h2 class="section-title">📈 Análisis de Entradas y Salidas</h2>
 
-        <!-- CORREGIDO: contenedor con altura automática y canvas encapsulado; el resumen ya no se mezcla -->
         <div class="chart-container auto" style="margin-bottom:20px;">
             <div class="chart-title">Compras vs Ventas por Mes por SKU — <select id="skuSelect"></select></div>
             <div class="chart-canvas"><canvas id="skuFlowChart"></canvas></div>
@@ -154,52 +163,80 @@
             <div class="chart-container"><div class="chart-title">Compras vs Ventas por Mes (cajas)</div><canvas id="flowChart"></canvas></div>
             <div class="chart-container"><div class="chart-title">Vendido vs En Inventario (cajas)</div><canvas id="soldStockChart"></canvas></div>
         </div>
+
+        <div class="tbl-controls">
+            <span class="ctl-label">Movimiento:</span>
+            <select id="movFilter">
+                <option value="ambos">Ambos</option>
+                <option value="ent">Entradas</option>
+                <option value="sal">Salidas</option>
+            </select>
+            <span class="ctl-label">SKUs:</span>
+            <div class="sku-chips" id="skuChecks">
+                <label><input type="checkbox" value="RECTA 3/8" checked>RECTA 3/8</label>
+                <label><input type="checkbox" value="ONDULADA 3/8" checked>ONDULADA 3/8</label>
+                <label><input type="checkbox" value="CÁSCARA C/SAL" checked>CÁSCARA C/SAL</label>
+                <label><input type="checkbox" value="GAJO 6/5" checked>GAJO 6/5</label>
+                <label><input type="checkbox" value="BLUE RIBBON" checked>BLUE RIBBON</label>
+                <label><input type="checkbox" value="WAFFLE" checked>WAFFLE</label>
+            </div>
+        </div>
         <div class="table-wrapper">
-            <table>
-                <thead><tr><th>SKU</th><th>Mov</th><th>Ene</th><th>Feb</th><th>Mar</th><th>Abr</th><th>May</th><th>Jun</th><th>Jul</th><th>Ago</th><th>Total</th></tr></thead>
-                <tbody>
-                    <tr><td><strong>RECTA 3/8</strong></td><td>🟢 Ent</td><td>126</td><td>0</td><td>0</td><td>441</td><td>0</td><td>0</td><td>0</td><td>0</td><td><strong>567</strong></td></tr>
-                    <tr><td></td><td>🔴 Sal</td><td>63</td><td>0</td><td>63</td><td>0</td><td>0</td><td>126</td><td>63</td><td>0</td><td><strong>315</strong></td></tr>
-                    <tr><td><strong>ONDULADA 3/8</strong></td><td>🟢 Ent</td><td>126</td><td>0</td><td>0</td><td>378</td><td>0</td><td>0</td><td>0</td><td>0</td><td><strong>504</strong></td></tr>
-                    <tr><td></td><td>🔴 Sal</td><td>126</td><td>0</td><td>0</td><td>63</td><td>0</td><td>36</td><td>63</td><td>0</td><td><strong>288</strong></td></tr>
-                    <tr><td><strong>CÁSCARA C/SAL</strong></td><td>🟢 Ent</td><td>63</td><td>0</td><td>0</td><td>504</td><td>0</td><td>0</td><td>0</td><td>0</td><td><strong>567</strong></td></tr>
-                    <tr><td></td><td>🔴 Sal</td><td>63</td><td>0</td><td>0</td><td>63</td><td>0</td><td>126</td><td>0</td><td>18</td><td><strong>270</strong></td></tr>
-                    <tr><td><strong>GAJO 6/5</strong></td><td>🟢 Ent</td><td>756</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td><strong>756</strong></td></tr>
-                    <tr><td></td><td>🔴 Sal</td><td>126</td><td>63</td><td>126</td><td>63</td><td>63</td><td>126</td><td>126</td><td>0</td><td><strong>693</strong></td></tr>
-                    <tr><td><strong>BLUE RIBBON</strong></td><td>🟢 Ent</td><td>0</td><td>0</td><td>0</td><td>126</td><td>0</td><td>0</td><td>0</td><td>0</td><td><strong>126</strong></td></tr>
-                    <tr><td></td><td>🔴 Sal</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>45</td><td>45</td><td>0</td><td><strong>90</strong></td></tr>
-                    <tr><td><strong>WAFFLE</strong></td><td>🟢 Ent</td><td>0</td><td>0</td><td>0</td><td>63</td><td>0</td><td>0</td><td>0</td><td>0</td><td><strong>63</strong></td></tr>
-                    <tr><td></td><td>🔴 Sal</td><td>0</td><td>0</td><td>0</td><td>0</td><td>18</td><td>0</td><td>45</td><td>0</td><td><strong>63</strong></td></tr>
-                    <tr style="background:#e8f5e9;"><td><strong>TOTAL</strong></td><td>🟢 Ent</td><td><strong>1,071</strong></td><td>0</td><td>0</td><td><strong>1,512</strong></td><td>0</td><td>0</td><td>0</td><td>0</td><td><strong>2,583</strong></td></tr>
-                    <tr style="background:#e8f5e9;"><td></td><td>🔴 Sal</td><td><strong>378</strong></td><td><strong>63</strong></td><td><strong>189</strong></td><td><strong>189</strong></td><td><strong>81</strong></td><td><strong>459</strong></td><td><strong>342</strong></td><td><strong>18</strong></td><td><strong>1,719</strong></td></tr>
-                </tbody>
+            <table id="entSalTable">
+                <thead><tr>
+                    <th class="sortable" data-col="sku">SKU<span class="arr"></span></th>
+                    <th>MOV</th>
+                    <th class="sortable" data-col="0">ENE<span class="arr"></span></th>
+                    <th class="sortable" data-col="1">FEB<span class="arr"></span></th>
+                    <th class="sortable" data-col="2">MAR<span class="arr"></span></th>
+                    <th class="sortable" data-col="3">ABR<span class="arr"></span></th>
+                    <th class="sortable" data-col="4">MAY<span class="arr"></span></th>
+                    <th class="sortable" data-col="5">JUN<span class="arr"></span></th>
+                    <th class="sortable" data-col="6">JUL<span class="arr"></span></th>
+                    <th class="sortable" data-col="7">AGO<span class="arr"></span></th>
+                    <th class="sortable" data-col="8">TOTAL<span class="arr"></span></th>
+                </tr></thead>
+                <tbody id="entSalBody"></tbody>
             </table>
         </div>
-        <div class="insight">💡 El 100% del abasto entra en solo 2 fechas, mientras la venta es continua: ese descalce es la raíz de quiebres y sobre-stocks. Picos de venta: <strong>junio (459 cajas)</strong> y <strong>enero (378)</strong>.</div>
+        <div class="insight">💡 <strong>Tabla interactiva:</strong> clic en los encabezados para ordenar (SKU alfabético · meses y TOTAL de mayor a menor, segundo clic invierte). Usa los filtros de movimiento y SKUs; la fila TOTAL se recalcula en vivo.</div>
     </div>
 
-    <!-- 4. ROTACIÓN -->
+    <!-- 4. ROTACIÓN (TABLA INTERACTIVA) -->
     <div class="section" style="border-left-color:var(--orange);">
         <h2 class="section-title">⚖️ Análisis de Rotación por SKU</h2>
         <div class="charts-grid">
             <div class="chart-container"><div class="chart-title">Cobertura Actual (días) vs objetivo 90</div><canvas id="coverageChart"></canvas></div>
             <div class="chart-container"><div class="chart-title">Rotación Anualizada (x) vs referencia 4.0x</div><canvas id="rotationChart"></canvas></div>
         </div>
+
+        <div class="tbl-controls">
+            <span class="ctl-label">SKUs:</span>
+            <div class="sku-chips" id="rotSkuChecks">
+                <label><input type="checkbox" value="GAJO 6/5" checked>GAJO 6/5</label>
+                <label><input type="checkbox" value="WAFFLE" checked>WAFFLE</label>
+                <label><input type="checkbox" value="BLUE RIBBON" checked>BLUE RIBBON</label>
+                <label><input type="checkbox" value="ONDULADA 3/8" checked>ONDULADA 3/8</label>
+                <label><input type="checkbox" value="RECTA 3/8" checked>RECTA 3/8</label>
+                <label><input type="checkbox" value="CÁSCARA C/SAL" checked>CÁSCARA C/SAL</label>
+            </div>
+        </div>
         <div class="table-wrapper">
-            <table>
-                <thead><tr><th>SKU</th><th>Velocidad (cajas/día)</th><th>Inv. promedio</th><th>Rot. periodo (x)</th><th>Rot. anualizada (x)</th><th>Cobertura (días)</th><th>% comprado vendido</th><th>Estado</th></tr></thead>
-                <tbody>
-                    <tr><td><strong>GAJO 6/5</strong></td><td>3.11</td><td>331</td><td>2.10</td><td>3.43</td><td>20</td><td>91.7%</td><td><span class="status-badge status-critical">CRÍTICO</span></td></tr>
-                    <tr><td><strong>WAFFLE</strong></td><td>0.28</td><td>19</td><td>3.29</td><td>5.39</td><td>0</td><td>100%</td><td><span class="status-badge status-critical">QUIEBRE</span></td></tr>
-                    <tr><td><strong>BLUE RIBBON</strong></td><td>0.40</td><td>51</td><td>1.78</td><td>2.91</td><td>89</td><td>71.4%</td><td><span class="status-badge status-ok">SALUDABLE</span></td></tr>
-                    <tr><td><strong>ONDULADA 3/8</strong></td><td>1.29</td><td>168</td><td>1.72</td><td>2.81</td><td>167</td><td>57.1%</td><td><span class="status-badge status-warning">SOBRE-STOCK</span></td></tr>
-                    <tr><td><strong>RECTA 3/8</strong></td><td>1.41</td><td>228</td><td>1.38</td><td>2.26</td><td>178</td><td>55.6%</td><td><span class="status-badge status-warning">SOBRE-STOCK</span></td></tr>
-                    <tr><td><strong>CÁSCARA C/SAL</strong></td><td>1.21</td><td>226</td><td>1.19</td><td>1.95</td><td>245</td><td>47.6%</td><td><span class="status-badge status-critical">SOBRE-STOCK ALTO</span></td></tr>
-                    <tr style="background:#e8f5e9;"><td><strong>PORTAFOLIO</strong></td><td><strong>7.71</strong></td><td><strong>1,023</strong></td><td><strong>1.68</strong></td><td><strong>2.75</strong></td><td><strong>112</strong></td><td><strong>66.6%</strong></td><td><span class="status-badge status-warning">DESBALANCEADO</span></td></tr>
-                </tbody>
+            <table id="rotTable">
+                <thead><tr>
+                    <th class="sortable" data-col="sku">SKU<span class="arr"></span></th>
+                    <th class="sortable" data-col="vel">Velocidad (cajas/día)<span class="arr"></span></th>
+                    <th class="sortable" data-col="invP">Inv. promedio<span class="arr"></span></th>
+                    <th class="sortable" data-col="rotPer">Rot. periodo (x)<span class="arr"></span></th>
+                    <th class="sortable" data-col="rotAn">Rot. anualizada (x)<span class="arr"></span></th>
+                    <th class="sortable" data-col="cob">Cobertura (días)<span class="arr"></span></th>
+                    <th class="sortable" data-col="pct">% comprado vendido<span class="arr"></span></th>
+                    <th class="sortable" data-col="estado">Estado<span class="arr"></span></th>
+                </tr></thead>
+                <tbody id="rotBody"></tbody>
             </table>
         </div>
-        <div class="insight">💡 Waffle lidera rotación (5.39x) pero sin inventario: es demanda insatisfecha, no eficiencia. Cáscara tarda <strong>245 días</strong> en rotar: espacio de cámara ocupado sin retorno. El portafolio rota 2.75x vs 4.0x de referencia.</div>
+        <div class="insight">💡 <strong>Tabla interactiva:</strong> clic en cualquier encabezado para ordenar de mayor a menor (o alfabético en SKU/Estado). La fila PORTAFOLIO se recalcula con los SKUs visibles. Waffle lidera rotación (5.39x) pero sin inventario: es demanda insatisfecha, no eficiencia. Cáscara tarda <strong>245 días</strong> en rotar.</div>
     </div>
 
     <!-- 5. NIVELES ÓPTIMOS -->
@@ -373,7 +410,7 @@ const SKUS = ['Gajo 6/5','Waffle','Blue Ribbon','Ondulada 3/8','Recta 3/8','Cás
 const PALETTE = ['#1B5E20','#2E7D32','#66BB6A','#2A9D8F','#F4A261','#E76F51'];
 const MESES = ['Ene','Feb','Mar','Abr','May','Jun','Jul','Ago'];
 
-/* Selector compras vs ventas por SKU (canvas encapsulado para que el resumen no se mezcle) */
+/* Selector compras vs ventas por SKU */
 const FLOWS = {
     'GAJO 6/5':      {ent:[756,0,0,0,0,0,0,0],   sal:[126,63,126,63,63,126,126,0]},
     'RECTA 3/8':     {ent:[126,0,0,441,0,0,0,0], sal:[63,0,63,0,0,126,63,0]},
@@ -473,6 +510,134 @@ new Chart(document.getElementById('forecastChart'), { type:'line', data:{ labels
     datasets:[ {label:'Escenario Base', data:[154,231,239,231,239], borderColor:'#1B5E20', backgroundColor:'rgba(27,94,32,.12)', fill:true, tension:.35},
                {label:'Temporada Alta (Nov–Dic ×1.5)', data:[154,231,239,347,358], borderColor:'#F4A261', borderDash:[6,6], fill:false, tension:.35}]},
     options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom'}},scales:{y:{beginAtZero:true,title:{display:true,text:'Cajas'}}}}});
+
+/* ================= TABLA INTERACTIVA 1: ENTRADAS / SALIDAS ================= */
+(function(){
+const DATA=[
+ {sku:'RECTA 3/8',    ent:[126,0,0,441,0,0,0,0], sal:[63,0,63,0,0,126,63,0]},
+ {sku:'ONDULADA 3/8', ent:[126,0,0,378,0,0,0,0], sal:[126,0,0,63,0,36,63,0]},
+ {sku:'CÁSCARA C/SAL',ent:[63,0,0,504,0,0,0,0],  sal:[63,0,0,63,0,126,0,18]},
+ {sku:'GAJO 6/5',     ent:[756,0,0,0,0,0,0,0],   sal:[126,63,126,63,63,126,126,0]},
+ {sku:'BLUE RIBBON',  ent:[0,0,0,126,0,0,0,0],   sal:[0,0,0,0,0,45,45,0]},
+ {sku:'WAFFLE',       ent:[0,0,0,63,0,0,0,0],    sal:[0,0,0,0,18,0,45,0]}
+];
+const sum=a=>a.reduce((x,y)=>x+y,0);
+const fmt=n=>n.toLocaleString('en-US');
+const body=document.getElementById('entSalBody');
+const movSel=document.getElementById('movFilter');
+const checks=[...document.querySelectorAll('#skuChecks input')];
+const ths=[...document.querySelectorAll('#entSalTable th.sortable')];
+let sort={col:null,dir:null};
+const movs=()=>movSel.value==='ambos'?['ent','sal']:[movSel.value];
+const visible=()=>DATA.filter(d=>checks.some(c=>c.checked&&c.value===d.sku));
+const valAt=(d,col,ms)=>{let v=0;
+    if(ms.includes('ent'))v+=col===8?sum(d.ent):d.ent[col];
+    if(ms.includes('sal'))v+=col===8?sum(d.sal):d.sal[col];return v;};
+function render(){
+    const ms=movs(), list=visible();
+    if(sort.col!==null){
+        if(sort.col==='sku'){list.sort((a,b)=>sort.dir==='asc'?a.sku.localeCompare(b.sku):b.sku.localeCompare(a.sku));}
+        else{list.sort((a,b)=>sort.dir==='asc'?valAt(a,sort.col,ms)-valAt(b,sort.col,ms):valAt(b,sort.col,ms)-valAt(a,sort.col,ms));}
+    }
+    let html='';
+    list.forEach(d=>{
+        ms.forEach((m,i)=>{
+            const arr=m==='ent'?d.ent:d.sal;
+            html+='<tr><td>'+(i===0?'<strong>'+d.sku+'</strong>':'')+'</td><td>'+(m==='ent'?'🟢 Ent':'🔴 Sal')+'</td>';
+            for(let c=0;c<8;c++)html+='<td>'+fmt(arr[c])+'</td>';
+            html+='<td><strong>'+fmt(sum(arr))+'</strong></td></tr>';
+        });
+    });
+    ms.forEach((m,i)=>{
+        html+='<tr style="background:#e8f5e9;"><td>'+(i===0?'<strong>TOTAL</strong>':'')+'</td><td>'+(m==='ent'?'🟢 Ent':' Sal')+'</td>';
+        let tAll=0;
+        for(let c=0;c<8;c++){const t=list.reduce((s,d)=>s+(m==='ent'?d.ent[c]:d.sal[c]),0);tAll+=t;html+='<td><strong>'+fmt(t)+'</strong></td>';}
+        html+='<td><strong>'+fmt(tAll)+'</strong></td></tr>';
+    });
+    body.innerHTML=html;
+    ths.forEach(th=>{
+        const key=th.dataset.col, col=key==='sku'?'sku':+key;
+        th.querySelector('.arr').textContent=(sort.col===col)?(sort.dir==='asc'?'▲':'▼'):'';
+    });
+}
+movSel.addEventListener('change',render);
+checks.forEach(c=>c.addEventListener('change',render));
+ths.forEach(th=>th.addEventListener('click',()=>{
+    const key=th.dataset.col, col=key==='sku'?'sku':+key;
+    if(sort.col===col){sort.dir=sort.dir==='asc'?'desc':'asc';}
+    else{sort.col=col;sort.dir=col==='sku'?'asc':'desc';}
+    render();
+}));
+render();
+})();
+
+/* ================= TABLA INTERACTIVA 2: ROTACIÓN ================= */
+(function(){
+const K=365/223;
+const ROT=[
+ {sku:'GAJO 6/5',     vel:3.1076, invP:331, sal:693, ent:756, invF:63,  estado:'CRÍTICO',          cls:'status-critical'},
+ {sku:'WAFFLE',       vel:0.2825, invP:19,  sal:63,  ent:63,  invF:0,   estado:'QUIEBRE',          cls:'status-critical'},
+ {sku:'BLUE RIBBON',  vel:0.4036, invP:51,  sal:90,  ent:126, invF:36,  estado:'SALUDABLE',        cls:'status-ok'},
+ {sku:'ONDULADA 3/8', vel:1.2915, invP:168, sal:288, ent:504, invF:216, estado:'SOBRE-STOCK',      cls:'status-warning'},
+ {sku:'RECTA 3/8',    vel:1.4126, invP:228, sal:315, ent:567, invF:252, estado:'SOBRE-STOCK',      cls:'status-warning'},
+ {sku:'CÁSCARA C/SAL',vel:1.2108, invP:226, sal:270, ent:567, invF:297, estado:'SOBRE-STOCK ALTO', cls:'status-critical'}
+];
+ROT.forEach(d=>{d.rotPer=d.sal/d.invP; d.rotAn=d.rotPer*K; d.cob=d.invF/d.vel; d.pct=d.sal/d.ent*100;});
+const sum=a=>a.reduce((x,y)=>x+y,0);
+const fmt=n=>n.toLocaleString('en-US');
+const body=document.getElementById('rotBody');
+const checks=[...document.querySelectorAll('#rotSkuChecks input')];
+const ths=[...document.querySelectorAll('#rotTable th.sortable')];
+let sort={col:null,dir:null};
+const visible=()=>ROT.filter(d=>checks.some(c=>c.checked&&c.value===d.sku));
+const get=(d,col)=>col==='sku'?d.sku:(col==='estado'?d.estado:d[col]);
+function rowHTML(d){
+    return '<tr><td><strong>'+d.sku+'</strong></td>'
+        +'<td>'+d.vel.toFixed(2)+'</td>'
+        +'<td>'+fmt(Math.round(d.invP))+'</td>'
+        +'<td>'+d.rotPer.toFixed(2)+'</td>'
+        +'<td>'+d.rotAn.toFixed(2)+'</td>'
+        +'<td>'+Math.round(d.cob)+'</td>'
+        +'<td>'+d.pct.toFixed(1)+'%</td>'
+        +'<td><span class="status-badge '+d.cls+'">'+d.estado+'</span></td></tr>';
+}
+function render(){
+    const list=visible();
+    if(sort.col!==null){
+        list.sort((a,b)=>{
+            const va=get(a,sort.col), vb=get(b,sort.col);
+            if(typeof va==='string')return sort.dir==='asc'?va.localeCompare(vb):vb.localeCompare(va);
+            return sort.dir==='asc'?va-vb:vb-va;
+        });
+    }
+    let html=list.map(rowHTML).join('');
+    if(list.length){
+        const sV=sum(list.map(d=>d.vel)), sP=sum(list.map(d=>d.invP)), sS=sum(list.map(d=>d.sal)),
+              sE=sum(list.map(d=>d.ent)), sF=sum(list.map(d=>d.invF));
+        const p={vel:sV, invP:sP, rotPer:sS/sP, rotAn:(sS/sP)*K, cob:sF/sV, pct:sE?sS/sE*100:0};
+        html+='<tr style="background:#e8f5e9;"><td><strong>PORTAFOLIO</strong></td>'
+            +'<td><strong>'+p.vel.toFixed(2)+'</strong></td>'
+            +'<td><strong>'+fmt(Math.round(p.invP))+'</strong></td>'
+            +'<td><strong>'+p.rotPer.toFixed(2)+'</strong></td>'
+            +'<td><strong>'+p.rotAn.toFixed(2)+'</strong></td>'
+            +'<td><strong>'+Math.round(p.cob)+'</strong></td>'
+            +'<td><strong>'+p.pct.toFixed(1)+'%</strong></td>'
+            +'<td><span class="status-badge status-warning">DESBALANCEADO</span></td></tr>';
+    }
+    body.innerHTML=html;
+    ths.forEach(th=>{
+        th.querySelector('.arr').textContent=(sort.col===th.dataset.col)?(sort.dir==='asc'?'▲':'▼'):'';
+    });
+}
+checks.forEach(c=>c.addEventListener('change',render));
+ths.forEach(th=>th.addEventListener('click',()=>{
+    const col=th.dataset.col;
+    if(sort.col===col){sort.dir=sort.dir==='asc'?'desc':'asc';}
+    else{sort.col=col;sort.dir=(col==='sku'||col==='estado')?'asc':'desc';}
+    render();
+}));
+render();
+})();
 </script>
 </body>
 </html>
