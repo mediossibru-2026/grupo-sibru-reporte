@@ -59,7 +59,6 @@
     select{font-family:'Montserrat',sans-serif;font-size:.85em;padding:4px 10px;border-radius:8px;border:2px solid var(--green-medium);color:var(--green-dark);font-weight:700;background:#fff;}
     .bar-track{background:#e9ecef;border-radius:6px;height:10px;width:140px;overflow:hidden;}
     .bar-fill{height:10px;border-radius:6px;}
-    /* Controles de tablas interactivas */
     .tbl-controls{display:flex;flex-wrap:wrap;gap:16px;align-items:center;margin:16px 0 6px;}
     .ctl-label{font-family:'Montserrat',sans-serif;font-weight:700;font-size:.78em;color:#1B5E20;text-transform:uppercase;letter-spacing:.5px;}
     .sku-chips{display:flex;flex-wrap:wrap;gap:6px;}
@@ -69,7 +68,6 @@
     th.sortable{cursor:pointer;}
     th.sortable:hover{background:#2E7D32;}
     .arr{font-size:.85em;margin-left:4px;color:#F4A261;}
-    /* Gráfica dinámica (barras horizontales) */
     .hb2-wrap{border:3px solid #1B5E20;border-radius:15px;background:#f8f9fa;padding:20px;margin:22px 0;box-shadow:0 10px 30px rgba(27,94,32,.18);}
     .hb2-title{text-align:center;font-family:'Montserrat',sans-serif;font-weight:800;font-size:1.35em;color:#264653;margin-bottom:16px;}
     .hb2-chart{display:flex;flex-direction:column;gap:18px;}
@@ -136,24 +134,34 @@
         </div>
     </div>
 
-    <!-- 2. HISTORIA DEL INVENTARIO -->
+    <!-- 2. HISTORIA DEL INVENTARIO (INTERACTIVA) -->
     <div class="section">
         <h2 class="section-title">📦 Historia del Inventario por SKU (Vista Rápida)</h2>
+        <div class="tbl-controls">
+            <span class="ctl-label">SKUs:</span>
+            <div class="sku-chips" id="histSkuChecks">
+                <label><input type="checkbox" value="WAFFLE" checked>WAFFLE</label>
+                <label><input type="checkbox" value="GAJO 6/5" checked>GAJO 6/5</label>
+                <label><input type="checkbox" value="BLUE RIBBON" checked>BLUE RIBBON</label>
+                <label><input type="checkbox" value="ONDULADA 3/8" checked>ONDULADA 3/8</label>
+                <label><input type="checkbox" value="RECTA 3/8" checked>RECTA 3/8</label>
+                <label><input type="checkbox" value="CÁSCARA C/SAL" checked>CÁSCARA C/SAL</label>
+            </div>
+        </div>
         <div class="table-wrapper">
-            <table>
-                <thead><tr><th>SKU</th><th>Compra total (cajas)</th><th>Ventas totales (cajas)</th><th>Inventario actual (cajas)</th><th>% Vendido</th><th>Desplazamiento de la compra</th></tr></thead>
-                <tbody>
-                    <tr><td><strong>WAFFLE</strong></td><td>63</td><td>63</td><td>0</td><td><strong>100%</strong></td><td><div class="bar-track"><div class="bar-fill" style="width:100%;background:#d32f2f;"></div></div></td></tr>
-                    <tr><td><strong>GAJO 6/5</strong></td><td>756</td><td>693</td><td>63</td><td><strong>91.7%</strong></td><td><div class="bar-track"><div class="bar-fill" style="width:91.7%;background:#d32f2f;"></div></div></td></tr>
-                    <tr><td><strong>BLUE RIBBON</strong></td><td>126</td><td>90</td><td>36</td><td><strong>71.4%</strong></td><td><div class="bar-track"><div class="bar-fill" style="width:71.4%;background:#F4A261;"></div></div></td></tr>
-                    <tr><td><strong>ONDULADA 3/8</strong></td><td>504</td><td>288</td><td>216</td><td><strong>57.1%</strong></td><td><div class="bar-track"><div class="bar-fill" style="width:57.1%;background:#66BB6A;"></div></div></td></tr>
-                    <tr><td><strong>RECTA 3/8</strong></td><td>567</td><td>315</td><td>252</td><td><strong>55.6%</strong></td><td><div class="bar-track"><div class="bar-fill" style="width:55.6%;background:#66BB6A;"></div></div></td></tr>
-                    <tr><td><strong>CÁSCARA C/SAL</strong></td><td>567</td><td>270</td><td>297</td><td><strong>47.6%</strong></td><td><div class="bar-track"><div class="bar-fill" style="width:47.6%;background:#66BB6A;"></div></div></td></tr>
-                    <tr style="background:#e8f5e9;"><td><strong>TOTAL</strong></td><td><strong>2,583</strong></td><td><strong>1,719</strong></td><td><strong>864</strong></td><td><strong>66.6%</strong></td><td><div class="bar-track"><div class="bar-fill" style="width:66.6%;background:#264653;"></div></div></td></tr>
-                </tbody>
+            <table id="histTable">
+                <thead><tr>
+                    <th class="sortable" data-col="sku">SKU<span class="arr"></span></th>
+                    <th class="sortable" data-col="comp">Compra total (cajas)<span class="arr"></span></th>
+                    <th class="sortable" data-col="vent">Ventas totales (cajas)<span class="arr"></span></th>
+                    <th class="sortable" data-col="inv">Inventario actual (cajas)<span class="arr"></span></th>
+                    <th class="sortable" data-col="pct">% Vendido<span class="arr"></span></th>
+                    <th>Desplazamiento de la compra</th>
+                </tr></thead>
+                <tbody id="histBody"></tbody>
             </table>
         </div>
-        <div class="insight">💡 La barra muestra cuánto de cada compra ya se vendió: <strong>Waffle y Gajo agotaron su compra</strong> (urgencia de resurtir), mientras <strong>Cáscara, Recta y Ondulada conservan más de la mitad</strong> de lo comprado en cámara.</div>
+        <div class="insight">💡 <strong>Tabla interactiva:</strong> ordena por cualquier encabezado y filtra SKUs; la fila TOTAL se recalcula en vivo. La barra muestra cuánto de cada compra ya se vendió: <strong>Waffle y Gajo agotaron su compra</strong> (urgencia de resurtir), mientras <strong>Cáscara, Recta y Ondulada conservan más de la mitad</strong>.</div>
     </div>
 
     <!-- 3. ENTRADAS Y SALIDAS -->
@@ -164,11 +172,6 @@
             <div class="chart-title">Compras vs Ventas por Mes por SKU — <select id="skuSelect"></select></div>
             <div class="chart-canvas"><canvas id="skuFlowChart"></canvas></div>
             <div id="skuFlowSummary" style="text-align:center;font-size:.85em;margin-top:12px;font-weight:600;color:var(--green-dark);"></div>
-        </div>
-
-        <div class="chart-container" style="height:400px;margin-bottom:20px;">
-            <div class="chart-title">Salidas por SKU y Mes — 🔴 picos de venta resaltados</div>
-            <canvas id="outBySkuChart"></canvas>
         </div>
 
         <div class="chart-container" style="height:340px;margin-bottom:20px;">
@@ -218,7 +221,7 @@
         </div>
         <div class="insight">💡 <strong>Tabla interactiva:</strong> clic en los encabezados para ordenar (SKU alfabético · meses y TOTAL de mayor a menor, segundo clic invierte). Usa los filtros de movimiento y SKUs; la fila TOTAL y la gráfica de barras se actualizan en vivo.</div>
 
-        <!-- GRÁFICA DINÁMICA (reacciona a los filtros) -->
+        <!-- GRÁFICA DINÁMICA -->
         <div class="hb2-wrap">
             <div class="hb2-title" id="hb2Title">MOVIMIENTO DE PAPA SIMPLOT 2026</div>
             <div class="hb2-chart" id="hb2Chart"></div>
@@ -435,6 +438,70 @@ Chart.defaults.color = '#264653';
 const SKUS = ['Gajo 6/5','Waffle','Blue Ribbon','Ondulada 3/8','Recta 3/8','Cáscara c/Sal'];
 const PALETTE = ['#1B5E20','#2E7D32','#66BB6A','#2A9D8F','#F4A261','#E76F51'];
 const MESES = ['Ene','Feb','Mar','Abr','May','Jun','Jul','Ago'];
+const fmtNum = n => n.toLocaleString('en-US');
+
+/* Plugin: valores en/encima de las barras. position: 'auto' | 'top' | 'inside' */
+const barLabels = {
+    id: 'barLabels',
+    afterDatasetsDraw(chart){
+        const cfg = (chart.options.plugins && chart.options.plugins.barLabels) || {};
+        const pos = cfg.position || 'auto';
+        const {ctx} = chart;
+        chart.data.datasets.forEach((ds, di)=>{
+            const meta = chart.getDatasetMeta(di);
+            if(!meta || meta.type !== 'bar' || meta.hidden) return;
+            meta.data.forEach((el, i)=>{
+                const v = ds.data[i];
+                if(v == null || v === 0) return;
+                const h = Math.abs(el.base - el.y);
+                const inside = pos==='inside' ? true : (pos==='top' ? false : h >= 22);
+                ctx.save();
+                ctx.font = '700 10px Montserrat, sans-serif';
+                ctx.textAlign = 'center';
+                ctx.textBaseline = 'middle';
+                if(inside){
+                    ctx.fillStyle = 'rgba(255,255,255,.95)';
+                    ctx.fillText(fmtNum(v), el.x, el.y + 10);
+                } else {
+                    ctx.fillStyle = '#264653';
+                    ctx.fillText(fmtNum(v), el.x, el.y - 8);
+                }
+                ctx.restore();
+            });
+        });
+    }
+};
+
+/* Plugin: totales dentro de los segmentos de la dona */
+const doughnutLabels = {
+    id: 'doughnutLabels',
+    afterDatasetsDraw(chart){
+        const cfg = (chart.options.plugins && chart.options.plugins.doughnutLabels) || {};
+        const texts = cfg.texts || [];
+        const meta = chart.getDatasetMeta(0);
+        if(!meta || (meta.type !== 'doughnut' && meta.type !== 'pie')) return;
+        const {ctx} = chart;
+        const ds = chart.data.datasets[0];
+        meta.data.forEach((arc, i)=>{
+            const v = ds.data[i];
+            if(v == null) return;
+            const p = arc.tooltipPosition();
+            ctx.save();
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            ctx.shadowColor = 'rgba(0,0,0,.35)';
+            ctx.shadowBlur = 4;
+            ctx.fillStyle = '#fff';
+            ctx.font = '800 15px Montserrat, sans-serif';
+            ctx.fillText(fmtNum(v), p.x, p.y - (texts[i] ? 7 : 0));
+            if(texts[i]){
+                ctx.font = '700 9px Montserrat, sans-serif';
+                ctx.fillText(texts[i], p.x, p.y + 10);
+            }
+            ctx.restore();
+        });
+    }
+};
 
 /* Selector compras vs ventas por SKU */
 const FLOWS = {
@@ -451,7 +518,8 @@ const skuFlowChart = new Chart(document.getElementById('skuFlowChart'), { type:'
     data:{ labels:MESES, datasets:[
         {label:'Entradas (compras)', data:FLOWS['GAJO 6/5'].ent, backgroundColor:'#1B5E20'},
         {label:'Salidas (ventas)',   data:FLOWS['GAJO 6/5'].sal, backgroundColor:'#F4A261'} ]},
-    options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom'}},scales:{y:{beginAtZero:true}}}});
+    options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom'}},scales:{y:{beginAtZero:true}}},
+    plugins:[barLabels]});
 function updateSkuFlow(){
     const k = sel.value, d = FLOWS[k];
     skuFlowChart.data.datasets[0].data = d.ent;
@@ -462,65 +530,54 @@ function updateSkuFlow(){
 }
 sel.addEventListener('change', updateSkuFlow); updateSkuFlow();
 
-/* Salidas por SKU y mes con picos resaltados */
-const OUT = {
-    'Gajo 6/5':      [126,63,126,63,63,126,126,0],
-    'Recta 3/8':     [63,0,63,0,0,126,63,0],
-    'Ondulada 3/8':  [126,0,0,63,0,36,63,0],
-    'Cáscara c/Sal': [63,0,0,63,0,126,0,18],
-    'Blue Ribbon':   [0,0,0,0,0,45,45,0],
-    'Waffle':        [0,0,0,0,18,0,45,0]
-};
-const LINE_COLORS = {'Gajo 6/5':'#1B5E20','Recta 3/8':'#2E7D32','Ondulada 3/8':'#66BB6A','Cáscara c/Sal':'#2A9D8F','Blue Ribbon':'#F4A261','Waffle':'#E76F51'};
-new Chart(document.getElementById('outBySkuChart'), { type:'line',
-    data:{ labels:MESES, datasets:Object.keys(OUT).map(k=>{
-        const d = OUT[k], mx = Math.max(...d);
-        return { label:k, data:d, borderColor:LINE_COLORS[k], backgroundColor:LINE_COLORS[k], tension:.3, fill:false,
-            pointRadius:d.map(v=> (v===mx && v>0) ? 7 : 3),
-            pointBackgroundColor:d.map(v=> (v===mx && v>0) ? '#d32f2f' : LINE_COLORS[k]),
-            pointBorderColor:'#ffffff', pointBorderWidth:1 };
-    })},
-    options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom',labels:{font:{size:10}}}},scales:{y:{beginAtZero:true,title:{display:true,text:'Cajas'}}}}});
-
-/* Salidas totales por mes */
+/* Salidas totales por mes (valores dentro en la parte alta) */
 const TOTAL_OUT = [378,63,189,189,81,459,342,18];
 const MX_T = Math.max(...TOTAL_OUT);
 new Chart(document.getElementById('totalOutChart'), { type:'bar',
     data:{ labels:MESES, datasets:[
         {label:'Salidas totales (cajas)', data:TOTAL_OUT, backgroundColor:TOTAL_OUT.map(v=> v===MX_T ? '#d32f2f' : '#F4A261')},
         {label:'Promedio mensual (215)', data:Array(8).fill(215), type:'line', borderColor:'#264653', borderDash:[6,6], pointRadius:0, fill:false} ]},
-    options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom'}},scales:{y:{beginAtZero:true,title:{display:true,text:'Cajas'}}}}});
+    options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom'}},scales:{y:{beginAtZero:true,title:{display:true,text:'Cajas'}}}},
+    plugins:[barLabels]});
 
+/* Compras vs Ventas por Mes: números FUERA y ARRIBA de las barras */
 new Chart(document.getElementById('flowChart'), { type:'bar', data:{ labels:MESES,
     datasets:[ {label:'Entradas (compras)', data:[1071,0,0,1512,0,0,0,0], backgroundColor:'#1B5E20'},
                {label:'Salidas (ventas)', data:[378,63,189,189,81,459,342,18], backgroundColor:'#F4A261'} ]},
-    options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom'}},scales:{y:{beginAtZero:true}}}});
+    options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom'},barLabels:{position:'top'}},scales:{y:{beginAtZero:true}}},
+    plugins:[barLabels]});
 
-new Chart(document.getElementById('soldStockChart'), { type:'doughnut', data:{ labels:['Vendidas 1,719 cajas','En inventario 864 cajas'],
+/* Dona: totales dentro y sin leyenda inferior */
+new Chart(document.getElementById('soldStockChart'), { type:'doughnut', data:{ labels:['Vendidas','En inventario'],
     datasets:[{data:[1719,864], backgroundColor:['#2E7D32','#F4A261'], borderWidth:3, borderColor:'#fff'}]},
-    options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom'}}}});
+    options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},doughnutLabels:{texts:['VENDIDAS','EN INVENTARIO']}}},
+    plugins:[doughnutLabels]});
 
 new Chart(document.getElementById('coverageChart'), { type:'bar', data:{ labels:SKUS,
     datasets:[ {label:'Cobertura (días)', data:[20,0,89,167,178,245], backgroundColor:['#d32f2f','#d32f2f','#66BB6A','#F4A261','#F4A261','#E76F51']},
                {label:'Objetivo 90 días', data:[90,90,90,90,90,90], type:'line', borderColor:'#264653', borderDash:[6,6], pointRadius:0, fill:false}]},
-    options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom'}},scales:{y:{beginAtZero:true}}}});
+    options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom'}},scales:{y:{beginAtZero:true}}},
+    plugins:[barLabels]});
 
 new Chart(document.getElementById('rotationChart'), { type:'bar', data:{ labels:SKUS,
     datasets:[ {label:'Rotación anualizada (x)', data:[3.43,5.39,2.91,2.81,2.26,1.95], backgroundColor:PALETTE},
                {label:'Referencia 4.0x', data:[4,4,4,4,4,4], type:'line', borderColor:'#264653', borderDash:[6,6], pointRadius:0, fill:false}]},
-    options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom'}},scales:{y:{beginAtZero:true}}}});
+    options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom'}},scales:{y:{beginAtZero:true}}},
+    plugins:[barLabels]});
 
 new Chart(document.getElementById('optimalChart'), { type:'bar', data:{ labels:SKUS,
     datasets:[
         {label:'Inventario actual', data:[63,0,36,216,252,297], backgroundColor:'#66BB6A'},
         {label:'Punto de reorden (45d)', data:[140,13,18,58,64,54], backgroundColor:'#F4A261'},
         {label:'Nivel óptimo (90d)', data:[280,25,36,116,127,109], backgroundColor:'#264653'} ]},
-    options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom'}},scales:{y:{beginAtZero:true}}}});
+    options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom'}},scales:{y:{beginAtZero:true}}},
+    plugins:[barLabels]});
 
 new Chart(document.getElementById('stockNeedChart'), { type:'bar', data:{ labels:SKUS,
     datasets:[ {label:'Inventario actual', data:[63,0,36,216,252,297], backgroundColor:'#66BB6A'},
                {label:'Necesidad Ago–Dic (base)', data:[441,40,57,183,201,172], backgroundColor:'#E76F51'} ]},
-    options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom'}},scales:{y:{beginAtZero:true}}}});
+    options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom'}},scales:{y:{beginAtZero:true}}},
+    plugins:[barLabels]});
 
 new Chart(document.getElementById('annualPlanChart'), { type:'bar', data:{ labels:['T1 (ene–mar)','T2 (abr–jun)','T3 (jul–sep)','T4 (oct–dic)'],
     datasets:[
@@ -530,14 +587,58 @@ new Chart(document.getElementById('annualPlanChart'), { type:'bar', data:{ label
         {label:'Cáscara c/Sal', data:[126,126,126,126], backgroundColor:'#2A9D8F'},
         {label:'Blue Ribbon', data:[63,0,63,0], backgroundColor:'#F4A261'},
         {label:'Waffle', data:[0,63,0,63], backgroundColor:'#E76F51'} ]},
-    options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom',labels:{font:{size:10}}}},scales:{x:{stacked:true},y:{stacked:true,beginAtZero:true,title:{display:true,text:'Cajas'}}}}});
+    options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom',labels:{font:{size:10}}}},scales:{x:{stacked:true},y:{stacked:true,beginAtZero:true,title:{display:true,text:'Cajas'}}}},
+    plugins:[barLabels]});
 
 new Chart(document.getElementById('forecastChart'), { type:'line', data:{ labels:['Ago 12–31','Sep','Oct','Nov','Dic'],
     datasets:[ {label:'Escenario Base', data:[154,231,239,231,239], borderColor:'#1B5E20', backgroundColor:'rgba(27,94,32,.12)', fill:true, tension:.35},
                {label:'Temporada Alta (Nov–Dic ×1.5)', data:[154,231,239,347,358], borderColor:'#F4A261', borderDash:[6,6], fill:false, tension:.35}]},
     options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom'}},scales:{y:{beginAtZero:true,title:{display:true,text:'Cajas'}}}}});
 
-/* ============ TABLA INTERACTIVA 1: ENTRADAS / SALIDAS ============ */
+/* ============ TABLA INTERACTIVA: HISTORIA DEL INVENTARIO ============ */
+(function(){
+const HIST=[
+ {sku:'WAFFLE',       comp:63,  vent:63,  inv:0,   color:'#d32f2f'},
+ {sku:'GAJO 6/5',     comp:756, vent:693, inv:63,  color:'#d32f2f'},
+ {sku:'BLUE RIBBON',  comp:126, vent:90,  inv:36,  color:'#F4A261'},
+ {sku:'ONDULADA 3/8', comp:504, vent:288, inv:216, color:'#66BB6A'},
+ {sku:'RECTA 3/8',    comp:567, vent:315, inv:252, color:'#66BB6A'},
+ {sku:'CÁSCARA C/SAL',comp:567, vent:270, inv:297, color:'#66BB6A'}
+];
+HIST.forEach(d=>d.pct=d.vent/d.comp*100);
+const sum=a=>a.reduce((x,y)=>x+y,0);
+const fmt=n=>n.toLocaleString('en-US');
+const body=document.getElementById('histBody');
+const checks=[...document.querySelectorAll('#histSkuChecks input')];
+const ths=[...document.querySelectorAll('#histTable th.sortable')];
+let sort={col:'pct',dir:'desc'};
+const visible=()=>HIST.filter(d=>checks.some(c=>c.checked&&c.value===d.sku));
+function render(){
+    const list=visible();
+    list.sort((a,b)=>{
+        const va=sort.col==='sku'?a.sku:a[sort.col], vb=sort.col==='sku'?b.sku:b[sort.col];
+        if(typeof va==='string')return sort.dir==='asc'?va.localeCompare(vb):vb.localeCompare(va);
+        return sort.dir==='asc'?va-vb:vb-va;
+    });
+    let html=list.map(d=>'<tr><td><strong>'+d.sku+'</strong></td><td>'+fmt(d.comp)+'</td><td>'+fmt(d.vent)+'</td><td>'+fmt(d.inv)+'</td><td><strong>'+d.pct.toFixed(1)+'%</strong></td><td><div class="bar-track"><div class="bar-fill" style="width:'+d.pct+'%;background:'+d.color+';"></div></div></td></tr>').join('');
+    if(list.length){
+        const c=sum(list.map(d=>d.comp)), v=sum(list.map(d=>d.vent)), iv=sum(list.map(d=>d.inv)), p=c?v/c*100:0;
+        html+='<tr style="background:#e8f5e9;"><td><strong>TOTAL</strong></td><td><strong>'+fmt(c)+'</strong></td><td><strong>'+fmt(v)+'</strong></td><td><strong>'+fmt(iv)+'</strong></td><td><strong>'+p.toFixed(1)+'%</strong></td><td><div class="bar-track"><div class="bar-fill" style="width:'+p+'%;background:#264653;"></div></div></td></tr>';
+    }
+    body.innerHTML=html;
+    ths.forEach(th=>{th.querySelector('.arr').textContent=(sort.col===th.dataset.col)?(sort.dir==='asc'?'▲':'▼'):'';});
+}
+checks.forEach(c=>c.addEventListener('change',render));
+ths.forEach(th=>th.addEventListener('click',()=>{
+    const col=th.dataset.col;
+    if(sort.col===col){sort.dir=sort.dir==='asc'?'desc':'asc';}
+    else{sort.col=col;sort.dir=col==='sku'?'asc':'desc';}
+    render();
+}));
+render();
+})();
+
+/* ============ TABLA INTERACTIVA: ENTRADAS / SALIDAS ============ */
 (function(){
 const DATA=[
  {sku:'RECTA 3/8',    ent:[126,0,0,441,0,0,0,0], sal:[63,0,63,0,0,126,63,0]},
@@ -569,7 +670,7 @@ function render(){
     list.forEach(d=>{
         ms.forEach((m,i)=>{
             const arr=m==='ent'?d.ent:d.sal;
-            html+='<tr><td>'+(i===0?'<strong>'+d.sku+'</strong>':'')+'</td><td>'+(m==='ent'?'🟢 Ent':'🔴 Sal')+'</td>';
+            html+='<tr><td>'+(i===0?'<strong>'+d.sku+'</strong>':'')+'</td><td>'+(m==='ent'?'🟢 Ent':' Sal')+'</td>';
             for(let c=0;c<8;c++)html+='<td>'+fmt(arr[c])+'</td>';
             html+='<td><strong>'+fmt(sum(arr))+'</strong></td></tr>';
         });
@@ -645,7 +746,7 @@ checks.forEach(c=>c.addEventListener('change',renderDyn));
 renderDyn();
 })();
 
-/* ============ TABLA INTERACTIVA 2: ROTACIÓN ============ */
+/* ============ TABLA INTERACTIVA: ROTACIÓN ============ */
 (function(){
 const K=365/223;
 const ROT=[
