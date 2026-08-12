@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Gantt de Actividades · Ago–Sep 2026</title>
+<style>
+*{box-sizing:border-box}
+body{font-family:'Segoe UI',Arial,sans-serif;background:#f5f6fa;margin:0;padding:28px;color:#202433}
+h1{font-size:22px;margin:0}
+.sub{font-size:13px;color:#68708a;margin:4px 0 18px}
+.card{background:#fff;border:1px solid #e4e7f0;border-radius:14px;padding:16px 18px;overflow-x:auto;box-shadow:0 3px 10px rgba(25,35,70,.07)}
+.g{--lbl:250px;--rowh:27px;min-width:1000px;position:relative}
+.row{display:flex;height:var(--rowh);align-items:stretch;position:relative;z-index:2}
+.lbl{flex:0 0 var(--lbl);font-size:12.5px;display:flex;align-items:center;padding:0 8px;border-right:1px solid #d8dcea;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.track{flex:1;position:relative}
+.mrow{height:20px;font-size:11px;font-weight:700;color:#454b60}
+.mrow .track{display:flex}
+.mon{display:flex;align-items:center;justify-content:center;border-left:1px solid #d8dcea;background:#f8f9fd}
+.hrow{height:22px;font-size:10px;color:#8a90a6}
+.hrow .track{display:flex}
+.dnum{flex:1;text-align:center;border-left:1px solid #f0f2f8}
+.bg{position:absolute;left:var(--lbl);right:0;top:42px;bottom:0;display:flex;z-index:1}
+.bg div{flex:1;border-left:1px solid #f0f2f8}
+.bg .we{background:#f7f8fb}
+.bar{position:absolute;top:6px;bottom:6px;border-radius:5px;background:linear-gradient(180deg,#5b8ef0,#3f74e3);box-shadow:0 1px 2px rgba(30,60,150,.35)}
+.bar.sep{background:linear-gradient(180deg,#3fb487,#2a9a70)}
+.bar .cap{position:absolute;right:0;top:0;bottom:0;width:7px;background:rgba(0,0,0,.28);border-radius:0 5px 5px 0}
+.bar .txt{position:absolute;left:7px;top:50%;transform:translateY(-50%);font-size:10.5px;color:#fff;text-shadow:0 1px 2px rgba(0,0,0,.3);white-space:nowrap}
+.hito{position:absolute;top:50%;width:11px;height:11px;transform:translateY(-50%) rotate(45deg);background:#e5484d;border-radius:2px;box-shadow:0 1px 3px rgba(150,20,20,.4)}
+h2{font-size:15px;margin:22px 0 8px}
+.tags{display:flex;flex-wrap:wrap;gap:8px}
+.tag{background:#fff4e5;border:1px solid #f0c58c;color:#8a5a19;border-radius:999px;padding:5px 12px;font-size:12.5px}
+.leyenda{display:flex;gap:16px;flex-wrap:wrap;font-size:12px;color:#556;margin-top:12px;align-items:center}
+.sw{display:inline-block;width:14px;height:10px;border-radius:3px;margin-right:5px;vertical-align:middle}
+</style>
+</head>
+<body>
+<h1>📊 Gantt de Actividades · Agosto–Septiembre 2026</h1>
+<div class="sub">Hoy: jueves 13 de agosto de 2026 · El extremo oscuro de la barra = fecha de entrega · Rombo rojo = hito de un día</div>
+
+<div class="card">
+  <div class="g" id="g"></div>
+  <div class="leyenda">
+    <span><span class="sw" style="background:#3f74e3"></span>Entregas de agosto</span>
+    <span><span class="sw" style="background:#2a9a70"></span>Entregas de septiembre</span>
+    <span><span class="sw" style="background:#e5484d"></span>Hito de un solo día</span>
+    <span><span class="sw" style="background:#f7f8fb;border:1px solid #e3e6ef"></span>Fin de semana</span>
+  </div>
+</div>
+
+<h2>⏳ Actividades sin fecha (por agendar)</h2>
+<div class="tags" id="tags"></div>
+
+<script>
+const INI = new Date(2026,7,15);
+const P = d => { const [a,m,dd]=d.split('-').map(Number); return new Date(a,m-1,dd); };
+const N = 47; // 15 ago – 30 sep
+const fechas = [...Array(N)].map((_,k)=>new Date(2026,7,15+k));
+const col = d => Math.round((P(d)-INI)/864e5);
+const fmt = dt => dt.getDate() + (dt.getMonth()===7?' ago':' sep');
+
+/* [nombre, inicio, entrega, tipo]  tipo: "h"=hito, "s"=septiembre */
+const ACT = [
+ ["Reunión con asados",               "2026-08-15","2026-08-15","h"],
+ ["Encuesta al personal (aplicación)","2026-08-15","2026-08-15","h"],
+ ["Totes",                            "2026-08-15","2026-08-17"],
+ ["Pantallas de báscula",             "2026-08-15","2026-08-17"],
+ ["Foto de procesos",                 "2026-08-15","2026-08-17"],
+ ["Capacitación Atención al Cliente", "2026-08-15","2026-08-17"],
+ ["Capacitación IA (machote)",        "2026-08-15","2026-08-19"],
+ ["Presentación resultados encuesta", "2026-08-15","2026-08-19"],
+ ["Tarjetas de presentación",         "2026-08-15","2026-08-30"],
+ ["Muro de comunicación",             "2026-08-15","2026-08-31"],
+ ["Catálogo productos (congelados)",  "2026-08-15","2026-08-31"],
+ ["Buzón de quejas y sugerencias",    "2026-09-01","2026-09-14","s"],
+ ["Temas de capacitación",            "2026-09-01","2026-09-14","s"],
+ ["Foto grupal",                      "2026-09-01","2026-09-30","s"],
+ ["Catálogo pollo fresco",            "2026-09-01","2026-09-30","s"],
+ ["Manual de Capacitación Operativa", "2026-09-01","2026-09-30","s"]
+];
+const SIN = ["Credenciales","Media sombra","Asociados","Encuesta de satisfacción","Mandiles","Skydancer","Botarga"];
+
+let html = '<div class="row mrow"><div class="lbl"></div><div class="track">';
+let spans=[], cur=-1;
+fechas.forEach(f=>{ const m=f.getMonth(); if(m!==cur){spans.push({m,n:1});cur=m;} else spans[spans.length-1].n++; });
+html += spans.map(s=>`<div class="mon" style="flex:${s.n}">${s.m===7?'AGOSTO':'SEPTIEMBRE'}</div>`).join('');
+html += '</div></div>';
+html += '<div class="row hrow"><div class="lbl"></div><div class="track">' +
+        fechas.map(f=>`<div class="dnum">${f.getDate()}</div>`).join('') + '</div></div>';
+html += '<div class="bg">' + fechas.map(f=>`<div class="${(f.getDay()===0||f.getDay()===6)?'we':''}"></div>`).join('') + '</div>';
+
+ACT.forEach(a=>{
+  const [n,i,f,t] = a, s = col(i), e = col(f);
+  html += `<div class="row"><div class="lbl" title="${n}">${n}</div><div class="track">`;
+  if(t==='h'){
+    html += `<div class="hito" style="left:calc(${(s+0.5)/N*100}% - 5px)" title="${n} · ${fmt(P(f))}"></div>`;
+  } else {
+    const cls = t==='s' ? 'bar sep' : 'bar';
+    const txt = (e-s+1)>=6 ? `<span class="txt">${fmt(P(f))}</span>` : '';
+    html += `<div class="${cls}" style="left:${s/N*100}%;width:${(e-s+1)/N*100}%" title="${n} · entrega ${fmt(P(f))}">${txt}<span class="cap"></span></div>`;
+  }
+  html += '</div></div>';
+});
+document.getElementById('g').innerHTML = html;
+document.getElementById('tags').innerHTML = SIN.map(t=>`<span class="tag">• ${t}</span>`).join('');
+</script>
+</body>
+</html>
