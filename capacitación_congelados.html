@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Programa Embajadores del Frío - Grupo SIBRÜ</title>
+<style>
+    :root {
+        --naranja: #E8542F;
+        --naranja-claro: #F58947;
+        --rojo-cresta: #E8452C;
+        --verde-oscuro: #1E6B4E;
+        --verde: #5FBB4A;
+        --crema: #F6E3A9;
+        --crema-claro: #FDF8EC;
+        --texto: #3A3A3A;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+        font-family: 'Segoe UI', 'Trebuchet MS', Tahoma, sans-serif;
+        line-height: 1.6;
+        color: var(--texto);
+        background: #f4f4f2;
+    }
+
+    .container {
+        max-width: 210mm;
+        margin: 0 auto;
+        background: white;
+        box-shadow: 0 0 20px rgba(0,0,0,0.12);
+    }
+
+    .page { padding: 20mm 22mm; page-break-after: always; }
+    .page:last-child { page-break-after: auto; }
+
+    /* ===== HEADER CORPORATIVO ===== */
+    .header {
+        background: linear-gradient(135deg, var(--naranja) 0%, var(--naranja-claro) 100%);
+        color: white;
+        padding: 40px;
+        margin: -20mm -22mm 30px -22mm;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .header::after {
+        content: '';
+        position: absolute;
+        top: 0; right: 0;
+        width: 320px; height: 100%;
+        background: rgba(255,255,255,0.07);
+        transform: skewX(-20deg);
+    }
+
+    .logo-row {
+        display: flex;
+        align-items: center;
+        gap: 18px;
+        position: relative;
+        z-index: 2;
+        margin-bottom: 25px;
+    }
+
+    .logo-text { line-height: 1; }
+    .logo-text .grupo {
+        display: block;
+        font-size: 15px;
+        font-weight: 700;
+        letter-spacing: 3px;
+        color: var(--crema);
+    }
+    .logo-text .sibru {
+        display: block;
+        font-size: 40px;
+        font-weight: 800;
+        letter-spacing: 2px;
+        color: white;
+        text-shadow: 0 2px 4px rgba(0,0,0,0.15);
+    }
+
+    .header h1 {
+        font-size: 30px;
+        font-weight: 700;
+        margin-bottom: 8px;
+        position: relative; z-index: 1;
+    }
+
+    .header .subtitle {
+        font-size: 17px;
+        opacity: 0.95;
+        position: relative; z-index: 1;
+    }
+
+    .header .program-name {
+        font-size: 22px;
+        font-weight: 700;
+        margin-top: 22px;
+        padding: 14px 20px;
+        background: var(--verde-oscuro);
+        border-radius: 8px;
+        display: inline-block;
+        position: relative; z-index: 1;
+        box-shadow: 0 3px 8px rgba(0,0,0,0.2);
+    }
+
+    /* ===== SECCIONES ===== */
+    .section { margin-bottom: 32px; }
+
+    .section-title {
+        color: var(--verde-oscuro);
+        font-size: 21px;
+        font-weight: 800;
+        margin-bottom: 15px;
+        padding-bottom: 10px;
+        border-bottom: 3px solid var(--naranja);
+        display: flex;
+        align-items: center;
+    }
+    .section-title::before {
+        content: '▸';
+        color: var(--naranja);
+        margin-right: 10px;
+        font-size: 24px;
+    }
+
+    .intro-text { color: #666; margin-bottom: 15px; font-size: 14px; }
+
+    /* ===== OBJETIVOS ===== */
+    .objectives-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 18px;
+        margin-top: 18px;
+    }
+
+    .objective-card {
+        background: var(--crema-claro);
+        padding: 18px;
+        border-radius: 8px;
+        border-left: 5px solid var(--naranja);
+        box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    }
+    .objective-card h4 { color: var(--verde-oscuro); margin-bottom: 8px; font-size: 15px; }
+    .objective-card p { font-size: 13px; color: #555; }
+
+    /* ===== KPIs ===== */
+    .kpi-container {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+        margin-top: 18px;
+    }
+
+    .kpi-item {
+        background: linear-gradient(135deg, #F0F9EB 0%, #E2F3D9 100%);
+        padding: 16px;
+        border-radius: 8px;
+        border: 2px solid var(--verde);
+    }
+    .kpi-item h5 { color: var(--verde-oscuro); font-size: 15px; margin-bottom: 6px; }
+    .kpi-item p { font-size: 13px; color: #555; }
+    .kpi-item .target {
+        display: inline-block;
+        background: var(--naranja);
+        color: white;
+        padding: 4px 12px;
+        border-radius: 20px;
+        font-size: 12px;
+        font-weight: 700;
+        margin-top: 8px;
+    }
+
+    /* ===== MANDAMIENTOS ===== */
+    .mandamientos {
+        background: linear-gradient(135deg, var(--crema-claro) 0%, #F9EDCB 100%);
+        padding: 25px;
+        border-radius: 10px;
+        border: 3px solid var(--naranja);
+        margin-top: 18px;
+    }
+
+    .mandamiento-item { display: flex; margin-bottom: 18px; align-items: flex-start; }
+    .mandamiento-item:last-child { margin-bottom: 0; }
+
+    .mandamiento-number {
+        background: var(--verde-oscuro);
+        color: white;
+        width: 34px; height: 34px;
+        border-radius: 50%;
+        display: flex; align-items: center; justify-content: center;
+        font-weight: 800; font-size: 17px;
+        margin-right: 15px;
+        flex-shrink: 0;
+    }
+
+    .mandamiento-content h5 { color: var(--verde-oscuro); font-size: 15px; margin-bottom: 5px; }
+    .mandamiento-content p { font-size: 13px; color: #444; line-height: 1.55; }
+    .mandamiento-content .si { color: var(--verde-oscuro); font-weight: 700; }
+    .mandamiento-content .no { color: var(--rojo-cresta); font-weight: 700; }
+
+    /* ===== METODOLOGÍA ===== */
+    .metodologia-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+        margin-top: 18px;
+    }
+
+    .metodo-card {
+        background: white;
+        padding: 16px;
+        border-radius: 8px;
+        border: 2px solid var(--verde);
+        box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+    }
+    .metodo-card h5 { color: var(--verde-oscuro); font-size: 15px; margin-bottom: 8px; }
+    .metodo-card p { font-size: 13px; color: #555; }
+
+    /* ===== TABLA DE SEMANAS ===== */
+    .week-table { width: 100%; border-collapse: collapse; margin-top: 18px; font-size: 13px; }
+    .week-table th {
+        background: var(--verde-oscuro);
+        color: white;
+        padding: 12px;
+        text-align: left;
+        font-weight: 700;
+    }
+    .week-table td { padding: 14px 12px; border: 1px solid #e5dfcf; vertical-align: top; }
+    .week-table tr:nth-child(even) { background: var(--crema-claro); }
+
+    .week-number {
+        background: var(--naranja);
+        color: white;
+        padding: 6px 14px;
+        border-radius: 20px;
+        font-weight: 800;
+        font-size: 12px;
+        display: inline-block;
+        margin-bottom: 8px;
+    }
+    .week-focus { color: var(--verde-oscuro); font-weight: 700; font-size: 14px; margin-bottom: 4px; }
+    .week-tag { font-size: 11px; color: #8a7a4a; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; }
+    .week-actions strong { color: var(--naranja); display: block; margin-top: 8px; }
+    .week-actions p { margin-top: 2px; }
+
+    /* ===== EDUCACIÓN CONTINUA ===== */
+    .continua-container {
+        background: linear-gradient(135deg, #F0F9EB 0%, #E2F3D9 100%);
+        padding: 22px;
+        border-radius: 10px;
+        border: 2px solid var(--verde);
+        margin-top: 15px;
+    }
+
+    .continua-item { display: flex; margin-bottom: 15px; align-items: flex-start; }
+    .continua-item:last-child { margin-bottom: 0; }
+
+    .continua-icon {
+        background: var(--naranja);
+        color: white;
+        width: 30px; height: 30px;
+        border-radius: 50%;
+        display: flex; align-items: center; justify-content: center;
+        margin-right: 12px;
+        flex-shrink: 0;
+        font-size: 15px;
+    }
+    .continua-content h5 { color: var(--verde-oscuro); margin-bottom: 4px; font-size: 15px; }
+    .continua-content p { font-size: 13px; color: #444; }
+
+    /* ===== PRÓXIMOS PASOS ===== */
+    .next-steps {
+        background: var(--crema-claro);
+        padding: 18px 20px;
+        border-radius: 8px;
+        border-left: 6px solid var(--naranja);
+        margin-top: 25px;
+    }
+    .next-steps h4 { color: var(--verde-oscuro); margin-bottom: 10px; }
+    .next-steps p { color: #555; font-size: 13px; }
+
+    /* ===== FOOTER ===== */
+    .footer {
+        margin-top: 35px;
+        padding-top: 15px;
+        border-top: 3px solid var(--naranja);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        font-size: 11px;
+        color: #777;
+    }
+    .footer .foot-logo { display: flex; align-items: center; gap: 8px; }
+    .footer .sibru-name { font-weight: 800; color: var(--verde); font-size: 14px; letter-spacing: 1px; }
+    .footer .sibru-name span { color: var(--verde-oscuro); font-size: 10px; display: block; letter-spacing: 2px; }
+
+    @media print {
+        body { background: white; }
+        .container { box-shadow: none; }
+        .page { page-break-after: always; }
+        .page:last-child { page-break-after: auto; }
+        .header, .mandamientos, .kpi-item, .continua-container, .objective-card { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    }
+
+    @page { size: A4; margin: 0; }
+</style>
+</head>
+<body>
+<div class="container">
+
+    <!-- ================= PÁGINA 1 ================= -->
+    <div class="page">
+        <div class="header">
+            <div class="logo-row">
+                <!-- Isotipo SIBRÜ (reproducción vectorial estilizada) -->
+                <svg viewBox="0 0 200 200" width="85" height="85" aria-label="Logo Grupo SIBRÜ">
+                    <defs>
+                        <linearGradient id="gNaranja" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" stop-color="#F9A03F"/>
+                            <stop offset="100%" stop-color="#E8542F"/>
+                        </linearGradient>
+                    </defs>
+                    <path d="M78 118 C 55 128, 52 158, 78 172 C 95 180, 108 172, 110 168 C 94 166, 84 154, 86 140 C 87 130, 92 124, 98 120 Z" fill="#F6E3A9"/>
+                    <path d="M82 58 C 78 42, 64 33, 56 37 C 62 45, 62 52, 58 57 C 50 47, 38 47, 34 52 C 40 59, 40 66, 37 71 C 29 65, 21 68, 19 73 C 26 81, 38 85, 49 82 C 64 78, 76 70, 82 58 Z" fill="#E8452C"/>
+                    <path d="M110 40 A 60 60 0 1 1 70 150 C 88 148, 100 136, 100 120 C 100 104, 88 94, 72 94 C 78 66, 92 40, 110 40 Z" fill="url(#gNaranja)"/>
+                </svg>
+                <div class="logo-text">
+                    <span class="grupo">GRUPO</span>
+                    <span class="sibru">SIBRÜ</span>
+                </div>
+            </div>
+            <h1>Programa de Capacitación en Piso de Ventas</h1>
+            <div class="subtitle">Área de Congelados · Productos de Valor Agregado · Menudeo y Medio Mayoreo</div>
+            <div class="program-name">🏆 Embajadores del Frío: Excelencia Comercial</div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">Objetivos del Programa</div>
+            <div class="objectives-grid">
+                <div class="objective-card">
+                    <h4>1. Transformar el Rol</h4>
+                    <p>Pasar de "despachadores de congelador" a <strong>Asesores de Soluciones Gastronómicas</strong> que entienden la necesidad de cada cliente.</p>
+                </div>
+                <div class="objective-card">
+                    <h4>2. Maximizar el Ticket Promedio</h4>
+                    <p>Incrementar el valor de cada compra mediante venta sugestiva y conocimiento profundo del portafolio de valor agregado.</p>
+                </div>
+                <div class="objective-card">
+                    <h4>3. Dominar la Venta Cruzada</h4>
+                    <p>Crear "maridajes" lógicos entre categorías: Appetizers + Salsas, Empanizados + Postres, Snacks + Bebidas.</p>
+                </div>
+                <div class="objective-card">
+                    <h4>4. Estandarizar la Experiencia</h4>
+                    <p>Garantizar que todo cliente —ama de casa o dueño de restaurante— reciba el mismo nivel de asesoría y calidez SIBRÜ.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">KPIs · Indicadores Clave de Desempeño</div>
+            <p class="intro-text">Métricas que se rastrearán semanalmente para medir el éxito del programa en el área de congelados:</p>
+            <div class="kpi-container">
+                <div class="kpi-item">
+                    <h5>📈 Ticket Promedio (AOV)</h5>
+                    <p>Valor promedio de cada venta realizada en el área de congelados.</p>
+                    <span class="target">Meta: +10% a +15% en 3 meses</span>
+                </div>
+                <div class="kpi-item">
+                    <h5>🛒 UPT · Unidades Por Ticket</h5>
+                    <p>El indicador rey de la venta cruzada: cuántos productos lleva cada cliente.</p>
+                    <span class="target">Meta: de 1.5 a 2.5 unidades</span>
+                </div>
+                <div class="kpi-item">
+                    <h5>🍰 Penetración de Postres</h5>
+                    <p>% de tickets que incluyen al menos un postre congelado de valor agregado.</p>
+                    <span class="target">Meta: +20% de penetración</span>
+                </div>
+                <div class="kpi-item">
+                    <h5>🤝 Captación de Leads B2B</h5>
+                    <p>Datos de contacto de clientes de medio mayoreo para pedidos recurrentes.</p>
+                    <span class="target">Meta: 3 a 5 contactos / semana</span>
+                </div>
+                <div class="kpi-item" style="grid-column: 1 / -1;">
+                    <h5>✅ Auditoría de Estándares No Negociables</h5>
+                    <p>Puntuación en los "5 Mandamientos" evaluada por supervisor o cliente incógnito (Mystery Shopper).</p>
+                    <span class="target">Meta: 90% de cumplimiento</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <div class="foot-logo">
+                <svg viewBox="0 0 200 200" width="28" height="28"><path d="M78 118 C 55 128, 52 158, 78 172 C 95 180, 108 172, 110 168 C 94 166, 84 154, 86 140 C 87 130, 92 124, 98 120 Z" fill="#F6E3A9"/><path d="M82 58 C 78 42, 64 33, 56 37 C 62 45, 62 52, 58 57 C 50 47, 38 47, 34 52 C 40 59, 40 66, 37 71 C 29 65, 21 68, 19 73 C 26 81, 38 85, 49 82 C 64 78, 76 70, 82 58 Z" fill="#E8452C"/><path d="M110 40 A 60 60 0 1 1 70 150 C 88 148, 100 136, 100 120 C 100 104, 88 94, 72 94 C 78 66, 92 40, 110 40 Z" fill="#E8542F"/></svg>
+                <div class="sibru-name"><span>GRUPO</span>SIBRÜ</div>
+            </div>
+            <div>Programa Embajadores del Frío · Página 1 de 3</div>
+        </div>
+    </div>
+
+    <!-- ================= PÁGINA 2 ================= -->
+    <div class="page">
+        <div class="section">
+            <div class="section-title">Estándares No Negociables · Los 5 Mandamientos</div>
+            <p class="intro-text">Estos estándares son innegociables y se evalúan diariamente en piso. Son la base de la experiencia SIBRÜ en congelados.</p>
+
+            <div class="mandamientos">
+                <div class="mandamiento-item">
+                    <div class="mandamiento-number">1</div>
+                    <div class="mandamiento-content">
+                        <h5>La Regla de los 10 Segundos</h5>
+                        <p>Todo cliente que cruce el pasillo de congelados debe ser saludado con contacto visual, sonrisa y una pregunta abierta en los primeros 10 segundos.<br>
+                        <span class="no">Prohibido:</span> "¿Le ayudo o solo está viendo?" · <span class="si">Cambiar por:</span> "¿Qué se le antoja preparar hoy?" o "¿Busca algo para su negocio o para la casa?"</p>
+                    </div>
+                </div>
+
+                <div class="mandamiento-item">
+                    <div class="mandamiento-number">2</div>
+                    <div class="mandamiento-content">
+                        <h5>El Filtro de Oro (Menudeo vs. Mayoreo)</h5>
+                        <p><span class="si">Si es Menudeo:</span> el argumento es sabor, facilidad y tiempo en familia.<br>
+                        <span class="si">Si es Mayoreo:</span> el argumento es rendimiento por caja, margen de ganancia y facilidad de preparación en su cocina.</p>
+                    </div>
+                </div>
+
+                <div class="mandamiento-item">
+                    <div class="mandamiento-number">3</div>
+                    <div class="mandamiento-content">
+                        <h5>La Regla del "Y también…" (Venta Cruzada Obligatoria)</h5>
+                        <p>Está prohibido cerrar una venta o cobrar sin ofrecer <strong>un</strong> complemento lógico.<br>
+                        <em>Ejemplo:</em> "Excelente elección con las alitas, ¿le agrego nuestras papas gajo o prefiere uno de nuestros postres para el café?"</p>
+                    </div>
+                </div>
+
+                <div class="mandamiento-item">
+                    <div class="mandamiento-number">4</div>
+                    <div class="mandamiento-content">
+                        <h5>El Congelador es el Vendedor Silencioso</h5>
+                        <p>• Vidrios impecables (sin escarcha que tape la vista)<br>
+                        • <em>Facing</em> (productos al frente del anaquel) después de cada cliente<br>
+                        • Cero espacios vacíos: si se agota algo, se reacomoda para llenar visualmente</p>
+                    </div>
+                </div>
+
+                <div class="mandamiento-item">
+                    <div class="mandamiento-number">5</div>
+                    <div class="mandamiento-content">
+                        <h5>Cierre de Fidelización</h5>
+                        <p>Entregar el producto o ticket agradeciendo y, en caso de medio mayoreo, entregar tarjeta o folleto con el contacto directo de la tienda para sus próximos pedidos.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">Metodología · Capacitación en Piso de Ventas</div>
+            <p class="intro-text">Educación continua mediante <em>Microlearning</em>: cápsulas cortas directamente en el pasillo, sin sacar al personal del área por horas.</p>
+
+            <div class="metodologia-grid">
+                <div class="metodo-card">
+                    <h5>⏱️ El "Huddle" Diario (7 min)</h5>
+                    <p>Reunión de pie frente al congelador antes de abrir o en cambio de turno. Se da el "Tip del día", se repasa un producto y se lanza el reto semanal.</p>
+                </div>
+                <div class="metodo-card">
+                    <h5>🎭 Role-Playing Express</h5>
+                    <p>El supervisor actúa como cliente difícil ("está muy caro") durante 3 minutos y el empleado responde en vivo con las técnicas aprendidas.</p>
+                </div>
+                <div class="metodo-card">
+                    <h5>📋 Tarjetas de Bolsillo</h5>
+                    <p>Fichas plastificadas en el mandil con las 3 mejores combinaciones de venta cruzada de la semana y los argumentos clave de cada producto.</p>
+                </div>
+                <div class="metodo-card">
+                    <h5>👥 Shadowing (Sombra)</h5>
+                    <p>30 minutos donde el empleado de menor rendimiento acompaña al "Top Performer" sin intervenir, solo observando cómo vende y maneja objeciones.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <div class="foot-logo">
+                <svg viewBox="0 0 200 200" width="28" height="28"><path d="M78 118 C 55 128, 52 158, 78 172 C 95 180, 108 172, 110 168 C 94 166, 84 154, 86 140 C 87 130, 92 124, 98 120 Z" fill="#F6E3A9"/><path d="M82 58 C 78 42, 64 33, 56 37 C 62 45, 62 52, 58 57 C 50 47, 38 47, 34 52 C 40 59, 40 66, 37 71 C 29 65, 21 68, 19 73 C 26 81, 38 85, 49 82 C 64 78, 76 70, 82 58 Z" fill="#E8452C"/><path d="M110 40 A 60 60 0 1 1 70 150 C 88 148, 100 136, 100 120 C 100 104, 88 94, 72 94 C 78 66, 92 40, 110 40 Z" fill="#E8542F"/></svg>
+                <div class="sibru-name"><span>GRUPO</span>SIBRÜ</div>
+            </div>
+            <div>Programa Embajadores del Frío · Página 2 de 3</div>
+        </div>
+    </div>
+
+    <!-- ================= PÁGINA 3 ================= -->
+    <div class="page">
+        <div class="section">
+            <div class="section-title">Plan Inicial · Las Primeras 4 Semanas</div>
+            <p class="intro-text">Cada semana tiene un enfoque específico con acciones prácticas y medibles en piso de ventas.</p>
+
+            <table class="week-table">
+                <thead>
+                    <tr>
+                        <th style="width: 22%;">Semana</th>
+                        <th style="width: 78%;">Actividades y Retos</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="week-number">SEMANA 1</div>
+                            <div class="week-focus">Conectando y Filtrando</div>
+                            <div class="week-tag">Atención al Cliente</div>
+                        </td>
+                        <td class="week-actions">
+                            <strong>Enfoque:</strong><p>Romper el hielo y perfilar al cliente rápidamente.</p>
+                            <strong>Acción en Piso:</strong><p>Practicar el saludo de los 10 segundos y la pregunta de filtro: "¿Para su restaurante o para la casa?"</p>
+                            <strong>Huddle del día:</strong><p>"Cómo leer el lenguaje corporal: el cliente apurado vs. el cliente que busca asesoría".</p>
+                            <strong>Reto Semanal:</strong><p>"Cazadores de Sonrisas": el supervisor marca en checklist los saludos perfectos. El ganador elige la música de la tienda o recibe un bono simbólico.</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="week-number">SEMANA 2</div>
+                            <div class="week-focus">Embajadores del Valor Agregado</div>
+                            <div class="week-tag">Conocimiento de Producto</div>
+                        </td>
+                        <td class="week-actions">
+                            <strong>Enfoque:</strong><p>Dominar los argumentos de Appetizers, Snacks y Postres SIBRÜ.</p>
+                            <strong>Acción en Piso:</strong><p>"Cata a ciegas" o demostración: cocinar/freír un producto para que el personal lo pruebe. Nadie vende lo que no conoce ni ha probado.</p>
+                            <strong>Huddle del día:</strong><p>Desglosar un producto estrella: "Nuestros empanizados rinden más porque no merman al freír; eso le ahorra dinero al restaurantero".</p>
+                            <strong>Reto Semanal:</strong><p>Explicar el beneficio principal de 3 productos distintos a 3 clientes reales, con el supervisor escuchando de cerca.</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="week-number">SEMANA 3</div>
+                            <div class="week-focus">El Arte del Maridaje</div>
+                            <div class="week-tag">Venta Cruzada y Ticket</div>
+                        </td>
+                        <td class="week-actions">
+                            <strong>Enfoque:</strong><p>Matrices de venta cruzada para elevar las unidades por ticket.</p>
+                            <strong>Acción en Piso:</strong><p>Lanzamiento de Tarjetas de Bolsillo con "Combos SIBRÜ": Combo Fiesta (Alitas + Papas + Salsas) y Combo Sobremesa (Comida fuerte + Postre Congelado).</p>
+                            <strong>Huddle del día:</strong><p>"El Ticket Perdido": se analiza un ticket bajo del día anterior y el equipo debate: "¿Qué le faltó? ¿Qué le hubiéramos ofrecido?"</p>
+                            <strong>Reto Semanal:</strong><p>"El Ticket de Oro": gana quien logre el ticket con más categorías distintas durante la semana.</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="week-number">SEMANA 4</div>
+                            <div class="week-focus">Objeciones y Cierre Mayorista</div>
+                            <div class="week-tag">Aumento de Ventas</div>
+                        </td>
+                        <td class="week-actions">
+                            <strong>Enfoque:</strong><p>Superar barreras de precio y cerrar ventas de volumen.</p>
+                            <strong>Acción en Piso:</strong><p>Role-playing de objeciones — <em>Cliente:</em> "Está muy caro". <em>Empleado:</em> "Si lo compara por porción, rinde 20% más porque no merma. ¿Hacemos la prueba con una caja?"</p>
+                            <strong>Huddle del día:</strong><p>Cómo ofrecer promociones por volumen o caja cerrada sin regalar margen.</p>
+                            <strong>Reto Semanal:</strong><p>"El Directorio": cada empleado capta al menos 3 contactos de medio mayoreo (WhatsApp / nombre del negocio) para pedidos futuros.</p>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="section">
+            <div class="section-title">Educación Continua · A partir del Mes 2</div>
+            <div class="continua-container">
+                <div class="continua-item">
+                    <div class="continua-icon"></div>
+                    <div class="continua-content">
+                        <h5>El "Producto del Mes"</h5>
+                        <p>Cada mes se elige un producto de alto margen o baja rotación: se decora el congelador como "El Favorito del Mes", se hacen role-plays sobre él y hay bono directo para quien venda más cajas.</p>
+                    </div>
+                </div>
+                <div class="continua-item">
+                    <div class="continua-icon">📊</div>
+                    <div class="continua-content">
+                        <h5>Gamificación Visual · El Termómetro</h5>
+                        <p>Pizarra en el pasillo de congelados con un "Termómetro de Meta" que el propio equipo rellena diariamente con marcadores para ver el avance.</p>
+                    </div>
+                </div>
+                <div class="continua-item">
+                    <div class="continua-icon">🏅</div>
+                    <div class="continua-content">
+                        <h5>Certificación Interna</h5>
+                        <p>Al cumplir 3 meses con KPIs en verde y mandamientos cumplidos, el empleado recibe el pin <strong>"Especialista en Congelados SIBRÜ"</strong>, ligado a bono mensual o preferencia de turnos.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="next-steps">
+            <h4>📋 Próximos Pasos Sugeridos</h4>
+            <p>1. Imprimir los "5 Mandamientos" en carteles para la trastienda y el frente del congelador.<br>
+            2. Agendar junta de 20 minutos con el equipo para presentar el programa como un plan para ganar más, no como evaluación.<br>
+            3. Preparar Tarjetas de Bolsillo con los combos de venta cruzada antes de la Semana 3.<br>
+            4. Definir al supervisor responsable de los huddles diarios y del checklist de auditoría.</p>
+        </div>
+
+        <div class="footer">
+            <div class="foot-logo">
+                <svg viewBox="0 0 200 200" width="28" height="28"><path d="M78 118 C 55 128, 52 158, 78 172 C 95 180, 108 172, 110 168 C 94 166, 84 154, 86 140 C 87 130, 92 124, 98 120 Z" fill="#F6E3A9"/><path d="M82 58 C 78 42, 64 33, 56 37 C 62 45, 62 52, 58 57 C 50 47, 38 47, 34 52 C 40 59, 40 66, 37 71 C 29 65, 21 68, 19 73 C 26 81, 38 85, 49 82 C 64 78, 76 70, 82 58 Z" fill="#E8452C"/><path d="M110 40 A 60 60 0 1 1 70 150 C 88 148, 100 136, 100 120 C 100 104, 88 94, 72 94 C 78 66, 92 40, 110 40 Z" fill="#E8542F"/></svg>
+                <div class="sibru-name"><span>GRUPO</span>SIBRÜ</div>
+            </div>
+            <div>Programa Embajadores del Frío · Página 3 de 3</div>
+        </div>
+    </div>
+
+</div>
+</body>
+</html>
