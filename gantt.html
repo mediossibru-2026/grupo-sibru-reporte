@@ -43,7 +43,7 @@ h2{font-size:15px;margin:22px 0 8px}
 </head>
 <body>
 <h1>📊 Gantt de Actividades · Agosto–Septiembre 2026</h1>
-<div class="sub">Actualizado: Se incluyen hitos de Fiesta Mexicana, Credenciales y estados de Finalizado / En Proceso.</div>
+<div class="sub">Actualizado: Evento Fiesta Mexicana (11-13 Sep) y ajustes de fechas.</div>
 
 <div class="card">
   <div class="g" id="g"></div>
@@ -63,7 +63,7 @@ h2{font-size:15px;margin:22px 0 8px}
 <script>
 const INI = new Date(2026,7,15);
 const P = d => { const [a,m,dd]=d.split('-').map(Number); return new Date(a,m-1,dd); };
-const N = 47; // 15 ago – 30 sep (17 días ago + 30 días sep)
+const N = 47; // 15 ago – 30 sep
 const fechas = [...Array(N)].map((_,k)=>new Date(2026,7,15+k));
 const col = d => Math.round((P(d)-INI)/864e5);
 const fmt = dt => dt.getDate() + (dt.getMonth()===7?' ago':' sep');
@@ -73,15 +73,15 @@ const fmt = dt => dt.getDate() + (dt.getMonth()===7?' ago':' sep');
 const ACT = [
   ["Reunión con asados",                  "2026-08-15", "2026-08-15", "f"],
   ["Pantallas de báscula",                "2026-08-15", "2026-08-17", "f"],
-  ["Capacitación Atención al Cliente",    "2026-08-15", "2026-09-30", "p"], // Línea continua en proceso
-  ["Capacitación IA (machote)",           "2026-08-26", "2026-08-26", "h"], // Presentación 26 ago
+  ["Capacitación Atención al Cliente",    "2026-08-15", "2026-09-30", "p"],
+  ["Capacitación IA (machote)",           "2026-08-26", "2026-08-26", "h"],
   ["Credenciales",                        "2026-08-31", "2026-08-31", "h"],
   ["Previo Fiesta Méxcicana SIBRÜ",       "2026-08-31", "2026-08-31", "h"],
   ["Tarjetas de presentación",            "2026-08-31", "2026-08-31", "h"],
   ["Presentación mejoras Asados",         "2026-08-31", "2026-08-31", "h"],
-  ["Evento Fiesta Méxcicana SIBRÜ",       "2026-09-11", "2026-09-11", "h"], // Viernes 11 sep
-  ["Totes",                               "2026-08-15", "2026-08-17"],
-  ["Foto de procesos",                    "2026-08-15", "2026-08-17"],
+  ["Evento Fiesta Méxcicana SIBRÜ",       "2026-09-11", "2026-09-13", "s"], // Viernes 11 a Domingo 13
+  ["Totes",                               "2026-08-15", "2026-08-28"], // Actualizado a 28 ago
+  ["Foto de procesos",                    "2026-08-15", "2026-08-28"], // Actualizado a 28 ago
   ["Presentación resultados encuesta",    "2026-08-15", "2026-08-19"],
   ["Muro de comunicación",                "2026-08-15", "2026-08-31"],
   ["Catálogo productos (congelados)",     "2026-08-15", "2026-08-31"],
