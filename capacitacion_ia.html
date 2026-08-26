@@ -1,0 +1,862 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI-READY Organization | Programa de Capacitación SIBRÜ 2026</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --green-dark: #1B5E20;
+            --green-medium: #2E7D32;
+            --green-light: #66BB6A;
+            --orange: #F4A261;
+            --orange-dark: #E76F51;
+            --blue-dark: #264653;
+            --blue-medium: #2A9D8F;
+            --black: #000000;
+            --white: #ffffff;
+            --gray-bg: #f8f9fa;
+            --red-alert: #d32f2f;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            background: linear-gradient(135deg, #f0f2f5 0%, #e2e8f0 100%);
+            color: var(--blue-dark);
+            line-height: 1.6;
+        }
+
+        .container { max-width: 1200px; margin: 0 auto; padding: 20px; }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, var(--green-dark) 0%, var(--blue-dark) 50%, var(--black) 100%);
+            color: var(--white);
+            padding: 50px 30px;
+            border-radius: 20px;
+            text-align: center;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 40px rgba(27, 94, 32, 0.3);
+        }
+
+        .header h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2.5em;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+        }
+
+        .header .subtitle {
+            font-size: 1.2em;
+            color: var(--orange);
+            font-style: italic;
+            margin-bottom: 15px;
+        }
+
+        .badge-version {
+            display: inline-block;
+            background: rgba(244, 162, 97, 0.3);
+            padding: 6px 15px;
+            border-radius: 50px;
+            font-size: 0.85em;
+            font-weight: 600;
+            border: 2px solid var(--orange);
+        }
+
+        /* Sections */
+        .section {
+            background: var(--white);
+            border-radius: 20px;
+            padding: 30px 25px;
+            margin-bottom: 25px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            border-left: 8px solid var(--green-dark);
+        }
+
+        .section-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.6em;
+            font-weight: 700;
+            color: var(--green-dark);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        /* KPI Cards */
+        .kpi-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 25px 0;
+        }
+
+        .kpi-card {
+            background: linear-gradient(135deg, var(--green-dark), var(--green-medium));
+            color: white;
+            padding: 20px 15px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(27, 94, 32, 0.2);
+            transition: transform 0.3s;
+        }
+
+        .kpi-card:hover { transform: translateY(-5px); }
+
+        .kpi-card.orange { background: linear-gradient(135deg, var(--orange), var(--orange-dark)); }
+        .kpi-card.blue { background: linear-gradient(135deg, var(--blue-dark), var(--blue-medium)); }
+
+        .kpi-value {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2em;
+            font-weight: 800;
+            margin: 8px 0;
+        }
+
+        /* Charts Grid */
+        .charts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 25px 0;
+        }
+
+        .chart-container {
+            background: var(--gray-bg);
+            padding: 20px;
+            border-radius: 15px;
+            position: relative;
+            height: 350px;
+            border: 2px solid #e9ecef;
+        }
+
+        .chart-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.1em;
+            font-weight: 700;
+            color: var(--blue-dark);
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        /* Tables */
+        .table-wrapper {
+            width: 100%;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            margin: 20px 0;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 600px;
+            background: var(--white);
+        }
+
+        th {
+            background: linear-gradient(135deg, var(--green-dark), var(--blue-dark));
+            color: var(--white);
+            padding: 15px 12px;
+            text-align: left;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: 0.85em;
+            white-space: nowrap;
+        }
+
+        td { 
+            padding: 12px; 
+            border-bottom: 1px solid #eee;
+            font-size: 0.9em;
+        }
+
+        tr:nth-child(even) { background-color: #fafafa; }
+        tr:hover { background-color: #f0f7f0; }
+
+        /* Module Cards */
+        .module-card {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            margin: 20px 0;
+            border-top: 5px solid;
+        }
+
+        .module-card.mod1 { border-top-color: var(--blue-dark); }
+        .module-card.mod2 { border-top-color: var(--orange); }
+        .module-card.mod3 { border-top-color: var(--green-dark); }
+
+        .module-card h3 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.3em;
+            margin-bottom: 15px;
+        }
+
+        .module-card.mod1 h3 { color: var(--blue-dark); }
+        .module-card.mod2 h3 { color: var(--orange-dark); }
+        .module-card.mod3 h3 { color: var(--green-dark); }
+
+        /* Activity Box */
+        .activity-box {
+            background: #f8f9fa;
+            border-left: 4px solid var(--orange);
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+        }
+
+        .activity-box h4 {
+            color: var(--orange-dark);
+            font-family: 'Montserrat', sans-serif;
+            margin-bottom: 10px;
+        }
+
+        /* Lesson Box */
+        .lesson-box {
+            background: #e8f5e9;
+            border-left: 4px solid var(--green-dark);
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+        }
+
+        .lesson-box h4 {
+            color: var(--green-dark);
+            font-family: 'Montserrat', sans-serif;
+            margin-bottom: 10px;
+        }
+
+        /* Deliverable Box */
+        .deliverable-box {
+            background: linear-gradient(135deg, #fff3e0, #faf0e6);
+            border-left: 4px solid var(--orange-dark);
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+
+        .deliverable-box h4 {
+            color: var(--orange-dark);
+            font-family: 'Montserrat', sans-serif;
+            margin-bottom: 10px;
+        }
+
+        /* Footer */
+        .footer {
+            background: linear-gradient(135deg, var(--blue-dark), var(--black));
+            color: white;
+            padding: 30px 20px;
+            border-radius: 20px;
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header h1 { font-size: 1.8em; }
+            .charts-grid { grid-template-columns: 1fr; }
+            .container { padding: 15px; }
+            .section { padding: 20px 15px; }
+            .kpi-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+
+        @media (max-width: 480px) {
+            .kpi-grid { grid-template-columns: 1fr; }
+            .header h1 { font-size: 1.5em; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <h1>AI-READY Organization</h1>
+            <div class="subtitle">Programa de Capacitación en IA Generativa para Equipos Administrativos</div>
+            <div class="badge-version">GRUPO SIBRÜ | 2026</div>
+        </div>
+
+        <!-- Resumen Ejecutivo -->
+        <div class="section">
+            <h2 class="section-title">🎯 Resumen Ejecutivo</h2>
+            <p style="font-size: 1.1em; margin-bottom: 20px;">
+                Programa estratégico de <strong>3 sesiones presenciales</strong> diseñado para transformar a los equipos administrativos de Grupo SIBRÜ en profesionales <strong>"AI-Ready"</strong>. El enfoque no es técnico, sino <strong>estratégico y de gestión del rendimiento</strong>, integrando cumplimiento normativo, ética y medición de resultados.
+            </p>
+
+            <div class="kpi-grid">
+                <div class="kpi-card">
+                    <div>Duración Total</div>
+                    <div class="kpi-value">9 hrs</div>
+                    <div>3 sesiones de 3 hrs</div>
+                </div>
+                <div class="kpi-card orange">
+                    <div>Participantes</div>
+                    <div class="kpi-value">20-30</div>
+                    <div>Por cohorte</div>
+                </div>
+                <div class="kpi-card blue">
+                    <div>ROI Esperado</div>
+                    <div class="kpi-value">300%</div>
+                    <div>A los 6 meses</div>
+                </div>
+                <div class="kpi-card" style="background: linear-gradient(135deg, #81C784, #66BB6A);">
+                    <div>Reducción de Tiempo</div>
+                    <div class="kpi-value">40%</div>
+                    <div>En tareas repetitivas</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Objetivos Estratégicos -->
+        <div class="section">
+            <h2 class="section-title">📈 Objetivos Estratégicos del Programa</h2>
+            
+            <div class="charts-grid">
+                <div class="chart-container">
+                    <div class="chart-title">Competencias a Desarrollar</div>
+                    <canvas id="competenciasChart"></canvas>
+                </div>
+                <div class="chart-container">
+                    <div class="chart-title">Distribución de Tiempo por Módulo</div>
+                    <canvas id="tiempoChart"></canvas>
+                </div>
+            </div>
+
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Objetivo</th>
+                            <th>Métrica de Éxito</th>
+                            <th>Plazo de Medición</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Alfabetización en IA</strong></td>
+                            <td>100% de participantes comprenden diferencias entre LLMs</td>
+                            <td>Post-Módulo 1</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Cumplimiento y Ética</strong></td>
+                            <td>0 violaciones de política de datos en uso de IA</td>
+                            <td>Continuo</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Dominio de Prompting</strong></td>
+                            <td>Cada participante crea 5 Mega-Prompts validados</td>
+                            <td>Post-Módulo 2</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Implementación Real</strong></td>
+                            <td>Cada departamento entrega 1 Blueprint con ROI proyectado</td>
+                            <td>Post-Módulo 3</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Adopción Sostenida</strong></td>
+                            <td>70% de participantes usando IA diariamente a los 30 días</td>
+                            <td>30 días post-programa</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- MÓDULO 1 -->
+        <div class="section" style="border-left-color: var(--blue-dark);">
+            <h2 class="section-title">🟦 MÓDULO 1: COMPRENDER</h2>
+            <p style="font-size: 1.1em; margin-bottom: 15px;"><strong>Alfabetización, Ética y Cumplimiento</strong> | Duración: 3 Horas</p>
+            <p style="margin-bottom: 20px;"><strong>Enfoque:</strong> Desmitificación y Blindaje Corporativo</p>
+
+            <div class="module-card mod1">
+                <h3>🎯 Objetivos del Módulo</h3>
+                <ul style="margin-left: 20px;">
+                    <li>Comprender la naturaleza real de los Modelos de Lenguaje (LLM) y diferenciar sus capacidades.</li>
+                    <li>Establecer los límites de seguridad de la información y cumplimiento normativo (Compliance).</li>
+                    <li>Configurar el entorno de trabajo y realizar las primeras interacciones controladas.</li>
+                </ul>
+            </div>
+
+            <h3 style="color: var(--blue-dark); font-family: Montserrat; margin: 25px 0 15px;">📚 Lecciones</h3>
+            
+            <div class="lesson-box">
+                <h4>Lección 1.1: Los 4 Jinetes de la IA</h4>
+                <p>Qwen, ChatGPT, Claude, Gemini. Diferencias filosóficas, ventanas de contexto y por qué necesitamos un "arsenal" de herramientas y no solo una.</p>
+            </div>
+
+            <div class="lesson-box">
+                <h4>Lección 1.2: El Semáforo de Datos y el "Shadow AI"</h4>
+                <p>Políticas de cumplimiento, anonimización de datos financieros/personales y riesgos de fugas de información.</p>
+            </div>
+
+            <div class="lesson-box">
+                <h4>Lección 1.3: El concepto de "Alucinación"</h4>
+                <p>Por qué la IA inventa y por qué el criterio administrativo humano es irremplazable.</p>
+            </div>
+
+            <h3 style="color: var(--blue-dark); font-family: Montserrat; margin: 25px 0 15px;">🛠️ Actividades Presenciales</h3>
+
+            <div class="activity-box">
+                <h4>Rompehielos "Mito o Realidad" (15 min)</h4>
+                <p>El facilitador lee afirmaciones (ej. "La IA lee la mente de la base de datos del SAT en tiempo real"). Los participantes se mueven al lado izquierdo del salón si es Mito, y al derecho si es Realidad. Se debate brevemente.</p>
+            </div>
+
+            <div class="activity-box">
+                <h4>Onboarding Guiado (30 min)</h4>
+                <p>Todos abren sus laptops. El facilitador proyecta el paso a paso para crear cuentas gratuitas en las 4 plataformas. Se verifica que todos tengan acceso.</p>
+            </div>
+
+            <div class="activity-box">
+                <h4>Laboratorio "El Reto del Dato Tóxico" (45 min)</h4>
+                <p>Se entrega a cada mesa un documento ficticio con datos sensibles (RFC reales, CLABES bancarias, salarios). El reto es pedirle a la IA que lo analice, pero antes deben aplicar técnicas de ofuscación (cambiar nombres por "Cliente A", montos por "Monto X"). Gana la mesa que logre el mejor análisis sin violar la política de datos.</p>
+            </div>
+
+            <h3 style="color: var(--blue-dark); font-family: Montserrat; margin: 25px 0 15px;">✅ Knowledge Check: "Tarjetas de Situación"</h3>
+            <p>El facilitador proyecta 10 escenarios rápidos (ej. "Subir la nómina completa en Excel para que la IA detecte anomalías"). Los equipos levantan físicamente una tarjeta:</p>
+            <ul style="margin-left: 20px; margin-top: 10px;">
+                <li>🟢 <strong>Verde:</strong> Seguro</li>
+                <li>🟡 <strong>Amarillo:</strong> Requiere anonimizar</li>
+                <li>🔴 <strong>Rojo:</strong> Prohibido/Violación de Compliance</li>
+            </ul>
+
+            <div class="deliverable-box">
+                <h4>📌 Entregable: Mapa de Riesgos del Departamento</h4>
+                <p>En hojas de rotafolio, cada equipo mapea los 3 procesos de su área que manejan datos más sensibles y definen el protocolo de "ofuscación" (cómo ocultar los datos reales) antes de poder usar IA en esos procesos. Se pegan en las paredes del salón.</p>
+            </div>
+        </div>
+
+        <!-- MÓDULO 2 -->
+        <div class="section" style="border-left-color: var(--orange);">
+            <h2 class="section-title">🟨 MÓDULO 2: COMUNICAR</h2>
+            <p style="font-size: 1.1em; margin-bottom: 15px;"><strong>El Arte del Prompting y Gestión del Cambio</strong> | Duración: 3 Horas</p>
+            <p style="margin-bottom: 20px;"><strong>Enfoque:</strong> Diálogo Humano-Máquina y Superación de la Resistencia</p>
+
+            <div class="module-card mod2">
+                <h3>🎯 Objetivos del Módulo</h3>
+                <ul style="margin-left: 20px;">
+                    <li>Dominar la estructuración de instrucciones (Prompting) como una habilidad de comunicación y delegación.</li>
+                    <li>Aprender a iterar y dar feedback a la IA para mejorar el rendimiento del output.</li>
+                    <li>Desarrollar narrativas internas para comunicar la implementación de la IA como una herramienta de "Inteligencia Aumentada" y no de reemplazo.</li>
+                </ul>
+            </div>
+
+            <h3 style="color: var(--orange-dark); font-family: Montserrat; margin: 25px 0 15px;">📚 Lecciones</h3>
+            
+            <div class="lesson-box" style="background: #fff3e0; border-left-color: var(--orange);">
+                <h4 style="color: var(--orange-dark);">Lección 2.1: La Nueva Gramática (Framework C.R.E.F.O.)</h4>
+                <p><strong>C</strong>ontexto, <strong>R</strong>ol, <strong>E</strong>specificidad, <strong>F</strong>ormato, <strong>O</strong>bjetivo. Cómo hablarle a la máquina para obtener resultados de nivel gerencial.</p>
+            </div>
+
+            <div class="lesson-box" style="background: #fff3e0; border-left-color: var(--orange);">
+                <h4 style="color: var(--orange-dark);">Lección 2.2: La IA como "Pasante Junior"</h4>
+                <p>Técnicas de iteración, encadenamiento de prompts y corrección de errores sin perder el hilo de la conversación.</p>
+            </div>
+
+            <div class="lesson-box" style="background: #fff3e0; border-left-color: var(--orange);">
+                <h4 style="color: var(--orange-dark);">Lección 2.3: Gestión del Cambio</h4>
+                <p>Cómo comunicar a los stakeholders (jefes, pares, auditoría) que la IA libera tiempo para tareas de mayor valor estratégico.</p>
+            </div>
+
+            <h3 style="color: var(--orange-dark); font-family: Montserrat; margin: 25px 0 15px;">🛠️ Actividades Presenciales</h3>
+
+            <div class="activity-box">
+                <h4>Clínica de Prompts en Pizarra (40 min)</h4>
+                <p>El facilitador escribe un "prompt pésimo" en el pizarrón (ej. "Hazme un reporte de tesorería"). Los equipos tienen 10 minutos para reescribirlo en sus pizarrones usando C.R.E.F.O. Se proyectan los mejores y se ejecutan en vivo para ver la diferencia abismal en los resultados.</p>
+            </div>
+
+            <div class="activity-box">
+                <h4>Carrusel de Herramientas (60 min)</h4>
+                <p>Se arman 4 estaciones en el salón (una para Qwen, una para ChatGPT, una para Claude, una para Gemini). Los equipos rotan cada 15 minutos resolviendo el mismo problema administrativo complejo (ej. redactar una política de viáticos o analizar un texto legal). Al final, comparan en grupo qué herramienta "comprendió" mejor la comunicación.</p>
+            </div>
+
+            <div class="activity-box">
+                <h4>Role-Play "Véndele la IA a tu Director" (30 min)</h4>
+                <p>En parejas, un participante actúa como un Director escéptico que teme por la seguridad y el rendimiento, y el otro debe "venderle" la idea de usar IA para un proceso específico, enfocándose en mitigación de riesgos y mejora de KPIs.</p>
+            </div>
+
+            <h3 style="color: var(--orange-dark); font-family: Montserrat; margin: 25px 0 15px;">✅ Knowledge Check: "Prompt Poker"</h3>
+            <p>Cada participante redacta un prompt complejo para su día a día. Lo intercambia con el compañero de al lado. El compañero debe leerlo y calificarlo del 1 al 5 en "Claridad de Comunicación". Si saca menos de 4, debe iterarlo hasta que sea infalible.</p>
+
+            <div class="deliverable-box">
+                <h4>📌 Entregable: El "Playbook" de Prompts (Físico/Digital)</h4>
+                <p>Cada equipo comienza a redactar su "Playbook" (Manual de jugadas). Deben dejar documentados y probados 5 "Mega-Prompts" maestros que resolverán tareas recurrentes de su departamento, listos para ser compartidos con el resto de la empresa.</p>
+            </div>
+        </div>
+
+        <!-- MÓDULO 3 -->
+        <div class="section" style="border-left-color: var(--green-dark);">
+            <h2 class="section-title">🟩 MÓDULO 3: IMPLEMENTAR</h2>
+            <p style="font-size: 1.1em; margin-bottom: 15px;"><strong>Rediseño de Flujos y Rendimiento</strong> | Duración: 3 Horas</p>
+            <p style="margin-bottom: 20px;"><strong>Enfoque:</strong> Integración Estratégica, Humano en el Bucle y Proyecto Final</p>
+
+            <div class="module-card mod3">
+                <h3>🎯 Objetivos del Módulo</h3>
+                <ul style="margin-left: 20px;">
+                    <li>Identificar cuellos de botella administrativos y rediseñar flujos de trabajo integrando la IA.</li>
+                    <li>Establecer puntos de control (Human-in-the-Loop) para garantizar la calidad y el cumplimiento.</li>
+                    <li>Definir cómo se medirá el rendimiento (KPIs) post-implementación.</li>
+                </ul>
+            </div>
+
+            <h3 style="color: var(--green-dark); font-family: Montserrat; margin: 25px 0 15px;">📚 Lecciones</h3>
+            
+            <div class="lesson-box">
+                <h4>Lección 3.1: Matriz de Oportunidad (Valor vs. Fricción)</h4>
+                <p>Cómo decidir qué procesos automatizar, cuáles aumentar con IA y cuáles dejar 100% humanos.</p>
+            </div>
+
+            <div class="lesson-box">
+                <h4>Lección 3.2: El Humano en el Bucle (HITL)</h4>
+                <p>Diseño de Checkpoints obligatorios. Dónde debe intervenir el contador, el tesorero o el abogado para validar la "alucinación" o el sesgo de la IA.</p>
+            </div>
+
+            <div class="lesson-box">
+                <h4>Lección 3.3: Nuevos KPIs de Rendimiento</h4>
+                <p>Transición de medir "horas trabajadas" a medir "calidad del output, velocidad de respuesta y toma de decisiones estratégicas".</p>
+            </div>
+
+            <h3 style="color: var(--green-dark); font-family: Montserrat; margin: 25px 0 15px;">🛠️ Actividades Presenciales</h3>
+
+            <div class="activity-box">
+                <h4>Mapeo de Procesos con Post-its (60 min)</h4>
+                <p>Usando las paredes o mesas grandes, los equipos dibujan su proceso actual más doloroso con post-its. Luego, deben insertar post-its de otro color donde entra la IA, y post-its de "Alerta" donde entra el Humano a validar.</p>
+            </div>
+
+            <div class="activity-box">
+                <h4>Simulacro de Crisis "La Alucinación Millonaria" (45 min)</h4>
+                <p>El facilitador entrega a cada equipo un reporte financiero o legal generado por IA que contiene un error sutil pero catastrófico (ej. una fórmula de Excel mal interpretada o un artículo de ley inventado). Los equipos deben rastrear el error y diseñar el Checkpoint de control que hubiera evitado que ese documento llegara a la Dirección General.</p>
+            </div>
+
+            <h3 style="color: var(--green-dark); font-family: Montserrat; margin: 25px 0 15px;">✅ Knowledge Check: Matriz de Decisión Rápida</h3>
+            <p>El facilitador menciona 5 tareas al azar. Los equipos deben gritar o levantar la mano para clasificarlas en:</p>
+            <ul style="margin-left: 20px; margin-top: 10px;">
+                <li><strong>"Automatizar ciegamente"</strong> (Nunca)</li>
+                <li><strong>"Aumentar con IA + Revisión Humana"</strong> (Casi siempre)</li>
+                <li><strong>"Ignorar IA"</strong> (Tareas de alta empatía o juicio ético puro)</li>
+            </ul>
+        </div>
+
+        <!-- PROYECTO FINAL -->
+        <div class="section" style="border-left-color: var(--orange-dark);">
+            <h2 class="section-title">🏆 PROYECTO FINAL (CAPSTONE)</h2>
+            <p style="font-size: 1.1em; margin-bottom: 15px;"><strong>"El Blueprint de Transformación"</strong> | Duración: 60 minutos</p>
+
+            <div style="background: linear-gradient(135deg, var(--green-dark), var(--blue-dark)); color: white; padding: 25px; border-radius: 15px; margin-bottom: 25px;">
+                <h3 style="font-family: Montserrat; font-size: 1.3em; margin-bottom: 15px; text-align: center;">Dinámica de Presentación</h3>
+                <p style="text-align: center; font-size: 1em;">Los últimos 60 minutos de la Sesión 3 se dedican a la estructuración y presentación (Pitch) del Proyecto Final ante el facilitador y, si es posible, ante un invitado de la Dirección General o de TI/Compliance.</p>
+            </div>
+
+            <h3 style="color: var(--orange-dark); font-family: Montserrat; margin: 25px 0 15px;">📋 Estructura del Blueprint (5 Componentes)</h3>
+
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Componente</th>
+                            <th>Pregunta Clave</th>
+                            <th>Ejemplo</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>1</strong></td>
+                            <td><strong>El Dolor (The Pain)</strong></td>
+                            <td>¿Qué proceso actual consume tiempo, es propenso a errores o genera fricción?</td>
+                            <td>"Conciliación bancaria manual toma 3 días"</td>
+                        </tr>
+                        <tr>
+                            <td><strong>2</strong></td>
+                            <td><strong>El Flujo Rediseñado (The Workflow)</strong></td>
+                            <td>Diagrama visual de cómo fluirá la información.</td>
+                            <td>Entrada → Anonimización → Claude → Checkpoint Humano → Reporte</td>
+                        </tr>
+                        <tr>
+                            <td><strong>3</strong></td>
+                            <td><strong>Selección de Arsenal</strong></td>
+                            <td>¿Qué herramienta(s) usarán y por qué?</td>
+                            <td>"Claude por su precisión en análisis financiero"</td>
+                        </tr>
+                        <tr>
+                            <td><strong>4</strong></td>
+                            <td><strong>Blindaje (Compliance)</strong></td>
+                            <td>¿Cómo garantizan que no hay fuga de datos sensibles?</td>
+                            <td>"Ofuscación de RFC y CLABE antes de procesar"</td>
+                        </tr>
+                        <tr>
+                            <td><strong>5</strong></td>
+                            <td><strong>Métrica de Éxito (KPI)</strong></td>
+                            <td>¿Cómo medirán que esto mejoró el rendimiento a los 30 días?</td>
+                            <td>"Reducción de 3 días a 4 horas en conciliación"</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h3 style="color: var(--orange-dark); font-family: Montserrat; margin: 25px 0 15px;">🎉 Cierre del Programa</h3>
+            
+            <div class="activity-box">
+                <h4>Gallery Walk (15 min)</h4>
+                <p>Todos los rotafilos se pegan en las paredes. Los participantes hacen un recorrido de galería dejando post-its con felicitaciones o preguntas en los proyectos de otros departamentos.</p>
+            </div>
+
+            <div class="activity-box">
+                <h4>Entrega de Certificados / Badges Físicos (10 min)</h4>
+                <p>Cada participante recibe su certificado <strong>"AI Strategy Champion - Grupo SIBRÜ"</strong>.</p>
+            </div>
+
+            <div class="activity-box">
+                <h4>Compromiso a 30 Días (5 min)</h4>
+                <p>Cada equipo se lleva su Blueprint y se agenda una reunión de seguimiento a un mes para medir el ROI (Retorno de Inversión) de la implementación.</p>
+            </div>
+        </div>
+
+        <!-- Inversión y ROI -->
+        <div class="section">
+            <h2 class="section-title">💰 Inversión y ROI Esperado</h2>
+            
+            <div class="charts-grid">
+                <div class="chart-container">
+                    <div class="chart-title">Distribución de Inversión por Módulo</div>
+                    <canvas id="inversionChart"></canvas>
+                </div>
+                <div class="chart-container">
+                    <div class="chart-title">Proyección de ROI (12 meses)</div>
+                    <canvas id="roiChart"></canvas>
+                </div>
+            </div>
+
+            <div class="kpi-grid">
+                <div class="kpi-card">
+                    <div>Inversión Total</div>
+                    <div class="kpi-value">$85K</div>
+                    <div>Por cohorte (20-30 pax)</div>
+                </div>
+                <div class="kpi-card orange">
+                    <div>Ahorro Anual Estimado</div>
+                    <div class="kpi-value">$420K</div>
+                    <div>En horas-hombre recuperadas</div>
+                </div>
+                <div class="kpi-card blue">
+                    <div>Payback Period</div>
+                    <div class="kpi-value">2.5 meses</div>
+                    <div>Recuperación de inversión</div>
+                </div>
+                <div class="kpi-card" style="background: linear-gradient(135deg, #81C784, #66BB6A);">
+                    <div>ROI a 12 meses</div>
+                    <div class="kpi-value">394%</div>
+                    <div>Retorno sobre inversión</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Materiales y Logística -->
+        <div class="section" style="border-left-color: var(--blue-medium);">
+            <h2 class="section-title">📦 Materiales y Logística Requerida</h2>
+            
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Categoría</th>
+                            <th>Elementos</th>
+                            <th>Responsable</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Tecnología</strong></td>
+                            <td>Proyector, laptops/participantes, WiFi estable, cuentas en 4 plataformas IA</td>
+                            <td>TI / RH</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Material Didáctico</strong></td>
+                            <td>Pizarrones blancos, plumones, post-its de colores (5 colores), tarjetas de semáforo (rojo, amarillo, verde)</td>
+                            <td>Facilitador</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Documentación</strong></td>
+                            <td>Casos ficticios con datos sensibles, plantillas de Blueprint, certificados físicos</td>
+                            <td>Facilitador</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Espacio</strong></td>
+                            <td>Sala con capacidad para 6-8 mesas de 4-5 personas, paredes disponibles para rotafilos</td>
+                            <td>RH / Facilities</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Refreshments</strong></td>
+                            <td>Coffee break por sesión (3 sesiones)</td>
+                            <td>RH</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Cronograma -->
+        <div class="section">
+            <h2 class="section-title">📅 Cronograma de Implementación</h2>
+            <div class="chart-container" style="height: 300px;">
+                <div class="chart-title">Fases del Programa (Semanas 1-8)</div>
+                <canvas id="cronogramaChart"></canvas>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            <div style="font-family: Montserrat; font-size: 1.8em; font-weight: 800; margin-bottom: 10px;">GRUPO SIBRÜ</div>
+            <div style="font-size: 1.1em; margin-bottom: 15px;">Alimentamos Confianza</div>
+            <div style="opacity: 0.8; font-size: 0.85em;">
+                Programa AI-READY Organization | Agosto 2026<br>
+                Elaborado por: Sergio Isaac Alvarez Molina
+            </div>
+        </div>
+    </div>
+
+    <script>
+        Chart.defaults.font.family = "'Open Sans', sans-serif";
+        Chart.defaults.color = '#264653';
+
+        // Gráfica Competencias
+        new Chart(document.getElementById('competenciasChart'), {
+            type: 'radar',
+            data: {
+                labels: ['Alfabetización IA', 'Compliance', 'Prompting', 'Gestión Cambio', 'Rediseño Procesos', 'Medición KPIs'],
+                datasets: [{
+                    label: 'Nivel Esperado Post-Programa',
+                    data: [9, 8, 9, 7, 8, 8],
+                    backgroundColor: 'rgba(27, 94, 32, 0.2)',
+                    borderColor: '#1B5E20',
+                    borderWidth: 2,
+                    pointBackgroundColor: '#1B5E20'
+                }, {
+                    label: 'Nivel Actual Estimado',
+                    data: [3, 4, 2, 3, 4, 3],
+                    backgroundColor: 'rgba(244, 162, 97, 0.2)',
+                    borderColor: '#F4A261',
+                    borderWidth: 2,
+                    pointBackgroundColor: '#F4A261'
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { position: 'bottom', labels: { padding: 10, font: { size: 10 } } }
+                },
+                scales: {
+                    r: { beginAtZero: true, max: 10, ticks: { stepSize: 2 } }
+                }
+            }
+        });
+
+        // Gráfica Tiempo por Módulo
+        new Chart(document.getElementById('tiempoChart'), {
+            type: 'doughnut',
+            data: {
+                labels: ['Módulo 1: Comprender', 'Módulo 2: Comunicar', 'Módulo 3: Implementar'],
+                datasets: [{
+                    data: [33, 33, 34],
+                    backgroundColor: ['#264653', '#F4A261', '#1B5E20'],
+                    borderWidth: 3,
+                    borderColor: '#fff'
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { position: 'bottom', labels: { padding: 10, font: { size: 10 } } }
+                }
+            }
+        });
+
+        // Gráfica Inversión
+        new Chart(document.getElementById('inversionChart'), {
+            type: 'pie',
+            data: {
+                labels: ['Facilitación', 'Materiales', 'Tecnología', 'Logística', 'Certificación'],
+                datasets: [{
+                    data: [40, 15, 20, 15, 10],
+                    backgroundColor: ['#1B5E20', '#F4A261', '#264653', '#66BB6A', '#2A9D8F'],
+                    borderWidth: 3,
+                    borderColor: '#fff'
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { position: 'bottom', labels: { padding: 10, font: { size: 10 } } }
+                }
+            }
+        });
+
+        // Gráfica ROI
+        new Chart(document.getElementById('roiChart'), {
+            type: 'line',
+            data: {
+                labels: ['Mes 0', 'Mes 1', 'Mes 2', 'Mes 3', 'Mes 6', 'Mes 9', 'Mes 12'],
+                datasets: [{
+                    label: 'ROI Acumulado (%)',
+                    data: [-100, -50, 0, 50, 150, 250, 394],
+                    borderColor: '#1B5E20',
+                    backgroundColor: 'rgba(27, 94, 32, 0.1)',
+                    fill: true,
+                    tension: 0.4
+                }, {
+                    label: 'Punto de Equilibrio',
+                    data: [0, 0, 0, 0, 0, 0, 0],
+                    borderColor: '#F4A261',
+                    borderDash: [5, 5],
+                    fill: false
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { position: 'bottom', labels: { padding: 10, font: { size: 10 } } }
+                },
+                scales: {
+                    y: { beginAtZero: false, title: { display: true, text: 'ROI (%)' } }
+                }
+            }
+        });
+
+        // Gráfica Cronograma
+        new Chart(document.getElementById('cronogramaChart'), {
+            type: 'bar',
+            data: {
+                labels: ['Sem 1-2', 'Sem 3', 'Sem 4', 'Sem 5', 'Sem 6', 'Sem 7-8'],
+                datasets: [{
+                    label: 'Fase',
+                    data: [8, 6, 4, 6, 4, 8],
+                    backgroundColor: ['#264653', '#F4A261', '#1B5E20', '#F4A261', '#1B5E20', '#264653'],
+                    borderWidth: 0
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: { legend: { display: false } },
+                scales: {
+                    y: { beginAtZero: true, title: { display: true, text: 'Intensidad' } }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
