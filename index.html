@@ -3,38 +3,254 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Grupo SIBRÜ | Portal Estratégico 2026</title>
+    <title>Grupo SIBRÜ | Portal de Proyectos</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
     <style>
         :root {
             --green-dark: #1B5E20;
-            --green-light: #2E7D32;
+            --green-medium: #2E7D32;
+            --green-light: #66BB6A;
             --orange: #F4A261;
-            --red-mex: #E76F51;
+            --orange-dark: #E76F51;
+            --blue-dark: #264653;
+            --blue-medium: #2A9D8F;
             --black: #000000;
-            --gray-bg: #f0f2f5;
             --white: #ffffff;
+            --gray-bg: #f8f9fa;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
             font-family: 'Open Sans', sans-serif;
-            background-color: var(--gray-bg);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            padding: 20px;
+            background: linear-gradient(135deg, #f0f2f5 0%, #e2e8f0 100%);
+            color: var(--blue-dark);
+            line-height: 1.6;
         }
 
-        .menu-container {
-            background: var(--white);
-            width: 100%;
-            max-width: 700px;
-            border-radius: 25px;
-            overflow: hidden;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.12);
+        .container { max-width: 1200px; margin: 0 auto; padding: 40px 20px; }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, var(--green-dark) 0%, var(--blue-dark) 50%, var(--black) 100%);
+            color: var(--white);
+            padding: 60px 40px;
+            border-radius: 20px;
             text-align: center;
+            margin-bottom: 50px;
+            box-shadow: 0 10px 40px rgba(27, 94, 32, 0.3);
         }
 
+        .header h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 3em;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 15px;
+        }
+
+        .header .subtitle {
+            font-size: 1.3em;
+            color: var(--orange);
+            font-style: italic;
+            margin-bottom: 10px;
+        }
+
+        .header .tagline {
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+
+        /* Projects Grid */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+
+        .project-card {
+            background: var(--white);
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            transition: all 0.3s;
+            border-left: 6px solid var(--green-dark);
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+
+        .project-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
+
+        .project-card h3 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.4em;
+            color: var(--green-dark);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .project-card p {
+            font-size: 0.95em;
+            color: #666;
+            line-height: 1.5;
+        }
+
+        .project-card .icon {
+            font-size: 2em;
+        }
+
+        .project-card.nfl { border-left-color: var(--orange); }
+        .project-card.nfl h3 { color: var(--orange-dark); }
+        
+        .project-card.ia { border-left-color: var(--blue-medium); }
+        .project-card.ia h3 { color: var(--blue-dark); }
+
+        .project-card.congelados { border-left-color: var(--green-light); }
+        .project-card.congelados h3 { color: var(--green-medium); }
+
+        /* Section Title */
+        .section-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.8em;
+            color: var(--green-dark);
+            margin: 40px 0 25px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid var(--orange);
+        }
+
+        /* Footer */
+        .footer {
+            background: linear-gradient(135deg, var(--blue-dark), var(--black));
+            color: white;
+            padding: 40px;
+            border-radius: 20px;
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        .footer .brand {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2em;
+            font-weight: 800;
+            margin-bottom: 10px;
+        }
+
+        .footer .tagline {
+            font-size: 1.2em;
+            margin-bottom: 15px;
+            color: var(--orange);
+        }
+
+        .footer .copyright {
+            opacity: 0.8;
+            font-size: 0.9em;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header h1 { font-size: 2em; }
+            .projects-grid { grid-template-columns: 1fr; }
+            .container { padding: 20px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <h1>Grupo SIBRÜ</h1>
+            <div class="subtitle">Portal de Proyectos y Reportes</div>
+            <div class="tagline">Alimentamos Confianza</div>
+        </div>
+
+        <!-- Proyectos Estratégicos -->
+        <h2 class="section-title">🎯 Proyectos Estratégicos</h2>
+        <div class="projects-grid">
+            <a href="food_experience.html" class="project-card">
+                <h3><span class="icon">🍽️</span> SIBRÜ Food Experience</h3>
+                <p>Programa de desarrollo de mercado para productos de valor agregado. Activación con Simplot, Rich's y Bachoco durante la temporada de Fútbol Americano.</p>
+            </a>
+
+            <a href="nfl.html" class="project-card nfl">
+                <h3><span class="icon">🏈</span> SIBRÜ Touchdown Season</h3>
+                <p>Estrategia de comunicación y promociones durante la temporada de Fútbol Americano NFL 2026-2027. Del Kickoff al Super Bowl.</p>
+            </a>
+
+            <a href="Club-SIBRU.html" class="project-card">
+                <h3><span class="icon">🎯</span> CLUB SIBRÜ</h3>
+                <p>Programa de fidelización y beneficios para clientes. Construcción de relaciones a largo plazo y valor agregado.</p>
+            </a>
+        </div>
+
+        <!-- Capacitación y Desarrollo -->
+        <h2 class="section-title">📚 Capacitación y Desarrollo</h2>
+        <div class="projects-grid">
+            <a href="capacitacion_ia.html" class="project-card ia">
+                <h3><span class="icon">🤖</span> AI-READY Organization</h3>
+                <p>Programa de capacitación en IA Generativa para equipos administrativos. Alfabetización, prompting estratégico e implementación segura.</p>
+            </a>
+
+            <a href="capacitacion_congelados.html" class="project-card congelados">
+                <h3><span class="icon">🧊</span> Capacitación Congelados</h3>
+                <p>Programa de formación en productos congelados, manejo de inventarios y mejores prácticas de almacenamiento.</p>
+            </a>
+        </div>
+
+        <!-- Reportes Ejecutivos -->
+        <h2 class="section-title"> Reportes Ejecutivos</h2>
+        <div class="projects-grid">
+            <a href="simplot-reporte-ejecutivo-2026.html" class="project-card">
+                <h3><span class="icon"></span> Reporte Simplot 2026</h3>
+                <p>Análisis ejecutivo de gestión Simplot: desplazamiento, abasto y forecast Enero-Julio 2026. KPIs y proyecciones.</p>
+            </a>
+
+            <a href="reporte_ejecutivo.html" class="project-card">
+                <h3><span class="icon">📋</span> Reporte Ejecutivo</h3>
+                <p>Reporte ejecutivo general de operaciones y resultados. Análisis de desempeño y métricas clave del negocio.</p>
+            </a>
+
+            <a href="grafica-simplot-2026.html" class="project-card">
+                <h3><span class="icon"></span> Gráfica Simplot 2026</h3>
+                <p>Visualización de datos y métricas de desempeño Simplot. Análisis gráfico de tendencias y resultados.</p>
+            </a>
+        </div>
+
+        <!-- Herramientas y Recursos -->
+        <h2 class="section-title">️ Herramientas y Recursos</h2>
+        <div class="projects-grid">
+            <a href="gantt.html" class="project-card">
+                <h3><span class="icon">🗓️</span> Gantt de Actividades</h3>
+                <p>Cronograma visual de actividades y proyectos. Seguimiento de fechas, responsables y avances de agosto-septiembre 2026.</p>
+            </a>
+
+            <a href="impresoras.html" class="project-card">
+                <h3><span class="icon">️</span> Comparativa Impresoras</h3>
+                <p>Análisis comparativo de impresoras PVC: Evolis Badgy 100 vs Zebra ZC300 Dual. Costos, características y ROI.</p>
+            </a>
+
+            <a href="invitacion_proveedores.html" class="project-card">
+                <h3><span class="icon">📨</span> Invitación Proveedores</h3>
+                <p>Invitación y comunicación con proveedores estratégicos. Confirmación de participación y detalles de eventos.</p>
+            </a>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            <div class="brand">GRUPO SIBRÜ</div>
+            <div class="tagline">Alimentamos Confianza</div>
+            <div class="copyright">
+                © 2026 Grupo SIBRÜ. Todos los derechos reservados.<br>
+                Elaborado por: Sergio Isaac Alvarez Molina
+            </div>
+        </div>
+    </div>
+</body>
+</html>
