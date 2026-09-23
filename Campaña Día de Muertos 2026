@@ -1,0 +1,859 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Propuesta Día de Muertos 2026 | GRUPO SIBRÜ</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --green-dark: #1B5E20;
+            --green-medium: #2E7D32;
+            --orange: #F4A261;
+            --orange-dark: #E76F51;
+            --blue-dark: #264653;
+            --black: #000000;
+            --white: #ffffff;
+            --gray-bg: #f8f9fa;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            background: linear-gradient(135deg, #f0f2f5 0%, #e2e8f0 100%);
+            color: var(--blue-dark);
+            line-height: 1.6;
+        }
+
+        .container { max-width: 1100px; margin: 0 auto; padding: 20px; }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, var(--green-dark) 0%, var(--blue-dark) 50%, var(--black) 100%);
+            color: var(--white);
+            padding: 50px 30px;
+            border-radius: 20px;
+            text-align: center;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 40px rgba(27, 94, 32, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '🌺';
+            position: absolute;
+            top: 20px;
+            left: 30px;
+            font-size: 3em;
+            opacity: 0.3;
+        }
+
+        .header::after {
+            content: '🌺';
+            position: absolute;
+            bottom: 20px;
+            right: 30px;
+            font-size: 3em;
+            opacity: 0.3;
+        }
+
+        .header h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2.2em;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+        }
+
+        .header .subtitle {
+            font-size: 1.2em;
+            color: var(--orange);
+            font-style: italic;
+            margin-bottom: 15px;
+        }
+
+        .badge-version {
+            display: inline-block;
+            background: rgba(244, 162, 97, 0.3);
+            padding: 6px 15px;
+            border-radius: 50px;
+            font-size: 0.85em;
+            font-weight: 600;
+            border: 2px solid var(--orange);
+        }
+
+        /* Sections */
+        .section {
+            background: var(--white);
+            border-radius: 20px;
+            padding: 30px 25px;
+            margin-bottom: 25px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            border-left: 8px solid var(--green-dark);
+        }
+
+        .section-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.5em;
+            font-weight: 700;
+            color: var(--green-dark);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        /* KPI Cards */
+        .kpi-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .kpi-card {
+            background: linear-gradient(135deg, var(--green-dark), var(--green-medium));
+            color: white;
+            padding: 20px 15px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(27, 94, 32, 0.2);
+        }
+
+        .kpi-card.orange { background: linear-gradient(135deg, var(--orange), var(--orange-dark)); }
+        .kpi-card.blue { background: linear-gradient(135deg, var(--blue-dark), #2A9D8F); }
+
+        .kpi-value {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.8em;
+            font-weight: 800;
+            margin: 8px 0;
+        }
+
+        .kpi-label { font-size: 0.85em; opacity: 0.9; }
+        .kpi-sub { font-size: 0.75em; opacity: 0.75; margin-top: 5px; }
+
+        /* Concept Box */
+        .concept-box {
+            background: linear-gradient(135deg, #fff3e0, #faf0e6);
+            border-left: 6px solid var(--orange);
+            padding: 25px;
+            border-radius: 15px;
+            margin: 20px 0;
+        }
+
+        .concept-box h3 {
+            color: var(--orange-dark);
+            font-family: 'Montserrat', sans-serif;
+            margin-bottom: 10px;
+        }
+
+        /* Provider Box */
+        .provider-box {
+            background: linear-gradient(135deg, #e8f5e9, #f0f7f0);
+            border-left: 6px solid var(--green-dark);
+            padding: 25px;
+            border-radius: 15px;
+            margin: 20px 0;
+        }
+
+        .provider-box h3 {
+            color: var(--green-dark);
+            font-family: 'Montserrat', sans-serif;
+            margin-bottom: 15px;
+        }
+
+        .provider-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .provider-item {
+            background: white;
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+        }
+
+        .provider-item .name {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            color: var(--green-dark);
+            font-size: 1.1em;
+            margin-bottom: 5px;
+        }
+
+        .provider-item .role {
+            font-size: 0.85em;
+            color: #666;
+        }
+
+        /* Phase Cards */
+        .phase-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .phase-card {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            border-top: 5px solid;
+        }
+
+        .phase-card.phase1 { border-top-color: var(--green-dark); }
+        .phase-card.phase2 { border-top-color: var(--orange); }
+        .phase-card.phase3 { border-top-color: var(--blue-dark); }
+
+        .phase-card h3 {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--green-dark);
+            margin-bottom: 15px;
+            font-size: 1.2em;
+        }
+
+        .phase-card .phase-date {
+            display: inline-block;
+            background: var(--orange);
+            color: white;
+            padding: 3px 12px;
+            border-radius: 20px;
+            font-size: 0.75em;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        .phase-card ul {
+            margin-left: 20px;
+            font-size: 0.9em;
+        }
+
+        .phase-card li {
+            margin-bottom: 8px;
+        }
+
+        /* Tables */
+        .table-wrapper {
+            width: 100%;
+            overflow-x: auto;
+            margin: 20px 0;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 600px;
+            background: var(--white);
+        }
+
+        th {
+            background: linear-gradient(135deg, var(--green-dark), var(--blue-dark));
+            color: var(--white);
+            padding: 12px 10px;
+            text-align: left;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: 0.8em;
+        }
+
+        td { 
+            padding: 10px; 
+            border-bottom: 1px solid #eee;
+            font-size: 0.9em;
+        }
+
+        tr:nth-child(even) { background-color: #fafafa; }
+
+        /* Awards */
+        .awards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .award-card {
+            background: linear-gradient(135deg, var(--green-dark), var(--blue-dark));
+            color: white;
+            padding: 25px;
+            border-radius: 15px;
+            text-align: center;
+        }
+
+        .award-card .place {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2em;
+            margin-bottom: 10px;
+        }
+
+        .award-card .description {
+            font-size: 0.95em;
+            opacity: 0.9;
+        }
+
+        /* Budget */
+        .budget-box {
+            background: linear-gradient(135deg, var(--green-dark), var(--blue-dark));
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .budget-box h3 {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--orange);
+            margin-bottom: 15px;
+        }
+
+        .budget-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .budget-item {
+            background: rgba(255,255,255,0.1);
+            padding: 15px;
+            border-radius: 10px;
+        }
+
+        .budget-item .amount {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.5em;
+            font-weight: 800;
+            color: var(--orange);
+        }
+
+        /* Checklist */
+        .checklist {
+            background: var(--gray-bg);
+            padding: 25px;
+            border-radius: 15px;
+            margin: 20px 0;
+        }
+
+        .checklist ul {
+            list-style: none;
+        }
+
+        .checklist li {
+            padding: 10px 0 10px 30px;
+            position: relative;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .checklist li:last-child { border-bottom: none; }
+
+        .checklist li::before {
+            content: '☐';
+            position: absolute;
+            left: 0;
+            color: var(--green-dark);
+            font-size: 1.2em;
+            font-weight: 700;
+        }
+
+        /* Footer */
+        .footer {
+            background: linear-gradient(135deg, var(--blue-dark), var(--black));
+            color: white;
+            padding: 30px 20px;
+            border-radius: 20px;
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header h1 { font-size: 1.6em; }
+            .container { padding: 15px; }
+            .section { padding: 20px 15px; }
+            .kpi-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+
+        @media (max-width: 480px) {
+            .kpi-grid { grid-template-columns: 1fr; }
+            .header h1 { font-size: 1.3em; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <h1>Celebremos con los que ya no están</h1>
+            <div class="subtitle">Campaña Día de Muertos 2026</div>
+            <div class="badge-version">GRUPO SIBRÜ | Octubre - Noviembre 2026</div>
+        </div>
+
+        <!-- Resumen Ejecutivo -->
+        <div class="section">
+            <h2 class="section-title">📌 Resumen Ejecutivo</h2>
+            <p style="font-size: 1.05em; margin-bottom: 20px;">
+                Campaña que aprovecha la temporalidad de <strong>Día de Muertos</strong> y el alto apego emocional de los mexicanos a esta tradición para generar <strong>engagement viral</strong>, construir comunidad y aumentar ventas de octubre mediante una dinámica de participación en redes sociales.
+            </p>
+
+            <div class="kpi-grid">
+                <div class="kpi-card">
+                    <div class="kpi-label">Periodo</div>
+                    <div class="kpi-value">15 Oct - 10 Nov</div>
+                    <div class="kpi-sub">2026</div>
+                </div>
+                <div class="kpi-card orange">
+                    <div class="kpi-label">Inversión Facebook</div>
+                    <div class="kpi-value">$2,000</div>
+                    <div class="kpi-sub">MXN en pauta</div>
+                </div>
+                <div class="kpi-card blue">
+                    <div class="kpi-label">Premios</div>
+                    <div class="kpi-value">3 lugares</div>
+                    <div class="kpi-sub">Co-patrocinados</div>
+                </div>
+                <div class="kpi-card" style="background: linear-gradient(135deg, #81C784, #66BB6A);">
+                    <div class="kpi-label">Ticket mínimo</div>
+                    <div class="kpi-value">$300</div>
+                    <div class="kpi-sub">MXN en octubre</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Concepto Creativo -->
+        <div class="section" style="border-left-color: var(--orange);">
+            <h2 class="section-title">🎯 Concepto Creativo</h2>
+            
+            <div class="concept-box">
+                <h3>Insight Emocional</h3>
+                <p style="font-size: 1.05em;">Día de Muertos no es una fecha triste, es una <strong>celebración de la vida y la memoria</strong>. Las ofrendas son el acto de amor más profundo: preparar los platillos favoritos, poner las fotos, contar las historias. Es un momento donde las familias se reúnen alrededor de la memoria.</p>
+            </div>
+
+            <div class="concept-box" style="background: linear-gradient(135deg, #e8f5e9, #f0f7f0); border-left-color: var(--green-dark);">
+                <h3 style="color: var(--green-dark);">Propuesta de Valor</h3>
+                <p style="font-size: 1.05em;">SIBRÜ invita a las familias a <strong>compartir sus ofrendas</strong>, a contar las historias de quienes ya no están, y a celebrar juntos esta tradición que nos hace mexicanos. No es solo un concurso: es un <strong>homenaje colectivo</strong>.</p>
+            </div>
+
+            <div class="concept-box" style="background: linear-gradient(135deg, #e3f2fd, #f0f7fa); border-left-color: var(--blue-dark);">
+                <h3 style="color: var(--blue-dark);">Tono de Comunicación</h3>
+                <p style="font-size: 1.05em;">Respetuoso, emotivo, celebratorio, auténtico. La marca se posiciona como <strong>acompañante de la tradición</strong>, no como protagonista.</p>
+            </div>
+        </div>
+
+        <!-- Participación de Proveedores -->
+        <div class="section">
+            <h2 class="section-title">🤝 Co-Patrocinio de Proveedores</h2>
+            <p style="margin-bottom: 20px;">Invitación a proveedores seleccionados para co-patrocinar los premios y la campaña. En las pautas publicitarias se harán menciones de marcas participantes y en los regalos se mencionarán productos específicos de cada marca.</p>
+
+            <div class="provider-box">
+                <h3>Proveedores Sugeridos</h3>
+                <div class="provider-grid">
+                    <div class="provider-item">
+                        <div class="name">Simplot</div>
+                        <div class="role">Papas y congelados</div>
+                    </div>
+                    <div class="provider-item">
+                        <div class="name">Rich's</div>
+                        <div class="role">Toppings, postres, dips</div>
+                    </div>
+                    <div class="provider-item">
+                        <div class="name">Bachoco</div>
+                        <div class="role">Pollo y avícolas</div>
+                    </div>
+                </div>
+            </div>
+
+            <h3 style="color: var(--green-dark); font-family: Montserrat; margin: 25px 0 15px;">Beneficios para Proveedores</h3>
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Beneficio</th>
+                            <th>Descripción</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Visibilidad en pautas</strong></td>
+                            <td>Menciones de marca en todos los posts patrocinados de Facebook</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Asociación emocional</strong></td>
+                            <td>Marca vinculada a una tradición mexicana de alto valor sentimental</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Contenido co-branded</strong></td>
+                            <td>Productos mencionados explícitamente en los premios</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Alcance amplificado</strong></td>
+                            <td>Acceso a la audiencia de SIBRÜ y viceversa</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Reporte de resultados</strong></td>
+                            <td>Métricas de campaña compartidas post-evento</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h3 style="color: var(--green-dark); font-family: Montserrat; margin: 25px 0 15px;">Beneficios para SIBRÜ</h3>
+            <ul style="margin-left: 20px;">
+                <li>Reducción de costos de premios al compartirlos con proveedores</li>
+                <li>Mayor atractivo del premio al incluir múltiples marcas reconocidas</li>
+                <li>Amplificación de alcance mediante las redes de los proveedores</li>
+                <li>Fortalecimiento de relaciones B2B con aliados estratégicos</li>
+            </ul>
+        </div>
+
+        <!-- Mecánica del Concurso -->
+        <div class="section" style="border-left-color: var(--orange-dark);">
+            <h2 class="section-title">🎲 Mecánica del Concurso</h2>
+
+            <div class="phase-grid">
+                <div class="phase-card phase1">
+                    <span class="phase-date">FASE 1</span>
+                    <h3>Preparación</h3>
+                    <p style="font-size: 0.85em; color: #666; margin-bottom: 10px;">15 - 31 octubre 2026</p>
+                    <ul>
+                        <li><strong>Paso 1:</strong> Arma tu ofrenda en casa (debe incluir al menos un producto SIBRÜ o de proveedores)</li>
+                        <li><strong>Paso 2:</strong> Toma la fotografía (vertical, buena iluminación)</li>
+                        <li><strong>Requisito anti-fraude:</strong> Incluir tarjeta pequeña con frase que incluya la palabra <strong>SIBRÜ</strong> al final</li>
+                        <li><strong>Paso 3:</strong> Registro en Google Forms (foto + historia + ticket + datos)</li>
+                        <li><strong>Ticket mínimo:</strong> $300 MXN de compras en octubre</li>
+                    </ul>
+                </div>
+
+                <div class="phase-card phase2">
+                    <span class="phase-date">FASE 2</span>
+                    <h3>Publicación y Votación</h3>
+                    <p style="font-size: 0.85em; color: #666; margin-bottom: 10px;">31 oct - 3 nov 2026</p>
+                    <ul>
+                        <li><strong>31 oct 11:59pm:</strong> SIBRÜ sube todas las fotografías en publicaciones independientes</li>
+                        <li>Cada publicación incluye: foto + mini historia del participante</li>
+                        <li><strong>Hashtags:</strong> #CelebremosConSIBRÜ #OfrendaSIBRÜ</li>
+                        <li><strong>1-3 nov:</strong> Votación por reacciones (todas cuentan: 👍❤️😢😆)</li>
+                        <li><strong>4 nov 12:00pm:</strong> Facebook Live con anuncio de ganadores</li>
+                    </ul>
+                </div>
+
+                <div class="phase-card phase3">
+                    <span class="phase-date">FASE 3</span>
+                    <h3>Entrega y Cierre</h3>
+                    <p style="font-size: 0.85em; color: #666; margin-bottom: 10px;">5 - 10 noviembre 2026</p>
+                    <ul>
+                        <li><strong>Requisitos para reclamar:</strong></li>
+                        <li>Ticket de compra original</li>
+                        <li>Identificación oficial (INE)</li>
+                        <li>Evidencia de propiedad de cuenta Facebook</li>
+                        <li>Firma de carta de entrega y autorización de imagen</li>
+                        <li><strong>Plazo:</strong> 7 días hábiles (hasta 13 nov)</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="concept-box" style="margin-top: 25px;">
+                <h3>Requisitos de Participación</h3>
+                <ul style="margin-left: 20px;">
+                    <li>Ser mayor de 18 años</li>
+                    <li>Residir en <strong>Zona Metropolitana del Estado de México</strong> (Cuautitlán Izcalli, Tultitlán, Atizapán, Nicolás Romero)</li>
+                    <li>Ticket de compra de octubre 2026 (mínimo $300 MXN)</li>
+                    <li>Una participación por persona</li>
+                    <li>Cuenta de Facebook activa y pública</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Premios -->
+        <div class="section">
+            <h2 class="section-title">🏆 Premios</h2>
+            <p style="margin-bottom: 20px;">Estructura de premios co-patrocinados con proveedores (montos por definir):</p>
+
+            <div class="awards-grid">
+                <div class="award-card">
+                    <div class="place">🥇</div>
+                    <h3 style="font-family: Montserrat; margin-bottom: 10px;">Primer Lugar</h3>
+                    <div class="description">Paquete co-patrocinado<br>Simplot + Rich's + Bachoco<br>+ productos adicionales</div>
+                </div>
+                <div class="award-card" style="background: linear-gradient(135deg, var(--orange), var(--orange-dark));">
+                    <div class="place"></div>
+                    <h3 style="font-family: Montserrat; margin-bottom: 10px;">Segundo Lugar</h3>
+                    <div class="description">Paquete co-patrocinado<br>Simplot + Rich's<br>+ productos adicionales</div>
+                </div>
+                <div class="award-card" style="background: linear-gradient(135deg, #2A9D8F, var(--blue-dark));">
+                    <div class="place">🥉</div>
+                    <h3 style="font-family: Montserrat; margin-bottom: 10px;">Tercer Lugar</h3>
+                    <div class="description">Paquete co-patrocinado<br>Simplot<br>+ productos adicionales</div>
+                </div>
+            </div>
+
+            <div class="concept-box">
+                <h3>Cada premio incluirá:</h3>
+                <ul style="margin-left: 20px;">
+                    <li>Productos específicos de cada proveedor con su marca visible</li>
+                    <li>Etiqueta o tarjeta de agradecimiento mencionando a los co-patrocinadores</li>
+                    <li>Reconocimiento público en redes sociales de SIBRÜ y proveedores</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- KPIs -->
+        <div class="section" style="border-left-color: var(--blue-dark);">
+            <h2 class="section-title">📊 KPIs</h2>
+            
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>KPI</th>
+                            <th>Meta</th>
+                            <th>Cómo medir</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Participaciones registradas</strong></td>
+                            <td>Por definir</td>
+                            <td>Google Forms</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Alcance orgánico</strong></td>
+                            <td>Por definir</td>
+                            <td>Meta Business Suite</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Engagement rate</strong></td>
+                            <td>Por definir</td>
+                            <td>(Reacciones + comentarios + compartidos) / alcance</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Nuevos seguidores</strong></td>
+                            <td>Por definir</td>
+                            <td>Meta Business Suite</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Ventas octubre vs septiembre</strong></td>
+                            <td>Por definir</td>
+                            <td>Sistema de ventas</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Tickets registrados</strong></td>
+                            <td>Por definir</td>
+                            <td>Google Forms</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Contenido generado (UGC)</strong></td>
+                            <td>Por definir</td>
+                            <td>Publicaciones de Facebook</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Menciones de proveedores</strong></td>
+                            <td>Por definir</td>
+                            <td>Meta Business Suite</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Presupuesto -->
+        <div class="section">
+            <h2 class="section-title">💰 Presupuesto</h2>
+            
+            <div class="budget-box">
+                <h3>Inversión Total Estimada</h3>
+                <div class="budget-grid">
+                    <div class="budget-item">
+                        <div style="font-size: 0.85em; opacity: 0.8;">Campaña Facebook</div>
+                        <div class="amount">$2,000</div>
+                        <div style="font-size: 0.8em; opacity: 0.8;">MXN</div>
+                    </div>
+                    <div class="budget-item">
+                        <div style="font-size: 0.85em; opacity: 0.8;">Premios</div>
+                        <div class="amount">Por definir</div>
+                        <div style="font-size: 0.8em; opacity: 0.8;">Co-patrocinados</div>
+                    </div>
+                </div>
+                <p style="margin-top: 20px; font-size: 0.9em; opacity: 0.9;">* La inversión en premios se reduce significativamente gracias al co-patrocinio de los proveedores.</p>
+            </div>
+        </div>
+
+        <!-- Mejoras Adicionales -->
+        <div class="section" style="border-left-color: var(--orange);">
+            <h2 class="section-title">🎨 Actividades Adicionales</h2>
+
+            <div class="phase-grid">
+                <div class="phase-card phase1">
+                    <h3>🎓 Colaboración con Escuela de Arte</h3>
+                    <p>Estudiantes diseñan el marco del premio o material gráfico. Costo bajo, impacto alto en comunidad. Genera contenido adicional y fortalece vínculos locales.</p>
+                </div>
+
+                <div class="phase-card phase2">
+                    <h3>🎵 Spotify Playlist</h3>
+                    <p><strong>"Canciones para recordar"</strong> con música tradicional mexicana. Compartir en redes. Costo: $0, alto valor emocional.</p>
+                </div>
+
+                <div class="phase-card phase3">
+                    <h3>📖 Recetario Digital</h3>
+                    <p><strong>"Recetas que nos unen"</strong>: PDF con recetas de platillos favoritos mencionados en ofrendas. Genera leads (email) y contenido evergreen. Incluye productos de proveedores co-patrocinadores.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Cronograma -->
+        <div class="section">
+            <h2 class="section-title">📅 Cronograma</h2>
+            
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Fecha</th>
+                            <th>Acción</th>
+                            <th>Responsable</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>1-5 oct</strong></td>
+                            <td>Definir premios, bases, formulario + Invitar proveedores</td>
+                            <td>Marketing + Dirección Comercial</td>
+                        </tr>
+                        <tr>
+                            <td><strong>6-10 oct</strong></td>
+                            <td>Confirmar proveedores + Diseño gráfico</td>
+                            <td>Dirección Comercial + Diseño</td>
+                        </tr>
+                        <tr>
+                            <td><strong>11-14 oct</strong></td>
+                            <td>Prueba de formulario y validación</td>
+                            <td>Marketing</td>
+                        </tr>
+                        <tr>
+                            <td><strong>15 oct</strong></td>
+                            <td>Lanzamiento oficial de la campaña</td>
+                            <td>Marketing</td>
+                        </tr>
+                        <tr>
+                            <td><strong>15-31 oct</strong></td>
+                            <td>Registro de participantes</td>
+                            <td>Marketing</td>
+                        </tr>
+                        <tr>
+                            <td><strong>31 oct 11:59pm</strong></td>
+                            <td>Cierre de registro + publicación de fotos</td>
+                            <td>Marketing</td>
+                        </tr>
+                        <tr>
+                            <td><strong>1-3 nov</strong></td>
+                            <td>Votación + posts diarios de ofrendas</td>
+                            <td>Marketing</td>
+                        </tr>
+                        <tr>
+                            <td><strong>4 nov 12pm</strong></td>
+                            <td>Facebook Live con ganadores</td>
+                            <td>Dirección + Marketing</td>
+                        </tr>
+                        <tr>
+                            <td><strong>5-13 nov</strong></td>
+                            <td>Entrega de premios</td>
+                            <td>Operaciones</td>
+                        </tr>
+                        <tr>
+                            <td><strong>10 nov</strong></td>
+                            <td>Post de cierre y agradecimiento</td>
+                            <td>Marketing</td>
+                        </tr>
+                        <tr>
+                            <td><strong>15 nov</strong></td>
+                            <td>Reporte de resultados</td>
+                            <td>Marketing</td>
+                        </tr>
+                        <tr>
+                            <td><strong>20 nov</strong></td>
+                            <td>Envío de reporte a proveedores</td>
+                            <td>Marketing</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Checklist -->
+        <div class="section" style="border-left-color: var(--orange-dark);">
+            <h2 class="section-title">✅ Checklist Pre-Lanzamiento</h2>
+            
+            <div class="checklist">
+                <ul>
+                    <li>Bases legales</li>
+                    <li>Formulario de registro probado</li>
+                    <li>Premio definido y comprado</li>
+                    <li>Calendario editorial aprobado</li>
+                    <li>Presupuesto autorizado</li>
+                    <li>Equipo de moderación asignado (2 personas mínimo)</li>
+                    <li>Plan de respuesta a comentarios (FAQ)</li>
+                    <li>Autorización de uso de imagen en formulario</li>
+                    <li>Aviso de privacidad conforme a ley</li>
+                    <li>Cuenta de Facebook verificada y activa</li>
+                    <li>Meta Business Suite configurado para medir</li>
+                    <li>Invitaciones enviadas a proveedores co-patrocinadores</li>
+                    <li>Confirmación de aportaciones de proveedores</li>
+                    <li>Logos de proveedores obtenidos para publicaciones</li>
+                    <li>Acuerdos de co-patrocinio firmados (si aplica)</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Conclusión -->
+        <div class="section">
+            <h2 class="section-title">🎯 Conclusión y Recomendación</h2>
+            
+            <div style="background: linear-gradient(135deg, var(--green-dark), var(--blue-dark)); color: white; padding: 25px; border-radius: 15px; margin-bottom: 20px;">
+                <h3 style="font-family: Montserrat; margin-bottom: 15px; color: var(--orange);">¿Por qué esta campaña tiene alto potencial?</h3>
+                <ul style="margin-left: 20px;">
+                    <li>Aprovecha una tradición profundamente mexicana</li>
+                    <li>Genera contenido emocional auténtico que se comparte orgánicamente</li>
+                    <li>Vincula ventas con participación de forma no agresiva</li>
+                    <li>Construye comunidad alrededor de valores compartidos</li>
+                    <li>Es escalable: puede crecer cada año</li>
+                    <li>Fortalece alianzas B2B mediante co-patrocinio</li>
+                </ul>
+            </div>
+
+            <div class="concept-box">
+                <h3>Próximos Pasos Inmediatos</h3>
+                <ol style="margin-left: 20px;">
+                    <li>Definir los 3 premios en coordinación con proveedores</li>
+                    <li>Establecer metas concretas para cada KPI</li>
+                    <li>Revisar y aprobar bases legales</li>
+                    <li>Enviar invitaciones formales a proveedores seleccionados</li>
+                    <li>Crear el formulario de Google Forms</li>
+                    <li>Diseñar el calendario editorial detallado</li>
+                </ol>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            <div style="font-family: Montserrat; font-size: 1.8em; font-weight: 800; margin-bottom: 10px;">GRUPO SIBRÜ</div>
+            <div style="font-size: 1.1em; margin-bottom: 15px; color: var(--orange);">Alimentamos Confianza</div>
+            <div style="opacity: 0.8; font-size: 0.85em;">
+                Propuesta Campaña Día de Muertos 2026<br>
+                Elaborado por: Sergio Isaac Alvarez Molina
+            </div>
+        </div>
+    </div>
+</body>
+</html>
