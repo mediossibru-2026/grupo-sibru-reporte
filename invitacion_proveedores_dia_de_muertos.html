@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invitación Co-Patrocinio | Día de Muertos 2026 - GRUPO SIBRÜ</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --green-dark: #1B5E20;
+            --green-medium: #2E7D32;
+            --orange: #F4A261;
+            --orange-dark: #E76F51;
+            --blue-dark: #264653;
+            --black: #000000;
+            --white: #ffffff;
+            --gray-bg: #f8f9fa;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            background: linear-gradient(135deg, #f0f2f5 0%, #e2e8f0 100%);
+            color: var(--blue-dark);
+            line-height: 1.6;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: var(--white);
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, var(--green-dark) 0%, var(--blue-dark) 50%, var(--black) 100%);
+            color: var(--white);
+            padding: 50px 40px;
+            text-align: center;
+            position: relative;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 20px;
+            left: 30px;
+            font-size: 2.5em;
+            opacity: 0.3;
+        }
+
+        .header::after {
+            content: '🌺';
+            position: absolute;
+            bottom: 20px;
+            right: 30px;
+            font-size: 2.5em;
+            opacity: 0.3;
+        }
+
+        .logo-container {
+            display: inline-flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .logo-text {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 1.8em;
+            letter-spacing: 2px;
+        }
+
+        .header h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2em;
+            font-weight: 800;
+            margin-bottom: 10px;
+            color: var(--orange);
+        }
+
+        .header .subtitle {
+            font-size: 1.1em;
+            font-style: italic;
+            opacity: 0.9;
+        }
+
+        /* Content */
+        .content {
+            padding: 40px;
+        }
+
+        .section {
+            margin-bottom: 35px;
+        }
+
+        .section-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.4em;
+            font-weight: 700;
+            color: var(--green-dark);
+            margin-bottom: 15px;
+            padding-bottom: 8px;
+            border-bottom: 3px solid var(--orange);
+        }
+
+        .intro-text {
+            font-size: 1.05em;
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, #fff3e0, #faf0e6);
+            border-left: 5px solid var(--orange);
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+
+        .highlight-box h3 {
+            color: var(--orange-dark);
+            font-family: 'Montserrat', sans-serif;
+            margin-bottom: 10px;
+        }
+
+        /* Benefits Grid */
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .benefit-card {
+            background: var(--gray-bg);
+            padding: 20px;
+            border-radius: 10px;
+            border-top: 4px solid var(--green-dark);
+        }
+
+        .benefit-card h4 {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--green-dark);
+            margin-bottom: 8px;
+            font-size: 1em;
+        }
+
+        .benefit-card p {
+            font-size: 0.9em;
+            color: #555;
+        }
+
+        /* Timeline */
+        .timeline {
+            background: linear-gradient(135deg, #e8f5e9, #f0f7f0);
+            padding: 25px;
+            border-radius: 15px;
+            margin: 20px 0;
+        }
+
+        .timeline-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid rgba(27, 94, 32, 0.2);
+        }
+
+        .timeline-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .timeline-date {
+            background: var(--green-dark);
+            color: white;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            font-weight: 700;
+            margin-right: 15px;
+            white-space: nowrap;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .timeline-content {
+            flex: 1;
+        }
+
+        .timeline-content strong {
+            color: var(--green-dark);
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        /* CTA Box */
+        .cta-box {
+            background: linear-gradient(135deg, var(--green-dark), var(--blue-dark));
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            margin: 30px 0;
+        }
+
+        .cta-box h3 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.5em;
+            margin-bottom: 15px;
+            color: var(--orange);
+        }
+
+        .cta-box p {
+            margin-bottom: 20px;
+            font-size: 1.05em;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: var(--orange);
+            color: white;
+            padding: 15px 40px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 1.1em;
+            transition: all 0.3s;
+            border: 2px solid var(--orange);
+        }
+
+        .cta-button:hover {
+            background: transparent;
+            color: var(--orange);
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--gray-bg);
+            padding: 30px 40px;
+            text-align: center;
+            border-top: 3px solid var(--green-dark);
+        }
+
+        .footer .brand {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.5em;
+            font-weight: 800;
+            color: var(--green-dark);
+            margin-bottom: 10px;
+        }
+
+        .footer .contact {
+            font-size: 0.9em;
+            color: #666;
+            margin-top: 10px;
+        }
+
+        .footer .contact strong {
+            color: var(--green-dark);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header { padding: 40px 20px; }
+            .content { padding: 30px 20px; }
+            .header h1 { font-size: 1.5em; }
+            .benefits-grid { grid-template-columns: 1fr; }
+            .timeline-item { flex-direction: column; }
+            .timeline-date { margin-bottom: 8px; }
+        }
+
+        /* Print styles */
+        @media print {
+            body { background: white; padding: 0; }
+            .container { box-shadow: none; }
+            .cta-button { border: 2px solid var(--orange); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <div class="logo-container">
+                <div class="logo-text">GRUPO SIBRÜ</div>
+            </div>
+            <h1>Invitación a Co-Patrocinar</h1>
+            <div class="subtitle">Campaña Día de Muertos 2026</div>
+        </div>
+
+        <!-- Content -->
+        <div class="content">
+            <!-- Introducción -->
+            <div class="section">
+                <h2 class="section-title">Estimado Proveedor y Aliado Estratégico</h2>
+                <p class="intro-text">
+                    En <strong>GRUPO SIBRÜ</strong> nos enorgullece celebrar las tradiciones que nos hacen mexicanos, y este año queremos hacerlo de manera especial junto a ustedes.
+                </p>
+                <p class="intro-text">
+                    Les extendemos una cordial invitación para ser <strong>co-patrocinadores</strong> de nuestra campaña <strong>"Celebremos con los que ya no están"</strong>, una iniciativa que honra la tradición del Día de Muertos y conecta emocionalmente con miles de familias mexicanas.
+                </p>
+            </div>
+
+            <!-- Sobre la campaña -->
+            <div class="section">
+                <h2 class="section-title">Sobre la Campaña</h2>
+                <p class="intro-text">
+                    Del <strong>15 de octubre al 10 de noviembre de 2026</strong>, invitaremos a las familias de la Zona Metropolitana del Estado de México a compartir fotografías de sus ofrendas en Facebook, contando la historia del ser querido que homenajean.
+                </p>
+                
+                <div class="highlight-box">
+                    <h3>La Mecánica</h3>
+                    <p>Los participantes armarán su ofrenda en casa, tomarán una fotografía y la registrarán en nuestra plataforma. Las ofrendas se publicarán en Facebook para votación pública, y los 3 lugares más votados recibirán paquetes de productos de nuestros proveedores co-patrocinadores.</p>
+                </div>
+
+                <p class="intro-text">
+                    Esperamos alcanzar <strong>más de 500 participaciones</strong> y <strong>50,000 personas</strong> a través de contenido orgánico y pauta publicitaria en Facebook.
+                </p>
+            </div>
+
+            <!-- Beneficios -->
+            <div class="section">
+                <h2 class="section-title">Beneficios de Participar como Co-Patrocinador</h2>
+                
+                <div class="benefits-grid">
+                    <div class="benefit-card">
+                        <h4>Visibilidad en Pautas</h4>
+                        <p>Mención de su marca en todas las publicaciones patrocinadas de Facebook durante la campaña.</p>
+                    </div>
+                    
+                    <div class="benefit-card">
+                        <h4>Asociación Emocional</h4>
+                        <p>Su marca vinculada a una tradición mexicana de alto valor sentimental y cultural.</p>
+                    </div>
+                    
+                    <div class="benefit-card">
+                        <h4>Contenido Co-Branded</h4>
+                        <p>Sus productos mencionados explícitamente en los premios y publicaciones de ganadores.</p>
+                    </div>
+                    
+                    <div class="benefit-card">
+                        <h4>Alcance Amplificado</h4>
+                        <p>Acceso a la audiencia de SIBRÜ y posibilidad de compartir contenido en sus propias redes.</p>
+                    </div>
+                    
+                    <div class="benefit-card">
+                        <h4>Contenido UGC</h4>
+                        <p>Participantes incluirán sus productos en las ofrendas, generando contenido orgánico auténtico.</p>
+                    </div>
+                    
+                    <div class="benefit-card">
+                        <h4>Reporte de Resultados</h4>
+                        <p>Métricas completas de la campaña compartidas post-evento para evaluar el impacto.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Qué esperamos -->
+            <div class="section">
+                <h2 class="section-title">Qué Esperamos de Usted</h2>
+                <p class="intro-text">
+                    Solicitamos su apoyo con <strong>productos de su marca</strong> para conformar los paquetes de premios que recibirán los 3 ganadores:
+                </p>
+                
+                <ul style="margin-left: 20px; margin-bottom: 20px;">
+                    <li><strong>1er lugar:</strong> Paquete con productos de todos los co-patrocinadores</li>
+                    <li><strong>2do lugar:</strong> Paquete con productos de la mayoría de co-patrocinadores</li>
+                    <li><strong>3er lugar:</strong> Paquete con productos seleccionados</li>
+                </ul>
+                
+                <p class="intro-text">
+                    La aportación específica de productos se definirá en coordinación con cada proveedor, según su disponibilidad y portafolio.
+                </p>
+            </div>
+
+            <!-- Cronograma -->
+            <div class="section">
+                <h2 class="section-title">Cronograma Clave</h2>
+                
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-date">1-5 Oct</div>
+                        <div class="timeline-content">
+                            <strong>Confirmación de participación</strong> y definición de aportación de productos
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-date">6-10 Oct</div>
+                        <div class="timeline-content">
+                            <strong>Entrega de productos</strong> para premios y logos para material gráfico
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-date">15 Oct</div>
+                        <div class="timeline-content">
+                            <strong>Lanzamiento oficial</strong> de la campaña en redes sociales
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-date">31 Oct</div>
+                        <div class="timeline-content">
+                            <strong>Cierre de registros</strong> y publicación de ofrendas en Facebook
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-date">4 Nov</div>
+                        <div class="timeline-content">
+                            <strong>Anuncio de ganadores</strong> en Facebook Live con mención a co-patrocinadores
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-date">20 Nov</div>
+                        <div class="timeline-content">
+                            <strong>Envío de reporte</strong> con resultados y métricas de la campaña
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CTA -->
+            <div class="cta-box">
+                <h3>¿Le interesa participar?</h3>
+                <p>Confirme su participación antes del <strong>5 de octubre de 2026</strong> para incluir su marca en el lanzamiento oficial de la campaña.</p>
+            </div>
+
+            <!-- Cierre -->
+            <div class="section">
+                <p class="intro-text">
+                    Estamos convencidos de que esta campaña representa una oportunidad única para fortalecer la presencia de su marca en el mercado local, asociándola con valores culturales profundos y generando una conexión emocional auténtica con los consumidores.
+                </p>
+                <p class="intro-text">
+                    Quedamos a su disposición para resolver cualquier duda y coordinar los detalles de su participación.
+                </p>
+                <p class="intro-text" style="margin-top: 30px;">
+                    Atentamente,<br>
+                    <strong>Marketing</strong><br>
+                    GRUPO SIBRÜ
+                </p>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            <div class="brand">GRUPO SIBRÜ</div>
+            <div style="color: var(--orange); font-style: italic; margin-bottom: 15px;">Alimentamos Confianza</div>
+            <div class="contact">
+                <strong>Contacto:</strong>Tel: 56 5577 9597<br>
+                Cuautitlán Izcalli, Estado de México
+            </div>
+        </div>
+    </div>
+</body>
+</html>
