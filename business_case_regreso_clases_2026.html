@@ -1,0 +1,1438 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Business Case - Campaña Regreso a Clases Rich's 2026 | GRUPO SIBRÜ</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --green-dark: #1B5E20;
+    --green-medium: #2E7D32;
+    --orange: #F4A261;
+    --orange-dark: #E76F51;
+    --blue-dark: #264653;
+    --blue-medium: #2A9D8F;
+    --black: #1A1A1A;
+    --white: #ffffff;
+    --gray-bg: #f8f9fa;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Open Sans', sans-serif;
+    background: linear-gradient(135deg, #f0f2f5 0%, #e2e8f0 100%);
+    color: var(--blue-dark);
+    line-height: 1.6;
+  }
+
+  .container { max-width: 1200px; margin: 0 auto; padding: 30px 20px; }
+
+  /* Cover Page */
+  .cover {
+    background: linear-gradient(135deg, var(--green-dark) 0%, var(--blue-dark) 50%, var(--black) 100%);
+    color: white;
+    padding: 80px 40px;
+    border-radius: 20px;
+    text-align: center;
+    margin-bottom: 30px;
+    box-shadow: 0 15px 50px rgba(27, 94, 32, 0.4);
+    position: relative;
+    overflow: hidden;
+    min-height: 500px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .cover::before {
+    content: '🎒';
+    position: absolute;
+    top: 30px;
+    right: 40px;
+    font-size: 5em;
+    opacity: 0.15;
+  }
+
+  .cover::after {
+    content: '';
+    position: absolute;
+    bottom: 30px;
+    left: 40px;
+    font-size: 5em;
+    opacity: 0.15;
+  }
+
+  .cover-logo {
+    display: inline-flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 30px;
+    justify-content: center;
+  }
+
+  .cover-logo-mark {
+    width: 70px;
+    height: 70px;
+    background: rgba(255,255,255,0.15);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 900;
+    font-size: 16px;
+    border: 3px solid var(--orange);
+  }
+
+  .cover-logo-text {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 800;
+    font-size: 2em;
+    letter-spacing: 3px;
+  }
+
+  .cover h1 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 2.8em;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 15px;
+    line-height: 1.1;
+  }
+
+  .cover .subtitle {
+    font-size: 1.3em;
+    color: var(--orange);
+    font-style: italic;
+    margin-bottom: 25px;
+    font-weight: 600;
+  }
+
+  .cover-badge {
+    display: inline-block;
+    background: var(--orange);
+    color: white;
+    padding: 10px 30px;
+    border-radius: 50px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 800;
+    font-size: 0.9em;
+    letter-spacing: 2px;
+    margin-bottom: 30px;
+  }
+
+  .cover-meta {
+    font-size: 1em;
+    opacity: 0.9;
+    line-height: 1.8;
+  }
+
+  .cover-meta strong {
+    color: var(--orange);
+  }
+
+  /* Sections */
+  .section {
+    background: var(--white);
+    border-radius: 20px;
+    padding: 35px 30px;
+    margin-bottom: 25px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+    border-left: 8px solid var(--green-dark);
+  }
+
+  .section-title {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.6em;
+    font-weight: 800;
+    color: var(--green-dark);
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 3px solid var(--orange);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .section-subtitle {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.2em;
+    font-weight: 700;
+    color: var(--blue-dark);
+    margin: 25px 0 12px;
+  }
+
+  .content {
+    font-size: 1em;
+    line-height: 1.7;
+    color: var(--black);
+  }
+
+  .content p {
+    margin-bottom: 15px;
+  }
+
+  .content ul {
+    margin-left: 20px;
+    margin-bottom: 15px;
+  }
+
+  .content ul li {
+    margin-bottom: 8px;
+    padding-left: 5px;
+  }
+
+  .content ol {
+    margin-left: 20px;
+    margin-bottom: 15px;
+  }
+
+  .content ol li {
+    margin-bottom: 8px;
+    padding-left: 5px;
+  }
+
+  /* KPI Cards */
+  .kpi-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 18px;
+    margin: 25px 0;
+  }
+
+  .kpi-card {
+    background: linear-gradient(135deg, var(--green-dark), var(--green-medium));
+    color: white;
+    padding: 25px 20px;
+    border-radius: 15px;
+    text-align: center;
+    box-shadow: 0 5px 15px rgba(27, 94, 32, 0.2);
+    transition: transform 0.3s;
+  }
+
+  .kpi-card:hover { transform: translateY(-5px); }
+  .kpi-card.orange { background: linear-gradient(135deg, var(--orange), var(--orange-dark)); }
+  .kpi-card.blue { background: linear-gradient(135deg, var(--blue-dark), var(--blue-medium)); }
+  .kpi-card.dark { background: linear-gradient(135deg, var(--black), #333); }
+
+  .kpi-value {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 2.5em;
+    font-weight: 900;
+    margin: 10px 0;
+    line-height: 1;
+  }
+
+  .kpi-label {
+    font-size: 0.9em;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  .kpi-sub {
+    font-size: 0.8em;
+    opacity: 0.85;
+    margin-top: 8px;
+  }
+
+  /* Charts Grid */
+  .charts-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    margin: 25px 0;
+  }
+
+  .chart-container {
+    background: var(--gray-bg);
+    padding: 20px;
+    border-radius: 15px;
+    position: relative;
+    height: 320px;
+    border: 2px solid #e9ecef;
+  }
+
+  .chart-title {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1em;
+    font-weight: 700;
+    color: var(--blue-dark);
+    margin-bottom: 15px;
+    text-align: center;
+  }
+
+  /* Tables */
+  .table-wrapper {
+    width: 100%;
+    overflow-x: auto;
+    margin: 20px 0;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 600px;
+    background: var(--white);
+  }
+
+  th {
+    background: linear-gradient(135deg, var(--green-dark), var(--blue-dark));
+    color: var(--white);
+    padding: 12px 10px;
+    text-align: left;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 0.85em;
+  }
+
+  td { 
+    padding: 10px; 
+    border-bottom: 1px solid #eee;
+    font-size: 0.9em;
+  }
+
+  tr:nth-child(even) { background-color: #fafafa; }
+  tr.tot td { background: #f0f7f0 !important; font-weight: 700; }
+
+  /* Highlight Box */
+  .highlight-box {
+    background: linear-gradient(135deg, #fff3e0, #faf0e6);
+    border-left: 6px solid var(--orange);
+    padding: 25px;
+    border-radius: 12px;
+    margin: 20px 0;
+  }
+
+  .highlight-box h4 {
+    color: var(--orange-dark);
+    font-family: 'Montserrat', sans-serif;
+    margin-bottom: 10px;
+  }
+
+  /* Lessons Grid */
+  .lessons-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+    margin: 20px 0;
+  }
+
+  .lesson-card {
+    background: white;
+    padding: 25px;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+    border-left: 5px solid var(--green-dark);
+  }
+
+  .lesson-card h4 {
+    font-family: 'Montserrat', sans-serif;
+    color: var(--green-dark);
+    margin-bottom: 12px;
+    font-size: 1.1em;
+  }
+
+  .lesson-card ul {
+    margin-left: 18px;
+    font-size: 0.9em;
+  }
+
+  .lesson-card li {
+    margin-bottom: 8px;
+  }
+
+  /* CTA Box */
+  .cta-box {
+    background: linear-gradient(135deg, var(--green-dark), var(--blue-dark));
+    color: white;
+    padding: 35px;
+    border-radius: 15px;
+    text-align: center;
+    margin: 25px 0;
+  }
+
+  .cta-box h3 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.5em;
+    margin-bottom: 15px;
+    color: var(--orange);
+  }
+
+  .cta-box p {
+    font-size: 1.05em;
+    margin-bottom: 15px;
+  }
+
+  /* Footer */
+  .footer {
+    background: linear-gradient(135deg, var(--blue-dark), var(--black));
+    color: white;
+    padding: 40px 20px;
+    border-radius: 20px;
+    text-align: center;
+    margin-top: 30px;
+  }
+
+  .footer .brand {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 2em;
+    font-weight: 900;
+    margin-bottom: 10px;
+  }
+
+  .footer .tagline {
+    font-size: 1.2em;
+    margin-bottom: 15px;
+    color: var(--orange);
+  }
+
+  .footer .copyright {
+    opacity: 0.8;
+    font-size: 0.9em;
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .cover h1 { font-size: 2em; }
+    .cover .subtitle { font-size: 1.1em; }
+    .charts-grid { grid-template-columns: 1fr; }
+    .container { padding: 15px; }
+    .section { padding: 20px 15px; }
+    .kpi-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  @media (max-width: 480px) {
+    .kpi-grid { grid-template-columns: 1fr; }
+    .cover h1 { font-size: 1.6em; }
+  }
+
+  /* Print Styles */
+  @media print {
+    body { background: white; }
+    .container { padding: 10px; }
+    .section { box-shadow: none; page-break-inside: avoid; }
+    .cover { page-break-after: always; }
+  }
+</style>
+</head>
+<body>
+  <div class="container">
+    <!-- Cover Page -->
+    <div class="cover">
+      <div class="cover-logo">
+        <div class="cover-logo-mark">SIBRÜ</div>
+        <div class="cover-logo-text">GRUPO SIBRÜ</div>
+      </div>
+      <h1>Business Case</h1>
+      <div class="subtitle">Campaña "Regreso a Clases Rich's 2026"</div>
+      <div class="cover-badge">ESTRATEGIA DE ROTACIÓN DE PRODUCTOS</div>
+      <div class="cover-meta">
+        <strong>Vigencia:</strong> 17 agosto – 4 septiembre 2026 (3 semanas)<br>
+        <strong>Objetivo:</strong> Acelerar rotación de SKUs de baja velocidad<br>
+        <strong>Elaborado por:</strong> Dirección de Ventas y Marketing<br>
+        <strong>Presentado a:</strong> Dirección General
+      </div>
+    </div>
+
+    <!-- 1. Resumen Ejecutivo -->
+    <div class="section">
+      <h2 class="section-title">📌 1. Resumen Ejecutivo</h2>
+      <div class="content">
+        <p>La campaña <strong>"Regreso a Clases Rich's 2026"</strong> es una estrategia de activación comercial diseñada para aprovechar la temporada escolar y acelerar la rotación de los cuatro SKUs más lentos del portafolio Rich's: <strong>Bellini Pastel Imposible, On Top Baileys, Mini Pizza y Tres Riches Baileys</strong>.</p>
+        
+        <p>La mecánica amarra la entrega de <strong>110 promocionales ya disponibles en inventario</strong> (sin compra adicional) a la compra de paquetes que incluyen estos productos de impulso. Con descuento topado, costo máximo controlado y sin inversión en medios, la campaña busca generar <strong>venta extra de $8,850 MXN en 3 semanas</strong> con un costo de descuento máximo de ≈$2,380 MXN.</p>
+
+        <div class="highlight-box">
+          <h4>Resultado Esperado</h4>
+          <p style="margin-bottom: 0;"><strong>3-4× la rotación</strong> de los cuatro SKUs más lentos, sin subsidiar productos que ya se venden solos, con metas medibles cada semana y riesgo financiero cerrado.</p>
+        </div>
+
+        <div class="kpi-grid">
+          <div class="kpi-card">
+            <div class="kpi-label">Promocionales Disponibles</div>
+            <div class="kpi-value">110</div>
+            <div class="kpi-sub">piezas en inventario (sin compra)</div>
+          </div>
+          <div class="kpi-card orange">
+            <div class="kpi-label">Impulsos Movibles</div>
+            <div class="kpi-value">200</div>
+            <div class="kpi-sub">unidades con redención completa</div>
+          </div>
+          <div class="kpi-card blue">
+            <div class="kpi-label">Venta Extra Meta</div>
+            <div class="kpi-value">+$8,850</div>
+            <div class="kpi-sub">MXN en 3 semanas</div>
+          </div>
+          <div class="kpi-card dark">
+            <div class="kpi-label">Costo Máximo Descuento</div>
+            <div class="kpi-value">≈$2,380</div>
+            <div class="kpi-sub">MXN (tope cerrado)</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2. Contexto y Justificación -->
+    <div class="section" style="border-left-color: var(--orange);">
+      <h2 class="section-title"> 2. Antecedentes y Justificación</h2>
+      <div class="content">
+        <h3 class="section-subtitle">2.1 Análisis de Rotación (Enero - Julio 2026)</h3>
+        <p>De enero a julio de 2026, la rotación se concentró en tres productos líderes, mientras cuatro SKUs quedaron por debajo del 15% del ritmo del líder. La temporada escolar ofrece el contexto ideal: los productos salados y de porción individual son exactamente lo que se consume en loncheras y recreos.</p>
+
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th>SKU</th>
+                <th>Uds Ene-Jul</th>
+                <th>Promedio Mensual</th>
+                <th>Precio Unitario</th>
+                <th>Rol en Campaña</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Dedos de Queso pieza</strong></td>
+                <td>1,057</td>
+                <td>151</td>
+                <td>$330</td>
+                <td>Gancho</td>
+              </tr>
+              <tr>
+                <td><strong>On Top Original</strong></td>
+                <td>894</td>
+                <td>128</td>
+                <td>$85</td>
+                <td>Gancho</td>
+              </tr>
+              <tr>
+                <td><strong>Glasscake Triple Chocolate</strong></td>
+                <td>554</td>
+                <td>79</td>
+                <td>$45</td>
+                <td>Gancho</td>
+              </tr>
+              <tr>
+                <td><strong>Glasscake Pay de Limón</strong></td>
+                <td>459</td>
+                <td>66</td>
+                <td>$45</td>
+                <td>Gancho</td>
+              </tr>
+              <tr>
+                <td><strong>Glasscake 3 Leches</strong></td>
+                <td>303</td>
+                <td>43</td>
+                <td>$45</td>
+                <td>Apoyo</td>
+              </tr>
+              <tr>
+                <td><strong>Bellini Pastel Imposible</strong></td>
+                <td>122</td>
+                <td>17</td>
+                <td>$50</td>
+                <td><strong>Impulso</strong></td>
+              </tr>
+              <tr>
+                <td><strong>On Top Baileys</strong></td>
+                <td>121</td>
+                <td>17</td>
+                <td>$105</td>
+                <td><strong>Impulso</strong></td>
+              </tr>
+              <tr>
+                <td><strong>Mini Pizza</strong></td>
+                <td>61</td>
+                <td>9</td>
+                <td>$170</td>
+                <td><strong>Impulso</strong></td>
+              </tr>
+              <tr>
+                <td><strong>Tres Riches Baileys</strong></td>
+                <td>32</td>
+                <td>5</td>
+                <td>$85</td>
+                <td><strong>Impulso</strong></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3 class="section-subtitle">2.2 Oportunidad de la Temporada Escolar</h3>
+        <ul>
+          <li><strong>Demanda natural:</strong> Los padres buscan opciones prácticas y deliciosas para loncheras</li>
+          <li><strong>Productos salados:</strong> Mini Pizza y Dedos de Queso son ideales para recreos</li>
+          <li><strong>Productos dulces:</strong> Bellini, On Top y Glasscake complementan la lonchera</li>
+          <li><strong>Porción individual:</strong> Todos los SKUs son de consumo individual, perfectos para niños</li>
+        </ul>
+
+        <div class="charts-grid">
+          <div class="chart-container">
+            <div class="chart-title">Rotación de SKUs (Ene-Jul 2026)</div>
+            <canvas id="rotacionChart"></canvas>
+          </div>
+          <div class="chart-container">
+            <div class="chart-title">Distribución por Rol en Campaña</div>
+            <canvas id="rolChart"></canvas>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3. Mecánica -->
+    <div class="section">
+      <h2 class="section-title">⚙️ 3. Mecánica de la Promoción</h2>
+      <div class="content">
+        <h3 class="section-subtitle">3.1 Escalera de Regalos</h3>
+        <p>La promoción utiliza una escalera de regalos por impulsos comprados, incentivando la compra de múltiples unidades:</p>
+        <ul>
+          <li><strong>1 impulso:</strong> Lapicera personalizada Rich's</li>
+          <li><strong>2 impulsos:</strong> Juego de cubiertos infantil</li>
+          <li><strong>5 impulsos:</strong> Lonchera térmica premium</li>
+        </ul>
+
+        <h3 class="section-subtitle">3.2 Reglas Clave</h3>
+        <ul>
+          <li><strong>Regla de oro:</strong> Sin producto de impulso en el ticket no se entrega regalo. Los productos gancho no generan regalo por sí solos.</li>
+          <li><strong>Loncheras (10 pzas):</strong> Entrega directa a los primeros 10 paquetes "Lonchera Llena", con contador visible en mostrador.</li>
+          <li><strong>Límites:</strong> Máximo 1 regalo del mismo nivel por cliente por semana.</li>
+          <li><strong>Flexibilidad:</strong> Dedos de Queso puede agregarse a cualquier paquete a precio regular sin cambiar el regalo.</li>
+        </ul>
+
+        <h3 class="section-subtitle">3.3 Estructura de Precios</h3>
+        <div class="highlight-box">
+          <h4>Dos Escenarios de Precio</h4>
+          <ul style="margin-bottom: 0;">
+            <li><strong>Precio 1:</strong> Precio de paquete con regalo (descuento 10-12%). Aplica cuando el cliente compra el paquete completo con promocional.</li>
+            <li><strong>Precio 2:</strong> Escenario de descuento más bajo (máx. 5%). Aplicable a compras sin promocional o canal institucional.</li>
+          </ul>
+        </div>
+
+        <div class="charts-grid">
+          <div class="chart-container">
+            <div class="chart-title">Distribución de Promocionales</div>
+            <canvas id="promocionalesChart"></canvas>
+          </div>
+          <div class="chart-container">
+            <div class="chart-title">Escalera de Regalos</div>
+            <canvas id="regalosChart"></canvas>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 4. Paquetes y Precios -->
+    <div class="section" style="border-left-color: var(--blue-medium);">
+      <h2 class="section-title">📦 4. Paquetes y Precios</h2>
+      <div class="content">
+        <p>Se diseñaron 7 paquetes estratégicos que combinan productos gancho con productos de impulso, cada uno con un regalo específico según el nivel de impulsos incluidos.</p>
+
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th>Paquete</th>
+                <th>Contenido</th>
+                <th>Impulsos</th>
+                <th>Regular</th>
+                <th>Precio 1 (10-12% desc)</th>
+                <th>Precio 2 (5% máx)</th>
+                <th>Regalo</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Recreo Dulce</strong></td>
+                <td>1 On Top Original + 1 Bellini</td>
+                <td>1</td>
+                <td>$135</td>
+                <td>$119 (11.9%)</td>
+                <td>$129 (4.4%)</td>
+                <td>Lapicera</td>
+              </tr>
+              <tr>
+                <td><strong>Mundo Baileys</strong></td>
+                <td>1 On Top Baileys + 1 Glasscake</td>
+                <td>1</td>
+                <td>$150</td>
+                <td>$135 (10.0%)</td>
+                <td>$143 (4.7%)</td>
+                <td>Lapicera</td>
+              </tr>
+              <tr>
+                <td><strong>Tres Riches + Postre</strong></td>
+                <td>1 Tres Riches Baileys + 1 Glasscake</td>
+                <td>1</td>
+                <td>$130</td>
+                <td>$115 (11.5%)</td>
+                <td>$124 (4.6%)</td>
+                <td>Lapicera</td>
+              </tr>
+              <tr>
+                <td><strong>Recreo Salado y Dulce</strong></td>
+                <td>1 Mini Pizza + 1 Bellini</td>
+                <td>2</td>
+                <td>$220</td>
+                <td>$195 (11.4%)</td>
+                <td>$209 (5.0%)</td>
+                <td>Jgo. cubiertos</td>
+              </tr>
+              <tr>
+                <td><strong>Merienda Completa</strong></td>
+                <td>1 On Top Baileys + 1 Bellini + 1 Glasscake/3 Leches</td>
+                <td>2</td>
+                <td>$200</td>
+                <td>$179 (10.5%)</td>
+                <td>$190 (5.0%)</td>
+                <td>Jgo. cubiertos</td>
+              </tr>
+              <tr>
+                <td><strong>Dúo Baileys</strong></td>
+                <td>1 On Top Baileys + 1 Tres Riches Baileys</td>
+                <td>2</td>
+                <td>$190</td>
+                <td>$169 (11.1%)</td>
+                <td>$181 (4.7%)</td>
+                <td>Jgo. cubiertos</td>
+              </tr>
+              <tr class="tot">
+                <td><strong>Lonchera Llena</strong></td>
+                <td>1 Mini Pizza + 1 On Top Baileys + 1 Tres Riches + 1 Bellini + 1 3 Leches</td>
+                <td><strong>5</strong></td>
+                <td>$455</td>
+                <td><strong>$405 (11.0%)</strong></td>
+                <td><strong>$433 (4.8%)</strong></td>
+                <td><strong>Lonchera</strong></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <p class="note" style="font-size: 0.9em; color: #666; font-style: italic; margin-top: 10px;">Glasscake "cualquiera" = Triple Chocolate, Pay de Limón o 3 Leches (todos a $45). Cambio permitido entre ellos al mismo precio.</p>
+
+        <div class="charts-grid">
+          <div class="chart-container">
+            <div class="chart-title">Comparativo de Precios por Paquete</div>
+            <canvas id="preciosChart"></canvas>
+          </div>
+          <div class="chart-container">
+            <div class="chart-title">Nivel de Impulsos por Paquete</div>
+            <canvas id="impulsosChart"></canvas>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 5. Impacto Potencial -->
+    <div class="section">
+      <h2 class="section-title">📊 5. Impacto Potencial (Redención Completa)</h2>
+      <div class="content">
+        <h3 class="section-subtitle">5.1 Movimiento de Impulsos por Regalo</h3>
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th>Regalo</th>
+                <th>Disponibles</th>
+                <th>Impulsos por Regalo</th>
+                <th>Uds de Impulso Movidas</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Lapicera</td>
+                <td>50</td>
+                <td>1</td>
+                <td>50</td>
+              </tr>
+              <tr>
+                <td>Juego de cubiertos</td>
+                <td>50</td>
+                <td>2</td>
+                <td>100</td>
+              </tr>
+              <tr>
+                <td>Lonchera</td>
+                <td>10</td>
+                <td>5</td>
+                <td>50</td>
+              </tr>
+              <tr class="tot">
+                <td><strong>Total</strong></td>
+                <td><strong>110</strong></td>
+                <td>—</td>
+                <td><strong>200</strong></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3 class="section-subtitle">5.2 Aporte Garantizado de las 10 Loncheras</h3>
+        <p>Las 10 loncheras garantizan el movimiento de 50 unidades de productos de impulso:</p>
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th>Mini Pizza</th>
+                <th>On Top Baileys</th>
+                <th>Tres Riches Baileys</th>
+                <th>Bellini</th>
+                <th>3 Leches</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="tot">
+                <td>10</td>
+                <td>10</td>
+                <td>10</td>
+                <td>10</td>
+                <td>10</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="charts-grid">
+          <div class="chart-container">
+            <div class="chart-title">Impulsos Movidos por Tipo de Regalo</div>
+            <canvas id="impulsosMovidosChart"></canvas>
+          </div>
+          <div class="chart-container">
+            <div class="chart-title">Aporte de Loncheras por Producto</div>
+            <canvas id="loncherasChart"></canvas>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 6. Meta de Impacto -->
+    <div class="section" style="border-left-color: var(--orange-dark);">
+      <h2 class="section-title">🎯 6. Meta de Impacto (Simulación a 3 Semanas)</h2>
+      <div class="content">
+        <p>La meta se alcanza con ~50% de redención del material; el tope de 110 regalos mantiene el costo cerrado.</p>
+
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th>Producto Impulso</th>
+                <th>Promedio Mensual</th>
+                <th>Base 3 Sem.</th>
+                <th>Meta 3 Sem.</th>
+                <th>Extra</th>
+                <th>Venta Extra</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Mini Pizza</strong></td>
+                <td>9</td>
+                <td>7</td>
+                <td>25</td>
+                <td>+18</td>
+                <td>+$3,060</td>
+              </tr>
+              <tr>
+                <td><strong>Bellini</strong></td>
+                <td>17</td>
+                <td>13</td>
+                <td>40</td>
+                <td>+27</td>
+                <td>+$1,350</td>
+              </tr>
+              <tr>
+                <td><strong>On Top Baileys</strong></td>
+                <td>17</td>
+                <td>13</td>
+                <td>40</td>
+                <td>+27</td>
+                <td>+$2,835</td>
+              </tr>
+              <tr>
+                <td><strong>Tres Riches Baileys</strong></td>
+                <td>5</td>
+                <td>3</td>
+                <td>15</td>
+                <td>+12</td>
+                <td>+$1,020</td>
+              </tr>
+              <tr>
+                <td><strong>Glasscake 3 Leches</strong></td>
+                <td>43</td>
+                <td>32</td>
+                <td>45</td>
+                <td>+13</td>
+                <td>+$585</td>
+              </tr>
+              <tr class="tot">
+                <td><strong>Total</strong></td>
+                <td>91</td>
+                <td>68</td>
+                <td>165</td>
+                <td>+97</td>
+                <td><strong>+$8,850</strong></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="highlight-box">
+          <h4>Incremento Esperado</h4>
+          <p style="margin-bottom: 0;"><strong>+142% sobre la base de 3 semanas</strong> (de 68 a 165 unidades), con un costo de descuento máximo de ≈$2,380 MXN.</p>
+        </div>
+
+        <div class="charts-grid">
+          <div class="chart-container">
+            <div class="chart-title">Meta vs Base por Producto (3 semanas)</div>
+            <canvas id="metaChart"></canvas>
+          </div>
+          <div class="chart-container">
+            <div class="chart-title">Venta Extra por Producto</div>
+            <canvas id="ventaExtraChart"></canvas>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 7. Inversión y Topes -->
+    <div class="section">
+      <h2 class="section-title">💰 7. Inversión y Topes de Costo</h2>
+      <div class="content">
+        <h3 class="section-subtitle">7.1 Estructura de Inversión</h3>
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th>Concepto</th>
+                <th>Detalle</th>
+                <th>Costo</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Promocionales</strong></td>
+                <td>50 lapiceras + 50 juegos de cubiertos + 10 loncheras = 110 piezas</td>
+                <td>$0 (ya en inventario)</td>
+              </tr>
+              <tr>
+                <td><strong>Descuento máximo Precio 1</strong></td>
+                <td>Redención completa con regalo</td>
+                <td>≈$2,380 MXN</td>
+              </tr>
+              <tr>
+                <td><strong>Descuento máximo Precio 2</strong></td>
+                <td>Redención completa sin regalo</td>
+                <td>≈$1,040 MXN</td>
+              </tr>
+              <tr>
+                <td><strong>Inversión en medios</strong></td>
+                <td>Difusión en mostrador, WhatsApp, material POP</td>
+                <td>$0</td>
+              </tr>
+              <tr class="tot">
+                <td><strong>Inversión Total Máxima</strong></td>
+                <td>—</td>
+                <td><strong>≈$2,380 MXN</strong></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="highlight-box">
+          <h4>ROI de la Campaña</h4>
+          <p style="margin-bottom: 0;">Con una inversión máxima de $2,380 MXN en descuentos y material ya en mano, se espera generar <strong>$8,850 MXN en venta extra</strong>, representando un <strong>ROI de 272%</strong>.</p>
+        </div>
+
+        <div class="charts-grid">
+          <div class="chart-container">
+            <div class="chart-title">Distribución de Inversión</div>
+            <canvas id="inversionChart"></canvas>
+          </div>
+          <div class="chart-container">
+            <div class="chart-title">ROI Esperado</div>
+            <canvas id="roiChart"></canvas>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 8. Seguimiento y KPIs -->
+    <div class="section" style="border-left-color: var(--blue-medium);">
+      <h2 class="section-title">📈 8. Seguimiento y KPIs</h2>
+      <div class="content">
+        <h3 class="section-subtitle">8.1 Métricas de Control Semanal</h3>
+        <ul>
+          <li><strong>Unidades de impulso por SKU vs meta:</strong> Corte semanal para verificar avance hacia las 165 uds al cierre</li>
+          <li><strong>Paquetes vendidos por nivel:</strong> Tracking de paquetes por tipo de regalo (lapicera, cubiertos, lonchera)</li>
+          <li><strong>Promocionales restantes:</strong> Contador visible de loncheras disponibles (10 pzas)</li>
+          <li><strong>% de redención del material:</strong> Monitoreo de cuántos regalos se han entregado vs los 110 disponibles</li>
+          <li><strong>Costo de descuento ejercido vs tope:</strong> Control de que no se exceda el tope de $2,380 MXN</li>
+          <li><strong>Ticket promedio de paquetes vs ticket base:</strong> Verificar que el ticket promedio de paquetes sea superior al ticket base del periodo</li>
+        </ul>
+
+        <h3 class="section-subtitle">8.2 Puntos de Control</h3>
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th>Semana</th>
+                <th>Fecha</th>
+                <th>Acción</th>
+                <th>Responsable</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Semana 1</strong></td>
+                <td>17-23 ago</td>
+                <td>Lanzamiento + primer corte de unidades</td>
+                <td>Ventas</td>
+              </tr>
+              <tr>
+                <td><strong>Semana 2</strong></td>
+                <td>24-30 ago</td>
+                <td>Corte intermedio + ajuste si es necesario</td>
+                <td>Ventas + Marketing</td>
+              </tr>
+              <tr>
+                <td><strong>Semana 3</strong></td>
+                <td>31 ago-4 sep</td>
+                <td>Cierre + reporte final de resultados</td>
+                <td>Ventas + Dirección</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="charts-grid">
+          <div class="chart-container">
+            <div class="chart-title">Proyección de Avance Semanal</div>
+            <canvas id="avanceChart"></canvas>
+          </div>
+          <div class="chart-container">
+            <div class="chart-title">KPIs de Control</div>
+            <canvas id="kpisChart"></canvas>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 9. Lecciones Aprendidas -->
+    <div class="section">
+      <h2 class="section-title"> 9. Lecciones Aprendidas y Mejores Prácticas</h2>
+      <div class="content">
+        <div class="lessons-grid">
+          <div class="lesson-card">
+            <h4>✅ Fortalezas de la Estrategia</h4>
+            <ul>
+              <li><strong>Costo controlado:</strong> Material promocional ya en inventario sin compra adicional</li>
+              <li><strong>Descuento topado:</strong> Tope máximo de $2,380 MXN cierra el riesgo financiero</li>
+              <li><strong>Enfoque en SKUs lentos:</strong> No subsidia productos que ya se venden solos</li>
+              <li><strong>Temporada adecuada:</strong> Regreso a clases es contexto natural para loncheras</li>
+              <li><strong>Escalera de regalos:</strong> Incentiva compra de múltiples unidades</li>
+            </ul>
+          </div>
+
+          <div class="lesson-card">
+            <h4>⚠️ Consideraciones Clave</h4>
+            <ul>
+              <li><strong>Redención realista:</strong> Meta alcanzable con ~50% de redención del material</li>
+              <li><strong>Comunicación clara:</strong> Regla de oro debe ser entendida por todo el equipo de ventas</li>
+              <li><strong>Contador visible:</strong> Loncheras deben tener contador en mostrador para generar urgencia</li>
+              <li><strong>Seguimiento semanal:</strong> Cortes semanales permiten ajustar si es necesario</li>
+              <li><strong>Capacitación:</strong> Equipo de ventas debe conocer mecánica al detalle</li>
+            </ul>
+          </div>
+
+          <div class="lesson-card">
+            <h4>💡 Oportunidades Futuras</h4>
+            <ul>
+              <li><strong>Replicar modelo:</strong> Aplicar a otras temporadas (Día de Muertos, Navidad)</li>
+              <li><strong>Ampliar portafolio:</strong> Incluir más SKUs de impulso en futuras campañas</li>
+              <li><strong>Digitalizar:</strong> Usar app o sistema para tracking en tiempo real</li>
+              <li><strong>Alianzas:</strong> Integrar proveedores para co-patrocinar promocionales</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 10. Conclusiones -->
+    <div class="section" style="border-left-color: var(--orange);">
+      <h2 class="section-title">✅ 10. Conclusiones</h2>
+      <div class="content">
+        <p>La campaña <strong>"Regreso a Clases Rich's 2026"</strong> representa una estrategia de bajo riesgo y alto impacto para acelerar la rotación de los cuatro SKUs más lentos del portafolio. Con un costo máximo controlado de ≈$2,380 MXN y sin inversión en medios, se espera generar <strong>$8,850 MXN en venta extra</strong> en solo 3 semanas.</p>
+
+        <ul>
+          <li>✅ <strong>Costo acotado:</strong> ≈$2,380 en descuentos + material ya en mano</li>
+          <li>✅ <strong>Rotación 3-4×:</strong> De los cuatro SKUs más lentos</li>
+          <li>✅ <strong>Sin subsidiar líderes:</strong> Los productos gancho no generan regalo por sí solos</li>
+          <li>✅ <strong>Metas medibles:</strong> Cortes semanales permiten seguimiento constante</li>
+          <li>✅ <strong>Riesgo cerrado:</strong> Tope de 110 regalos mantiene el costo controlado</li>
+        </ul>
+
+        <div class="cta-box">
+          <h3>Recomendación Final</h3>
+          <p>La campaña convierte el regreso a clases en una oportunidad concreta para mover inventario de baja rotación, con un modelo replicable para futuras temporadas. Se recomienda <strong>aprobar y ejecutar inmediatamente</strong> para aprovechar la ventana de la temporada escolar.</p>
+          <p style="margin-bottom: 0;"><strong>Próximo paso:</strong> Capacitar al equipo de ventas en la mecánica y lanzar el 17 de agosto de 2026.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+      <div class="brand">GRUPO SIBRÜ</div>
+      <div class="tagline">Alimentamos Confianza</div>
+      <div class="copyright">
+        Business Case - Campaña Regreso a Clases Rich's 2026<br>
+        Documento Confidencial | Agosto 2026<br>
+        Elaborado por: Dirección de Ventas y Marketing
+      </div>
+    </div>
+  </div>
+
+  <script>
+    Chart.defaults.font.family = "'Open Sans', sans-serif";
+    Chart.defaults.color = '#264653';
+
+    // Gráfica de Rotación de SKUs
+    new Chart(document.getElementById('rotacionChart'), {
+      type: 'bar',
+      data: {
+        labels: ['Dedos Queso', 'On Top Orig.', 'Glasscake Choc.', 'Glasscake Limón', '3 Leches', 'Bellini', 'On Top Baileys', 'Mini Pizza', 'Tres Riches'],
+        datasets: [{
+          label: 'Uds Ene-Jul 2026',
+          data: [1057, 894, 554, 459, 303, 122, 121, 61, 32],
+          backgroundColor: ['#1B5E20', '#2E7D32', '#66BB6A', '#A5D6A7', '#C8E6C9', '#F4A261', '#E76F51', '#D32F2F', '#B71C1C'],
+          borderWidth: 0
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: { legend: { display: false } },
+        scales: {
+          y: { beginAtZero: true, title: { display: true, text: 'Unidades' } }
+        }
+      }
+    });
+
+    // Gráfica de Rol en Campaña
+    new Chart(document.getElementById('rolChart'), {
+      type: 'doughnut',
+      data: {
+        labels: ['Gancho (4 SKUs)', 'Apoyo (1 SKU)', 'Impulso (4 SKUs)'],
+        datasets: [{
+          data: [4, 1, 4],
+          backgroundColor: ['#1B5E20', '#F4A261', '#E76F51'],
+          borderWidth: 3,
+          borderColor: '#fff'
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          legend: { position: 'bottom', labels: { padding: 10, font: { size: 10 } } }
+        }
+      }
+    });
+
+    // Gráfica de Promocionales
+    new Chart(document.getElementById('promocionalesChart'), {
+      type: 'bar',
+      data: {
+        labels: ['Lapiceras', 'Juegos Cubiertos', 'Loncheras'],
+        datasets: [{
+          label: 'Cantidad',
+          data: [50, 50, 10],
+          backgroundColor: ['#1B5E20', '#F4A261', '#E76F51'],
+          borderWidth: 0
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: { legend: { display: false } },
+        scales: {
+          y: { beginAtZero: true, title: { display: true, text: 'Piezas' } }
+        }
+      }
+    });
+
+    // Gráfica de Regalos
+    new Chart(document.getElementById('regalosChart'), {
+      type: 'bar',
+      data: {
+        labels: ['1 Impulso', '2 Impulsos', '5 Impulsos'],
+        datasets: [{
+          label: 'Regalo',
+          data: [1, 2, 5],
+          backgroundColor: ['#1B5E20', '#F4A261', '#E76F51'],
+          borderWidth: 0
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: { legend: { display: false } },
+        scales: {
+          y: { beginAtZero: true, title: { display: true, text: 'Impulsos Requeridos' } }
+        }
+      }
+    });
+
+    // Gráfica de Precios
+    new Chart(document.getElementById('preciosChart'), {
+      type: 'bar',
+      data: {
+        labels: ['Recreo Dulce', 'Mundo Baileys', 'Tres Riches', 'Recreo Salado', 'Merienda', 'Dúo Baileys', 'Lonchera Llena'],
+        datasets: [{
+          label: 'Precio Regular',
+          data: [135, 150, 130, 220, 200, 190, 455],
+          backgroundColor: '#1B5E20'
+        }, {
+          label: 'Precio 1 (con regalo)',
+          data: [119, 135, 115, 195, 179, 169, 405],
+          backgroundColor: '#F4A261'
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          legend: { position: 'bottom', labels: { padding: 10, font: { size: 10 } } }
+        },
+        scales: {
+          y: { beginAtZero: true, title: { display: true, text: 'Precio (MXN)' } }
+        }
+      }
+    });
+
+    // Gráfica de Impulsos por Paquete
+    new Chart(document.getElementById('impulsosChart'), {
+      type: 'bar',
+      data: {
+        labels: ['Recreo Dulce', 'Mundo Baileys', 'Tres Riches', 'Recreo Salado', 'Merienda', 'Dúo Baileys', 'Lonchera Llena'],
+        datasets: [{
+          label: 'Nivel de Impulsos',
+          data: [1, 1, 1, 2, 2, 2, 5],
+          backgroundColor: ['#1B5E20', '#2E7D32', '#66BB6A', '#F4A261', '#E76F51', '#D32F2F', '#B71C1C'],
+          borderWidth: 0
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: { legend: { display: false } },
+        scales: {
+          y: { beginAtZero: true, max: 6, title: { display: true, text: 'Impulsos' } }
+        }
+      }
+    });
+
+    // Gráfica de Impulsos Movidos
+    new Chart(document.getElementById('impulsosMovidosChart'), {
+      type: 'bar',
+      data: {
+        labels: ['Lapicera', 'Jgo. Cubiertos', 'Lonchera'],
+        datasets: [{
+          label: 'Impulsos Movidos',
+          data: [50, 100, 50],
+          backgroundColor: ['#1B5E20', '#F4A261', '#E76F51'],
+          borderWidth: 0
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: { legend: { display: false } },
+        scales: {
+          y: { beginAtZero: true, title: { display: true, text: 'Unidades' } }
+        }
+      }
+    });
+
+    // Gráfica de Loncheras
+    new Chart(document.getElementById('loncherasChart'), {
+      type: 'bar',
+      data: {
+        labels: ['Mini Pizza', 'On Top Baileys', 'Tres Riches', 'Bellini', '3 Leches'],
+        datasets: [{
+          label: 'Unidades',
+          data: [10, 10, 10, 10, 10],
+          backgroundColor: ['#1B5E20', '#2E7D32', '#66BB6A', '#F4A261', '#E76F51'],
+          borderWidth: 0
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: { legend: { display: false } },
+        scales: {
+          y: { beginAtZero: true, max: 15, title: { display: true, text: 'Unidades' } }
+        }
+      }
+    });
+
+    // Gráfica de Meta vs Base
+    new Chart(document.getElementById('metaChart'), {
+      type: 'bar',
+      data: {
+        labels: ['Mini Pizza', 'Bellini', 'On Top Baileys', 'Tres Riches', '3 Leches'],
+        datasets: [{
+          label: 'Base 3 Sem.',
+          data: [7, 13, 13, 3, 32],
+          backgroundColor: '#1B5E20'
+        }, {
+          label: 'Meta 3 Sem.',
+          data: [25, 40, 40, 15, 45],
+          backgroundColor: '#F4A261'
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          legend: { position: 'bottom', labels: { padding: 10, font: { size: 10 } } }
+        },
+        scales: {
+          y: { beginAtZero: true, title: { display: true, text: 'Unidades' } }
+        }
+      }
+    });
+
+    // Gráfica de Venta Extra
+    new Chart(document.getElementById('ventaExtraChart'), {
+      type: 'bar',
+      data: {
+        labels: ['Mini Pizza', 'Bellini', 'On Top Baileys', 'Tres Riches', '3 Leches'],
+        datasets: [{
+          label: 'Venta Extra (MXN)',
+          data: [3060, 1350, 2835, 1020, 585],
+          backgroundColor: ['#1B5E20', '#2E7D32', '#66BB6A', '#F4A261', '#E76F51'],
+          borderWidth: 0
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: { legend: { display: false } },
+        scales: {
+          y: { beginAtZero: true, title: { display: true, text: 'MXN' } }
+        }
+      }
+    });
+
+    // Gráfica de Inversión
+    new Chart(document.getElementById('inversionChart'), {
+      type: 'doughnut',
+      data: {
+        labels: ['Promocionales ($0)', 'Descuento Precio 1 ($2,380)', 'Descuento Precio 2 ($1,040)', 'Medios ($0)'],
+        datasets: [{
+          data: [0, 2380, 1040, 0],
+          backgroundColor: ['#1B5E20', '#F4A261', '#E76F51', '#264653'],
+          borderWidth: 3,
+          borderColor: '#fff'
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          legend: { position: 'bottom', labels: { padding: 10, font: { size: 10 } } }
+        }
+      }
+    });
+
+    // Gráfica de ROI
+    new Chart(document.getElementById('roiChart'), {
+      type: 'bar',
+      data: {
+        labels: ['Inversión', 'Venta Extra', 'ROI'],
+        datasets: [{
+          label: 'Valor',
+          data: [2380, 8850, 272],
+          backgroundColor: ['#E76F51', '#1B5E20', '#F4A261'],
+          borderWidth: 0
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: { legend: { display: false } },
+        scales: {
+          y: { beginAtZero: true }
+        }
+      }
+    });
+
+    // Gráfica de Avance Semanal
+    new Chart(document.getElementById('avanceChart'), {
+      type: 'line',
+      data: {
+        labels: ['Semana 1', 'Semana 2', 'Semana 3'],
+        datasets: [{
+          label: 'Meta Acumulada',
+          data: [55, 110, 165],
+          borderColor: '#1B5E20',
+          backgroundColor: 'rgba(27, 94, 32, 0.1)',
+          fill: true,
+          tension: 0.4
+        }, {
+          label: 'Proyección Realista',
+          data: [50, 100, 150],
+          borderColor: '#F4A261',
+          borderDash: [5, 5],
+          fill: false,
+          tension: 0.4
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          legend: { position: 'bottom', labels: { padding: 10, font: { size: 10 } } }
+        },
+        scales: {
+          y: { beginAtZero: true, title: { display: true, text: 'Unidades' } }
+        }
+      }
+    });
+
+    // Gráfica de KPIs
+    new Chart(document.getElementById('kpisChart'), {
+      type: 'radar',
+      data: {
+        labels: ['Venta Extra', 'Rotación SKUs', 'Redención', 'Ticket Promedio', 'Control Costo'],
+        datasets: [{
+          label: 'Meta',
+          data: [9, 9, 8, 8, 10],
+          backgroundColor: 'rgba(27, 94, 32, 0.2)',
+          borderColor: '#1B5E20',
+          borderWidth: 2,
+          pointBackgroundColor: '#1B5E20'
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          legend: { position: 'bottom', labels: { padding: 10, font: { size: 10 } } }
+        },
+        scales: {
+          r: { beginAtZero: true, max: 10, ticks: { stepSize: 2 } }
+        }
+      }
+    });
+  </script>
+</body>
+</html>
