@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Business Case: Buen Fin 2026 | GRUPO SIBRÜ</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+    color: #2C2C2C;
+    background: #F5F5F5;
+    line-height: 1.6;
+    font-size: 15px;
+  }
+  .container { max-width: 900px; margin: 0 auto; padding: 40px 30px; background: #FFFFFF; }
+
+  /* Header */
+  .header { text-align: center; padding: 30px 20px 20px; border-bottom: 4px solid transparent; border-image: linear-gradient(to right, #1B5E20 33%, #F4A261 33%, #F4A261 66%, #264653 66%) 1; margin-bottom: 30px; }
+  .header h1 { font-size: 30px; font-weight: 800; color: #1B5E20; letter-spacing: 1px; margin-bottom: 8px; }
+  .header .subtitle { font-size: 18px; color: #264653; font-weight: 600; margin-bottom: 20px; }
+  .header .meta { font-size: 13px; color: #666; line-height: 1.8; }
+  .header .meta strong { color: #1B5E20; }
+
+  /* Index */
+  .index { background: #F5F5F5; padding: 25px 30px; border-radius: 10px; margin-bottom: 35px; border-left: 5px solid #1B5E20; }
+  .index h2 { font-size: 20px; color: #264653; margin-bottom: 15px; font-weight: 700; }
+  .index ol { margin-left: 25px; }
+  .index ol li { margin-bottom: 8px; font-size: 14px; }
+  .index ol li a { color: #1B5E20; text-decoration: none; font-weight: 600; }
+  .index ol li a:hover { text-decoration: underline; }
+
+  /* Sections */
+  .section { margin-bottom: 40px; scroll-margin-top: 20px; }
+  .section h2 { font-size: 22px; font-weight: 700; color: #264653; margin-bottom: 18px; padding-bottom: 10px; border-bottom: 3px solid #1B5E20; display: flex; align-items: center; gap: 10px; }
+  .section h3 { font-size: 17px; font-weight: 700; color: #1B5E20; margin: 20px 0 10px; }
+  .section p { margin-bottom: 14px; text-align: justify; }
+  .section ul, .section ol { margin-left: 25px; margin-bottom: 15px; }
+  .section ul li, .section ol li { margin-bottom: 8px; }
+
+  /* Quote */
+  .quote { background: #F9F9F9; border-left: 5px solid #1B5E20; padding: 18px 22px; margin: 20px 0; font-style: italic; color: #2C2C2C; border-radius: 0 8px 8px 0; font-size: 15px; }
+
+  /* Tables */
+  .table-wrapper { overflow-x: auto; margin: 18px 0; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
+  table { width: 100%; border-collapse: collapse; font-size: 14px; }
+  th { background: #1B5E20; color: #FFFFFF; padding: 12px 14px; text-align: left; font-weight: 700; font-size: 13px; text-transform: uppercase; letter-spacing: 0.5px; }
+  td { padding: 11px 14px; border-bottom: 1px solid #E5E5E5; vertical-align: top; }
+  tr:nth-child(even) td { background: #FAFAFA; }
+  tr:hover td { background: #F0F7F0; }
+
+  /* Cards */
+  .cards-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 18px; margin: 20px 0; }
+  .card { background: #FFFFFF; padding: 22px; border-radius: 10px; box-shadow: 0 3px 12px rgba(0,0,0,0.08); border-top: 4px solid #1B5E20; }
+  .card.orange { border-top-color: #F4A261; }
+  .card.blue { border-top-color: #264653; }
+  .card .card-number { display: inline-block; background: #1B5E20; color: #FFFFFF; width: 32px; height: 32px; border-radius: 50%; line-height: 32px; text-align: center; font-weight: 800; margin-bottom: 10px; font-size: 15px; }
+  .card.orange .card-number { background: #F4A261; }
+  .card.blue .card-number { background: #264653; }
+  .card h4 { font-size: 16px; color: #1B5E20; margin-bottom: 8px; font-weight: 700; }
+  .card.orange h4 { color: #F4A261; }
+  .card.blue h4 { color: #264653; }
+  .card p { font-size: 14px; color: #555; margin-bottom: 0; }
+
+  /* Highlight box */
+  .highlight { background: linear-gradient(135deg, #FFF8F0, #FFF3E6); border-left: 5px solid #F4A261; padding: 20px 22px; border-radius: 8px; margin: 20px 0; }
+  .highlight h4 { color: #F4A261; font-size: 16px; margin-bottom: 10px; font-weight: 700; }
+  .highlight ul { margin-left: 20px; }
+  .highlight ul li { margin-bottom: 8px; }
+
+  /* Product card */
+  .product-card { background: linear-gradient(135deg, #1B5E20, #2E7D32); color: #FFFFFF; padding: 25px; border-radius: 12px; margin: 20px 0; }
+  .product-card h3 { color: #F4A261; font-size: 18px; margin-bottom: 15px; }
+  .product-card ul { list-style: none; margin-left: 0; }
+  .product-card ul li { padding: 6px 0; border-bottom: 1px solid rgba(255,255,255,0.15); font-size: 14px; }
+  .product-card ul li:last-child { border-bottom: none; }
+  .product-card ul li strong { color: #F4A261; }
+
+  /* Phase timeline */
+  .phase-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin: 20px 0; }
+  .phase { background: #FFFFFF; padding: 20px; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.06); border-left: 5px solid #1B5E20; }
+  .phase .phase-tag { display: inline-block; background: #1B5E20; color: #FFFFFF; padding: 4px 12px; border-radius: 20px; font-size: 11px; font-weight: 700; margin-bottom: 10px; letter-spacing: 0.5px; }
+  .phase.phase2 { border-left-color: #F4A261; }
+  .phase.phase2 .phase-tag { background: #F4A261; }
+  .phase.phase3 { border-left-color: #C41E3A; }
+  .phase.phase3 .phase-tag { background: #C41E3A; }
+  .phase.phase4 { border-left-color: #264653; }
+  .phase.phase4 .phase-tag { background: #264653; }
+  .phase h4 { font-size: 15px; color: #1B5E20; margin-bottom: 8px; font-weight: 700; }
+  .phase p { font-size: 13px; color: #555; margin-bottom: 0; }
+
+  /* Footer */
+  .footer { margin-top: 50px; padding-top: 25px; border-top: 4px solid transparent; border-image: linear-gradient(to right, #1B5E20 33%, #F4A261 33%, #F4A261 66%, #264653 66%) 1; text-align: center; }
+  .footer .brand { font-size: 22px; font-weight: 800; color: #1B5E20; margin-bottom: 5px; letter-spacing: 1px; }
+  .footer .slogan { font-size: 16px; color: #F4A261; font-weight: 600; margin-bottom: 12px; }
+  .footer .signature { font-size: 14px; color: #264653; font-weight: 600; margin-bottom: 5px; }
+  .footer .meta { font-size: 12px; color: #888; }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .container { padding: 20px 15px; }
+    .header h1 { font-size: 24px; }
+    .section h2 { font-size: 19px; }
+    .cards-grid { grid-template-columns: 1fr; }
+    .phase-grid { grid-template-columns: 1fr; }
+  }
+
+  /* Print */
+  @media print {
+    body { background: #FFFFFF; }
+    .container { padding: 20px; max-width: 100%; box-shadow: none; }
+    .section { page-break-inside: avoid; }
+    .card, .phase { box-shadow: none; border: 1px solid #E5E5E5; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <!-- HEADER -->
+  <div class="header">
+    <h1>BUSINESS CASE: BUEN FIN 2026</h1>
+    <div class="subtitle">GRUPO SIBRÜ — Alimentamos Confianza</div>
+    <div class="meta">
+      <strong>Presenta:</strong> Sergio Alvarez | Marketing &nbsp;·&nbsp;
+      <strong>Fecha:</strong> Septiembre 2026 &nbsp;·&nbsp;
+      <strong>Temporalidad:</strong> Noviembre 2026<br>
+      <strong>Status:</strong> En desarrollo — Entrega de idea sólida inicial
+    </div>
+  </div>
+
+  <!-- ÍNDICE -->
+  <div class="index">
+    <h2>📑 Índice</h2>
+    <ol>
+      <li><a href="#s1">Introducción y Contexto</a></li>
+      <li><a href="#s2">Justificación Estratégica</a></li>
+      <li><a href="#s3">Aprendizajes de Campañas Previas</a></li>
+      <li><a href="#s4">Objetivos del Buen Fin 2026</a></li>
+      <li><a href="#s5">Producto Incentivo: Jalapeños Rellenos</a></li>
+      <li><a href="#s6">Mecánica Promocional Escalonada</a></li>
+      <li><a href="#s7">Productos que Impulsan el Ticket Promedio</a></li>
+      <li><a href="#s8">Paquetes Temáticos Buen Fin</a></li>
+      <li><a href="#s9">Estrategia Digital en Facebook</a></li>
+      <li><a href="#s10">Cronograma de Activación</a></li>
+      <li><a href="#s11">Cierre</a></li>
+    </ol>
+  </div>
+
+  <!-- SECCIÓN 1 -->
+  <div class="section" id="s1">
+    <h2>🎯 1. Introducción y Contexto</h2>
+    <p>El <strong>Buen Fin</strong> representa una de las temporalidades comerciales de mayor impacto en México, concentrando en pocos días una intención de compra que normalmente se distribuye a lo largo de semanas. Para GRUPO SIBRÜ, esta ventana es una oportunidad estratégica para acelerar la rotación de productos de baja velocidad, incrementar el ticket promedio y fortalecer el posicionamiento de marca en un momento de alta sensibilidad al consumo.</p>
+    <p>Las campañas previas de 2026 han demostrado la solidez del modelo de activación de SIBRÜ: la <strong>Activación Mundialista</strong> reunió más de 200 asistentes en su evento principal; la <strong>Fiesta Mexicana</strong> consolidó relaciones con proveedores clave; y el <strong>Mes del Jalapeño Mexicano</strong> ayudo a la rotación de un producto con necesidad de salida. La comunidad en Facebook mantiene un <strong>engagement rate del 5%</strong>, muy por encima del promedio de la industria, lo que garantiza alcance orgánico significativo.</p>
+    <p>Esta edición del Buen Fin tiene un enfoque <strong>comercial puro</strong>: acelerar rotación mediante un producto ancla de alta percepción de valor, con mecánica clara, incentivos escalonados y mensaje directo.</p>
+    <div class="quote">
+      "Este Buen Fin no solo ofrecemos descuentos: ofrecemos la oportunidad de llevar a casa el sabor que une a las familias mexicanas."
+    </div>
+  </div>
+
+  <!-- SECCIÓN 2 -->
+  <div class="section" id="s2">
+    <h2>📈 2. Justificación Estratégica</h2>
+    <div class="table-wrapper">
+      <table>
+        <thead>
+          <tr><th>Factor Estratégico</th><th>Descripción</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>Temporalidad de alta intención de compra</strong></td><td>El Buen Fin concentra decisiones de compra que normalmente se dispersan en semanas, generando picos de venta medibles.</td></tr>
+          <tr><td><strong>Producto ancla de alta percepción de valor</strong></td><td>Los Jalapeños Rellenos de Queso Crema ($260 MXN) funcionan como incentivo de alto impacto emocional y comercial.</td></tr>
+          <tr><td><strong>Aceleración de productos de baja rotación</strong></td><td>La mecánica escalonada permite mover SKUs de impulso amarrados a productos gancho de alta rotación.</td></tr>
+          <tr><td><strong>Posicionamiento de marca</strong></td><td>SIBRÜ se posiciona como marca de referencia en reuniones familiares y celebraciones decembrinas.</td></tr>
+          <tr><td><strong>Conexión con temporada decembrina</strong></td><td>El Buen Fin es la antesala natural de posadas, Navidad y fin de año, extendiendo la vida útil de la campaña.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>🎯 Enfoque Estratégico</h3>
+    <ul>
+      <li><strong>Aceleración comercial:</strong> Concentrar esfuerzos en 3-4 días de alta intensidad para maximizar impacto.</li>
+      <li><strong>Gancho con productos de alta rotación:</strong> Alitas, Boneless y Tenders jalan el ticket; los productos de impulso se mueven por asociación.</li>
+      <li><strong>Incentivo escalonado:</strong> Dos niveles de compra que premian el mayor ticket con mayor beneficio percibido.</li>
+      <li><strong>Sin complejidad operativa:</strong> Clara rápida y ejecutable como consecuencia de lo que ya hemos venido trabajando.</li>
+    </ul>
+  </div>
+
+  <!-- SECCIÓN 3 -->
+  <div class="section" id="s3">
+    <h2> 3. Aprendizajes de Campañas Previas</h2>
+    <p>Las campañas ejecutadas durante 2026 validaron tres mecánicas que se integran al Buen Fin con ajustes estratégicos:</p>
+    <div class="cards-grid">
+      <div class="card">
+        <div class="card-number">1</div>
+        <h4>Escalera de Regalos por Nivel de Compra</h4>
+        <p><strong>Validado en:</strong> Regreso a Clases Rich's</p>
+        <p style="margin-top: 8px;">La mecánica de premiar mayor compra con mayor beneficio demostró incrementar el ticket promedio y generar urgencia de compra. Se adapta al Buen Fin con dos niveles claros y un incentivo de alto valor percibido.</p>
+      </div>
+      <div class="card orange">
+        <div class="card-number">2</div>
+        <h4>Producto Gancho como Incentivo</h4>
+        <p><strong>Validado en:</strong> Fiestas Patrias</p>
+        <p style="margin-top: 8px;">Los Jalapeños Rellenos como regalo en la compra de paquetes generaron un ahorro percibido de $160 MXN, detonando compras impulsivas y aumentando el ticket promedio significativamente.</p>
+      </div>
+      <div class="card blue">
+        <div class="card-number">3</div>
+        <h4>Paquetes Temáticos por Ocasión</h4>
+        <p><strong>Validado en:</strong> Fiestas Patrias</p>
+        <p style="margin-top: 8px;">Los 4 paquetes temáticos (botana, familia, amigos, fiesta grande) cubrieron diferentes ocasiones de consumo, maximizando el alcance y permitiendo que cada cliente encuentre su opción ideal.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECCIÓN 4 -->
+  <div class="section" id="s4">
+    <h2> 4. Objetivos del Buen Fin 2026</h2>
+    <p><strong>Objetivo General:</strong> Aprovechar la temporalidad del Buen Fin 2026 para acelerar la rotación de productos de baja velocidad, incrementar el ticket promedio y posicionar a SIBRÜ como marca de referencia en reuniones familiares, utilizando los Jalapeños Rellenos de Queso Crema como incentivo escalonado de alto valor percibido.</p>
+
+    <div class="table-wrapper">
+      <table>
+        <thead>
+          <tr><th>#</th><th>Objetivo Específico</th><th>Indicador de Éxito</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>1</td><td>Incrementar ticket promedio</td><td>Aumento vs. ticket promedio de octubre</td></tr>
+          <tr><td>2</td><td>Acelerar rotación de productos de baja velocidad</td><td>Incremento en unidades vendidas de SKUs de impulso</td></tr>
+          <tr><td>3</td><td>Posicionar Jalapeños Rellenos como incentivo de temporada</td><td>Unidades entregadas como incentivo durante el Buen Fin</td></tr>
+          <tr><td>4</td><td>Fortalecer comunidad en Facebook</td><td>Crecimiento de seguidores y engagement en publicaciones</td></tr>
+          <tr><td>5</td><td>Generar contenido comercial efectivo</td><td>Alcance e interacción en publicaciones de campaña</td></tr>
+          <tr><td>6</td><td>Conectar con temporada decembrina</td><td>Continuidad de ventas posadas, Navidad y fin de año</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- SECCIÓN 5 -->
+  <div class="section" id="s5">
+    <h2>🌶️ 5. Producto Incentivo: Jalapeños Rellenos</h2>
+    <p>Los <strong>Jalapeños Rellenos de Queso Crema</strong> representan una oportunidad estratégica de activación comercial dentro del portafolio SIBRÜ. Con un precio regular de $260 MXN y una presentación generosa de 1.3 kg, este producto combina alto valor percibido, versatilidad de consumo y conexión emocional con la tradición mexicana, convirtiéndolo en el detonador ideal para las compras del Buen Fin.</p>
+
+    <div class="table-wrapper">
+      <table>
+        <thead>
+          <tr><th>Atributo</th><th>Detalle</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>Nombre</strong></td><td>Jalapeños Rellenos de Queso Crema</td></tr>
+          <tr><td><strong>Presentación</strong></td><td>Bolsa 1.3 kg aprox</td></tr>
+          <tr><td><strong>Precio regular</strong></td><td>$260 MXN</td></tr>
+          <tr><td><strong>Precio rebajado (Nivel 1)</strong></td><td>$129 MXN</td></tr>
+          <tr><td><strong>Rol en campaña</strong></td><td>Incentivo escalonado</td></tr>
+          <tr><td><strong>Demanda estacional</strong></td><td>Alta</td></tr>
+          <tr><td><strong>Conexión emocional</strong></td><td>Tradición mexicana</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="product-card">
+      <h3>💚 ¿Por qué Jalapeños Rellenos como incentivo?</h3>
+      <ul>
+        <li>🔸 <strong>Producto ancla de alta percepción de valor:</strong> $260 MXN de valor percibido que el cliente reconoce de inmediato.</li>
+        <li>🔸 <strong>Versatilidad de consumo:</strong> Funciona como botana, acompañamiento o plato fuerte en cualquier reunión.</li>
+        <li>🔸 <strong>Conexión cultural:</strong> Ícono de la cocina mexicana, ideal para posadas y reuniones decembrinas.</li>
+        <li>🔸 <strong>Temporalidad perfecta:</strong> Coincide con el inicio de posadas y reuniones de fin de año.</li>
+        <li>🔸 <strong>Diferenciador competitivo:</strong> Ninguna otra oferta en la zona lo entrega como regalo con esta mecánica.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- SECCIÓN 6 -->
+  <div class="section" id="s6">
+    <h2>🎁 6. Mecánica Promocional Escalonada</h2>
+    <p>La mecánica del Buen Fin 2026 se basa en un sistema de <strong>dos niveles escalonados</strong> que premia el mayor ticket con mayor beneficio, incentivando al cliente a superar el umbral mínimo para acceder al regalo completo.</p>
+
+    <div class="table-wrapper">
+      <table>
+        <thead>
+          <tr><th>Nivel</th><th>Compra Mínima</th><th>Beneficio</th><th>Ahorro Percibido</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Nivel 1</strong></td>
+            <td>$300 - $399 MXN</td>
+            <td>Jalapeños Rellenos a <strong>$129 MXN</strong> (precio rebajado)</td>
+            <td><strong>$131 MXN</strong></td>
+          </tr>
+          <tr>
+            <td><strong>Nivel 2</strong></td>
+            <td>Más de $400 MXN</td>
+            <td>Jalapeños Rellenos <strong>DE REGALO</strong> (sin costo adicional)</td>
+            <td><strong>$260 MXN</strong></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>🧠 Lógica Comercial</h3>
+    <ul>
+      <li><strong>Umbral accesible:</strong> $300 MXN es un ticket alcanzable con un solo producto gancho (Alitas, Boneless o Tender).</li>
+      <li><strong>Salto atractivo:</strong> La diferencia entre Nivel 1 y Nivel 2 es de solo $100 MXN, pero el beneficio se duplica, incentivando al cliente a "estirar" su compra.</li>
+      <li><strong>Claridad absoluta:</strong> Dos niveles, un mensaje, sin confusión. El cliente entiende la mecánica en 5 segundos.</li>
+    </ul>
+
+    <div class="quote">
+      "Este Buen Fin, entre más consientes a los tuyos, más te consiente SIBRÜ."
+    </div>
+  </div>
+
+  <!-- SECCIÓN 7 -->
+  <div class="section" id="s7">
+    <h2>🍗 7. Productos que Impulsan el Ticket Promedio (Ejemplo)</h2>
+    <p>Los siguientes productos de <strong>alta rotación</strong> funcionarán como gancho para alcanzar los umbrales de $300 y $400 MXN, jalando consigo productos de impulso de menor rotación:</p>
+
+    <div class="cards-grid">
+      <div class="card">
+        <h4>️ Alitas Marinadas SIBRÜ</h4>
+        <p>Producto bandera de la marca. Alto volumen de venta y reconocimiento de cliente.</p>
+      </div>
+      <div class="card orange">
+        <h4>🍗 Boneless Fresquito</h4>
+        <p>Ideal para botana y reuniones casuales. Ticket medio-alto por presentación.</p>
+      </div>
+      <div class="card blue">
+        <h4>🍗 Tender Bachoco</h4>
+        <p>Producto de aliado estratégico. Ideal para familias con niños.</p>
+      </div>
+      <div class="card">
+        <h4> Alitas Búfalo Bachoco</h4>
+        <p>Producto de aliado. Perfecto para reuniones deportivas y con amigos.</p>
+      </div>
+      <div class="card orange">
+        <h4>🧀 Dedos de Queso</h4>
+        <p>Producto de altísima rotación. Excelente para complementar cualquier paquete.</p>
+      </div>
+      <div class="card blue">
+        <h4>🍕 On Top Original</h4>
+        <p>Producto versátil de alta rotación. Complemento ideal para paquetes.</p>
+      </div>
+    </div>
+
+    <div class="highlight">
+      <h4>🎯 Estrategia de Combinación</h4>
+      <p style="margin-bottom: 0;"><strong>1 producto de alta rotación + 1-2 productos de impulso = ticket &gt; $400 + Jalapeños de regalo.</strong> Esta fórmula garantiza mover inventario de baja rotación sin sacrificar margen, aprovechando el tirón natural de los productos gancho.</p>
+    </div>
+  </div>
+
+  <!-- SECCIÓN 8 -->
+  <div class="section" id="s8">
+    <h2>📦 8. Paquetes Temáticos Buen Fin (Marco Conceptual)</h2>
+    <p>Se diseñarán <strong>4 paquetes temáticos</strong> inspirados en las ocasiones de consumo típicas del Buen Fin y la temporada decembrina. Cada paquete integrará un producto gancho de alta rotación, 1-2 productos de impulso por definir, y el incentivo de Jalapeños Rellenos al superar el umbral de $400 MXN.</p>
+
+    <div class="table-wrapper">
+      <table>
+        <thead>
+          <tr><th>Paquete</th><th>Ocasión de Consumo</th><th>Perfil de Cliente</th><th>Productos (por definir)</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Paquete 1</strong></td>
+            <td>Reunión casual con amigos, previa, botana</td>
+            <td>Jóvenes adultos, grupos de amigos</td>
+            <td>Por confirmar</td>
+          </tr>
+          <tr>
+            <td><strong>Paquete 2</strong></td>
+            <td>Comida familiar de fin de semana</td>
+            <td>Familias con niños</td>
+            <td>Por confirmar</td>
+          </tr>
+          <tr>
+            <td><strong>Paquete 3</strong></td>
+            <td>Cena especial, reunión íntima</td>
+            <td>Parejas, grupos pequeños</td>
+            <td>Por confirmar</td>
+          </tr>
+          <tr>
+            <td><strong>Paquete 4</strong></td>
+            <td>Posada, reunión grande, celebración decembrina</td>
+            <td>Familias extendidas, grupos grandes</td>
+            <td>Por confirmar</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p style="font-size: 13px; color: #888; font-style: italic; margin-top: 10px;"> Nota: Los productos específicos de cada paquete están por definirse en coordinación con el equipo de ventas y el inventario disponible.</p>
+  </div>
+
+  <!-- SECCIÓN 9 -->
+  <div class="section" id="s9">
+    <h2>📱 9. Estrategia Digital en Facebook</h2>
+    <p>Facebook será el canal principal de difusión de la campaña, aprovechando la comunidad construida durante 2026 con un engagement rate del 5% y un alcance orgánico que supera consistentemente las 50,000 personas por campaña.</p>
+
+    <h3>💰 Presupuesto de Pauta</h3>
+    <div class="highlight">
+      <h4>Inversión en pauta digital: $3,000 MXN</h4>
+      <p style="margin-bottom: 0;">Incremento del 50% vs. meses anteriores, justificado por:</p>
+      <ul style="margin-top: 10px; margin-bottom: 0;">
+        <li> <strong>Temporalidad más alta de ventas del año:</strong> El Buen Fin concentra intención de compra como ninguna otra fecha.</li>
+        <li>🔸 <strong>Aumento de pujas en Facebook:</strong> La competencia del Buen Fin encarece el CPM; se requiere mayor presupuesto para mantener alcance.</li>
+        <li>🔸 <strong>Optimización de recursos:</strong> Sin inversión en decoraciones físicas ni eventos presenciales, el presupuesto se concentra 100% en digital.</li>
+      </ul>
+    </div>
+
+    <h3>📝 Ejes de Contenido</h3>
+    <div class="table-wrapper">
+      <table>
+        <thead>
+          <tr><th>Eje</th><th>Porcentaje</th><th>Tipo de Contenido</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>Contenido Comercial</strong></td><td>70%</td><td>Mecánica de la promoción, paquetes temáticos, conteo regresivo, CTAs directos de compra</td></tr>
+          <tr><td><strong>Contenido Emotivo</strong></td><td>30%</td><td>Reuniones familiares, temporada decembrina, tradición mexicana, momentos que unen</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>#️⃣ Hashtags Oficiales</h3>
+    <p style="background: #F5F5F5; padding: 15px 20px; border-radius: 8px; font-weight: 600; color: #1B5E20; text-align: center; letter-spacing: 0.5px;">
+      #SIBRÜ &nbsp;·&nbsp; #AlimentamosConfianza &nbsp;·&nbsp; #BuenFinSIBRÜ &nbsp;·&nbsp; #SaborDeMexico &nbsp;·&nbsp; #JalapeñosSIBRÜ &nbsp;·&nbsp; #LaMesaNosUne
+    </p>
+  </div>
+
+  <!-- SECCIÓN 10 -->
+  <div class="section" id="s10">
+    <h2>📅 10. Cronograma de Activación</h2>
+    <p>La campaña se despliega en <strong>4 fases estratégicas</strong> que van desde la expectativa hasta la conexión con la temporada decembrina completa:</p>
+
+    <div class="phase-grid">
+      <div class="phase">
+        <div class="phase-tag">FASE 1</div>
+        <h4>Expectativa</h4>
+        <p><strong>1 - 10 noviembre</strong></p>
+        <p style="margin-top: 8px;">Teasers en Facebook. Mensajes de "algo grande se viene". Generar curiosidad sin revelar la mecánica.</p>
+      </div>
+      <div class="phase phase2">
+        <div class="phase-tag">FASE 2</div>
+        <h4>Revelación</h4>
+        <p><strong>11 - 14 noviembre</strong></p>
+        <p style="margin-top: 8px;">Anuncio oficial de mecánica y paquetes. Publicación de los 4 paquetes temáticos. Apertura de preventa emocional.</p>
+      </div>
+      <div class="phase phase3">
+        <div class="phase-tag">FASE 3</div>
+        <h4>Buen Fin</h4>
+        <p><strong>15 - 18 noviembre</strong></p>
+        <p style="margin-top: 8px;">Activación intensa. Publicaciones diarias, conteo regresivo, urgencia de "últimas bolsas". Pauta al máximo.</p>
+      </div>
+      <div class="phase phase4">
+        <div class="phase-tag">FASE 4</div>
+        <h4>Temporada Decembrina</h4>
+        <p><strong>19 nov - 31 dic</strong></p>
+        <p style="margin-top: 8px;">Conexión directa con posadas, Navidad y fin de año. Los Jalapeños siguen vigentes como producto estrella.</p>
+      </div>
+    </div>
+
+    <h3>🎄 Fase 4: El Buen Fin que no termina</h3>
+    <p>La Fase 4 es la gran diferenciadora de esta campaña. Mientras la competencia cierra su Buen Fin el lunes posterior, SIBRÜ <strong>mantiene vigentes los Jalapeños Rellenos</strong> como producto relevante para toda la temporada decembrina:</p>
+    <ul>
+      <li><strong>Posadas (1-24 diciembre):</strong> Los Jalapeños como botana oficial de las posadas.</li>
+      <li><strong>Navidad (24-25 diciembre):</strong> Producto estrella de la cena navideña.</li>
+      <li><strong>Año Nuevo (31 diciembre):</strong> Botana para la celebración de fin de año.</li>
+      <li><strong>Reuniones de fin de año:</strong> Producto versátil para cualquier reunión decembrina.</li>
+    </ul>
+
+    <h3>📆 Calendario de Publicaciones por Semana</h3>
+    <div class="table-wrapper">
+      <table>
+        <thead>
+          <tr><th>Semana</th><th>Frecuencia</th><th>Tipo de Contenido</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>Semana 1 (1-10 nov)</strong></td><td>3 publicaciones</td><td>Teasers, preguntas interactivas, "¿listos para el Buen Fin?"</td></tr>
+          <tr><td><strong>Semana 2 (11-14 nov)</strong></td><td>4 publicaciones</td><td>Revelación de mecánica, paquetes, precios, CTAs</td></tr>
+          <tr><td><strong>Semana 3 (15-18 nov)</strong></td><td>6-8 publicaciones</td><td>Conteo regresivo, urgencia, testimonios, últimas bolsas</td></tr>
+          <tr><td><strong>Semana 4+ (19 nov - dic)</strong></td><td>3-4 por semana</td><td>Posadas, Navidad, recetas, momentos familiares</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- SECCIÓN 11 -->
+  <div class="section" id="s11">
+    <h2>✅ 11. Cierre</h2>
+    <p>El Buen Fin 2026 representa para GRUPO SIBRÜ mucho más que una oportunidad comercial: es la <strong>antesala de las reuniones más importantes del año</strong>. Las familias mexicanas se preparan para posadas, cenas navideñas y celebraciones de fin de año, y SIBRÜ tiene la oportunidad de estar presente en cada una de esas mesas con el sabor que une, que celebra y que hace sentir en casa.</p>
+    <p>Con una mecánica clara, un producto incentivo de alto valor percibido y una estrategia digital bien calendarizada, esta campaña demuestra una vez más que <strong>"Alimentamos Confianza"</strong> no es solo un slogan: es una promesa que se cumple cada vez que una familia se reúne alrededor de la mesa.</p>
+
+    <h3>🏆 Logros Esperados</h3>
+    <div class="cards-grid">
+      <div class="card">
+        <h4>✅ Acelerar rotación</h4>
+        <p>De productos de baja velocidad mediante la mecánica escalonada.</p>
+      </div>
+      <div class="card orange">
+        <h4>✅ Incrementar ticket promedio</h4>
+        <p>Mediante la combinación de productos gancho + impulso.</p>
+      </div>
+      <div class="card blue">
+        <h4>✅ Posicionar a SIBRÜ</h4>
+        <p>Como marca de referencia en reuniones familiares decembrinas.</p>
+      </div>
+      <div class="card">
+        <h4>✅ Conectar temporadas</h4>
+        <p>Buen Fin como puente hacia posadas, Navidad y fin de año.</p>
+      </div>
+    </div>
+
+    <div class="quote">
+      "Porque cada reunión merece el mejor sabor, y cada familia merece la mejor confianza. Este Buen Fin, SIBRÜ está contigo."
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <div class="brand">GRUPO SIBRÜ</div>
+    <div class="slogan"> Alimentamos Confianza</div>
+    <div class="signature">Sergio Alvarez | Marketing</div>
+    <div class="meta">Business Case: Buen Fin 2026 · Documento Confidencial · Septiembre 2026</div>
+  </div>
+
+</div>
+</body>
+</html>
