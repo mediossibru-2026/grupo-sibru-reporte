@@ -19,6 +19,7 @@
             --gray-bg: #f8f9fa;
             --red: #D32F2F;
             --gold: #C9A961;
+            --purple: #6A1B9A;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -97,6 +98,7 @@
             display: flex;
             align-items: center;
             gap: 10px;
+            flex-wrap: wrap;
         }
 
         .project-card p {
@@ -133,15 +135,30 @@
         .project-card.mundial { border-left-color: var(--gold); }
         .project-card.mundial h3 { color: #8B6914; }
 
-        .project-card.mundial .badge-exito {
+        .project-card.regreso { border-left-color: var(--purple); }
+        .project-card.regreso h3 { color: var(--purple); }
+
+        .project-card .badge-exito {
             display: inline-block;
             background: var(--green-dark);
             color: white;
             padding: 3px 10px;
             border-radius: 20px;
-            font-size: 0.7em;
+            font-size: 0.65em;
             font-weight: 700;
-            margin-left: 10px;
+            margin-left: 8px;
+            letter-spacing: 1px;
+        }
+
+        .project-card .badge-nuevo {
+            display: inline-block;
+            background: var(--purple);
+            color: white;
+            padding: 3px 10px;
+            border-radius: 20px;
+            font-size: 0.65em;
+            font-weight: 700;
+            margin-left: 8px;
             letter-spacing: 1px;
         }
 
@@ -213,6 +230,11 @@
                 <p>Estrategia de comunicación y promociones durante la temporada de Fútbol Americano NFL 2026-2027. Del Kickoff al Super Bowl.</p>
             </a>
 
+            <a href="activaciones_mundial_2026.html" class="project-card mundial">
+                <h3><span class="icon">⚽</span> Activación Mundialista 2026 <span class="badge-exito">✓ EXITOSA</span></h3>
+                <p>Business Case completo de "La Pasión del Sabor Mundialista". 200+ asistentes, alianzas con Bachoco, Rich's y Simplot. Junio-Julio 2026.</p>
+            </a>
+
             <a href="campana_dia_de_muertos_2026.html" class="project-card muertos">
                 <h3><span class="icon">🌺</span> Campaña Día de Muertos 2026</h3>
                 <p>Celebremos con los que ya no están. Campaña de participación en Facebook con co-patrocinio de proveedores. 15 octubre - 10 noviembre 2026.</p>
@@ -223,13 +245,8 @@
                 <p>Evento estelar de Grupo SIBRÜ. Activación con proveedores, dinámicas, degustaciones y experiencias gastronómicas. Viernes 11 de Septiembre 2026.</p>
             </a>
 
-            <a href="business_case_mundialista_2026.html" class="project-card mundial">
-                <h3><span class="icon">⚽</span> Activación Mundialista 2026 <span class="badge-exito">✓ EXITOSA</span></h3>
-                <p>Business Case completo de "La Pasión del Sabor Mundialista". 200+ asistentes, alianzas con Bachoco, Rich's y Simplot. Junio-Julio 2026.</p>
-            </a>
-
             <a href="Club-SIBRU.html" class="project-card">
-                <h3><span class="icon"></span> CLUB SIBRÜ</h3>
+                <h3><span class="icon">🎯</span> CLUB SIBRÜ</h3>
                 <p>Programa de fidelización y beneficios para clientes. Construcción de relaciones a largo plazo y valor agregado.</p>
             </a>
         </div>
@@ -240,6 +257,11 @@
             <a href="promocion_alitas_jalapeno.html" class="project-card promo">
                 <h3><span class="icon">🌶️</span> Promoción Alitas Jalapeño</h3>
                 <p>Lleva 5 kg de Alas Marinadas SIBRÜ por $400 y recibe 1 bolsa de Jalapeños Rellenos de Queso Crema (1.250 kg) de regalo. Paquete Alitas Jalapeño.</p>
+            </a>
+
+            <a href="business_case_regreso_clases_2026.html" class="project-card regreso">
+                <h3><span class="icon">🎒</span> Regreso a Clases Rich's 2026 <span class="badge-nuevo">NUEVO</span></h3>
+                <p>Business Case para acelerar rotación de SKUs de baja velocidad. 110 promocionales, $8,850 MXN en venta extra meta. Agosto-Septiembre 2026.</p>
             </a>
         </div>
 
@@ -285,7 +307,7 @@
             </a>
 
             <a href="impresoras.html" class="project-card">
-                <h3><span class="icon">🖨️</span> Comparativa Impresoras</h3>
+                <h3><span class="icon">️</span> Comparativa Impresoras</h3>
                 <p>Análisis comparativo de impresoras PVC: Evolis Badgy 100 vs Zebra ZC300 Dual. Costos, características y recomendación.</p>
             </a>
 
