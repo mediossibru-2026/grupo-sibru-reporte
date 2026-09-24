@@ -1,0 +1,1211 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Business Case | Activación Mundialista 2026 - GRUPO SIBRÜ</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --green-dark: #1B5E20;
+            --green-medium: #2E7D32;
+            --green-light: #66BB6A;
+            --orange: #F4A261;
+            --orange-dark: #E76F51;
+            --blue-dark: #264653;
+            --blue-medium: #2A9D8F;
+            --black: #1A1A1A;
+            --white: #ffffff;
+            --gray-bg: #f8f9fa;
+            --gray-light: #f0f0f0;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            background: linear-gradient(135deg, #f0f2f5 0%, #e2e8f0 100%);
+            color: var(--blue-dark);
+            line-height: 1.6;
+        }
+
+        .container { max-width: 1200px; margin: 0 auto; padding: 30px 20px; }
+
+        /* Cover Page */
+        .cover {
+            background: linear-gradient(135deg, var(--green-dark) 0%, var(--blue-dark) 50%, var(--black) 100%);
+            color: white;
+            padding: 80px 40px;
+            border-radius: 20px;
+            text-align: center;
+            margin-bottom: 30px;
+            box-shadow: 0 15px 50px rgba(27, 94, 32, 0.4);
+            position: relative;
+            overflow: hidden;
+            min-height: 500px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .cover::before {
+            content: '⚽';
+            position: absolute;
+            top: 30px;
+            right: 40px;
+            font-size: 5em;
+            opacity: 0.15;
+        }
+
+        .cover::after {
+            content: '🏆';
+            position: absolute;
+            bottom: 30px;
+            left: 40px;
+            font-size: 5em;
+            opacity: 0.15;
+        }
+
+        .cover-logo {
+            display: inline-flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 30px;
+            justify-content: center;
+        }
+
+        .cover-logo-mark {
+            width: 70px;
+            height: 70px;
+            background: rgba(255,255,255,0.15);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 900;
+            font-size: 16px;
+            border: 3px solid var(--orange);
+        }
+
+        .cover-logo-text {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 800;
+            font-size: 2em;
+            letter-spacing: 3px;
+        }
+
+        .cover h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 3em;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-bottom: 15px;
+            line-height: 1.1;
+        }
+
+        .cover .subtitle {
+            font-size: 1.4em;
+            color: var(--orange);
+            font-style: italic;
+            margin-bottom: 25px;
+            font-weight: 600;
+        }
+
+        .cover-badge {
+            display: inline-block;
+            background: var(--orange);
+            color: white;
+            padding: 10px 30px;
+            border-radius: 50px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 800;
+            font-size: 1em;
+            letter-spacing: 2px;
+            margin-bottom: 30px;
+        }
+
+        .cover-meta {
+            font-size: 1em;
+            opacity: 0.9;
+            line-height: 1.8;
+        }
+
+        .cover-meta strong {
+            color: var(--orange);
+        }
+
+        /* Sections */
+        .section {
+            background: var(--white);
+            border-radius: 20px;
+            padding: 35px 30px;
+            margin-bottom: 25px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            border-left: 8px solid var(--green-dark);
+        }
+
+        .section-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.6em;
+            font-weight: 800;
+            color: var(--green-dark);
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid var(--orange);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .section-subtitle {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.2em;
+            font-weight: 700;
+            color: var(--blue-dark);
+            margin: 25px 0 12px;
+        }
+
+        .content {
+            font-size: 1em;
+            line-height: 1.7;
+            color: var(--black);
+        }
+
+        .content p {
+            margin-bottom: 15px;
+        }
+
+        .content ul {
+            margin-left: 20px;
+            margin-bottom: 15px;
+        }
+
+        .content ul li {
+            margin-bottom: 8px;
+            padding-left: 5px;
+        }
+
+        .content ol {
+            margin-left: 20px;
+            margin-bottom: 15px;
+        }
+
+        .content ol li {
+            margin-bottom: 8px;
+            padding-left: 5px;
+        }
+
+        /* KPI Cards */
+        .kpi-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 18px;
+            margin: 25px 0;
+        }
+
+        .kpi-card {
+            background: linear-gradient(135deg, var(--green-dark), var(--green-medium));
+            color: white;
+            padding: 25px 20px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(27, 94, 32, 0.2);
+            transition: transform 0.3s;
+        }
+
+        .kpi-card:hover { transform: translateY(-5px); }
+        .kpi-card.orange { background: linear-gradient(135deg, var(--orange), var(--orange-dark)); }
+        .kpi-card.blue { background: linear-gradient(135deg, var(--blue-dark), var(--blue-medium)); }
+        .kpi-card.dark { background: linear-gradient(135deg, var(--black), #333); }
+
+        .kpi-value {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2.5em;
+            font-weight: 900;
+            margin: 10px 0;
+            line-height: 1;
+        }
+
+        .kpi-label {
+            font-size: 0.9em;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .kpi-sub {
+            font-size: 0.8em;
+            opacity: 0.85;
+            margin-top: 8px;
+        }
+
+        /* Charts Grid */
+        .charts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 25px 0;
+        }
+
+        .chart-container {
+            background: var(--gray-bg);
+            padding: 20px;
+            border-radius: 15px;
+            position: relative;
+            height: 320px;
+            border: 2px solid #e9ecef;
+        }
+
+        .chart-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1em;
+            font-weight: 700;
+            color: var(--blue-dark);
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        /* Tables */
+        .table-wrapper {
+            width: 100%;
+            overflow-x: auto;
+            margin: 20px 0;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 600px;
+            background: var(--white);
+        }
+
+        th {
+            background: linear-gradient(135deg, var(--green-dark), var(--blue-dark));
+            color: var(--white);
+            padding: 12px 10px;
+            text-align: left;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: 0.85em;
+        }
+
+        td { 
+            padding: 10px; 
+            border-bottom: 1px solid #eee;
+            font-size: 0.9em;
+        }
+
+        tr:nth-child(even) { background-color: #fafafa; }
+
+        /* Phase Cards */
+        .phase-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .phase-card {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            border-top: 5px solid;
+        }
+
+        .phase-card.phase1 { border-top-color: var(--green-dark); }
+        .phase-card.phase2 { border-top-color: var(--orange); }
+        .phase-card.phase3 { border-top-color: var(--blue-dark); }
+
+        .phase-card h4 {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--green-dark);
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+
+        .phase-card .phase-date {
+            display: inline-block;
+            background: var(--orange);
+            color: white;
+            padding: 3px 12px;
+            border-radius: 20px;
+            font-size: 0.75em;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .phase-card ul {
+            margin-left: 18px;
+            font-size: 0.9em;
+        }
+
+        .phase-card li {
+            margin-bottom: 6px;
+        }
+
+        /* Alliance Cards */
+        .alliance-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .alliance-card {
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            padding: 25px;
+            border-radius: 15px;
+            text-align: center;
+            border-bottom: 5px solid var(--green-dark);
+        }
+
+        .alliance-card .name {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 900;
+            font-size: 1.3em;
+            color: var(--green-dark);
+            margin-bottom: 8px;
+        }
+
+        .alliance-card .role {
+            font-size: 0.9em;
+            color: #666;
+            font-style: italic;
+        }
+
+        /* Highlight Box */
+        .highlight-box {
+            background: linear-gradient(135deg, #fff3e0, #faf0e6);
+            border-left: 6px solid var(--orange);
+            padding: 25px;
+            border-radius: 12px;
+            margin: 20px 0;
+        }
+
+        .highlight-box h4 {
+            color: var(--orange-dark);
+            font-family: 'Montserrat', sans-serif;
+            margin-bottom: 10px;
+        }
+
+        /* Lessons Grid */
+        .lessons-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .lesson-card {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            border-left: 5px solid var(--green-dark);
+        }
+
+        .lesson-card h4 {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--green-dark);
+            margin-bottom: 12px;
+            font-size: 1.1em;
+        }
+
+        .lesson-card ul {
+            margin-left: 18px;
+            font-size: 0.9em;
+        }
+
+        .lesson-card li {
+            margin-bottom: 8px;
+        }
+
+        /* CTA Box */
+        .cta-box {
+            background: linear-gradient(135deg, var(--green-dark), var(--blue-dark));
+            color: white;
+            padding: 35px;
+            border-radius: 15px;
+            text-align: center;
+            margin: 25px 0;
+        }
+
+        .cta-box h3 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.5em;
+            margin-bottom: 15px;
+            color: var(--orange);
+        }
+
+        .cta-box p {
+            font-size: 1.05em;
+            margin-bottom: 15px;
+        }
+
+        /* Signatures */
+        .signatures {
+            margin-top: 40px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+        }
+
+        .signature-block {
+            text-align: center;
+        }
+
+        .signature-line {
+            border-top: 1px solid var(--black);
+            padding-top: 8px;
+            margin-top: 60px;
+        }
+
+        .signature-name {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 1em;
+            color: var(--green-dark);
+            margin-bottom: 3px;
+        }
+
+        .signature-title {
+            font-size: 0.85em;
+            color: #666;
+        }
+
+        /* Footer */
+        .footer {
+            background: linear-gradient(135deg, var(--blue-dark), var(--black));
+            color: white;
+            padding: 40px 20px;
+            border-radius: 20px;
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .footer .brand {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2em;
+            font-weight: 900;
+            margin-bottom: 10px;
+        }
+
+        .footer .tagline {
+            font-size: 1.2em;
+            margin-bottom: 15px;
+            color: var(--orange);
+        }
+
+        .footer .copyright {
+            opacity: 0.8;
+            font-size: 0.9em;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .cover h1 { font-size: 2em; }
+            .cover .subtitle { font-size: 1.1em; }
+            .charts-grid { grid-template-columns: 1fr; }
+            .container { padding: 15px; }
+            .section { padding: 20px 15px; }
+            .kpi-grid { grid-template-columns: repeat(2, 1fr); }
+            .signatures { grid-template-columns: 1fr; }
+        }
+
+        @media (max-width: 480px) {
+            .kpi-grid { grid-template-columns: 1fr; }
+            .cover h1 { font-size: 1.6em; }
+        }
+
+        /* Print Styles */
+        @media print {
+            body { background: white; }
+            .container { padding: 10px; }
+            .section { box-shadow: none; page-break-inside: avoid; }
+            .cover { page-break-after: always; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Cover Page -->
+        <div class="cover">
+            <div class="cover-logo">
+                <div class="cover-logo-mark">SIBRÜ</div>
+                <div class="cover-logo-text">GRUPO SIBRÜ</div>
+            </div>
+            <h1>Business Case</h1>
+            <div class="subtitle">"La Pasión del Sabor Mundialista"</div>
+            <div class="cover-badge">✓ PROYECTO EXITOSO</div>
+            <div class="cover-meta">
+                <strong>Activación Mundialista 2026</strong><br>
+                Reporte Ejecutivo de Resultados<br>
+                Junio - Julio 2026<br><br>
+                Elaborado por: Sergio Isaac Alvarez Molina<br>
+                Dirección de Marketing
+            </div>
+        </div>
+
+        <!-- 1. Resumen Ejecutivo -->
+        <div class="section">
+            <h2 class="section-title">📌 1. Resumen Ejecutivo</h2>
+            <div class="content">
+                <p>La <strong>Activación Mundialista 2026</strong> de GRUPO SIBRÜ fue una campaña integral de marketing que aprovechó la temporalidad del Mundial de Fútbol para generar ventas, engagement y posicionamiento de marca. Ejecutada entre junio y julio de 2026, la campaña combinó estrategia digital, eventos presenciales y alianzas estratégicas con proveedores clave.</p>
+                
+                <p>El proyecto logró <strong>superar las metas establecidas</strong> en todos los KPIs clave, consolidándose como un caso de éxito en activación de marca con enfoque temporal. La integración de proveedores (Bachoco, Rich's y Simplot) como co-patrocinadores permitió ampliar el alcance y reducir costos operativos.</p>
+
+                <div class="highlight-box">
+                    <h4>Resultado Destacado</h4>
+                    <p style="margin-bottom: 0;"><strong>200+ asistentes</strong> en el evento principal de activación, con degustaciones, dinámicas y contenido para redes sociales que generó alcance orgánico significativo.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 2. Contexto y Justificación -->
+        <div class="section" style="border-left-color: var(--orange);">
+            <h2 class="section-title">🌍 2. Contexto y Justificación</h2>
+            <div class="content">
+                <h3 class="section-subtitle">2.1 Oportunidad de Mercado</h3>
+                <p>El Mundial de Fútbol representa uno de los eventos de mayor consumo gastronómico en México. Las familias mexicanas se reúnen para ver los partidos, generando un incremento natural en la demanda de:</p>
+                <ul>
+                    <li>Alitas y productos de pollo (Bachoco)</li>
+                    <li>Papas y snacks (Simplot)</li>
+                    <li>Toppings, dips y postres (Rich's)</li>
+                </ul>
+
+                <h3 class="section-subtitle">2.2 Justificación Estratégica</h3>
+                <p>GRUPO SIBRÜ identificó la oportunidad de:</p>
+                <ol>
+                    <li><strong>Capitalizar la temporalidad:</strong> Aprovechar el alto consumo durante el Mundial</li>
+                    <li><strong>Fortalecer alianzas B2B:</strong> Integrar a proveedores clave en una campaña conjunta</li>
+                    <li><strong>Generar experiencia de marca:</strong> Crear eventos presenciales que conecten emocionalmente con el cliente</li>
+                    <li><strong>Amplificar alcance digital:</strong> Usar redes sociales para extender el impacto más allá del evento físico</li>
+                </ol>
+
+                <h3 class="section-subtitle">2.3 Objetivos del Proyecto</h3>
+                <ul>
+                    <li>Incrementar ventas de productos durante la temporada mundialista</li>
+                    <li>Posicionar a SIBRÜ como marca que celebra las tradiciones y eventos culturales</li>
+                    <li>Fortalecer relaciones con proveedores estratégicos</li>
+                    <li>Generar contenido orgánico viral en redes sociales</li>
+                    <li>Construir comunidad alrededor de la marca</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- 3. Estrategia -->
+        <div class="section">
+            <h2 class="section-title">🎯 3. Estrategia y Planificación</h2>
+            <div class="content">
+                <h3 class="section-subtitle">3.1 Concepto Creativo</h3>
+                <p><strong>"La Pasión del Sabor Mundialista"</strong> - Una campaña que conecta la pasión por el fútbol con el placer gastronómico, posicionando a SIBRÜ como el aliado perfecto para disfrutar los partidos.</p>
+
+                <h3 class="section-subtitle">3.2 Estrategia de Comunicación en 3 Fases</h3>
+                <div class="phase-grid">
+                    <div class="phase-card phase1">
+                        <span class="phase-date">FASE 1</span>
+                        <h4>Expectativa (Junio 1-14)</h4>
+                        <ul>
+                            <li>Anuncio de la activación en redes sociales</li>
+                            <li>Contenido teaser sobre productos mundialistas</li>
+                            <li>Invitación a proveedores para co-patrocinio</li>
+                            <li>Pre-registro de asistentes al evento</li>
+                        </ul>
+                    </div>
+
+                    <div class="phase-card phase2">
+                        <span class="phase-date">FASE 2</span>
+                        <h4>Activación (Junio 15 - Julio 19)</h4>
+                        <ul>
+                            <li>Evento principal de activación (15 junio)</li>
+                            <li>Publicación continua de contenido en redes</li>
+                            <li>Degustaciones en punto de venta</li>
+                            <li>Dinámicas interactivas con asistentes</li>
+                            <li>Gran Final (19 julio)</li>
+                        </ul>
+                    </div>
+
+                    <div class="phase-card phase3">
+                        <span class="phase-date">FASE 3</span>
+                        <h4>Cierre (Julio 20-31)</h4>
+                        <ul>
+                            <li>Agradecimiento a participantes y proveedores</li>
+                            <li>Publicación de resultados y mejores momentos</li>
+                            <li>Encuesta de satisfacción a asistentes</li>
+                            <li>Reporte de resultados a dirección</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <h3 class="section-subtitle">3.3 Alianzas Estratégicas</h3>
+                <p>Se establecieron alianzas con 3 proveedores clave para co-patrocinar la campaña:</p>
+                <div class="alliance-grid">
+                    <div class="alliance-card">
+                        <div class="name">BACHOCO</div>
+                        <div class="role">Pollo y alitas marinadas</div>
+                    </div>
+                    <div class="alliance-card">
+                        <div class="name">RICH'S</div>
+                        <div class="role">Toppings, dips y postres</div>
+                    </div>
+                    <div class="alliance-card">
+                        <div class="name">SIMPLOT</div>
+                        <div class="role">Papas y snacks</div>
+                    </div>
+                </div>
+
+                <div class="highlight-box">
+                    <h4>Beneficios Mutuos de las Alianzas</h4>
+                    <ul style="margin-bottom: 0;">
+                        <li><strong>Para SIBRÜ:</strong> Reducción de costos de premios, ampliación de portafolio, mayor alcance</li>
+                        <li><strong>Para Proveedores:</strong> Visibilidad en pautas, asociación emocional, contenido co-branded, reporte de resultados</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- 4. Ejecución -->
+        <div class="section" style="border-left-color: var(--blue-medium);">
+            <h2 class="section-title">🎉 4. Ejecución y Eventos</h2>
+            <div class="content">
+                <h3 class="section-subtitle">4.1 Evento de Activación - 15 de Junio</h3>
+                <p>El evento principal se llevó a cabo el 15 de junio de 2026, marcando el inicio oficial de la activación mundialista.</p>
+                
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Elemento</th>
+                                <th>Detalle</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Fecha</strong></td>
+                                <td>15 de junio de 2026</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Asistencia</strong></td>
+                                <td>200+ personas</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Ubicación</strong></td>
+                                <td>Instalaciones GRUPO SIBRÜ</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Actividades</strong></td>
+                                <td>Degustaciones, dinámicas, contenido para redes, presentación de productos</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Proveedores presentes</strong></td>
+                                <td>Bachoco, Rich's, Simplot</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Productos destacados</strong></td>
+                                <td>Alitas marinadas, papas especiales, toppings y dips</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3 class="section-subtitle">4.2 Gran Final - 19 de Julio</h3>
+                <p>El evento de cierre se realizó el 19 de julio, coincidiendo con la final del Mundial, consolidando la campaña con una experiencia premium.</p>
+                
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Elemento</th>
+                                <th>Detalle</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Fecha</strong></td>
+                                <td>19 de julio de 2026</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Formato</strong></td>
+                                <td>Degustaciones premium y dinámicas de cierre</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Actividades</strong></td>
+                                <td>Presentación de resultados, reconocimientos, experiencia gastronómica</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Cierre</strong></td>
+                                <td>Agradecimiento a participantes, proveedores y equipo</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="charts-grid">
+                    <div class="chart-container">
+                        <div class="chart-title">Distribución de Actividades por Fase</div>
+                        <canvas id="actividadesChart"></canvas>
+                    </div>
+                    <div class="chart-container">
+                        <div class="chart-title">Participación de Proveedores</div>
+                        <canvas id="proveedoresChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 5. Resultados -->
+        <div class="section">
+            <h2 class="section-title">📊 5. Resultados Obtenidos</h2>
+            <div class="content">
+                <p>La Activación Mundialista 2026 superó las expectativas en todos los KPIs medidos, consolidándose como un caso de éxito en activación de marca con enfoque temporal.</p>
+
+                <div class="kpi-grid">
+                    <div class="kpi-card orange">
+                        <div class="kpi-label">Degustación y Evento</div>
+                        <div class="kpi-value">200+</div>
+                        <div class="kpi-sub">asistentes en activación</div>
+                    </div>
+                    <div class="kpi-card">
+                        <div class="kpi-label">Eventos Realizados</div>
+                        <div class="kpi-value">2</div>
+                        <div class="kpi-sub">activación + gran final</div>
+                    </div>
+                    <div class="kpi-card blue">
+                        <div class="kpi-label">Proveedores Aliados</div>
+                        <div class="kpi-value">3</div>
+                        <div class="kpi-sub">Bachoco, Rich's, Simplot</div>
+                    </div>
+                    <div class="kpi-card dark">
+                        <div class="kpi-label">Duración de Campaña</div>
+                        <div class="kpi-value">45</div>
+                        <div class="kpi-sub">días de activación</div>
+                    </div>
+                </div>
+
+                <h3 class="section-subtitle">5.1 Análisis de Resultados</h3>
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>KPI</th>
+                                <th>Resultado</th>
+                                <th>Observación</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Asistencia a eventos</strong></td>
+                                <td>200+ asistentes</td>
+                                <td>Meta superada, alta participación</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Eventos ejecutados</strong></td>
+                                <td>2 eventos</td>
+                                <td>Activación inicial + Gran Final</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Alianzas estratégicas</strong></td>
+                                <td>3 proveedores</td>
+                                <td>Bachoco, Rich's, Simplot confirmados</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Contenido generado</strong></td>
+                                <td>Múltiples piezas</td>
+                                <td>Fotos, videos, posts en redes</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Engagement en redes</strong></td>
+                                <td>Alto</td>
+                                <td>Interacción constante durante campaña</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="charts-grid">
+                    <div class="chart-container">
+                        <div class="chart-title">Resultados Clave de la Campaña</div>
+                        <canvas id="resultadosChart"></canvas>
+                    </div>
+                    <div class="chart-container">
+                        <div class="chart-title">Cronograma de Ejecución</div>
+                        <canvas id="cronogramaChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 6. Análisis de Alianzas -->
+        <div class="section" style="border-left-color: var(--orange-dark);">
+            <h2 class="section-title">🤝 6. Análisis de Alianzas Estratégicas</h2>
+            <div class="content">
+                <h3 class="section-subtitle">6.1 Valor Aportado por cada Proveedor</h3>
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Proveedor</th>
+                                <th>Aportación</th>
+                                <th>Beneficio Recibido</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>BACHOCO</strong></td>
+                                <td>Productos de pollo para degustación y premios</td>
+                                <td>Visibilidad en evento, menciones en redes, asociación con SIBRÜ</td>
+                            </tr>
+                            <tr>
+                                <td><strong>RICH'S</strong></td>
+                                <td>Toppings, dips y postres para activación</td>
+                                <td>Demostración de productos, contenido co-branded</td>
+                            </tr>
+                            <tr>
+                                <td><strong>SIMPLOT</strong></td>
+                                <td>Papas y snacks para degustación</td>
+                                <td>Posicionamiento en evento mundialista, alcance amplificado</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3 class="section-subtitle">6.2 Beneficios para GRUPO SIBRÜ</h3>
+                <ul>
+                    <li><strong>Reducción de costos:</strong> Los proveedores aportaron productos, reduciendo la inversión en premios y degustaciones</li>
+                    <li><strong>Ampliación de portafolio:</strong> Mayor variedad de productos para ofrecer en eventos</li>
+                    <li><strong>Alcance amplificado:</strong> Los proveedores compartieron contenido en sus redes, extendiendo el alcance de la campaña</li>
+                    <li><strong>Fortalecimiento de relaciones B2B:</strong> Alianzas más sólidas para futuras campañas</li>
+                    <li><strong>Contenido co-branded:</strong> Material gráfico y digital con múltiples marcas, aumentando credibilidad</li>
+                </ul>
+
+                <h3 class="section-subtitle">6.3 Lecciones de las Alianzas</h3>
+                <div class="lessons-grid">
+                    <div class="lesson-card">
+                        <h4>✅ Lo que Funcionó</h4>
+                        <ul>
+                            <li>Invitación temprana a proveedores (2 meses antes)</li>
+                            <li>Definición clara de aportaciones y beneficios</li>
+                            <li>Comunicación constante durante la campaña</li>
+                            <li>Reconocimiento público en eventos y redes</li>
+                        </ul>
+                    </div>
+                    <div class="lesson-card">
+                        <h4>⚠️ Áreas de Mejora</h4>
+                        <ul>
+                            <li>Formalizar acuerdos por escrito desde el inicio</li>
+                            <li>Establecer métricas específicas por proveedor</li>
+                            <li>Coordinar calendarios de contenido con anticipación</li>
+                            <li>Definir responsable de cada alianza</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 7. Inversión y ROI -->
+        <div class="section">
+            <h2 class="section-title">💰 7. Inversión y Retorno</h2>
+            <div class="content">
+                <h3 class="section-subtitle">7.1 Estructura de Inversión</h3>
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Concepto</th>
+                                <th>Inversión SIBRÜ</th>
+                                <th>Aportación Proveedores</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Producción de eventos</strong></td>
+                                <td>Logística y operación</td>
+                                <td>Productos para degustación</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Comunicación digital</strong></td>
+                                <td>Creación de contenido</td>
+                                <td>Compartir en redes propias</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Premios y reconocimientos</strong></td>
+                                <td>Organización</td>
+                                <td>Productos para paquetes</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Material POP</strong></td>
+                                <td>Diseño y producción</td>
+                                <td>Logos y branding</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="highlight-box">
+                    <h4>Modelo de Co-Patrocinio</h4>
+                    <p style="margin-bottom: 0;">El modelo de alianzas permitió <strong>reducir significativamente la inversión directa de SIBRÜ</strong>, ya que los proveedores aportaron productos, visibilidad y amplificación de alcance. Esto representa un modelo escalable para futuras activaciones.</p>
+                </div>
+
+                <h3 class="section-subtitle">7.2 Retorno de Inversión (ROI)</h3>
+                <p>El ROI de la campaña se mide en múltiples dimensiones:</p>
+                <ul>
+                    <li><strong>ROI de Ventas:</strong> Incremento en ventas de productos durante la temporada</li>
+                    <li><strong>ROI de Marca:</strong> Posicionamiento y recordación de marca</li>
+                    <li><strong>ROI de Relaciones:</strong> Fortalecimiento de alianzas con proveedores</li>
+                    <li><strong>ROI de Comunidad:</strong> Crecimiento de base de seguidores y engagement</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- 8. Lecciones Aprendidas -->
+        <div class="section" style="border-left-color: var(--blue-medium);">
+            <h2 class="section-title">📚 8. Lecciones Aprendidas</h2>
+            <div class="content">
+                <div class="lessons-grid">
+                    <div class="lesson-card">
+                        <h4>✅ Mejores Prácticas Identificadas</h4>
+                        <ul>
+                            <li><strong>Planificación temprana:</strong> Iniciar 2-3 meses antes del evento</li>
+                            <li><strong>Alianzas estratégicas:</strong> Integrar proveedores desde el inicio</li>
+                            <li><strong>Comunicación 360°:</strong> Combinar eventos físicos con digital</li>
+                            <li><strong>Contenido auténtico:</strong> Mostrar experiencias reales, no solo productos</li>
+                            <li><strong>Medición constante:</strong> Tracking de KPIs durante toda la campaña</li>
+                        </ul>
+                    </div>
+
+                    <div class="lesson-card">
+                        <h4>️ Oportunidades de Mejora</h4>
+                        <ul>
+                            <li><strong>Formalización de acuerdos:</strong> Contratos claros con proveedores</li>
+                            <li><strong>Segmentación de audiencia:</strong> Identificar perfiles específicos</li>
+                            <li><strong>Automatización:</strong> Herramientas para gestión de registros</li>
+                            <li><strong>Post-evento:</strong> Seguimiento más estructurado con asistentes</li>
+                            <li><strong>Escalabilidad:</strong> Documentar proceso para replicar en futuras campañas</li>
+                        </ul>
+                    </div>
+
+                    <div class="lesson-card">
+                        <h4>💡 Insights Clave</h4>
+                        <ul>
+                            <li>Los eventos presenciales generan mayor conexión emocional que solo digital</li>
+                            <li>La integración de proveedores multiplica el alcance orgánico</li>
+                            <li>El contenido de degustación es altamente compartible en redes</li>
+                            <li>Las temporalidades culturales (Mundial, Día de Muertos) son oportunidades de alto impacto</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 9. Recomendaciones -->
+        <div class="section">
+            <h2 class="section-title">🎯 9. Recomendaciones Estratégicas</h2>
+            <div class="content">
+                <h3 class="section-subtitle">9.1 Para Futuras Activaciones</h3>
+                <ol>
+                    <li><strong>Replicar el modelo de co-patrocinio:</strong> Extender a más proveedores y categorías</li>
+                    <li><strong>Anticipar planificación:</strong> Iniciar 3 meses antes del evento clave</li>
+                    <li><strong>Formalizar acuerdos:</strong> Contratos claros con métricas y entregables</li>
+                    <li><strong>Invertir en contenido video:</strong> Los videos de degustación tienen mayor engagement</li>
+                    <li><strong>Crear comunidad:</strong> Grupo cerrado de clientes frecuentes para activaciones exclusivas</li>
+                </ol>
+
+                <h3 class="section-subtitle">9.2 Próximas Temporalidades a Aprovechar</h3>
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Temporalidad</th>
+                                <th>Fecha</th>
+                                <th>Oportunidad</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Día de Muertos</strong></td>
+                                <td>1-2 Noviembre</td>
+                                <td>Ofrendas, productos tradicionales, contenido emotivo</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Posadas y Navidad</strong></td>
+                                <td>Diciembre</td>
+                                <td>Reuniones familiares, productos para fiestas</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Super Bowl</strong></td>
+                                <td>Febrero 2027</td>
+                                <td>Alitas, snacks, bebidas, ambiente deportivo</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Día de la Madre</strong></td>
+                                <td>10 Mayo</td>
+                                <td>Productos premium, experiencias especiales</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="cta-box">
+                    <h3>Recomendación Final</h3>
+                    <p>La Activación Mundialista 2026 demostró que el modelo de <strong>eventos presenciales + alianzas estratégicas + contenido digital</strong> es altamente efectivo para GRUPO SIBRÜ. Se recomienda <strong>institucionalizar este modelo</strong> y replicarlo en futuras temporalidades, escalando la inversión y ampliando la base de proveedores aliados.</p>
+                    <p style="margin-bottom: 0;"><strong>Próximo paso inmediato:</strong> Iniciar planificación de activación para Día de Muertos 2026 (Octubre), aplicando las lecciones aprendidas del Mundial.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 10. Conclusiones -->
+        <div class="section" style="border-left-color: var(--orange);">
+            <h2 class="section-title">✅ 10. Conclusiones</h2>
+            <div class="content">
+                <p>La <strong>Activación Mundialista 2026</strong> de GRUPO SIBRÜ fue un proyecto exitoso que logró:</p>
+                <ul>
+                    <li>✅ <strong>Conectar emocionalmente</strong> con la audiencia a través de la pasión por el fútbol y la gastronomía</li>
+                    <li>✅ <strong>Generar 200+ asistentes</strong> en el evento principal de activación</li>
+                    <li>✅ <strong>Fortalecer alianzas</strong> con 3 proveedores estratégicos (Bachoco, Rich's, Simplot)</li>
+                    <li>✅ <strong>Crear contenido orgánico</strong> de alto engagement en redes sociales</li>
+                    <li>✅ <strong>Establecer un modelo replicable</strong> de activación con co-patrocinio</li>
+                    <li>✅ <strong>Posicionar a SIBRÜ</strong> como marca que celebra las tradiciones y eventos culturales</li>
+                </ul>
+
+                <p>Este Business Case demuestra que las activaciones de marca con enfoque temporal, cuando se planifican estratégicamente y se ejecutan con alianzas sólidas, generan resultados significativos en ventas, posicionamiento y construcción de comunidad.</p>
+
+                <p style="font-size: 1.1em; font-weight: 600; color: var(--green-dark); margin-top: 20px;">La Activación Mundialista 2026 no fue solo un evento: fue la consolidación de un modelo de negocio que GRUPO SIBRÜ puede escalar y replicar en futuras oportunidades.</p>
+            </div>
+        </div>
+
+        <!-- Firmas -->
+        <div class="signatures">
+            <div class="signature-block">
+                <div class="signature-line">
+                    <div class="signature-name">Sergio Isaac Alvarez Molina</div>
+                    <div class="signature-title">Dirección de Marketing</div>
+                    <div class="signature-title" style="font-size: 0.75em; color: #999; margin-top: 5px;">Elaboró</div>
+                </div>
+            </div>
+            <div class="signature-block">
+                <div class="signature-line">
+                    <div class="signature-name">Vo.Bo. Dirección General</div>
+                    <div class="signature-title">Aprobación de Business Case</div>
+                    <div class="signature-title" style="font-size: 0.75em; color: #999; margin-top: 5px;">Vo.Bo.</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            <div class="brand">GRUPO SIBRÜ</div>
+            <div class="tagline">Alimentamos Confianza</div>
+            <div class="copyright">
+                Business Case - Activación Mundialista 2026<br>
+                Documento Confidencial | Julio 2026<br>
+                Elaborado por: Sergio Isaac Alvarez Molina
+            </div>
+        </div>
+    </div>
+
+    <script>
+        Chart.defaults.font.family = "'Open Sans', sans-serif";
+        Chart.defaults.color = '#264653';
+
+        // Gráfica de Actividades por Fase
+        new Chart(document.getElementById('actividadesChart'), {
+            type: 'doughnut',
+            data: {
+                labels: ['Fase 1: Expectativa', 'Fase 2: Activación', 'Fase 3: Cierre'],
+                datasets: [{
+                    data: [20, 60, 20],
+                    backgroundColor: ['#1B5E20', '#F4A261', '#264653'],
+                    borderWidth: 3,
+                    borderColor: '#fff'
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { position: 'bottom', labels: { padding: 10, font: { size: 10 } } }
+                }
+            }
+        });
+
+        // Gráfica de Participación de Proveedores
+        new Chart(document.getElementById('proveedoresChart'), {
+            type: 'bar',
+            data: {
+                labels: ['Bachoco', 'Rich\'s', 'Simplot'],
+                datasets: [{
+                    label: 'Nivel de Participación',
+                    data: [9, 8, 9],
+                    backgroundColor: ['#1B5E20', '#F4A261', '#264653'],
+                    borderWidth: 0
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: { legend: { display: false } },
+                scales: {
+                    y: { beginAtZero: true, max: 10, title: { display: true, text: 'Nivel (1-10)' } }
+                }
+            }
+        });
+
+        // Gráfica de Resultados
+        new Chart(document.getElementById('resultadosChart'), {
+            type: 'radar',
+            data: {
+                labels: ['Asistencia', 'Contenido', 'Alianzas', 'Engagement', 'Posicionamiento'],
+                datasets: [{
+                    label: 'Resultado Obtenido',
+                    data: [9, 8, 9, 8, 9],
+                    backgroundColor: 'rgba(27, 94, 32, 0.2)',
+                    borderColor: '#1B5E20',
+                    borderWidth: 2,
+                    pointBackgroundColor: '#1B5E20'
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { position: 'bottom', labels: { padding: 10, font: { size: 10 } } }
+                },
+                scales: {
+                    r: { beginAtZero: true, max: 10, ticks: { stepSize: 2 } }
+                }
+            }
+        });
+
+        // Gráfica de Cronograma
+        new Chart(document.getElementById('cronogramaChart'), {
+            type: 'line',
+            data: {
+                labels: ['Junio 1-14', 'Junio 15', 'Junio 16-30', 'Julio 1-18', 'Julio 19', 'Julio 20-31'],
+                datasets: [{
+                    label: 'Intensidad de Actividades',
+                    data: [5, 10, 7, 8, 10, 4],
+                    borderColor: '#1B5E20',
+                    backgroundColor: 'rgba(27, 94, 32, 0.1)',
+                    fill: true,
+                    tension: 0.4
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: { legend: { display: false } },
+                scales: {
+                    y: { beginAtZero: true, max: 12, title: { display: true, text: 'Nivel de Actividad' } }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
