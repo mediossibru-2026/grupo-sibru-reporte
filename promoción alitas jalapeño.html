@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Promoción Alitas SIBRÜ | Fuerza de Ventas</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --green-dark: #1B5E20;
+            --green-medium: #2E7D32;
+            --orange: #F4A261;
+            --orange-dark: #E76F51;
+            --red: #D32F2F;
+            --black: #1A1A1A;
+            --white: #ffffff;
+            --yellow: #FFD600;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            background: #e0e0e0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .flyer {
+            width: 210mm;
+            height: 297mm;
+            background: var(--white);
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, var(--green-dark) 0%, var(--green-medium) 100%);
+            color: white;
+            padding: 25px 30px;
+            text-align: center;
+            position: relative;
+        }
+
+        .header::after {
+            content: '';
+            position: absolute;
+            bottom: -20px;
+            left: 0;
+            right: 0;
+            height: 40px;
+            background: var(--white);
+            clip-path: polygon(0 0, 100% 0, 100% 50%, 0 100%);
+        }
+
+        .brand {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 900;
+            font-size: 1.4em;
+            letter-spacing: 3px;
+            margin-bottom: 5px;
+        }
+
+        .promo-tag {
+            display: inline-block;
+            background: var(--orange);
+            color: white;
+            padding: 6px 20px;
+            border-radius: 50px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 800;
+            font-size: 0.85em;
+            letter-spacing: 2px;
+            margin-top: 10px;
+        }
+
+        /* Main Offer */
+        .main-offer {
+            padding: 40px 30px 20px;
+            text-align: center;
+        }
+
+        .offer-title {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 900;
+            font-size: 1.6em;
+            color: var(--green-dark);
+            line-height: 1.2;
+            margin-bottom: 15px;
+        }
+
+        .offer-title .highlight {
+            color: var(--orange-dark);
+            display: block;
+            font-size: 1.3em;
+        }
+
+        .price-box {
+            background: linear-gradient(135deg, var(--orange), var(--orange-dark));
+            color: white;
+            padding: 20px;
+            border-radius: 15px;
+            margin: 20px auto;
+            max-width: 400px;
+            box-shadow: 0 8px 20px rgba(231, 111, 81, 0.3);
+        }
+
+        .price-label {
+            font-size: 0.9em;
+            font-weight: 600;
+            letter-spacing: 1px;
+            margin-bottom: 5px;
+        }
+
+        .price-amount {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 900;
+            font-size: 3.5em;
+            line-height: 1;
+        }
+
+        .price-detail {
+            font-size: 0.95em;
+            margin-top: 5px;
+            opacity: 0.95;
+        }
+
+        /* Gift Section */
+        .gift-section {
+            background: var(--yellow);
+            margin: 20px 30px;
+            padding: 25px;
+            border-radius: 15px;
+            text-align: center;
+            border: 4px dashed var(--red);
+            position: relative;
+        }
+
+        .gift-badge {
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--red);
+            color: white;
+            padding: 8px 25px;
+            border-radius: 50px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 900;
+            font-size: 1.2em;
+            letter-spacing: 2px;
+            box-shadow: 0 4px 10px rgba(211, 47, 47, 0.4);
+        }
+
+        .gift-title {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 800;
+            font-size: 1.3em;
+            color: var(--red);
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+
+        .gift-product {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 1.5em;
+            color: var(--black);
+            margin-bottom: 8px;
+            line-height: 1.2;
+        }
+
+        .gift-weight {
+            font-size: 1.1em;
+            color: var(--black);
+            font-weight: 600;
+        }
+
+        /* System Code */
+        .system-code {
+            background: var(--black);
+            color: white;
+            margin: 20px 30px;
+            padding: 20px;
+            border-radius: 12px;
+            text-align: center;
+        }
+
+        .system-label {
+            font-size: 0.85em;
+            letter-spacing: 2px;
+            opacity: 0.8;
+            margin-bottom: 8px;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .system-name {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 900;
+            font-size: 1.8em;
+            color: var(--yellow);
+            letter-spacing: 1px;
+        }
+
+        /* Instructions */
+        .instructions {
+            margin: 20px 30px;
+            padding: 20px;
+            background: #f5f5f5;
+            border-left: 6px solid var(--green-dark);
+            border-radius: 8px;
+        }
+
+        .instructions-title {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 800;
+            font-size: 1.1em;
+            color: var(--green-dark);
+            margin-bottom: 12px;
+            letter-spacing: 1px;
+        }
+
+        .instructions-list {
+            list-style: none;
+        }
+
+        .instructions-list li {
+            padding: 8px 0 8px 30px;
+            position: relative;
+            font-size: 1em;
+            font-weight: 600;
+            color: var(--black);
+            border-bottom: 1px dashed #ccc;
+        }
+
+        .instructions-list li:last-child {
+            border-bottom: none;
+        }
+
+        .instructions-list li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            top: 8px;
+            width: 22px;
+            height: 22px;
+            background: var(--green-dark);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 900;
+            font-size: 0.8em;
+        }
+
+        /* Footer */
+        .footer {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: var(--green-dark);
+            color: white;
+            padding: 20px 30px;
+            text-align: center;
+        }
+
+        .footer-brand {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 900;
+            font-size: 1.2em;
+            letter-spacing: 2px;
+            margin-bottom: 5px;
+        }
+
+        .footer-slogan {
+            font-style: italic;
+            font-size: 0.9em;
+            opacity: 0.9;
+        }
+
+        /* Print Button */
+        .print-button {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: var(--green-dark);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 50px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.9em;
+            font-weight: 700;
+            cursor: pointer;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+            z-index: 100;
+        }
+
+        .print-button:hover {
+            background: var(--orange-dark);
+        }
+
+        /* Print Styles */
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+
+            .flyer {
+                box-shadow: none;
+                width: 100%;
+                height: 100vh;
+            }
+
+            .print-button {
+                display: none;
+            }
+
+            @page {
+                margin: 0;
+                size: A4;
+            }
+        }
+    </style>
+</head>
+<body>
+    <button class="print-button" onclick="window.print()">🖨️ Imprimir / Guardar PDF</button>
+
+    <div class="flyer">
+        <!-- Header -->
+        <div class="header">
+            <div class="brand">GRUPO SIBRÜ</div>
+            <div class="promo-tag">PROMOCIÓN FUERZA DE VENTAS</div>
+        </div>
+
+        <!-- Main Offer -->
+        <div class="main-offer">
+            <div class="offer-title">
+                LLEVA
+                <span class="highlight">5 KILOS DE ALAS MARINADAS SIBRÜ</span>
+            </div>
+
+            <div class="price-box">
+                <div class="price-label">POR SOLO</div>
+                <div class="price-amount">$400.00</div>
+                <div class="price-detail">5 kg de Alas Marinadas SIBRÜ</div>
+            </div>
+        </div>
+
+        <!-- Gift Section -->
+        <div class="gift-section">
+            <div class="gift-badge">¡¡REGALO!!</div>
+            <div class="gift-title">RECIBES GRATIS</div>
+            <div class="gift-product">1 BOLSA DE JALAPEÑOS<br>RELLENOS DE QUESO CREMA</div>
+            <div class="gift-weight">1.250 kg aprox.</div>
+        </div>
+
+        <!-- System Code -->
+        <div class="system-code">
+            <div class="system-label">BUSCAR EN SISTEMA</div>
+            <div class="system-name">Paquete Alitas Jalapeño</div>
+        </div>
+
+        <!-- Instructions -->
+        <div class="instructions">
+            <div class="instructions-title">INDICACIONES PARA LA FUERZA DE VENTAS</div>
+            <ul class="instructions-list">
+                <li>Dar a conocer la promoción a todos los clientes</li>
+                <li>Ofrecer activamente en mesa</li>
+                <li>Ofrecer en línea de congelados</li>
+                <li>Destacar el regalo como valor agregado</li>
+            </ul>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            <div class="footer-brand">GRUPO SIBRÜ</div>
+            <div class="footer-slogan">Alimentamos Confianza</div>
+        </div>
+    </div>
+</body>
+</html>
