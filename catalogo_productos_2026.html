@@ -31,7 +31,7 @@
 
   .container { max-width: 1200px; margin: 0 auto; padding: 30px 20px; }
 
-  /* Header con logo - Fondo blanco con acentos */
+  /* Header con logo */
   .header {
     background: linear-gradient(135deg, var(--white) 0%, #f1f8e9 100%);
     color: var(--text);
@@ -165,7 +165,7 @@
     transform: translateY(-2px);
   }
 
-  /* Grid: Desktop 3 columnas, Móvil/Tablet 2 columnas */
+  /* Grid: Desktop 3 columnas */
   .product-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -375,7 +375,7 @@
     box-shadow: 0 5px 20px rgba(0,0,0,0.05);
   }
 
-  /* Modal mejorado - Fondo blanco con acentos */
+  /* Modal con botón X mejorado */
   .modal-overlay {
     display: none;
     position: fixed;
@@ -414,30 +414,58 @@
     to { opacity: 1; transform: translateY(0) scale(1); }
   }
 
+  /* Botón X mejorado - más visible y claro */
   .modal-close {
     position: absolute;
-    top: 20px;
-    right: 20px;
-    background: linear-gradient(135deg, var(--orange), var(--orange-dark));
-    border: none;
-    width: 45px;
-    height: 45px;
+    top: 15px;
+    right: 15px;
+    background: linear-gradient(135deg, #E76F51, #D32F2F);
+    border: 3px solid white;
+    width: 50px;
+    height: 50px;
     border-radius: 50%;
-    font-size: 24px;
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: 0 4px 15px rgba(231, 111, 81, 0.4);
+    box-shadow: 0 4px 15px rgba(211, 47, 47, 0.5);
     z-index: 10;
     transition: all 0.3s;
-    color: white;
-    font-weight: 300;
+    padding: 0;
   }
 
   .modal-close:hover {
-    transform: rotate(90deg) scale(1.1);
-    box-shadow: 0 6px 20px rgba(231, 111, 81, 0.6);
+    transform: rotate(90deg) scale(1.15);
+    box-shadow: 0 6px 20px rgba(211, 47, 47, 0.7);
+    background: linear-gradient(135deg, #D32F2F, #B71C1C);
+  }
+
+  .modal-close::before {
+    content: '✕';
+    color: white;
+    font-size: 28px;
+    font-weight: 700;
+    line-height: 1;
+  }
+
+  .modal-close::after {
+    content: 'Cerrar';
+    position: absolute;
+    bottom: -22px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 10px;
+    color: #E76F51;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    white-space: nowrap;
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+
+  .modal-close:hover::after {
+    opacity: 1;
   }
 
   .modal-header {
@@ -712,7 +740,7 @@
     transform: rotate(90deg);
   }
 
-  /* Footer con logo - Fondo blanco con acentos */
+  /* Footer con logo */
   .footer {
     text-align: center;
     margin-top: 60px;
@@ -783,30 +811,58 @@
     z-index: 1;
   }
 
-  /* Responsive: Desktop 3 cols, Tablet/Móvil 2 cols */
-  @media (max-width: 900px) {
+  /* Responsive: Desktop 3 cols, Tablet 2 cols, Móvil 1 col */
+  @media (max-width: 1024px) {
     .product-grid {
       grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
     }
-    
-    .header h1 { font-size: 1.8em; }
-    .header-logo, .footer-logo, .modal-header-logo { max-width: 200px; }
-    .modal-title { font-size: 1.6em; }
-    .modal-body { padding: 25px; }
-    .info-grid { grid-template-columns: 1fr; }
-    .gallery-strip { padding: 15px 20px; }
   }
 
-  @media (max-width: 600px) {
+  @media (max-width: 640px) {
     .product-grid {
-      grid-template-columns: repeat(2, 1fr);
-      gap: 15px;
+      grid-template-columns: 1fr;
+      gap: 20px;
     }
     
-    .header { padding: 30px 20px; }
-    .header h1 { font-size: 1.5em; }
-    .product-info { padding: 18px; }
-    .product-name { font-size: 1.1em; }
+    .container { padding: 15px; }
+    .header { padding: 25px 15px; }
+    .header h1 { font-size: 1.4em; }
+    .header-logo { max-width: 180px; }
+    .product-info { padding: 20px; }
+    .product-name { font-size: 1.3em; }
+    .product-desc { font-size: 0.95em; }
+    .product-details { padding: 15px; }
+    .detail-row { font-size: 0.9em; }
+    .product-code { 
+      font-size: 0.9em; 
+      padding: 10px 18px;
+      width: 100%;
+      text-align: center;
+    }
+    .modal-body { padding: 20px; }
+    .modal-title { font-size: 1.5em; }
+    .modal-description { 
+      font-size: 1em; 
+      padding: 15px;
+    }
+    .info-grid { grid-template-columns: 1fr; }
+    .gallery-strip { padding: 15px 20px; }
+    .gallery-thumb { width: 65px; height: 65px; }
+    .modal-header { padding: 20px; }
+    .modal-header-logo { max-width: 180px; }
+    .modal-close {
+      top: 10px;
+      right: 10px;
+      width: 45px;
+      height: 45px;
+    }
+    .modal-close::before {
+      font-size: 24px;
+    }
+    .modal-close::after {
+      display: none;
+    }
   }
 
   @media print {
@@ -824,7 +880,6 @@
 <body>
 
 <div class="container">
-  <!-- Header con logo -->
   <div class="header">
     <img src="img/logo-sibru-horizontal.png" alt="GRUPO SIBRÜ" class="header-logo">
     <h1>CATÁLOGO DE PRODUCTOS 2026</h1>
@@ -863,7 +918,7 @@
       <div class="product-image-container">
         <img src="img/bachoco-tender-1.jpg" alt="Tender Empanizado" class="product-image" onerror="this.src='https://via.placeholder.com/400x400/E31837/FFFFFF?text=BACHOCO+Tender'">
         <img src="img/bachoco-tender-2.jpg" alt="Tender Empanizado Vista 2" class="product-image img-hover" onerror="this.style.display='none'">
-        <img src="img/logo-sibru-icono.png" alt="SIBRÜ" class="brand-watermark">
+        <img src="img/logo-sibru-icono.png" alt="SIBRÜ" class="brand-watermark" onerror="this.style.display='none'">
         <div class="click-hint">Ver ficha técnica</div>
       </div>
       <div class="product-info">
@@ -895,7 +950,7 @@
       <div class="product-image-container">
         <img src="img/bachoco-nugget-1.jpg" alt="Nugget de Pollo" class="product-image" onerror="this.src='https://via.placeholder.com/400x400/E31837/FFFFFF?text=BACHOCO+Nugget'">
         <img src="img/bachoco-nugget-2.jpg" alt="Nugget de Pollo Vista 2" class="product-image img-hover" onerror="this.style.display='none'">
-        <img src="img/logo-sibru-icono.png" alt="SIBRÜ" class="brand-watermark">
+        <img src="img/logo-sibru-icono.png" alt="SIBRÜ" class="brand-watermark" onerror="this.style.display='none'">
         <div class="click-hint">Ver ficha técnica</div>
       </div>
       <div class="product-info">
@@ -927,7 +982,7 @@
       <div class="product-image-container">
         <img src="img/simplot-papa-gajo-1.jpg" alt="Papa Gajo 6/5" class="product-image" onerror="this.src='https://via.placeholder.com/400x400/2E7D32/FFFFFF?text=SIMPLOT+Gajo'">
         <img src="img/simplot-papa-gajo-2.jpg" alt="Papa Gajo Vista 2" class="product-image img-hover" onerror="this.style.display='none'">
-        <img src="img/logo-sibru-icono.png" alt="SIBRÜ" class="brand-watermark">
+        <img src="img/logo-sibru-icono.png" alt="SIBRÜ" class="brand-watermark" onerror="this.style.display='none'">
         <div class="click-hint">Ver ficha técnica</div>
       </div>
       <div class="product-info">
@@ -959,7 +1014,7 @@
       <div class="product-image-container">
         <img src="img/simplot-papa-cascara-1.jpg" alt="Papa Cáscara con Sal" class="product-image" onerror="this.src='https://via.placeholder.com/400x400/2E7D32/FFFFFF?text=SIMPLOT+Cáscara'">
         <img src="img/simplot-papa-cascara-2.jpg" alt="Papa Cáscara Vista 2" class="product-image img-hover" onerror="this.style.display='none'">
-        <img src="img/logo-sibru-icono.png" alt="SIBRÜ" class="brand-watermark">
+        <img src="img/logo-sibru-icono.png" alt="SIBRÜ" class="brand-watermark" onerror="this.style.display='none'">
         <div class="click-hint">Ver ficha técnica</div>
       </div>
       <div class="product-info">
@@ -991,7 +1046,7 @@
       <div class="product-image-container">
         <img src="img/richs-icehot-fresa-1.jpg" alt="ICEHOT Fresa" class="product-image" onerror="this.src='https://via.placeholder.com/400x400/F4A261/FFFFFF?text=RICH+S+Fresa'">
         <img src="img/richs-icehot-fresa-2.jpg" alt="ICEHOT Fresa Vista 2" class="product-image img-hover" onerror="this.style.display='none'">
-        <img src="img/logo-sibru-icono.png" alt="SIBRÜ" class="brand-watermark">
+        <img src="img/logo-sibru-icono.png" alt="SIBRÜ" class="brand-watermark" onerror="this.style.display='none'">
         <div class="click-hint">Ver ficha técnica</div>
       </div>
       <div class="product-info">
@@ -1023,7 +1078,7 @@
       <div class="product-image-container">
         <img src="img/richs-dedos-queso-1.jpg" alt="Dedos de Queso" class="product-image" onerror="this.src='https://via.placeholder.com/400x400/F4A261/FFFFFF?text=RICH+S+Queso'">
         <img src="img/richs-dedos-queso-2.jpg" alt="Dedos de Queso Vista 2" class="product-image img-hover" onerror="this.style.display='none'">
-        <img src="img/logo-sibru-icono.png" alt="SIBRÜ" class="brand-watermark">
+        <img src="img/logo-sibru-icono.png" alt="SIBRÜ" class="brand-watermark" onerror="this.style.display='none'">
         <div class="click-hint">Ver ficha técnica</div>
       </div>
       <div class="product-info">
@@ -1055,7 +1110,7 @@
       <div class="product-image-container">
         <img src="img/capitan-atun-1.jpg" alt="Steaks de Atún" class="product-image" onerror="this.src='https://via.placeholder.com/400x400/003366/FFFFFF?text=CAPITÁN+Atún'">
         <img src="img/capitan-atun-2.jpg" alt="Steaks de Atún Vista 2" class="product-image img-hover" onerror="this.style.display='none'">
-        <img src="img/logo-sibru-icono.png" alt="SIBRÜ" class="brand-watermark">
+        <img src="img/logo-sibru-icono.png" alt="SIBRÜ" class="brand-watermark" onerror="this.style.display='none'">
         <div class="click-hint">Ver ficha técnica</div>
       </div>
       <div class="product-info">
@@ -1087,7 +1142,7 @@
       <div class="product-image-container">
         <img src="img/camanchaca-salmon-1.jpg" alt="Porción de Salmón" class="product-image" onerror="this.src='https://via.placeholder.com/400x400/CC2229/FFFFFF?text=CAMANCHACA+Salmón'">
         <img src="img/camanchaca-salmon-2.jpg" alt="Porción de Salmón Vista 2" class="product-image img-hover" onerror="this.style.display='none'">
-        <img src="img/logo-sibru-icono.png" alt="SIBRÜ" class="brand-watermark">
+        <img src="img/logo-sibru-icono.png" alt="SIBRÜ" class="brand-watermark" onerror="this.style.display='none'">
         <div class="click-hint">Ver ficha técnica</div>
       </div>
       <div class="product-info">
@@ -1119,7 +1174,7 @@
       <div class="product-image-container">
         <img src="img/custom-bbq-1.jpg" alt="Salsa BBQ Original" class="product-image" onerror="this.src='https://via.placeholder.com/400x400/8B4513/FFFFFF?text=CUSTOM+BBQ'">
         <img src="img/custom-bbq-2.jpg" alt="Salsa BBQ Vista 2" class="product-image img-hover" onerror="this.style.display='none'">
-        <img src="img/logo-sibru-icono.png" alt="SIBRÜ" class="brand-watermark">
+        <img src="img/logo-sibru-icono.png" alt="SIBRÜ" class="brand-watermark" onerror="this.style.display='none'">
         <div class="click-hint">Ver ficha técnica</div>
       </div>
       <div class="product-info">
@@ -1151,7 +1206,7 @@
       <div class="product-image-container">
         <img src="img/custom-mango-habanero-1.jpg" alt="Salsa Mango Habanero" class="product-image" onerror="this.src='https://via.placeholder.com/400x400/8B4513/FFFFFF?text=CUSTOM+Mango'">
         <img src="img/custom-mango-habanero-2.jpg" alt="Salsa Mango Habanero Vista 2" class="product-image img-hover" onerror="this.style.display='none'">
-        <img src="img/logo-sibru-icono.png" alt="SIBRÜ" class="brand-watermark">
+        <img src="img/logo-sibru-icono.png" alt="SIBRÜ" class="brand-watermark" onerror="this.style.display='none'">
         <div class="click-hint">Ver ficha técnica</div>
       </div>
       <div class="product-info">
@@ -1172,7 +1227,6 @@
     </div>
   </div>
 
-  <!-- Footer con logo -->
   <div class="footer">
     <img src="img/logo-sibru-horizontal.png" alt="GRUPO SIBRÜ" class="footer-logo">
     <div class="brand">GRUPO SIBRÜ</div>
@@ -1182,10 +1236,10 @@
   </div>
 </div>
 
-<!-- MODAL FICHA TÉCNICA con logo -->
+<!-- MODAL FICHA TÉCNICA con logo y botón X mejorado -->
 <div class="modal-overlay" id="productModal">
   <div class="modal-content">
-    <button class="modal-close" onclick="closeModal()"></button>
+    <button class="modal-close" onclick="closeModal()" aria-label="Cerrar ficha técnica"></button>
     <div class="modal-header">
       <img src="img/logo-sibru-horizontal.png" alt="GRUPO SIBRÜ" class="modal-header-logo">
     </div>
