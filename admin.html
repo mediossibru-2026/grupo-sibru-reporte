@@ -42,6 +42,8 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
   }
 
   .header h1 {
@@ -53,31 +55,38 @@
   .user-info {
     display: flex;
     align-items: center;
-    gap: 15px;
+    gap: 12px;
+    flex-wrap: wrap;
   }
 
   .user-email {
     font-size: 0.9em;
     opacity: 0.9;
+    max-width: 200px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .btn-catalog {
+    background: var(--green-dark);
+    color: var(--white);
+    padding: 8px 20px;
+    border-radius: 6px;
+    font-weight: 700;
+    text-decoration: none;
+    transition: all 0.3s;
+    font-size: 0.9em;
+    border: 2px solid var(--white);
+  }
+
+  .btn-catalog:hover {
+    background: var(--green-medium);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(27, 94, 32, 0.3);
   }
 
   .btn-logout {
-    .btn-catalog {
-  background: var(--green-dark);
-  color: var(--white);
-  padding: 8px 20px;
-  border-radius: 6px;
-  font-weight: 700;
-  text-decoration: none;
-  transition: all 0.3s;
-  font-size: 0.9em;
-}
-
-.btn-catalog:hover {
-  background: var(--green-medium);
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(27, 94, 32, 0.3);
-}
     background: var(--orange);
     color: var(--white);
     border: none;
@@ -104,6 +113,7 @@
     gap: 10px;
     margin-bottom: 30px;
     border-bottom: 3px solid var(--gray-light);
+    flex-wrap: wrap;
   }
 
   .tab {
@@ -310,6 +320,7 @@
     .header-content { flex-direction: column; gap: 15px; text-align: center; }
     .stats { grid-template-columns: 1fr; }
     .table-container { overflow-x: scroll; }
+    .user-info { justify-content: center; }
   }
 </style>
 </head>
@@ -318,11 +329,11 @@
 <div class="header">
   <div class="header-content">
     <h1>Panel de Administración - GRUPO SIBRÜ</h1>
-   <div class="user-info">
-  <span class="user-email" id="userEmail">Cargando...</span>
-  <a href="catalogo_con_login.html" class="btn-catalog">Ir al Catálogo</a>
-  <button class="btn-logout" onclick="logout()">Cerrar Sesión</button>
-</div>
+    <div class="user-info">
+      <span class="user-email" id="userEmail">Cargando...</span>
+      <a href="catalogo_con_login.html" class="btn-catalog">Ir al Catálogo</a>
+      <button class="btn-logout" onclick="logout()">Cerrar Sesión</button>
+    </div>
   </div>
 </div>
 
@@ -379,7 +390,7 @@
         <h2 class="card-title">Pedidos Recientes</h2>
       </div>
       <div class="empty-state">
-        <div class="empty-state-icon">📦</div>
+        <div class="empty-state-icon"></div>
         <p>No hay pedidos aún. Los pedidos aparecerán aquí cuando los clientes comiencen a usar el catálogo.</p>
       </div>
     </div>
@@ -460,8 +471,8 @@
     let aprobados = 0;
     let html = '';
 
-    snapshot.forEach(doc => {
-      const data = doc.data();
+    snapshot.forEach(docSnap => {
+      const data = docSnap.data();
       
       if (data.status === 'pendiente') pendientes++;
       if (data.status === 'aprobado') aprobados++;
@@ -477,8 +488,8 @@
             <td>${data.creado ? new Date(data.creado.seconds * 1000).toLocaleDateString() : 'N/A'}</td>
             <td><span class="badge pendiente">${data.status}</span></td>
             <td>
-              <button class="btn btn-approve" onclick="aprobarCliente('${doc.id}', '${data.email}')">Aprobar</button>
-              <button class="btn btn-reject" onclick="rechazarCliente('${doc.id}')">Rechazar</button>
+              <button class="btn btn-approve" onclick="aprobarCliente('${docSnap.id}', '${data.email}')">Aprobar</button>
+              <button class="btn btn-reject" onclick="rechazarCliente('${docSnap.id}')">Rechazar</button>
             </td>
           </tr>
         `;
