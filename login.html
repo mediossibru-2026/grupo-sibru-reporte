@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Iniciar Sesión | GRUPO SIBRÜ</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --green-dark: #1B5E20;
+    --green-medium: #2E7D32;
+    --orange: #F4A261;
+    --orange-dark: #E76F51;
+    --blue-dark: #264653;
+    --white: #ffffff;
+    --gray-bg: #f8f9fa;
+    --text: #2C2C2C;
+    --gray-light: #e0e0e0;
+    --red: #D32F2F;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Open Sans', sans-serif;
+    background: linear-gradient(135deg, #1B5E20 0%, #264653 100%);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    color: var(--text);
+  }
+
+  .login-container {
+    background: var(--white);
+    border-radius: 20px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+    max-width: 480px;
+    width: 100%;
+    overflow: hidden;
+    border-top: 6px solid var(--green-dark);
+    border-bottom: 6px solid var(--orange);
+  }
+
+  .login-header {
+    background: linear-gradient(135deg, #f1f8e9 0%, #fff8f0 100%);
+    padding: 30px;
+    text-align: center;
+    border-bottom: 3px solid var(--orange-light);
+  }
+
+  .login-logo {
+    max-width: 200px;
+    height: auto;
+    margin-bottom: 15px;
+  }
+
+  .login-header h1 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.5em;
+    font-weight: 800;
+    color: var(--green-dark);
+    margin-bottom: 5px;
+  }
+
+  .login-header p {
+    color: var(--orange-dark);
+    font-size: 0.95em;
+    font-weight: 600;
+  }
+
+  .login-body {
+    padding: 35px 30px;
+  }
+
+  .tabs {
+    display: flex;
+    margin-bottom: 25px;
+    border-bottom: 2px solid var(--gray-light);
+  }
+
+  .tab {
+    flex: 1;
+    padding: 12px;
+    text-align: center;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 0.95em;
+    color: #888;
+    cursor: pointer;
+    border-bottom: 3px solid transparent;
+    margin-bottom: -2px;
+    transition: all 0.3s;
+  }
+
+  .tab.active {
+    color: var(--green-dark);
+    border-bottom-color: var(--green-dark);
+  }
+
+  .tab:hover:not(.active) {
+    color: var(--orange-dark);
+  }
+
+  .form {
+    display: none;
+  }
+
+  .form.active {
+    display: block;
+    animation: fadeIn 0.3s ease;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .form-group {
+    margin-bottom: 18px;
+  }
+
+  .form-group label {
+    display: block;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.85em;
+    font-weight: 700;
+    color: var(--blue-dark);
+    margin-bottom: 6px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .form-group input, .form-group select {
+    width: 100%;
+    padding: 12px 15px;
+    border: 2px solid var(--gray-light);
+    border-radius: 10px;
+    font-size: 15px;
+    font-family: 'Open Sans', sans-serif;
+    transition: all 0.3s;
+    background: var(--gray-bg);
+  }
+
+  .form-group input:focus, .form-group select:focus {
+    outline: none;
+    border-color: var(--green-dark);
+    background: var(--white);
+    box-shadow: 0 0 0 3px rgba(27, 94, 32, 0.1);
+  }
+
+  .btn {
+    width: 100%;
+    padding: 14px;
+    border: none;
+    border-radius: 10px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1em;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  .btn-primary {
+    background: linear-gradient(135deg, var(--green-dark), var(--green-medium));
+    color: var(--white);
+    box-shadow: 0 4px 15px rgba(27, 94, 32, 0.3);
+  }
+
+  .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(27, 94, 32, 0.4);
+  }
+
+  .btn-primary:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+  }
+
+  .btn-secondary {
+    background: var(--white);
+    color: var(--green-dark);
+    border: 2px solid var(--green-dark);
+    margin-top: 10px;
+  }
+
+  .btn-secondary:hover {
+    background: var(--green-dark);
+    color: var(--white);
+  }
+
+  .message {
+    padding: 12px 15px;
+    border-radius: 10px;
+    margin-bottom: 15px;
+    font-size: 0.9em;
+    font-weight: 600;
+    display: none;
+  }
+
+  .message.error {
+    background: #ffebee;
+    color: var(--red);
+    border-left: 4px solid var(--red);
+    display: block;
+  }
+
+  .message.success {
+    background: #e8f5e9;
+    color: var(--green-dark);
+    border-left: 4px solid var(--green-dark);
+    display: block;
+  }
+
+  .message.info {
+    background: #fff3e0;
+    color: var(--orange-dark);
+    border-left: 4px solid var(--orange);
+    display: block;
+  }
+
+  .form-footer {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 0.85em;
+    color: #888;
+  }
+
+  .form-footer a {
+    color: var(--green-dark);
+    text-decoration: none;
+    font-weight: 600;
+  }
+
+  .form-footer a:hover {
+    text-decoration: underline;
+  }
+
+  .back-link {
+    display: block;
+    text-align: center;
+    margin-top: 20px;
+    color: var(--white);
+    text-decoration: none;
+    font-size: 0.9em;
+    font-weight: 600;
+    opacity: 0.8;
+    transition: opacity 0.3s;
+  }
+
+  .back-link:hover {
+    opacity: 1;
+  }
+
+  .loading {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    border: 2px solid rgba(255,255,255,0.3);
+    border-top-color: white;
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+    margin-right: 8px;
+    vertical-align: middle;
+  }
+
+  @keyframes spin {
+    to { transform: rotate(360deg); }
+  }
+
+  @media (max-width: 480px) {
+    .login-body { padding: 25px 20px; }
+    .login-header { padding: 25px 20px; }
+    .login-header h1 { font-size: 1.3em; }
+  }
+</style>
+</head>
+<body>
+
+<div class="login-container">
+  <div class="login-header">
+    <img src="img/logo-sibru-horizontal.png" alt="GRUPO SIBRÜ" class="login-logo" onerror="this.style.display='none'">
+    <h1>GRUPO SIBRÜ</h1>
+    <p>Catálogo de Productos 2026</p>
+  </div>
+
+  <div class="login-body">
+    <div class="tabs">
+      <div class="tab active" data-tab="login">Iniciar Sesión</div>
+      <div class="tab" data-tab="register">Registrarse</div>
+    </div>
+
+    <!-- FORMULARIO LOGIN -->
+    <form class="form active" id="loginForm">
+      <div id="loginMessage" class="message"></div>
+      
+      <div class="form-group">
+        <label for="loginEmail">Correo electrónico</label>
+        <input type="email" id="loginEmail" required placeholder="tu@correo.com">
+      </div>
+
+      <div class="form-group">
+        <label for="loginPassword">Contraseña</label>
+        <input type="password" id="loginPassword" required placeholder="••••••••">
+      </div>
+
+      <button type="submit" class="btn btn-primary" id="loginBtn">Iniciar Sesión</button>
+
+      <div class="form-footer">
+        ¿No tienes cuenta? <a href="#" id="goToRegister">Regístrate aquí</a>
+      </div>
+    </form>
+
+    <!-- FORMULARIO REGISTRO -->
+    <form class="form" id="registerForm">
+      <div id="registerMessage" class="message"></div>
+
+      <div class="form-group">
+        <label for="regNombre">Nombre completo *</label>
+        <input type="text" id="regNombre" required placeholder="Juan Pérez García">
+      </div>
+
+      <div class="form-group">
+        <label for="regEmpresa">Empresa / Negocio *</label>
+        <input type="text" id="regEmpresa" required placeholder="Restaurante El Sabor">
+      </div>
+
+      <div class="form-group">
+        <label for="regRFC">RFC</label>
+        <input type="text" id="regRFC" placeholder="RES900101ABC" style="text-transform: uppercase;">
+      </div>
+
+      <div class="form-group">
+        <label for="regTelefono">Teléfono *</label>
+        <input type="tel" id="regTelefono" required placeholder="55 1234 5678">
+      </div>
+
+      <div class="form-group">
+        <label for="regEmail">Correo electrónico *</label>
+        <input type="email" id="regEmail" required placeholder="tu@correo.com">
+      </div>
+
+      <div class="form-group">
+        <label for="regZona">Zona *</label>
+        <select id="regZona" required>
+          <option value="">Selecciona tu zona</option>
+          <option value="Cuautitlán Izcalli">Cuautitlán Izcalli</option>
+          <option value="Tultitlán">Tultitlán</option>
+          <option value="Atizapán">Atizapán</option>
+          <option value="Nicolás Romero">Nicolás Romero</option>
+          <option value="Otra">Otra</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="regPassword">Contraseña * (mínimo 6 caracteres)</label>
+        <input type="password" id="regPassword" required minlength="6" placeholder="••••••••">
+      </div>
+
+      <div class="form-group">
+        <label for="regPassword2">Confirmar contraseña *</label>
+        <input type="password" id="regPassword2" required minlength="6" placeholder="••••••••">
+      </div>
+
+      <button type="submit" class="btn btn-primary" id="registerBtn">Enviar solicitud de registro</button>
+
+      <div class="form-footer">
+        ¿Ya tienes cuenta? <a href="#" id="goToLogin">Inicia sesión</a>
+      </div>
+    </form>
+  </div>
+</div>
+
+<a href="catalogo_productos_2026.html" class="back-link">← Volver al catálogo</a>
+
+<!-- Firebase SDK -->
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+  import { 
+    getAuth, 
+    createUserWithEmailAndPassword, 
+    signInWithEmailAndPassword,
+    onAuthStateChanged
+  } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+  import { 
+    getFirestore, 
+    doc, 
+    setDoc, 
+    getDoc,
+    serverTimestamp 
+  } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+  // Configuración de Firebase
+  const firebaseConfig = {
+    apiKey: "AIzaSyDVGalSna9z6lJGhNvycVyJF5TTd_LnRBc",
+    authDomain: "grupo-sibru-catalogo.firebaseapp.com",
+    projectId: "grupo-sibru-catalogo",
+    storageBucket: "grupo-sibru-catalogo.firebasestorage.app",
+    messagingSenderId: "1070838112131",
+    appId: "1:1070838112131:web:21db3ff96c889ba10160b6",
+    measurementId: "G-LWECZJK2S7"
+  };
+
+  // Inicializar Firebase
+  const app = initializeApp(firebaseConfig);
+  const auth = getAuth(app);
+  const db = getFirestore(app);
+
+  // ⚙️ CONFIGURACIÓN DE ADMINS
+  // Agrega aquí los emails de los administradores (tú e Israel)
+  const ADMIN_EMAILS = [
+    "mediossibru@gmail.com",      // ← CAMBIA por tu email real
+    "israel@gruposibru.com"       // ← CAMBIA por el email de Israel
+  ];
+
+  // ⚙️ CONFIGURACIÓN DE ASESORES
+  // Agrega aquí los emails de los 5 asesores
+  const ASESOR_EMAILS = [
+    // "lae.sergio.alvarez@gmail.com",
+    // "asesor2@gruposibru.com",
+    // etc.
+  ];
+
+  // URLs de redirección
+  const URL_CATALOGO = "catalogo_productos_2026.html";
+  const URL_ADMIN = "admin.html";
+
+  // ====== NAVEGACIÓN ENTRE TABS ======
+  const tabs = document.querySelectorAll('.tab');
+  const forms = document.querySelectorAll('.form');
+
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      tabs.forEach(t => t.classList.remove('active'));
+      forms.forEach(f => f.classList.remove('active'));
+      tab.classList.add('active');
+      document.getElementById(tab.dataset.tab + 'Form').classList.add('active');
+      clearMessages();
+    });
+  });
+
+  document.getElementById('goToRegister').addEventListener('click', (e) => {
+    e.preventDefault();
+    document.querySelector('[data-tab="register"]').click();
+  });
+
+  document.getElementById('goToLogin').addEventListener('click', (e) => {
+    e.preventDefault();
+    document.querySelector('[data-tab="login"]').click();
+  });
+
+  // ====== FUNCIONES AUXILIARES ======
+  function showMessage(elementId, message, type) {
+    const el = document.getElementById(elementId);
+    el.textContent = message;
+    el.className = 'message ' + type;
+  }
+
+  function clearMessages() {
+    document.querySelectorAll('.message').forEach(m => {
+      m.className = 'message';
+      m.textContent = '';
+    });
+  }
+
+  function setLoading(buttonId, loading, originalText) {
+    const btn = document.getElementById(buttonId);
+    if (loading) {
+      btn.disabled = true;
+      btn.innerHTML = '<span class="loading"></span> Procesando...';
+    } else {
+      btn.disabled = false;
+      btn.textContent = originalText;
+    }
+  }
+
+  function determinarRol(email) {
+    if (ADMIN_EMAILS.includes(email.toLowerCase())) return 'admin';
+    if (ASESOR_EMAILS.includes(email.toLowerCase())) return 'asesor';
+    return 'cliente';
+  }
+
+  function redirigirSegunRol(user) {
+    const rol = determinarRol(user.email);
+    
+    // Guardar sesión en localStorage
+    localStorage.setItem('sibru_user', JSON.stringify({
+      uid: user.uid,
+      email: user.email,
+      rol: rol
+    }));
+
+    if (rol === 'admin') {
+      window.location.href = URL_ADMIN;
+    } else {
+      // Para clientes y asesores, ir al catálogo con parámetro de sesión
+      window.location.href = URL_CATALOGO + '?session=active&rol=' + rol;
+    }
+  }
+
+  // ====== LOGIN ======
+  document.getElementById('loginForm').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    clearMessages();
+
+    const email = document.getElementById('loginEmail').value.trim();
+    const password = document.getElementById('loginPassword').value;
+
+    setLoading('loginBtn', true, 'Iniciar Sesión');
+
+    try {
+      const userCredential = await signInWithEmailAndPassword(auth, email, password);
+      const user = userCredential.user;
+      const rol = determinarRol(email);
+
+      if (rol === 'cliente') {
+        // Verificar status en Firestore
+        const userDoc = await getDoc(doc(db, 'usuarios', user.uid));
+        
+        if (!userDoc.exists()) {
+          // Si no existe documento, crearlo como pendiente
+          await setDoc(doc(db, 'usuarios', user.uid), {
+            email: email,
+            rol: 'cliente',
+            status: 'pendiente',
+            creado: serverTimestamp()
+          });
+          await auth.signOut();
+          showMessage('loginMessage', 'Tu cuenta está pendiente de aprobación. Te contactaremos pronto.', 'info');
+          setLoading('loginBtn', false, 'Iniciar Sesión');
+          return;
+        }
+
+        const userData = userDoc.data();
+        
+        if (userData.status === 'pendiente') {
+          await auth.signOut();
+          showMessage('loginMessage', 'Tu cuenta está pendiente de aprobación. Te contactaremos pronto.', 'info');
+          setLoading('loginBtn', false, 'Iniciar Sesión');
+          return;
+        }
+
+        if (userData.status === 'rechazado') {
+          await auth.signOut();
+          showMessage('loginMessage', 'Tu solicitud de registro no fue aprobada. Contacta a ventas@gruposibru.com', 'error');
+          setLoading('loginBtn', false, 'Iniciar Sesión');
+          return;
+        }
+      }
+
+      // Login exitoso
+      showMessage('loginMessage', '¡Bienvenido! Redirigiendo...', 'success');
+      setTimeout(() => redirigirSegunRol(user), 800);
+
+    } catch (error) {
+      console.error(error);
+      let msg = 'Error al iniciar sesión.';
+      if (error.code === 'auth/user-not-found') msg = 'No existe una cuenta con ese correo.';
+      else if (error.code === 'auth/wrong-password') msg = 'Contraseña incorrecta.';
+      else if (error.code === 'auth/invalid-email') msg = 'Correo electrónico no válido.';
+      else if (error.code === 'auth/too-many-requests') msg = 'Demasiados intentos. Intenta más tarde.';
+      showMessage('loginMessage', msg, 'error');
+      setLoading('loginBtn', false, 'Iniciar Sesión');
+    }
+  });
+
+  // ====== REGISTRO ======
+  document.getElementById('registerForm').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    clearMessages();
+
+    const nombre = document.getElementById('regNombre').value.trim();
+    const empresa = document.getElementById('regEmpresa').value.trim();
+    const rfc = document.getElementById('regRFC').value.trim().toUpperCase();
+    const telefono = document.getElementById('regTelefono').value.trim();
+    const email = document.getElementById('regEmail').value.trim().toLowerCase();
+    const zona = document.getElementById('regZona').value;
+    const password = document.getElementById('regPassword').value;
+    const password2 = document.getElementById('regPassword2').value;
+
+    // Validaciones
+    if (password !== password2) {
+      showMessage('registerMessage', 'Las contraseñas no coinciden.', 'error');
+      return;
+    }
+
+    if (password.length < 6) {
+      showMessage('registerMessage', 'La contraseña debe tener al menos 6 caracteres.', 'error');
+      return;
+    }
+
+    setLoading('registerBtn', true, 'Enviar solicitud de registro');
+
+    try {
+      // 1. Crear usuario en Authentication
+      const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+      const user = userCredential.user;
+
+      // 2. Crear documento en Firestore con status "pendiente"
+      await setDoc(doc(db, 'usuarios', user.uid), {
+        uid: user.uid,
+        email: email,
+        nombre: nombre,
+        empresa: empresa,
+        rfc: rfc,
+        telefono: telefono,
+        zona: zona,
+        rol: 'cliente',
+        status: 'pendiente',
+        creado: serverTimestamp()
+      });
+
+      // 3. Cerrar sesión (el admin debe aprobar primero)
+      await auth.signOut();
+
+      showMessage('registerMessage', '¡Solicitud enviada! Tu cuenta está pendiente de aprobación. Te contactaremos en menos de 24 horas.', 'success');
+      
+      // Limpiar formulario
+      document.getElementById('registerForm').reset();
+      setLoading('registerBtn', false, 'Enviar solicitud de registro');
+
+      // Cambiar a tab de login después de 3 segundos
+      setTimeout(() => {
+        document.querySelector('[data-tab="login"]').click();
+        showMessage('loginMessage', 'Ya puedes iniciar sesión una vez que tu cuenta sea aprobada.', 'info');
+      }, 3000);
+
+    } catch (error) {
+      console.error(error);
+      let msg = 'Error al registrar.';
+      if (error.code === 'auth/email-already-in-use') msg = 'Este correo ya está registrado.';
+      else if (error.code === 'auth/invalid-email') msg = 'Correo electrónico no válido.';
+      else if (error.code === 'auth/weak-password') msg = 'La contraseña es muy débil (mínimo 6 caracteres).';
+      showMessage('registerMessage', msg, 'error');
+      setLoading('registerBtn', false, 'Enviar solicitud de registro');
+    }
+  });
+
+  // ====== VERIFICAR SESIÓN ACTIVA ======
+  onAuthStateChanged(auth, (user) => {
+    if (user) {
+      // Si ya hay sesión activa, redirigir
+      redirigirSegunRol(user);
+    }
+  });
+</script>
+
+</body>
+</html>
