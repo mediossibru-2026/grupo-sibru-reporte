@@ -62,6 +62,22 @@
   }
 
   .btn-logout {
+    .btn-catalog {
+  background: var(--green-dark);
+  color: var(--white);
+  padding: 8px 20px;
+  border-radius: 6px;
+  font-weight: 700;
+  text-decoration: none;
+  transition: all 0.3s;
+  font-size: 0.9em;
+}
+
+.btn-catalog:hover {
+  background: var(--green-medium);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(27, 94, 32, 0.3);
+}
     background: var(--orange);
     color: var(--white);
     border: none;
@@ -302,10 +318,11 @@
 <div class="header">
   <div class="header-content">
     <h1>Panel de Administración - GRUPO SIBRÜ</h1>
-    <div class="user-info">
-      <span class="user-email" id="userEmail">Cargando...</span>
-      <button class="btn-logout" onclick="logout()">Cerrar Sesión</button>
-    </div>
+   <div class="user-info">
+  <span class="user-email" id="userEmail">Cargando...</span>
+  <a href="catalogo_con_login.html" class="btn-catalog">Ir al Catálogo</a>
+  <button class="btn-logout" onclick="logout()">Cerrar Sesión</button>
+</div>
   </div>
 </div>
 
