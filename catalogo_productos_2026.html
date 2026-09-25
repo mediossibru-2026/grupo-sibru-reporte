@@ -31,61 +31,81 @@
 
   .container { max-width: 1200px; margin: 0 auto; padding: 30px 20px; }
 
-  /* Header con logo */
+  /* Header con logo - Fondo blanco con acentos */
   .header {
-    background: linear-gradient(135deg, var(--green-dark) 0%, var(--blue-dark) 100%);
-    color: var(--white);
-    padding: 50px 40px;
+    background: linear-gradient(135deg, var(--white) 0%, #f1f8e9 100%);
+    color: var(--text);
+    padding: 40px 30px;
     border-radius: 20px;
     text-align: center;
     margin-bottom: 30px;
-    box-shadow: 0 10px 40px rgba(27, 94, 32, 0.3);
+    box-shadow: 0 8px 30px rgba(27, 94, 32, 0.15);
     position: relative;
     overflow: hidden;
+    border-top: 6px solid var(--green-dark);
+    border-bottom: 6px solid var(--orange);
   }
 
   .header::before {
     content: '';
     position: absolute;
     top: -50%;
-    right: -10%;
-    width: 400px;
-    height: 400px;
-    background: radial-gradient(circle, rgba(244, 162, 97, 0.15) 0%, transparent 70%);
+    right: -5%;
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, rgba(244, 162, 97, 0.08) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+
+  .header::after {
+    content: '';
+    position: absolute;
+    bottom: -50%;
+    left: -5%;
+    width: 250px;
+    height: 250px;
+    background: radial-gradient(circle, rgba(27, 94, 32, 0.08) 0%, transparent 70%);
     border-radius: 50%;
   }
 
   .header-logo {
-    max-width: 280px;
+    max-width: 300px;
     height: auto;
     margin-bottom: 20px;
-    filter: drop-shadow(0 4px 8px rgba(0,0,0,0.2));
+    position: relative;
+    z-index: 1;
   }
 
   .header h1 {
     font-family: 'Montserrat', sans-serif;
-    font-size: 2.5em;
+    font-size: 2.2em;
     font-weight: 800;
     letter-spacing: 2px;
     margin-bottom: 10px;
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    color: var(--green-dark);
+    position: relative;
+    z-index: 1;
   }
 
   .header .subtitle {
     font-size: 1.1em;
-    color: var(--orange);
+    color: var(--orange-dark);
     font-weight: 600;
     margin-bottom: 10px;
+    position: relative;
+    z-index: 1;
   }
 
   .header .website {
     font-size: 0.9em;
-    opacity: 0.9;
-    background: rgba(244, 162, 97, 0.2);
+    color: var(--blue-dark);
+    background: rgba(244, 162, 97, 0.15);
     display: inline-block;
-    padding: 5px 20px;
+    padding: 6px 20px;
     border-radius: 20px;
-    border: 1px solid rgba(244, 162, 97, 0.5);
+    border: 1px solid rgba(244, 162, 97, 0.3);
+    position: relative;
+    z-index: 1;
   }
 
   .controls {
@@ -145,10 +165,11 @@
     transform: translateY(-2px);
   }
 
+  /* Grid: Desktop 3 columnas, Móvil/Tablet 2 columnas */
   .product-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-    gap: 30px;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
   }
 
   .product-card {
@@ -229,9 +250,9 @@
     position: absolute;
     bottom: 10px;
     right: 10px;
-    width: 60px;
-    height: 60px;
-    opacity: 0.15;
+    width: 50px;
+    height: 50px;
+    opacity: 0.2;
     pointer-events: none;
   }
 
@@ -289,7 +310,7 @@
 
   .product-name {
     font-family: 'Montserrat', sans-serif;
-    font-size: 1.3em;
+    font-size: 1.2em;
     font-weight: 800;
     color: var(--blue-dark);
     margin-bottom: 12px;
@@ -297,7 +318,7 @@
   }
 
   .product-desc {
-    font-size: 0.92em;
+    font-size: 0.9em;
     color: #555;
     margin-bottom: 18px;
     flex-grow: 1;
@@ -316,7 +337,7 @@
     display: flex;
     justify-content: space-between;
     margin-bottom: 8px;
-    font-size: 0.87em;
+    font-size: 0.85em;
   }
 
   .detail-row:last-child { margin-bottom: 0; }
@@ -335,7 +356,7 @@
     padding: 8px 16px;
     border-radius: 8px;
     font-family: 'Montserrat', sans-serif;
-    font-size: 0.9em;
+    font-size: 0.85em;
     font-weight: 700;
     letter-spacing: 0.5px;
     align-self: flex-start;
@@ -354,7 +375,7 @@
     box-shadow: 0 5px 20px rgba(0,0,0,0.05);
   }
 
-  /* Modal mejorado */
+  /* Modal mejorado - Fondo blanco con acentos */
   .modal-overlay {
     display: none;
     position: fixed;
@@ -362,7 +383,7 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.9);
+    background: rgba(0, 0, 0, 0.85);
     z-index: 1000;
     justify-content: center;
     align-items: center;
@@ -384,6 +405,8 @@
     position: relative;
     animation: modalSlideIn 0.4s ease;
     box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+    border-top: 6px solid var(--green-dark);
+    border-bottom: 6px solid var(--orange);
   }
 
   @keyframes modalSlideIn {
@@ -418,17 +441,16 @@
   }
 
   .modal-header {
-    background: linear-gradient(135deg, var(--green-dark), var(--blue-dark));
+    background: linear-gradient(135deg, #f1f8e9 0%, #fff8f0 100%);
     padding: 30px;
     text-align: center;
     position: relative;
+    border-bottom: 3px solid var(--orange-light);
   }
 
   .modal-header-logo {
-    max-width: 200px;
+    max-width: 220px;
     height: auto;
-    margin-bottom: 15px;
-    filter: brightness(0) invert(1);
   }
 
   .modal-image-container {
@@ -690,16 +712,18 @@
     transform: rotate(90deg);
   }
 
-  /* Footer con logo */
+  /* Footer con logo - Fondo blanco con acentos */
   .footer {
     text-align: center;
     margin-top: 60px;
     padding: 40px 20px;
-    background: linear-gradient(135deg, var(--green-dark), var(--blue-dark));
-    color: white;
+    background: linear-gradient(135deg, #f1f8e9 0%, #fff8f0 100%);
+    color: var(--text);
     border-radius: 20px;
     position: relative;
     overflow: hidden;
+    border-top: 6px solid var(--green-dark);
+    border-bottom: 6px solid var(--orange);
   }
 
   .footer::before {
@@ -707,48 +731,82 @@
     position: absolute;
     top: -50%;
     left: -10%;
-    width: 400px;
-    height: 400px;
-    background: radial-gradient(circle, rgba(244, 162, 97, 0.1) 0%, transparent 70%);
+    width: 350px;
+    height: 350px;
+    background: radial-gradient(circle, rgba(27, 94, 32, 0.06) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+
+  .footer::after {
+    content: '';
+    position: absolute;
+    bottom: -50%;
+    right: -10%;
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, rgba(244, 162, 97, 0.06) 0%, transparent 70%);
     border-radius: 50%;
   }
 
   .footer-logo {
-    max-width: 220px;
+    max-width: 240px;
     height: auto;
     margin-bottom: 20px;
-    filter: brightness(0) invert(1);
+    position: relative;
+    z-index: 1;
   }
 
   .footer .brand {
     font-family: 'Montserrat', sans-serif;
     font-size: 1.8em;
     font-weight: 800;
-    color: var(--orange);
+    color: var(--green-dark);
     margin-bottom: 8px;
+    position: relative;
+    z-index: 1;
   }
 
   .footer .slogan {
     font-size: 1.2em;
-    color: var(--orange-light);
+    color: var(--orange-dark);
     font-weight: 600;
     margin-bottom: 15px;
     font-style: italic;
+    position: relative;
+    z-index: 1;
   }
 
   .footer p {
-    opacity: 0.9;
+    color: var(--blue-dark);
     font-size: 0.95em;
+    position: relative;
+    z-index: 1;
   }
 
-  @media (max-width: 768px) {
+  /* Responsive: Desktop 3 cols, Tablet/Móvil 2 cols */
+  @media (max-width: 900px) {
+    .product-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    
     .header h1 { font-size: 1.8em; }
-    .product-grid { grid-template-columns: 1fr; }
+    .header-logo, .footer-logo, .modal-header-logo { max-width: 200px; }
     .modal-title { font-size: 1.6em; }
     .modal-body { padding: 25px; }
     .info-grid { grid-template-columns: 1fr; }
     .gallery-strip { padding: 15px 20px; }
-    .header-logo, .footer-logo { max-width: 180px; }
+  }
+
+  @media (max-width: 600px) {
+    .product-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 15px;
+    }
+    
+    .header { padding: 30px 20px; }
+    .header h1 { font-size: 1.5em; }
+    .product-info { padding: 18px; }
+    .product-name { font-size: 1.1em; }
   }
 
   @media print {
@@ -758,9 +816,8 @@
     .product-grid { display: block; }
     .product-card { break-inside: avoid; margin-bottom: 25px; box-shadow: none; border: 2px solid #ddd; }
     .modal-overlay, .lightbox { display: none !important; }
-    .header { background: white; color: black; box-shadow: none; border-bottom: 4px solid var(--green-dark); }
-    .header h1, .header .subtitle, .header .website { color: var(--green-dark); }
-    .header::before { display: none; }
+    .header, .footer { background: white; box-shadow: none; }
+    .header::before, .header::after, .footer::before, .footer::after { display: none; }
   }
 </style>
 </head>
@@ -769,7 +826,7 @@
 <div class="container">
   <!-- Header con logo -->
   <div class="header">
-    <img src="img/logo-sibru-horizontal.png" alt="GRUPO SIBRÜ" class="header-logo" onerror="this.style.display='none'">
+    <img src="img/logo-sibru-horizontal.png" alt="GRUPO SIBRÜ" class="header-logo">
     <h1>CATÁLOGO DE PRODUCTOS 2026</h1>
     <div class="subtitle">GRUPO SIBRÜ - Alimentamos Confianza</div>
     <div class="website">www.gruposibru.com</div>
@@ -806,7 +863,7 @@
       <div class="product-image-container">
         <img src="img/bachoco-tender-1.jpg" alt="Tender Empanizado" class="product-image" onerror="this.src='https://via.placeholder.com/400x400/E31837/FFFFFF?text=BACHOCO+Tender'">
         <img src="img/bachoco-tender-2.jpg" alt="Tender Empanizado Vista 2" class="product-image img-hover" onerror="this.style.display='none'">
-        <img src="img/logo-sibru-icono.png" alt="SIBRÜ" class="brand-watermark" onerror="this.style.display='none'">
+        <img src="img/logo-sibru-icono.png" alt="SIBRÜ" class="brand-watermark">
         <div class="click-hint">Ver ficha técnica</div>
       </div>
       <div class="product-info">
@@ -822,9 +879,294 @@
       </div>
     </div>
 
-    <!-- Los demás productos mantienen la misma estructura, solo cambia la marca y datos -->
-    <!-- Por espacio, solo muestro el primero completo. Los demás siguen el mismo patrón -->
-    
+    <!-- BACHOCO: Nugget de Pollo -->
+    <div class="product-card brand-bachoco" data-brand="bachoco" data-category="pollo"
+         data-name="Nugget de Pollo" data-code="1539"
+         data-desc="Nuggets de pechuga de pollo, formados, empanizados con cobertura tempura, prefritos y congelados individualmente. Producto versátil ideal para menús infantiles y adultos."
+         data-mayoreo="Caja 14 kg (A granel)" data-medio="Bolsa (Consultar)" data-menudeo="Por Kilo"
+         data-conservacion="Mantener congelado a -18°C o menor temperatura. No recongelar una vez descongelado. Mantener en empaque original hasta su uso."
+         data-preparacion="Freír en aceite vegetal a 175-180°C durante 3-4 minutos. Hornear a 200°C por 10-12 minutos. Air Fryer a 180°C por 8-10 minutos."
+         data-manejo="Mantener cadena de frío. No apilar cajas más de 5 niveles. Almacenar en área seca y ventilada. Rotar inventario PEPS."
+         data-anaquel="12 meses desde fecha de producción manteniendo la cadena de frío."
+         data-alergenos="Contiene: Gluten (trigo), Soya, Huevo. Elaborado en planta que procesa lácteos."
+         data-ingredientes="Pechuga de pollo, agua, harina de trigo, almidón de maíz, sal, especias, aceite de soya, fosfatos, levadura."
+         data-img1="img/bachoco-nugget-1.jpg" data-img2="img/bachoco-nugget-2.jpg" 
+         data-gallery='["img/bachoco-nugget-1.jpg", "img/bachoco-nugget-2.jpg"]'>
+      <div class="product-image-container">
+        <img src="img/bachoco-nugget-1.jpg" alt="Nugget de Pollo" class="product-image" onerror="this.src='https://via.placeholder.com/400x400/E31837/FFFFFF?text=BACHOCO+Nugget'">
+        <img src="img/bachoco-nugget-2.jpg" alt="Nugget de Pollo Vista 2" class="product-image img-hover" onerror="this.style.display='none'">
+        <img src="img/logo-sibru-icono.png" alt="SIBRÜ" class="brand-watermark">
+        <div class="click-hint">Ver ficha técnica</div>
+      </div>
+      <div class="product-info">
+        <div class="product-brand">BACHOCO</div>
+        <div class="product-name">Nugget de Pollo</div>
+        <div class="product-desc">Nuggets de pechuga de pollo, formados, empanizados con cobertura tempura, prefritos y congelados individualmente.</div>
+        <div class="product-details">
+          <div class="detail-row"><span class="detail-label">Mayoreo:</span><span class="detail-value">Caja 14 kg (A granel)</span></div>
+          <div class="detail-row"><span class="detail-label">Medio Mayoreo:</span><span class="detail-value">Bolsa (Consultar)</span></div>
+          <div class="detail-row"><span class="detail-label">Menudeo:</span><span class="detail-value">Por Kilo</span></div>
+        </div>
+        <div class="product-code">CÓDIGO: 1539</div>
+      </div>
+    </div>
+
+    <!-- SIMPLOT: Papa Gajo 6/5 -->
+    <div class="product-card brand-simplot" data-brand="simplot" data-category="papas"
+         data-name="Papa Gajo 6/5" data-code="046165"
+         data-desc="Gajo de papa corte 10 con cobertura sazonada, con cáscara. Textura crujiente por fuera y suave por dentro, ideal para acompañar platillos principales."
+         data-mayoreo="Caja 13.6 kg (6 bolsas x 2.270 kg)" data-medio="Bolsa 2.270 kg" data-menudeo="Por Kilo"
+         data-conservacion="Mantener congelado a -18°C o menor. No recongelar. Almacenar en lugar seco y fresco antes de abrir."
+         data-preparacion="Freír en aceite vegetal a 175-180°C durante 4-5 minutos hasta dorar. Hornear a 220°C por 18-22 minutos volteando a la mitad. Air Fryer a 200°C por 12-15 minutos."
+         data-manejo="Mantener cadena de frío. No apilar más de 6 cajas. Rotar inventario PEPS. Verificar integridad del empaque al recibir."
+         data-anaquel="18 meses desde fecha de producción manteniendo cadena de frío."
+         data-alergenos="Libre de alérgenos principales. Elaborado en planta que procesa productos con gluten."
+         data-ingredientes="Papa, aceite vegetal (girasol/canola), sal, especias, dextrosa, pirofosfato de sodio (conservador de color)."
+         data-img1="img/simplot-papa-gajo-1.jpg" data-img2="img/simplot-papa-gajo-2.jpg" 
+         data-gallery='["img/simplot-papa-gajo-1.jpg", "img/simplot-papa-gajo-2.jpg"]'>
+      <div class="product-image-container">
+        <img src="img/simplot-papa-gajo-1.jpg" alt="Papa Gajo 6/5" class="product-image" onerror="this.src='https://via.placeholder.com/400x400/2E7D32/FFFFFF?text=SIMPLOT+Gajo'">
+        <img src="img/simplot-papa-gajo-2.jpg" alt="Papa Gajo Vista 2" class="product-image img-hover" onerror="this.style.display='none'">
+        <img src="img/logo-sibru-icono.png" alt="SIBRÜ" class="brand-watermark">
+        <div class="click-hint">Ver ficha técnica</div>
+      </div>
+      <div class="product-info">
+        <div class="product-brand">SIMPLOT</div>
+        <div class="product-name">Papa Gajo 6/5</div>
+        <div class="product-desc">Gajo corte 10 con cobertura sazonada, con cáscara.</div>
+        <div class="product-details">
+          <div class="detail-row"><span class="detail-label">Mayoreo:</span><span class="detail-value">Caja 13.6 kg (6 x 2.270 kg)</span></div>
+          <div class="detail-row"><span class="detail-label">Medio Mayoreo:</span><span class="detail-value">Bolsa 2.270 kg</span></div>
+          <div class="detail-row"><span class="detail-label">Menudeo:</span><span class="detail-value">Por Kilo</span></div>
+        </div>
+        <div class="product-code">CÓDIGO: 046165</div>
+      </div>
+    </div>
+
+    <!-- SIMPLOT: Papa Cáscara con Sal 13/8 -->
+    <div class="product-card brand-simplot" data-brand="simplot" data-category="papas"
+         data-name="Papa Cáscara con Sal 13/8" data-code="X01"
+         data-desc="Papas a la francesa corte steak con cáscara y sal de mar. Corte grueso ideal para acompañar hamburguesas, alitas y platillos fuertes."
+         data-mayoreo="Caja 13.6 kg (6 bolsas x 2.270 kg)" data-medio="Bolsa 2.270 kg" data-menudeo="Por Kilo"
+         data-conservacion="Mantener congelado a -18°C o menor. No recongelar una vez descongelado. Mantener empaque cerrado hasta su uso."
+         data-preparacion="Freír a 175-180°C por 3-4 minutos. Hornear a 220°C por 15-18 minutos. Air Fryer a 200°C por 10-12 minutos."
+         data-manejo="Cadena de frío ininterrumpida. Almacenar en estibas con circulación de aire. No exponer a temperatura ambiente prolongada."
+         data-anaquel="18 meses desde fecha de producción."
+         data-alergenos="Libre de alérgenos principales."
+         data-ingredientes="Papa, aceite vegetal (girasol/canola), sal de mar, pirofosfato de sodio."
+         data-img1="img/simplot-papa-cascara-1.jpg" data-img2="img/simplot-papa-cascara-2.jpg" 
+         data-gallery='["img/simplot-papa-cascara-1.jpg", "img/simplot-papa-cascara-2.jpg"]'>
+      <div class="product-image-container">
+        <img src="img/simplot-papa-cascara-1.jpg" alt="Papa Cáscara con Sal" class="product-image" onerror="this.src='https://via.placeholder.com/400x400/2E7D32/FFFFFF?text=SIMPLOT+Cáscara'">
+        <img src="img/simplot-papa-cascara-2.jpg" alt="Papa Cáscara Vista 2" class="product-image img-hover" onerror="this.style.display='none'">
+        <img src="img/logo-sibru-icono.png" alt="SIBRÜ" class="brand-watermark">
+        <div class="click-hint">Ver ficha técnica</div>
+      </div>
+      <div class="product-info">
+        <div class="product-brand">SIMPLOT</div>
+        <div class="product-name">Papa Cáscara con Sal 13/8</div>
+        <div class="product-desc">Papas a la francesa corte steak con cáscara y sal de mar.</div>
+        <div class="product-details">
+          <div class="detail-row"><span class="detail-label">Mayoreo:</span><span class="detail-value">Caja 13.6 kg (6 x 2.270 kg)</span></div>
+          <div class="detail-row"><span class="detail-label">Medio Mayoreo:</span><span class="detail-value">Bolsa 2.270 kg</span></div>
+          <div class="detail-row"><span class="detail-label">Menudeo:</span><span class="detail-value">Por Kilo</span></div>
+        </div>
+        <div class="product-code">CÓDIGO: X01</div>
+      </div>
+    </div>
+
+    <!-- RICH'S: ICEHOT Fresa -->
+    <div class="product-card brand-richs" data-brand="richs" data-category="salsas"
+         data-name="ICEHOT Fresa" data-code="X02"
+         data-desc="Salsa topping de fresa para postres, helados y crepas. Textura suave y sabor intenso a fresa natural."
+         data-mayoreo="Caja 4 piezas (1.8 L c/u)" data-medio="Pieza 1.8 L" data-menudeo="Por Litro"
+         data-conservacion="Mantener refrigerado a 4°C o menor. Una vez abierto, consumir dentro de los 7 días. No congelar."
+         data-preparacion="Producto listo para usar. Agitar bien antes de servir. Servir frío sobre postres, helados o crepas."
+         data-manejo="Mantener refrigerado. No exponer a temperatura ambiente por más de 2 horas. Rotar inventario PEPS."
+         data-anaquel="6 meses desde fecha de producción manteniendo refrigeración."
+         data-alergenos="Libre de alérgenos principales. Elaborado en planta que procesa lácteos."
+         data-ingredientes="Jarabe de maíz, fresa, agua, azúcar, almidón modificado, ácido cítrico, color natural, saborizante."
+         data-img1="img/richs-icehot-fresa-1.jpg" data-img2="img/richs-icehot-fresa-2.jpg" 
+         data-gallery='["img/richs-icehot-fresa-1.jpg", "img/richs-icehot-fresa-2.jpg"]'>
+      <div class="product-image-container">
+        <img src="img/richs-icehot-fresa-1.jpg" alt="ICEHOT Fresa" class="product-image" onerror="this.src='https://via.placeholder.com/400x400/F4A261/FFFFFF?text=RICH+S+Fresa'">
+        <img src="img/richs-icehot-fresa-2.jpg" alt="ICEHOT Fresa Vista 2" class="product-image img-hover" onerror="this.style.display='none'">
+        <img src="img/logo-sibru-icono.png" alt="SIBRÜ" class="brand-watermark">
+        <div class="click-hint">Ver ficha técnica</div>
+      </div>
+      <div class="product-info">
+        <div class="product-brand">RICH'S</div>
+        <div class="product-name">ICEHOT Fresa</div>
+        <div class="product-desc">Salsa topping de fresa para postres, helados y crepas.</div>
+        <div class="product-details">
+          <div class="detail-row"><span class="detail-label">Mayoreo:</span><span class="detail-value">Caja 4 piezas (1.8 L c/u)</span></div>
+          <div class="detail-row"><span class="detail-label">Medio Mayoreo:</span><span class="detail-value">Pieza 1.8 L</span></div>
+          <div class="detail-row"><span class="detail-label">Menudeo:</span><span class="detail-value">Por Litro</span></div>
+        </div>
+        <div class="product-code">CÓDIGO: X02</div>
+      </div>
+    </div>
+
+    <!-- RICH'S: Dedos de Queso -->
+    <div class="product-card brand-richs" data-brand="richs" data-category="snacks"
+         data-name="Dedos de Queso" data-code="20128"
+         data-desc="Queso mozzarella en una cobertura empanizada crujiente. Ideal como botana, acompañamiento o plato fuerte. Se derrite perfectamente al freír."
+         data-mayoreo="Caja 1.47 kg" data-medio="Bolsa (Consultar)" data-menudeo="Por Kilo"
+         data-conservacion="Mantener congelado a -18°C o menor. No recongelar una vez descongelado."
+         data-preparacion="Freír en aceite vegetal a 175-180°C durante 2-3 minutos hasta dorar. Hornear a 200°C por 8-10 minutos."
+         data-manejo="Mantener cadena de frío. No apilar más de 4 cajas. Rotar inventario PEPS."
+         data-anaquel="12 meses desde fecha de producción manteniendo cadena de frío."
+         data-alergenos="Contiene: Gluten (trigo), Leche, Huevo. Puede contener trazas de soya."
+         data-ingredientes="Queso mozzarella, harina de trigo, agua, huevo, sal, especias, aceite vegetal, levadura."
+         data-img1="img/richs-dedos-queso-1.jpg" data-img2="img/richs-dedos-queso-2.jpg" 
+         data-gallery='["img/richs-dedos-queso-1.jpg", "img/richs-dedos-queso-2.jpg"]'>
+      <div class="product-image-container">
+        <img src="img/richs-dedos-queso-1.jpg" alt="Dedos de Queso" class="product-image" onerror="this.src='https://via.placeholder.com/400x400/F4A261/FFFFFF?text=RICH+S+Queso'">
+        <img src="img/richs-dedos-queso-2.jpg" alt="Dedos de Queso Vista 2" class="product-image img-hover" onerror="this.style.display='none'">
+        <img src="img/logo-sibru-icono.png" alt="SIBRÜ" class="brand-watermark">
+        <div class="click-hint">Ver ficha técnica</div>
+      </div>
+      <div class="product-info">
+        <div class="product-brand">RICH'S</div>
+        <div class="product-name">Dedos de Queso</div>
+        <div class="product-desc">Queso mozzarella en una cobertura empanizada crujiente.</div>
+        <div class="product-details">
+          <div class="detail-row"><span class="detail-label">Mayoreo:</span><span class="detail-value">Caja 1.47 kg</span></div>
+          <div class="detail-row"><span class="detail-label">Medio Mayoreo:</span><span class="detail-value">Bolsa (Consultar)</span></div>
+          <div class="detail-row"><span class="detail-label">Menudeo:</span><span class="detail-value">Por Kilo</span></div>
+        </div>
+        <div class="product-code">CÓDIGO: 20128</div>
+      </div>
+    </div>
+
+    <!-- CAPITÁN: Steaks de Atún -->
+    <div class="product-card brand-capitan" data-brand="capitan" data-category="mariscos"
+         data-name="Steaks de Atún" data-code="0003"
+         data-desc="Steaks de atún aleta amarilla, lo más selecto del mar. Corte premium de atún fresco congelado, ideal para sellado o carpaccio. Marca Capitán."
+         data-mayoreo="Caja 5 kg (10 piezas x 500 gr)" data-medio="Bolsa (Consultar)" data-menudeo="Por Pieza / Kilo"
+         data-conservacion="Mantener congelado a -18°C o menor. No recongelar una vez descongelado. Consumir dentro de las 24 horas posteriores al descongelamiento."
+         data-preparacion="Sellar en sartén muy caliente por 1-2 minutos por lado (término medio raro). Temperatura interna recomendada: 52-57°C. No cocinar completamente."
+         data-manejo="Mantener cadena de frío estricta. Almacenar separado de otros alimentos. No apilar más de 4 cajas. Rotar inventario PEPS."
+         data-anaquel="12 meses desde fecha de producción manteniendo cadena de frío."
+         data-alergenos="Contiene: Pescado (atún). Libre de gluten, lácteos y soya."
+         data-ingredientes="Steak de atún aleta amarilla (Thunnus albacares)."
+         data-img1="img/capitan-atun-1.jpg" data-img2="img/capitan-atun-2.jpg" 
+         data-gallery='["img/capitan-atun-1.jpg", "img/capitan-atun-2.jpg"]'>
+      <div class="product-image-container">
+        <img src="img/capitan-atun-1.jpg" alt="Steaks de Atún" class="product-image" onerror="this.src='https://via.placeholder.com/400x400/003366/FFFFFF?text=CAPITÁN+Atún'">
+        <img src="img/capitan-atun-2.jpg" alt="Steaks de Atún Vista 2" class="product-image img-hover" onerror="this.style.display='none'">
+        <img src="img/logo-sibru-icono.png" alt="SIBRÜ" class="brand-watermark">
+        <div class="click-hint">Ver ficha técnica</div>
+      </div>
+      <div class="product-info">
+        <div class="product-brand">CAPITÁN</div>
+        <div class="product-name">Steaks de Atún</div>
+        <div class="product-desc">Steaks de atún aleta amarilla, lo más selecto del mar. Corte premium de atún fresco congelado.</div>
+        <div class="product-details">
+          <div class="detail-row"><span class="detail-label">Mayoreo:</span><span class="detail-value">Caja 5 kg (10 x 500 gr)</span></div>
+          <div class="detail-row"><span class="detail-label">Medio Mayoreo:</span><span class="detail-value">Bolsa (Consultar)</span></div>
+          <div class="detail-row"><span class="detail-label">Menudeo:</span><span class="detail-value">Por Pieza / Kilo</span></div>
+        </div>
+        <div class="product-code">CÓDIGO: 0003</div>
+      </div>
+    </div>
+
+    <!-- CAMANCHACA: Porción de Salmón -->
+    <div class="product-card brand-camanchaca" data-brand="camanchaca" data-category="mariscos"
+         data-name="Porción de Salmón" data-code="0004"
+         data-desc="Porción de salmón Reserva Especial, producto de Chile. Criado sin antibióticos, libre de hormonas, alto en Omega 3. Filete de salmón de alta calidad. Marca Camanchaca."
+         data-mayoreo="Caja 5 kg (20 piezas x 250 gr)" data-medio="Bolsa (Consultar)" data-menudeo="Por Pieza / Kilo"
+         data-conservacion="Mantener congelado a -18°C o menor. No recongelar una vez descongelado. Consumir dentro de las 24 horas posteriores al descongelamiento."
+         data-preparacion="Asar en parrilla o plancha a fuego medio-alto por 4-5 minutos por lado. Hornear a 200°C por 12-15 minutos. Temperatura interna mínima: 63°C."
+         data-manejo="Mantener cadena de frío estricta. Almacenar separado de otros alimentos. No apilar más de 4 cajas. Rotar inventario PEPS."
+         data-anaquel="12 meses desde fecha de producción manteniendo cadena de frío."
+         data-alergenos="Contiene: Pescado (salmón). Libre de gluten, lácteos y soya."
+         data-ingredientes="Filete de salmón (Salmo salar), producto de Chile."
+         data-img1="img/camanchaca-salmon-1.jpg" data-img2="img/camanchaca-salmon-2.jpg" 
+         data-gallery='["img/camanchaca-salmon-1.jpg", "img/camanchaca-salmon-2.jpg"]'>
+      <div class="product-image-container">
+        <img src="img/camanchaca-salmon-1.jpg" alt="Porción de Salmón" class="product-image" onerror="this.src='https://via.placeholder.com/400x400/CC2229/FFFFFF?text=CAMANCHACA+Salmón'">
+        <img src="img/camanchaca-salmon-2.jpg" alt="Porción de Salmón Vista 2" class="product-image img-hover" onerror="this.style.display='none'">
+        <img src="img/logo-sibru-icono.png" alt="SIBRÜ" class="brand-watermark">
+        <div class="click-hint">Ver ficha técnica</div>
+      </div>
+      <div class="product-info">
+        <div class="product-brand">CAMANCHACA</div>
+        <div class="product-name">Porción de Salmón</div>
+        <div class="product-desc">Porción de salmón Reserva Especial, producto de Chile. Criado sin antibióticos, libre de hormonas, alto en Omega 3.</div>
+        <div class="product-details">
+          <div class="detail-row"><span class="detail-label">Mayoreo:</span><span class="detail-value">Caja 5 kg (20 x 250 gr)</span></div>
+          <div class="detail-row"><span class="detail-label">Medio Mayoreo:</span><span class="detail-value">Bolsa (Consultar)</span></div>
+          <div class="detail-row"><span class="detail-label">Menudeo:</span><span class="detail-value">Por Pieza / Kilo</span></div>
+        </div>
+        <div class="product-code">CÓDIGO: 0004</div>
+      </div>
+    </div>
+
+    <!-- CUSTOM CULINARY: Salsa BBQ Original -->
+    <div class="product-card brand-custom" data-brand="custom" data-category="salsas"
+         data-name="Salsa BBQ Original" data-code="019835/4"
+         data-desc="Una salsa ahumada de tonalidad anaranjada con notas a tomate, naranja y especias. Esta BBQ es totalmente versátil. Posee un gran balance entre dulce, ácido y ahumado."
+         data-mayoreo="Caja 4 piezas (4 kg c/u)" data-medio="Pieza 4 kg" data-menudeo="Por Kilo"
+         data-conservacion="Mantener en lugar fresco y seco. Una vez abierto, refrigerar y consumir dentro de los 30 días."
+         data-preparacion="Producto listo para usar. Ideal para marinar, glasear o acompañar carnes, pollo y cerdo. Aplicar durante los últimos minutos de cocción."
+         data-manejo="Almacenar en lugar fresco y seco. No exponer a luz solar directa. Rotar inventario PEPS."
+         data-anaquel="12 meses desde fecha de producción en empaque cerrado."
+         data-alergenos="Libre de alérgenos principales. Puede contener trazas de soya."
+         data-ingredientes="Jarabe de maíz, agua, pasta de tomate, vinagre, azúcar, sal, especias, sabor natural de humo, color caramelo."
+         data-img1="img/custom-bbq-1.jpg" data-img2="img/custom-bbq-2.jpg" 
+         data-gallery='["img/custom-bbq-1.jpg", "img/custom-bbq-2.jpg"]'>
+      <div class="product-image-container">
+        <img src="img/custom-bbq-1.jpg" alt="Salsa BBQ Original" class="product-image" onerror="this.src='https://via.placeholder.com/400x400/8B4513/FFFFFF?text=CUSTOM+BBQ'">
+        <img src="img/custom-bbq-2.jpg" alt="Salsa BBQ Vista 2" class="product-image img-hover" onerror="this.style.display='none'">
+        <img src="img/logo-sibru-icono.png" alt="SIBRÜ" class="brand-watermark">
+        <div class="click-hint">Ver ficha técnica</div>
+      </div>
+      <div class="product-info">
+        <div class="product-brand">CUSTOM CULINARY</div>
+        <div class="product-name">Salsa BBQ Original</div>
+        <div class="product-desc">Salsa ahumada de tonalidad anaranjada con notas a tomate, naranja y especias. Balance entre dulce, ácido y ahumado.</div>
+        <div class="product-details">
+          <div class="detail-row"><span class="detail-label">Mayoreo:</span><span class="detail-value">Caja 4 piezas (4 kg c/u)</span></div>
+          <div class="detail-row"><span class="detail-label">Medio Mayoreo:</span><span class="detail-value">Pieza 4 kg</span></div>
+          <div class="detail-row"><span class="detail-label">Menudeo:</span><span class="detail-value">Por Kilo</span></div>
+        </div>
+        <div class="product-code">CÓDIGO: 019835/4</div>
+      </div>
+    </div>
+
+    <!-- CUSTOM CULINARY: Salsa Mango Habanero -->
+    <div class="product-card brand-custom" data-brand="custom" data-category="salsas"
+         data-name="Salsa Mango Habanero" data-code="020919/0.5"
+         data-desc="Una combinación exótica entre lo frutal y lo picante de uno de los chiles más cotizados en el mercado. Con un picor alto, cumple perfectamente la promesa que sus ingredientes brindan en cada bocado."
+         data-mayoreo="Caja 12 piezas (570 gr c/u)" data-medio="Pieza 570 gr" data-menudeo="Por Pieza"
+         data-conservacion="Mantener en lugar fresco y seco. Una vez abierto, refrigerar y consumir dentro de los 30 días."
+         data-preparacion="Producto listo para usar. Ideal como salsa para alitas, marinado para carnes o acompañamiento para botanas. Aplicar al gusto."
+         data-manejo="Almacenar en lugar fresco y seco. No exponer a luz solar directa. Rotar inventario PEPS."
+         data-anaquel="12 meses desde fecha de producción en empaque cerrado."
+         data-alergenos="Libre de alérgenos principales."
+         data-ingredientes="Mango, chile habanero, vinagre, azúcar, sal, especias, almidón modificado, ácido cítrico."
+         data-img1="img/custom-mango-habanero-1.jpg" data-img2="img/custom-mango-habanero-2.jpg" 
+         data-gallery='["img/custom-mango-habanero-1.jpg", "img/custom-mango-habanero-2.jpg"]'>
+      <div class="product-image-container">
+        <img src="img/custom-mango-habanero-1.jpg" alt="Salsa Mango Habanero" class="product-image" onerror="this.src='https://via.placeholder.com/400x400/8B4513/FFFFFF?text=CUSTOM+Mango'">
+        <img src="img/custom-mango-habanero-2.jpg" alt="Salsa Mango Habanero Vista 2" class="product-image img-hover" onerror="this.style.display='none'">
+        <img src="img/logo-sibru-icono.png" alt="SIBRÜ" class="brand-watermark">
+        <div class="click-hint">Ver ficha técnica</div>
+      </div>
+      <div class="product-info">
+        <div class="product-brand">CUSTOM CULINARY</div>
+        <div class="product-name">Salsa Mango Habanero</div>
+        <div class="product-desc">Combinación exótica entre lo frutal y lo picante del chile habanero. Picor alto, sabor intenso.</div>
+        <div class="product-details">
+          <div class="detail-row"><span class="detail-label">Mayoreo:</span><span class="detail-value">Caja 12 piezas (570 gr c/u)</span></div>
+          <div class="detail-row"><span class="detail-label">Medio Mayoreo:</span><span class="detail-value">Pieza 570 gr</span></div>
+          <div class="detail-row"><span class="detail-label">Menudeo:</span><span class="detail-value">Por Pieza</span></div>
+        </div>
+        <div class="product-code">CÓDIGO: 020919/0.5</div>
+      </div>
+    </div>
+
     <div class="no-results" id="noResults">
       No se encontraron productos que coincidan con tu búsqueda.
     </div>
@@ -832,11 +1174,11 @@
 
   <!-- Footer con logo -->
   <div class="footer">
-    <img src="img/logo-sibru-horizontal.png" alt="GRUPO SIBRÜ" class="footer-logo" onerror="this.style.display='none'">
+    <img src="img/logo-sibru-horizontal.png" alt="GRUPO SIBRÜ" class="footer-logo">
     <div class="brand">GRUPO SIBRÜ</div>
     <div class="slogan">Alimentamos Confianza</div>
     <p>Catálogo de Productos 2026 - www.gruposibru.com</p>
-    <p style="font-size: 0.85em; margin-top: 10px; opacity: 0.8;">Documento sujeto a cambios sin previo aviso. Consulta disponibilidad con tu asesor de ventas.</p>
+    <p style="font-size: 0.85em; margin-top: 10px;">Documento sujeto a cambios sin previo aviso. Consulta disponibilidad con tu asesor de ventas.</p>
   </div>
 </div>
 
@@ -845,7 +1187,7 @@
   <div class="modal-content">
     <button class="modal-close" onclick="closeModal()"></button>
     <div class="modal-header">
-      <img src="img/logo-sibru-horizontal.png" alt="GRUPO SIBRÜ" class="modal-header-logo" onerror="this.style.display='none'">
+      <img src="img/logo-sibru-horizontal.png" alt="GRUPO SIBRÜ" class="modal-header-logo">
     </div>
     <div class="modal-image-container">
       <img src="" alt="" class="modal-main-image" id="modalMainImage">
@@ -911,7 +1253,6 @@
 </div>
 
 <script>
-  // Mismo JavaScript que antes (sin cambios)
   const searchInput = document.getElementById('searchInput');
   const filterBtns = document.querySelectorAll('.filter-btn');
   const productCards = document.querySelectorAll('.product-card');
