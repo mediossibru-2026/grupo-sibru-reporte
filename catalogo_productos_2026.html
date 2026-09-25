@@ -29,7 +29,6 @@
 
   .container { max-width: 1200px; margin: 0 auto; padding: 30px 20px; }
 
-  /* Header */
   .header {
     background: linear-gradient(135deg, var(--green-dark) 0%, var(--blue-dark) 100%);
     color: var(--white);
@@ -64,7 +63,6 @@
     border-radius: 20px;
   }
 
-  /* Controls */
   .controls {
     background: var(--white);
     padding: 25px;
@@ -116,7 +114,6 @@
     color: var(--white);
   }
 
-  /* Product Grid */
   .product-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -141,10 +138,12 @@
   }
 
   .product-card.brand-bachoco { border-top-color: #E31837; }
-  .product-card.brand-ecofrots { border-top-color: #2E7D32; }
-  .product-card.brand-mccain { border-top-color: #0055A4; }
+  .product-card.brand-simplot { border-top-color: #2E7D32; }
+  .product-card.brand-richs { border-top-color: #F4A261; }
+  .product-card.brand-capitan { border-top-color: #003366; }
+  .product-card.brand-camanchaca { border-top-color: #CC2229; }
+  .product-card.brand-custom { border-top-color: #8B4513; }
 
-  /* Contenedor de imagen CUADRADO con Hover */
   .product-image-container {
     width: 100%;
     aspect-ratio: 1 / 1;
@@ -269,7 +268,6 @@
     display: none;
   }
 
-  /* MODAL - FICHA TÉCNICA */
   .modal-overlay {
     display: none;
     position: fixed;
@@ -347,7 +345,6 @@
     padding: 30px;
   }
 
-  /* Galería de miniaturas */
   .gallery-strip {
     display: flex;
     gap: 10px;
@@ -487,7 +484,6 @@
     margin-top: 10px;
   }
 
-  /* LIGHTBOX (Pantalla completa para fotos) */
   .lightbox {
     display: none;
     position: fixed;
@@ -527,7 +523,6 @@
 
   .lightbox-close:hover { color: var(--orange); }
 
-  /* Footer */
   .footer {
     text-align: center;
     margin-top: 50px;
@@ -551,7 +546,6 @@
     margin-bottom: 10px;
   }
 
-  /* Responsive */
   @media (max-width: 768px) {
     .header h1 { font-size: 1.8em; }
     .product-grid { grid-template-columns: 1fr; }
@@ -583,21 +577,21 @@
   </div>
 
   <div class="controls">
-    <input type="text" class="search-box" id="searchInput" placeholder="Buscar por producto, marca o código (ej: Nugget, 1539, Bachoco)...">
+    <input type="text" class="search-box" id="searchInput" placeholder="Buscar por producto, marca o código...">
     <div class="filters">
       <button class="filter-btn active" data-filter="all">Todos</button>
       <button class="filter-btn" data-filter="bachoco">Bachoco</button>
-      <button class="filter-btn" data-filter="ecofrots">Ecofrots</button>
-      <button class="filter-btn" data-filter="mccain">McCain</button>
-      <button class="filter-btn" data-filter="pollo">Pollo y Snacks</button>
-      <button class="filter-btn" data-filter="papas">Papas</button>
-      <button class="filter-btn" data-filter="res">Res y Hamburguesas</button>
+      <button class="filter-btn" data-filter="simplot">Simplot</button>
+      <button class="filter-btn" data-filter="richs">Rich's</button>
+      <button class="filter-btn" data-filter="capitan">Capitán</button>
+      <button class="filter-btn" data-filter="camanchaca">Camanchaca</button>
+      <button class="filter-btn" data-filter="custom">Custom Culinary</button>
     </div>
   </div>
 
   <div class="product-grid" id="productGrid">
     
-    <!-- BACHOCO: Tender -->
+    <!-- BACHOCO: Tender Empanizado -->
     <div class="product-card brand-bachoco" data-brand="bachoco" data-category="pollo" 
          data-name="Tender Empanizado" data-code="1950"
          data-desc="Fajita y/o dedo de pechuga marinado y empanizado totalmente cubierto, prefrito y congelado individualmente. Ideal para menús infantiles, botanas y platillos principales."
@@ -608,11 +602,11 @@
          data-anaquel="12 meses desde fecha de producción manteniendo la cadena de frío ininterrumpida."
          data-alergenos="Contiene: Gluten (trigo), Soya, Huevo. Puede contener trazas de leche y mostaza."
          data-ingredientes="Pechuga de pollo, agua, harina de trigo, almidón modificado, sal, especias, aceite vegetal, fosfatos, glutamato monosódico."
-         data-img1="img/tender-1.jpg" data-img2="img/tender-2.jpg" 
-         data-gallery='["img/tender-1.jpg", "img/tender-2.jpg", "img/tender-3.jpg"]'>
+         data-img1="img/bachoco-tender-1.jpg" data-img2="img/bachoco-tender-2.jpg" 
+         data-gallery='["img/bachoco-tender-1.jpg", "img/bachoco-tender-2.jpg"]'>
       <div class="product-image-container">
-        <img src="img/tender-1.jpg" alt="Tender Empanizado" class="product-image" onerror="this.src='https://via.placeholder.com/400x400/E31837/FFFFFF?text=BACHOCO+Tender'">
-        <img src="img/tender-2.jpg" alt="Tender Empanizado Vista 2" class="product-image img-hover" onerror="this.style.display='none'">
+        <img src="img/bachoco-tender-1.jpg" alt="Tender Empanizado" class="product-image" onerror="this.src='https://via.placeholder.com/400x400/E31837/FFFFFF?text=BACHOCO+Tender'">
+        <img src="img/bachoco-tender-2.jpg" alt="Tender Empanizado Vista 2" class="product-image img-hover" onerror="this.style.display='none'">
         <div class="click-hint">Ver ficha técnica</div>
       </div>
       <div class="product-info">
@@ -628,7 +622,7 @@
       </div>
     </div>
 
-    <!-- BACHOCO: Nugget -->
+    <!-- BACHOCO: Nugget de Pollo -->
     <div class="product-card brand-bachoco" data-brand="bachoco" data-category="pollo"
          data-name="Nugget de Pollo" data-code="1539"
          data-desc="Nuggets de pechuga de pollo, formados, empanizados con cobertura tempura, prefritos y congelados individualmente. Producto versátil ideal para menús infantiles y adultos."
@@ -639,11 +633,11 @@
          data-anaquel="12 meses desde fecha de producción manteniendo la cadena de frío."
          data-alergenos="Contiene: Gluten (trigo), Soya, Huevo. Elaborado en planta que procesa lácteos."
          data-ingredientes="Pechuga de pollo, agua, harina de trigo, almidón de maíz, sal, especias, aceite de soya, fosfatos, levadura."
-         data-img1="img/nugget-1.jpg" data-img2="img/nugget-2.jpg" 
-         data-gallery='["img/nugget-1.jpg", "img/nugget-2.jpg", "img/nugget-3.jpg"]'>
+         data-img1="img/bachoco-nugget-1.jpg" data-img2="img/bachoco-nugget-2.jpg" 
+         data-gallery='["img/bachoco-nugget-1.jpg", "img/bachoco-nugget-2.jpg"]'>
       <div class="product-image-container">
-        <img src="img/nugget-1.jpg" alt="Nugget de Pollo" class="product-image" onerror="this.src='https://via.placeholder.com/400x400/E31837/FFFFFF?text=BACHOCO+Nugget'">
-        <img src="img/nugget-2.jpg" alt="Nugget de Pollo Vista 2" class="product-image img-hover" onerror="this.style.display='none'">
+        <img src="img/bachoco-nugget-1.jpg" alt="Nugget de Pollo" class="product-image" onerror="this.src='https://via.placeholder.com/400x400/E31837/FFFFFF?text=BACHOCO+Nugget'">
+        <img src="img/bachoco-nugget-2.jpg" alt="Nugget de Pollo Vista 2" class="product-image img-hover" onerror="this.style.display='none'">
         <div class="click-hint">Ver ficha técnica</div>
       </div>
       <div class="product-info">
@@ -659,34 +653,251 @@
       </div>
     </div>
 
-    <!-- ECOFROTS: Papas Gajo -->
-    <div class="product-card brand-ecofrots" data-brand="ecofrots" data-category="papas"
-         data-name="Papas Gajo Sazonadas" data-code="5105"
-         data-desc="Gajo de papa sazonado con especias, corte grueso ideal para acompañar platillos. Textura crujiente por fuera y suave por dentro."
-         data-mayoreo="Caja 10 kg (4 bolsas x 2.5 kg)" data-medio="Bolsa 2.5 kg" data-menudeo="Por Kilo"
+    <!-- SIMPLOT: Papa Gajo 6/5 -->
+    <div class="product-card brand-simplot" data-brand="simplot" data-category="papas"
+         data-name="Papa Gajo 6/5" data-code="046165"
+         data-desc="Gajo de papa corte 10 con cobertura sazonada, con cáscara. Textura crujiente por fuera y suave por dentro, ideal para acompañar platillos principales."
+         data-mayoreo="Caja 13.6 kg (6 bolsas x 2.270 kg)" data-medio="Bolsa 2.270 kg" data-menudeo="Por Kilo"
          data-conservacion="Mantener congelado a -18°C o menor. No recongelar. Almacenar en lugar seco y fresco antes de abrir."
          data-preparacion="Freír en aceite vegetal a 175-180°C durante 4-5 minutos hasta dorar. Hornear a 220°C por 18-22 minutos volteando a la mitad. Air Fryer a 200°C por 12-15 minutos."
          data-manejo="Mantener cadena de frío. No apilar más de 6 cajas. Rotar inventario PEPS. Verificar integridad del empaque al recibir."
          data-anaquel="18 meses desde fecha de producción manteniendo cadena de frío."
          data-alergenos="Libre de alérgenos principales. Elaborado en planta que procesa productos con gluten."
          data-ingredientes="Papa, aceite vegetal (girasol/canola), sal, especias, dextrosa, pirofosfato de sodio (conservador de color)."
-         data-img1="img/papas-1.jpg" data-img2="img/papas-2.jpg" 
-         data-gallery='["img/papas-1.jpg", "img/papas-2.jpg"]'>
+         data-img1="img/simplot-papa-gajo-1.jpg" data-img2="img/simplot-papa-gajo-2.jpg" 
+         data-gallery='["img/simplot-papa-gajo-1.jpg", "img/simplot-papa-gajo-2.jpg"]'>
       <div class="product-image-container">
-        <img src="img/papas-1.jpg" alt="Papas Gajo" class="product-image" onerror="this.src='https://via.placeholder.com/400x400/2E7D32/FFFFFF?text=ECOFROTS+Gajo'">
-        <img src="img/papas-2.jpg" alt="Papas Gajo Vista 2" class="product-image img-hover" onerror="this.style.display='none'">
+        <img src="img/simplot-papa-gajo-1.jpg" alt="Papa Gajo 6/5" class="product-image" onerror="this.src='https://via.placeholder.com/400x400/2E7D32/FFFFFF?text=SIMPLOT+Gajo'">
+        <img src="img/simplot-papa-gajo-2.jpg" alt="Papa Gajo Vista 2" class="product-image img-hover" onerror="this.style.display='none'">
         <div class="click-hint">Ver ficha técnica</div>
       </div>
       <div class="product-info">
-        <div class="product-brand">ECOFROTS</div>
-        <div class="product-name">Papas Gajo Sazonadas</div>
-        <div class="product-desc">Gajo sazonado con especias. Corte ondulado de alta calidad, ideal para acompañar cualquier platillo.</div>
+        <div class="product-brand">SIMPLOT</div>
+        <div class="product-name">Papa Gajo 6/5</div>
+        <div class="product-desc">Gajo corte 10 con cobertura sazonada, con cáscara.</div>
         <div class="product-details">
-          <div class="detail-row"><span class="detail-label">Mayoreo:</span><span class="detail-value">Caja 10 kg (4 x 2.5 kg)</span></div>
-          <div class="detail-row"><span class="detail-label">Medio Mayoreo:</span><span class="detail-value">Bolsa 2.5 kg</span></div>
+          <div class="detail-row"><span class="detail-label">Mayoreo:</span><span class="detail-value">Caja 13.6 kg (6 x 2.270 kg)</span></div>
+          <div class="detail-row"><span class="detail-label">Medio Mayoreo:</span><span class="detail-value">Bolsa 2.270 kg</span></div>
           <div class="detail-row"><span class="detail-label">Menudeo:</span><span class="detail-value">Por Kilo</span></div>
         </div>
-        <div class="product-code">CÓDIGO: 5105</div>
+        <div class="product-code">CÓDIGO: 046165</div>
+      </div>
+    </div>
+
+    <!-- SIMPLOT: Papa Cáscara con Sal 13/8 -->
+    <div class="product-card brand-simplot" data-brand="simplot" data-category="papas"
+         data-name="Papa Cáscara con Sal 13/8" data-code="X01"
+         data-desc="Papas a la francesa corte steak con cáscara y sal de mar. Corte grueso ideal para acompañar hamburguesas, alitas y platillos fuertes."
+         data-mayoreo="Caja 13.6 kg (6 bolsas x 2.270 kg)" data-medio="Bolsa 2.270 kg" data-menudeo="Por Kilo"
+         data-conservacion="Mantener congelado a -18°C o menor. No recongelar una vez descongelado. Mantener empaque cerrado hasta su uso."
+         data-preparacion="Freír a 175-180°C por 3-4 minutos. Hornear a 220°C por 15-18 minutos. Air Fryer a 200°C por 10-12 minutos."
+         data-manejo="Cadena de frío ininterrumpida. Almacenar en estibas con circulación de aire. No exponer a temperatura ambiente prolongada."
+         data-anaquel="18 meses desde fecha de producción."
+         data-alergenos="Libre de alérgenos principales."
+         data-ingredientes="Papa, aceite vegetal (girasol/canola), sal de mar, pirofosfato de sodio."
+         data-img1="img/simplot-papa-cascara-1.jpg" data-img2="img/simplot-papa-cascara-2.jpg" 
+         data-gallery='["img/simplot-papa-cascara-1.jpg", "img/simplot-papa-cascara-2.jpg"]'>
+      <div class="product-image-container">
+        <img src="img/simplot-papa-cascara-1.jpg" alt="Papa Cáscara con Sal" class="product-image" onerror="this.src='https://via.placeholder.com/400x400/2E7D32/FFFFFF?text=SIMPLOT+Cáscara'">
+        <img src="img/simplot-papa-cascara-2.jpg" alt="Papa Cáscara Vista 2" class="product-image img-hover" onerror="this.style.display='none'">
+        <div class="click-hint">Ver ficha técnica</div>
+      </div>
+      <div class="product-info">
+        <div class="product-brand">SIMPLOT</div>
+        <div class="product-name">Papa Cáscara con Sal 13/8</div>
+        <div class="product-desc">Papas a la francesa corte steak con cáscara y sal de mar.</div>
+        <div class="product-details">
+          <div class="detail-row"><span class="detail-label">Mayoreo:</span><span class="detail-value">Caja 13.6 kg (6 x 2.270 kg)</span></div>
+          <div class="detail-row"><span class="detail-label">Medio Mayoreo:</span><span class="detail-value">Bolsa 2.270 kg</span></div>
+          <div class="detail-row"><span class="detail-label">Menudeo:</span><span class="detail-value">Por Kilo</span></div>
+        </div>
+        <div class="product-code">CÓDIGO: X01</div>
+      </div>
+    </div>
+
+    <!-- RICH'S: ICEHOT Fresa -->
+    <div class="product-card brand-richs" data-brand="richs" data-category="salsas"
+         data-name="ICEHOT Fresa" data-code="X02"
+         data-desc="Salsa topping de fresa para postres, helados y crepas. Textura suave y sabor intenso a fresa natural."
+         data-mayoreo="Caja 4 piezas (1.8 L c/u)" data-medio="Pieza 1.8 L" data-menudeo="Por Litro"
+         data-conservacion="Mantener refrigerado a 4°C o menor. Una vez abierto, consumir dentro de los 7 días. No congelar."
+         data-preparacion="Producto listo para usar. Agitar bien antes de servir. Servir frío sobre postres, helados o crepas."
+         data-manejo="Mantener refrigerado. No exponer a temperatura ambiente por más de 2 horas. Rotar inventario PEPS."
+         data-anaquel="6 meses desde fecha de producción manteniendo refrigeración."
+         data-alergenos="Libre de alérgenos principales. Elaborado en planta que procesa lácteos."
+         data-ingredientes="Jarabe de maíz, fresa, agua, azúcar, almidón modificado, ácido cítrico, color natural, saborizante."
+         data-img1="img/richs-icehot-fresa-1.jpg" data-img2="img/richs-icehot-fresa-2.jpg" 
+         data-gallery='["img/richs-icehot-fresa-1.jpg", "img/richs-icehot-fresa-2.jpg"]'>
+      <div class="product-image-container">
+        <img src="img/richs-icehot-fresa-1.jpg" alt="ICEHOT Fresa" class="product-image" onerror="this.src='https://via.placeholder.com/400x400/F4A261/FFFFFF?text=RICH+S+Fresa'">
+        <img src="img/richs-icehot-fresa-2.jpg" alt="ICEHOT Fresa Vista 2" class="product-image img-hover" onerror="this.style.display='none'">
+        <div class="click-hint">Ver ficha técnica</div>
+      </div>
+      <div class="product-info">
+        <div class="product-brand">RICH'S</div>
+        <div class="product-name">ICEHOT Fresa</div>
+        <div class="product-desc">Salsa topping de fresa para postres, helados y crepas.</div>
+        <div class="product-details">
+          <div class="detail-row"><span class="detail-label">Mayoreo:</span><span class="detail-value">Caja 4 piezas (1.8 L c/u)</span></div>
+          <div class="detail-row"><span class="detail-label">Medio Mayoreo:</span><span class="detail-value">Pieza 1.8 L</span></div>
+          <div class="detail-row"><span class="detail-label">Menudeo:</span><span class="detail-value">Por Litro</span></div>
+        </div>
+        <div class="product-code">CÓDIGO: X02</div>
+      </div>
+    </div>
+
+    <!-- RICH'S: Dedos de Queso -->
+    <div class="product-card brand-richs" data-brand="richs" data-category="snacks"
+         data-name="Dedos de Queso" data-code="20128"
+         data-desc="Queso mozzarella en una cobertura empanizada crujiente. Ideal como botana, acompañamiento o plato fuerte. Se derrite perfectamente al freír."
+         data-mayoreo="Caja 1.47 kg" data-medio="Bolsa (Consultar)" data-menudeo="Por Kilo"
+         data-conservacion="Mantener congelado a -18°C o menor. No recongelar una vez descongelado."
+         data-preparacion="Freír en aceite vegetal a 175-180°C durante 2-3 minutos hasta dorar. Hornear a 200°C por 8-10 minutos."
+         data-manejo="Mantener cadena de frío. No apilar más de 4 cajas. Rotar inventario PEPS."
+         data-anaquel="12 meses desde fecha de producción manteniendo cadena de frío."
+         data-alergenos="Contiene: Gluten (trigo), Leche, Huevo. Puede contener trazas de soya."
+         data-ingredientes="Queso mozzarella, harina de trigo, agua, huevo, sal, especias, aceite vegetal, levadura."
+         data-img1="img/richs-dedos-queso-1.jpg" data-img2="img/richs-dedos-queso-2.jpg" 
+         data-gallery='["img/richs-dedos-queso-1.jpg", "img/richs-dedos-queso-2.jpg"]'>
+      <div class="product-image-container">
+        <img src="img/richs-dedos-queso-1.jpg" alt="Dedos de Queso" class="product-image" onerror="this.src='https://via.placeholder.com/400x400/F4A261/FFFFFF?text=RICH+S+Queso'">
+        <img src="img/richs-dedos-queso-2.jpg" alt="Dedos de Queso Vista 2" class="product-image img-hover" onerror="this.style.display='none'">
+        <div class="click-hint">Ver ficha técnica</div>
+      </div>
+      <div class="product-info">
+        <div class="product-brand">RICH'S</div>
+        <div class="product-name">Dedos de Queso</div>
+        <div class="product-desc">Queso mozzarella en una cobertura empanizada crujiente.</div>
+        <div class="product-details">
+          <div class="detail-row"><span class="detail-label">Mayoreo:</span><span class="detail-value">Caja 1.47 kg</span></div>
+          <div class="detail-row"><span class="detail-label">Medio Mayoreo:</span><span class="detail-value">Bolsa (Consultar)</span></div>
+          <div class="detail-row"><span class="detail-label">Menudeo:</span><span class="detail-value">Por Kilo</span></div>
+        </div>
+        <div class="product-code">CÓDIGO: 20128</div>
+      </div>
+    </div>
+
+    <!-- CAPITÁN: Steaks de Atún -->
+    <div class="product-card brand-capitan" data-brand="capitan" data-category="mariscos"
+         data-name="Steaks de Atún" data-code="0003"
+         data-desc="Steaks de atún aleta amarilla, lo más selecto del mar. Corte premium de atún fresco congelado, ideal para sellado o carpaccio. Marca Capitán."
+         data-mayoreo="Caja 5 kg (10 piezas x 500 gr)" data-medio="Bolsa (Consultar)" data-menudeo="Por Pieza / Kilo"
+         data-conservacion="Mantener congelado a -18°C o menor. No recongelar una vez descongelado. Consumir dentro de las 24 horas posteriores al descongelamiento."
+         data-preparacion="Sellar en sartén muy caliente por 1-2 minutos por lado (término medio raro). Temperatura interna recomendada: 52-57°C. No cocinar completamente."
+         data-manejo="Mantener cadena de frío estricta. Almacenar separado de otros alimentos. No apilar más de 4 cajas. Rotar inventario PEPS."
+         data-anaquel="12 meses desde fecha de producción manteniendo cadena de frío."
+         data-alergenos="Contiene: Pescado (atún). Libre de gluten, lácteos y soya."
+         data-ingredientes="Steak de atún aleta amarilla (Thunnus albacares)."
+         data-img1="img/capitan-atun-1.jpg" data-img2="img/capitan-atun-2.jpg" 
+         data-gallery='["img/capitan-atun-1.jpg", "img/capitan-atun-2.jpg"]'>
+      <div class="product-image-container">
+        <img src="img/capitan-atun-1.jpg" alt="Steaks de Atún" class="product-image" onerror="this.src='https://via.placeholder.com/400x400/003366/FFFFFF?text=CAPITÁN+Atún'">
+        <img src="img/capitan-atun-2.jpg" alt="Steaks de Atún Vista 2" class="product-image img-hover" onerror="this.style.display='none'">
+        <div class="click-hint">Ver ficha técnica</div>
+      </div>
+      <div class="product-info">
+        <div class="product-brand">CAPITÁN</div>
+        <div class="product-name">Steaks de Atún</div>
+        <div class="product-desc">Steaks de atún aleta amarilla, lo más selecto del mar. Corte premium de atún fresco congelado.</div>
+        <div class="product-details">
+          <div class="detail-row"><span class="detail-label">Mayoreo:</span><span class="detail-value">Caja 5 kg (10 x 500 gr)</span></div>
+          <div class="detail-row"><span class="detail-label">Medio Mayoreo:</span><span class="detail-value">Bolsa (Consultar)</span></div>
+          <div class="detail-row"><span class="detail-label">Menudeo:</span><span class="detail-value">Por Pieza / Kilo</span></div>
+        </div>
+        <div class="product-code">CÓDIGO: 0003</div>
+      </div>
+    </div>
+
+    <!-- CAMANCHACA: Porción de Salmón -->
+    <div class="product-card brand-camanchaca" data-brand="camanchaca" data-category="mariscos"
+         data-name="Porción de Salmón" data-code="0004"
+         data-desc="Porción de salmón Reserva Especial, producto de Chile. Criado sin antibióticos, libre de hormonas, alto en Omega 3. Filete de salmón de alta calidad. Marca Camanchaca."
+         data-mayoreo="Caja 5 kg (20 piezas x 250 gr)" data-medio="Bolsa (Consultar)" data-menudeo="Por Pieza / Kilo"
+         data-conservacion="Mantener congelado a -18°C o menor. No recongelar una vez descongelado. Consumir dentro de las 24 horas posteriores al descongelamiento."
+         data-preparacion="Asar en parrilla o plancha a fuego medio-alto por 4-5 minutos por lado. Hornear a 200°C por 12-15 minutos. Temperatura interna mínima: 63°C."
+         data-manejo="Mantener cadena de frío estricta. Almacenar separado de otros alimentos. No apilar más de 4 cajas. Rotar inventario PEPS."
+         data-anaquel="12 meses desde fecha de producción manteniendo cadena de frío."
+         data-alergenos="Contiene: Pescado (salmón). Libre de gluten, lácteos y soya."
+         data-ingredientes="Filete de salmón (Salmo salar), producto de Chile."
+         data-img1="img/camanchaca-salmon-1.jpg" data-img2="img/camanchaca-salmon-2.jpg" 
+         data-gallery='["img/camanchaca-salmon-1.jpg", "img/camanchaca-salmon-2.jpg"]'>
+      <div class="product-image-container">
+        <img src="img/camanchaca-salmon-1.jpg" alt="Porción de Salmón" class="product-image" onerror="this.src='https://via.placeholder.com/400x400/CC2229/FFFFFF?text=CAMANCHACA+Salmón'">
+        <img src="img/camanchaca-salmon-2.jpg" alt="Porción de Salmón Vista 2" class="product-image img-hover" onerror="this.style.display='none'">
+        <div class="click-hint">Ver ficha técnica</div>
+      </div>
+      <div class="product-info">
+        <div class="product-brand">CAMANCHACA</div>
+        <div class="product-name">Porción de Salmón</div>
+        <div class="product-desc">Porción de salmón Reserva Especial, producto de Chile. Criado sin antibióticos, libre de hormonas, alto en Omega 3.</div>
+        <div class="product-details">
+          <div class="detail-row"><span class="detail-label">Mayoreo:</span><span class="detail-value">Caja 5 kg (20 x 250 gr)</span></div>
+          <div class="detail-row"><span class="detail-label">Medio Mayoreo:</span><span class="detail-value">Bolsa (Consultar)</span></div>
+          <div class="detail-row"><span class="detail-label">Menudeo:</span><span class="detail-value">Por Pieza / Kilo</span></div>
+        </div>
+        <div class="product-code">CÓDIGO: 0004</div>
+      </div>
+    </div>
+
+    <!-- CUSTOM CULINARY: Salsa BBQ Original -->
+    <div class="product-card brand-custom" data-brand="custom" data-category="salsas"
+         data-name="Salsa BBQ Original" data-code="019835/4"
+         data-desc="Una salsa ahumada de tonalidad anaranjada con notas a tomate, naranja y especias. Esta BBQ es totalmente versátil. Posee un gran balance entre dulce, ácido y ahumado."
+         data-mayoreo="Caja 4 piezas (4 kg c/u)" data-medio="Pieza 4 kg" data-menudeo="Por Kilo"
+         data-conservacion="Mantener en lugar fresco y seco. Una vez abierto, refrigerar y consumir dentro de los 30 días."
+         data-preparacion="Producto listo para usar. Ideal para marinar, glasear o acompañar carnes, pollo y cerdo. Aplicar durante los últimos minutos de cocción."
+         data-manejo="Almacenar en lugar fresco y seco. No exponer a luz solar directa. Rotar inventario PEPS."
+         data-anaquel="12 meses desde fecha de producción en empaque cerrado."
+         data-alergenos="Libre de alérgenos principales. Puede contener trazas de soya."
+         data-ingredientes="Jarabe de maíz, agua, pasta de tomate, vinagre, azúcar, sal, especias, sabor natural de humo, color caramelo."
+         data-img1="img/custom-bbq-1.jpg" data-img2="img/custom-bbq-2.jpg" 
+         data-gallery='["img/custom-bbq-1.jpg", "img/custom-bbq-2.jpg"]'>
+      <div class="product-image-container">
+        <img src="img/custom-bbq-1.jpg" alt="Salsa BBQ Original" class="product-image" onerror="this.src='https://via.placeholder.com/400x400/8B4513/FFFFFF?text=CUSTOM+BBQ'">
+        <img src="img/custom-bbq-2.jpg" alt="Salsa BBQ Vista 2" class="product-image img-hover" onerror="this.style.display='none'">
+        <div class="click-hint">Ver ficha técnica</div>
+      </div>
+      <div class="product-info">
+        <div class="product-brand">CUSTOM CULINARY</div>
+        <div class="product-name">Salsa BBQ Original</div>
+        <div class="product-desc">Salsa ahumada de tonalidad anaranjada con notas a tomate, naranja y especias. Balance entre dulce, ácido y ahumado.</div>
+        <div class="product-details">
+          <div class="detail-row"><span class="detail-label">Mayoreo:</span><span class="detail-value">Caja 4 piezas (4 kg c/u)</span></div>
+          <div class="detail-row"><span class="detail-label">Medio Mayoreo:</span><span class="detail-value">Pieza 4 kg</span></div>
+          <div class="detail-row"><span class="detail-label">Menudeo:</span><span class="detail-value">Por Kilo</span></div>
+        </div>
+        <div class="product-code">CÓDIGO: 019835/4</div>
+      </div>
+    </div>
+
+    <!-- CUSTOM CULINARY: Salsa Mango Habanero -->
+    <div class="product-card brand-custom" data-brand="custom" data-category="salsas"
+         data-name="Salsa Mango Habanero" data-code="020919/0.5"
+         data-desc="Una combinación exótica entre lo frutal y lo picante de uno de los chiles más cotizados en el mercado. Con un picor alto, cumple perfectamente la promesa que sus ingredientes brindan en cada bocado."
+         data-mayoreo="Caja 12 piezas (570 gr c/u)" data-medio="Pieza 570 gr" data-menudeo="Por Pieza"
+         data-conservacion="Mantener en lugar fresco y seco. Una vez abierto, refrigerar y consumir dentro de los 30 días."
+         data-preparacion="Producto listo para usar. Ideal como salsa para alitas, marinado para carnes o acompañamiento para botanas. Aplicar al gusto."
+         data-manejo="Almacenar en lugar fresco y seco. No exponer a luz solar directa. Rotar inventario PEPS."
+         data-anaquel="12 meses desde fecha de producción en empaque cerrado."
+         data-alergenos="Libre de alérgenos principales."
+         data-ingredientes="Mango, chile habanero, vinagre, azúcar, sal, especias, almidón modificado, ácido cítrico."
+         data-img1="img/custom-mango-habanero-1.jpg" data-img2="img/custom-mango-habanero-2.jpg" 
+         data-gallery='["img/custom-mango-habanero-1.jpg", "img/custom-mango-habanero-2.jpg"]'>
+      <div class="product-image-container">
+        <img src="img/custom-mango-habanero-1.jpg" alt="Salsa Mango Habanero" class="product-image" onerror="this.src='https://via.placeholder.com/400x400/8B4513/FFFFFF?text=CUSTOM+Mango'">
+        <img src="img/custom-mango-habanero-2.jpg" alt="Salsa Mango Habanero Vista 2" class="product-image img-hover" onerror="this.style.display='none'">
+        <div class="click-hint">Ver ficha técnica</div>
+      </div>
+      <div class="product-info">
+        <div class="product-brand">CUSTOM CULINARY</div>
+        <div class="product-name">Salsa Mango Habanero</div>
+        <div class="product-desc">Combinación exótica entre lo frutal y lo picante del chile habanero. Picor alto, sabor intenso.</div>
+        <div class="product-details">
+          <div class="detail-row"><span class="detail-label">Mayoreo:</span><span class="detail-value">Caja 12 piezas (570 gr c/u)</span></div>
+          <div class="detail-row"><span class="detail-label">Medio Mayoreo:</span><span class="detail-value">Pieza 570 gr</span></div>
+          <div class="detail-row"><span class="detail-label">Menudeo:</span><span class="detail-value">Por Pieza</span></div>
+        </div>
+        <div class="product-code">CÓDIGO: 020919/0.5</div>
       </div>
     </div>
 
@@ -710,9 +921,7 @@
     <div class="modal-image-container">
       <img src="" alt="" class="modal-main-image" id="modalMainImage">
     </div>
-    <div class="gallery-strip" id="galleryStrip">
-      <!-- Miniaturas se generan con JS -->
-    </div>
+    <div class="gallery-strip" id="galleryStrip"></div>
     <div class="modal-body">
       <div class="modal-brand" id="modalBrand"></div>
       <h2 class="modal-title" id="modalTitle"></h2>
@@ -766,14 +975,13 @@
   </div>
 </div>
 
-<!-- LIGHTBOX (Pantalla completa) -->
+<!-- LIGHTBOX -->
 <div class="lightbox" id="lightbox" onclick="closeLightbox()">
   <span class="lightbox-close">X</span>
   <img src="" alt="Vista ampliada" class="lightbox-img" id="lightboxImg">
 </div>
 
 <script>
-  // Búsqueda y Filtros
   const searchInput = document.getElementById('searchInput');
   const filterBtns = document.querySelectorAll('.filter-btn');
   const productCards = document.querySelectorAll('.product-card');
@@ -812,7 +1020,6 @@
     });
   });
 
-  // Lógica del Modal
   productCards.forEach(card => {
     card.addEventListener('click', () => openModal(card));
   });
@@ -836,7 +1043,6 @@
     document.getElementById('modalAlergenos').innerText = card.dataset.alergenos;
     document.getElementById('modalIngredientes').innerText = card.dataset.ingredientes;
 
-    // Generar galería de miniaturas
     const strip = document.getElementById('galleryStrip');
     strip.innerHTML = '';
     gallery.forEach((imgSrc, index) => {
@@ -844,12 +1050,11 @@
       thumb.src = imgSrc;
       thumb.className = 'gallery-thumb' + (index === 0 ? ' active' : '');
       thumb.onclick = (e) => {
-        e.stopPropagation(); // Evitar que se cierre el modal
+        e.stopPropagation();
         document.getElementById('modalMainImage').src = imgSrc;
         document.querySelectorAll('.gallery-thumb').forEach(t => t.classList.remove('active'));
         thumb.classList.add('active');
       };
-      // Doble clic o clic prolongado para lightbox
       thumb.ondblclick = (e) => {
         e.stopPropagation();
         openLightbox(imgSrc);
@@ -870,7 +1075,6 @@
     if (e.target === modal) closeModal();
   });
 
-  // Lógica del Lightbox
   function openLightbox(imgSrc) {
     document.getElementById('lightboxImg').src = imgSrc;
     lightbox.classList.add('active');
