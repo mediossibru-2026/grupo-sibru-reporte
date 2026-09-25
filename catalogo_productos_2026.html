@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Catálogo de Productos 2026 | GRUPO SIBRÜ</title>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
   :root {
     --green-dark: #1B5E20;
@@ -63,7 +63,7 @@
     border-radius: 20px;
   }
 
-  /* Search and Filters */
+  /* Controls */
   .controls {
     background: var(--white);
     padding: 25px;
@@ -118,19 +118,20 @@
   /* Product Grid */
   .product-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     gap: 25px;
   }
 
   .product-card {
     background: var(--white);
     border-radius: 15px;
-    overflow: hidden; /* Importante para que la imagen respete los bordes redondeados */
+    overflow: hidden;
     box-shadow: 0 5px 15px rgba(0,0,0,0.05);
     border-top: 5px solid var(--green-dark);
     transition: transform 0.3s, box-shadow 0.3s;
     display: flex;
     flex-direction: column;
+    cursor: pointer;
   }
 
   .product-card:hover {
@@ -142,27 +143,47 @@
   .product-card.brand-ecofrots { border-top-color: #2E7D32; }
   .product-card.brand-mccain { border-top-color: #0055A4; }
 
-  /* ESTILOS DE LA IMAGEN DEL PRODUCTO */
+  /* Contenedor de imagen CUADRADO */
   .product-image-container {
     width: 100%;
-    height: 220px;
-    background: #f0f0f0;
+    aspect-ratio: 1 / 1; /* Contenedor perfectamente cuadrado */
+    background: #f5f5f5;
     display: flex;
     align-items: center;
     justify-content: center;
     overflow: hidden;
     border-bottom: 1px solid #eee;
+    position: relative;
   }
 
   .product-image {
     width: 100%;
     height: 100%;
-    object-fit: cover; /* Recorta la imagen para llenar el espacio sin deformarla */
+    object-fit: contain; /* La imagen completa se ve sin recortarse */
+    padding: 15px; /* Espacio para que no toque los bordes */
     transition: transform 0.5s ease;
   }
 
   .product-card:hover .product-image {
-    transform: scale(1.05); /* Efecto zoom suave al pasar el mouse */
+    transform: scale(1.05);
+  }
+
+  .click-hint {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    background: rgba(27, 94, 32, 0.9);
+    color: white;
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 0.75em;
+    font-weight: 600;
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+
+  .product-card:hover .click-hint {
+    opacity: 1;
   }
 
   .product-info {
@@ -237,6 +258,209 @@
     display: none;
   }
 
+  /* MODAL - FICHA TÉCNICA GRANDE */
+  .modal-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.85);
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    overflow-y: auto;
+  }
+
+  .modal-overlay.active {
+    display: flex;
+  }
+
+  .modal-content {
+    background: var(--white);
+    border-radius: 20px;
+    max-width: 900px;
+    width: 100%;
+    max-height: 90vh;
+    overflow-y: auto;
+    position: relative;
+    animation: modalSlideIn 0.3s ease;
+  }
+
+  @keyframes modalSlideIn {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .modal-close {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: var(--white);
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    font-size: 24px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+    z-index: 10;
+    transition: transform 0.2s;
+  }
+
+  .modal-close:hover {
+    transform: rotate(90deg);
+  }
+
+  .modal-image-container {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    background: #f5f5f5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    border-radius: 20px 20px 0 0;
+  }
+
+  .modal-image {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    padding: 30px;
+  }
+
+  .modal-body {
+    padding: 30px;
+  }
+
+  .modal-brand {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.9em;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: #888;
+    margin-bottom: 8px;
+  }
+
+  .modal-title {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 2em;
+    font-weight: 800;
+    color: var(--blue-dark);
+    margin-bottom: 15px;
+  }
+
+  .modal-description {
+    font-size: 1.1em;
+    color: #555;
+    margin-bottom: 25px;
+    line-height: 1.7;
+  }
+
+  .modal-section {
+    margin-bottom: 25px;
+  }
+
+  .modal-section-title {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.2em;
+    font-weight: 700;
+    color: var(--green-dark);
+    margin-bottom: 12px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid var(--orange);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .modal-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: var(--gray-bg);
+    border-radius: 10px;
+    overflow: hidden;
+  }
+
+  .modal-table th {
+    background: var(--green-dark);
+    color: var(--white);
+    padding: 12px 15px;
+    text-align: left;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 0.9em;
+  }
+
+  .modal-table td {
+    padding: 12px 15px;
+    border-bottom: 1px solid #e0e0e0;
+    font-size: 0.95em;
+  }
+
+  .modal-table tr:last-child td {
+    border-bottom: none;
+  }
+
+  .modal-table tr:nth-child(even) td {
+    background: #fafafa;
+  }
+
+  .info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 15px;
+  }
+
+  .info-card {
+    background: var(--gray-bg);
+    padding: 18px;
+    border-radius: 10px;
+    border-left: 4px solid var(--green-dark);
+  }
+
+  .info-card-title {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.9em;
+    font-weight: 700;
+    color: var(--green-dark);
+    margin-bottom: 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .info-card-text {
+    font-size: 0.95em;
+    color: #555;
+    line-height: 1.6;
+  }
+
+  .modal-code {
+    display: inline-block;
+    background: var(--blue-dark);
+    color: var(--white);
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.1em;
+    font-weight: 700;
+    letter-spacing: 1px;
+    margin-top: 10px;
+  }
+
   /* Footer */
   .footer {
     text-align: center;
@@ -261,7 +485,16 @@
     margin-bottom: 10px;
   }
 
-  /* Print Styles */
+  /* Responsive */
+  @media (max-width: 768px) {
+    .header h1 { font-size: 1.8em; }
+    .product-grid { grid-template-columns: 1fr; }
+    .modal-title { font-size: 1.5em; }
+    .modal-body { padding: 20px; }
+    .info-grid { grid-template-columns: 1fr; }
+  }
+
+  /* Print */
   @media print {
     body { background: white; }
     .container { padding: 0; }
@@ -273,14 +506,9 @@
       box-shadow: none; 
       border: 1px solid #ddd;
     }
-    .product-image-container { height: 150px; }
+    .modal-overlay { display: none !important; }
     .header { background: white; color: black; box-shadow: none; border-bottom: 3px solid var(--green-dark); }
     .header .subtitle, .header .website { color: var(--green-dark); }
-  }
-
-  @media (max-width: 768px) {
-    .header h1 { font-size: 1.8em; }
-    .product-grid { grid-template-columns: 1fr; }
   }
 </style>
 </head>
@@ -312,10 +540,20 @@
   <div class="product-grid" id="productGrid">
     
     <!-- BACHOCO: Tender -->
-    <div class="product-card brand-bachoco" data-brand="bachoco" data-category="pollo">
+    <div class="product-card brand-bachoco" data-brand="bachoco" data-category="pollo" 
+         data-name="Tender Empanizado" data-code="1950"
+         data-desc="Fajita y/o dedo de pechuga marinado y empanizado totalmente cubierto, prefrito y congelado individualmente. Ideal para menús infantiles, botanas y platillos principales."
+         data-mayoreo="Caja 12 kg (6 bolsas x 2 kg)" data-medio="Bolsa 2 kg" data-menudeo="Por Kilo"
+         data-conservacion="Mantener congelado a -18°C o menor temperatura. No recongelar una vez descongelado. Consumir dentro de los 24 horas posteriores al descongelamiento."
+         data-preparacion="Freír en aceite vegetal a 175-180°C durante 3-4 minutos hasta obtener color dorado. También puede hornearse a 200°C por 12-15 minutos volteando a la mitad del tiempo."
+         data-manejo="Mantener la cadena de frío durante transporte y almacenamiento. No exponer a temperatura ambiente por más de 30 minutos. Almacenar en estibas con circulación de aire."
+         data-anaquel="12 meses desde fecha de producción manteniendo la cadena de frío ininterrumpida."
+         data-alergenos="Contiene: Gluten (trigo), Soya, Huevo. Puede contener trazas de leche y mostaza."
+         data-ingredientes="Pechuga de pollo, agua, harina de trigo, almidón modificado, sal, especias, aceite vegetal, fosfatos, glutamato monosódico."
+         data-img="img/tender-empanizado.jpg">
       <div class="product-image-container">
-        <!-- CAMBIA 'tender.jpg' POR EL NOMBRE REAL DE TU ARCHIVO -->
-        <img src="img/tender-empanizado.jpg" alt="Tender Empanizado Bachoco" class="product-image" onerror="this.src='https://via.placeholder.com/400x250/E31837/FFFFFF?text=BACHOCO+Tender'">
+        <img src="img/tender-empanizado.jpg" alt="Tender Empanizado Bachoco" class="product-image" onerror="this.src='https://via.placeholder.com/400x400/E31837/FFFFFF?text=BACHOCO+Tender'">
+        <div class="click-hint"> Ver ficha</div>
       </div>
       <div class="product-info">
         <div class="product-brand">BACHOCO</div>
@@ -331,9 +569,20 @@
     </div>
 
     <!-- BACHOCO: Nugget -->
-    <div class="product-card brand-bachoco" data-brand="bachoco" data-category="pollo">
+    <div class="product-card brand-bachoco" data-brand="bachoco" data-category="pollo"
+         data-name="Nugget de Pollo" data-code="1539"
+         data-desc="Nuggets de pechuga de pollo, formados, empanizados con cobertura tempura, prefritos y congelados individualmente. Producto versátil ideal para menús infantiles y adultos."
+         data-mayoreo="Caja 14 kg (A granel)" data-medio="Bolsa (Consultar)" data-menudeo="Por Kilo"
+         data-conservacion="Mantener congelado a -18°C o menor temperatura. No recongelar una vez descongelado. Mantener en empaque original hasta su uso."
+         data-preparacion="Freír en aceite vegetal a 175-180°C durante 3-4 minutos. Hornear a 200°C por 10-12 minutos. Air Fryer a 180°C por 8-10 minutos."
+         data-manejo="Mantener cadena de frío. No apilar cajas más de 5 niveles. Almacenar en área seca y ventilada. Rotar inventario PEPS (Primero en Entrar, Primero en Salir)."
+         data-anaquel="12 meses desde fecha de producción manteniendo la cadena de frío."
+         data-alergenos="Contiene: Gluten (trigo), Soya, Huevo. Elaborado en planta que procesa lácteos."
+         data-ingredientes="Pechuga de pollo, agua, harina de trigo, almidón de maíz, sal, especias, aceite de soya, fosfatos, levadura."
+         data-img="img/nugget-pollo.jpg">
       <div class="product-image-container">
-        <img src="img/nugget-pollo.jpg" alt="Nugget de Pollo Bachoco" class="product-image" onerror="this.src='https://via.placeholder.com/400x250/E31837/FFFFFF?text=BACHOCO+Nugget'">
+        <img src="img/nugget-pollo.jpg" alt="Nugget de Pollo Bachoco" class="product-image" onerror="this.src='https://via.placeholder.com/400x400/E31837/FFFFFF?text=BACHOCO+Nugget'">
+        <div class="click-hint">🔍 Ver ficha</div>
       </div>
       <div class="product-info">
         <div class="product-brand">BACHOCO</div>
@@ -348,10 +597,50 @@
       </div>
     </div>
 
-    <!-- ECOFROTS: Papas Gajo -->
-    <div class="product-card brand-ecofrots" data-brand="ecofrots" data-category="papas">
+    <!-- BACHOCO: Palomita -->
+    <div class="product-card brand-bachoco" data-brand="bachoco" data-category="pollo"
+         data-name="Palomita de Pollo" data-code="1920"
+         data-desc="Forma característica de palomita, totalmente cubierta, prefrita, congelada y entera, proveniente de la mezcla cárnica marinada a base de filete de pechuga."
+         data-mayoreo="Caja 5 kg (A granel)" data-medio="Bolsa (Consultar)" data-menudeo="Por Kilo"
+         data-conservacion="Mantener congelado a -18°C o menor. No recongelar después de descongelar. Mantener en empaque sellado."
+         data-preparacion="Freír a 175-180°C por 3-4 minutos hasta dorar. Hornear a 200°C por 10-12 minutos. Ideal para botanas y menús infantiles."
+         data-manejo="Cadena de frío ininterrumpida. Almacenar en estibas con separación de pared. No exponer a luz solar directa."
+         data-anaquel="12 meses desde fecha de producción."
+         data-alergenos="Contiene: Gluten (trigo), Soya, Huevo."
+         data-ingredientes="Mezcla cárnica de pechuga de pollo, agua, harina de trigo, almidón, sal, especias, aceite vegetal, fosfatos."
+         data-img="img/palomita-pollo.jpg">
       <div class="product-image-container">
-        <img src="img/papas-gajo.jpg" alt="Papas Gajo Ecofrots" class="product-image" onerror="this.src='https://via.placeholder.com/400x250/2E7D32/FFFFFF?text=ECOFROTS+Gajo'">
+        <img src="img/palomita-pollo.jpg" alt="Palomita de Pollo Bachoco" class="product-image" onerror="this.src='https://via.placeholder.com/400x400/E31837/FFFFFF?text=BACHOCO+Palomita'">
+        <div class="click-hint"> Ver ficha</div>
+      </div>
+      <div class="product-info">
+        <div class="product-brand">BACHOCO</div>
+        <div class="product-name">Palomita de Pollo</div>
+        <div class="product-desc">Forma característica de palomita, totalmente cubierta, prefrita, congelada y entera, proveniente de la mezcla cárnica marinada a base de filete de pechuga.</div>
+        <div class="product-details">
+          <div class="detail-row"><span class="detail-label">Mayoreo:</span><span class="detail-value">Caja 5 kg (A granel)</span></div>
+          <div class="detail-row"><span class="detail-label">Medio Mayoreo:</span><span class="detail-value">Bolsa (Consultar)</span></div>
+          <div class="detail-row"><span class="detail-label">Menudeo:</span><span class="detail-value">Por Kilo</span></div>
+        </div>
+        <div class="product-code">CÓDIGO: 1920</div>
+      </div>
+    </div>
+
+    <!-- ECOFROTS: Papas Gajo -->
+    <div class="product-card brand-ecofrots" data-brand="ecofrots" data-category="papas"
+         data-name="Papas Gajo Sazonadas" data-code="5105"
+         data-desc="Gajo de papa sazonado con especias, corte grueso ideal para acompañar platillos. Textura crujiente por fuera y suave por dentro."
+         data-mayoreo="Caja 10 kg (4 bolsas x 2.5 kg)" data-medio="Bolsa 2.5 kg" data-menudeo="Por Kilo"
+         data-conservacion="Mantener congelado a -18°C o menor. No recongelar. Almacenar en lugar seco y fresco antes de abrir."
+         data-preparacion="Freír en aceite vegetal a 175-180°C durante 4-5 minutos hasta dorar. Hornear a 220°C por 18-22 minutos volteando a la mitad. Air Fryer a 200°C por 12-15 minutos."
+         data-manejo="Mantener cadena de frío. No apilar más de 6 cajas. Rotar inventario PEPS. Verificar integridad del empaque al recibir."
+         data-anaquel="18 meses desde fecha de producción manteniendo cadena de frío."
+         data-alergenos="Libre de alérgenos principales. Elaborado en planta que procesa productos con gluten."
+         data-ingredientes="Papa, aceite vegetal (girasol/canola), sal, especias, dextrosa, pirofosfato de sodio (conservador de color)."
+         data-img="img/papas-gajo.jpg">
+      <div class="product-image-container">
+        <img src="img/papas-gajo.jpg" alt="Papas Gajo Ecofrots" class="product-image" onerror="this.src='https://via.placeholder.com/400x400/2E7D32/FFFFFF?text=ECOFROTS+Gajo'">
+        <div class="click-hint">🔍 Ver ficha</div>
       </div>
       <div class="product-info">
         <div class="product-brand">ECOFROTS</div>
@@ -366,10 +655,50 @@
       </div>
     </div>
 
-    <!-- MCCAIN: Aros de Cebolla -->
-    <div class="product-card brand-mccain" data-brand="mccain" data-category="snacks">
+    <!-- ECOFROTS: Papas Onduladas -->
+    <div class="product-card brand-ecofrots" data-brand="ecofrots" data-category="papas"
+         data-name="Papas Corte Ondulado" data-code="5153"
+         data-desc="Papas de corte ondulado clásico, prefritas y congeladas. Textura crujiente y uniforme, perfectas para acompañar hamburguesas, alitas y platillos fuertes."
+         data-mayoreo="Caja 10 kg (4 bolsas x 2.5 kg)" data-medio="Bolsa 2.5 kg" data-menudeo="Por Kilo"
+         data-conservacion="Mantener congelado a -18°C o menor. No recongelar una vez descongelado. Mantener empaque cerrado hasta su uso."
+         data-preparacion="Freír a 175-180°C por 3-4 minutos. Hornear a 220°C por 15-18 minutos. Air Fryer a 200°C por 10-12 minutos."
+         data-manejo="Cadena de frío ininterrumpida. Almacenar en estibas con circulación de aire. No exponer a temperatura ambiente prolongada."
+         data-anaquel="18 meses desde fecha de producción."
+         data-alergenos="Libre de alérgenos principales."
+         data-ingredientes="Papa, aceite vegetal (girasol/canola), sal, pirofosfato de sodio."
+         data-img="img/papas-onduladas.jpg">
       <div class="product-image-container">
-        <img src="img/aros-cebolla.jpg" alt="Aros de Cebolla McCain" class="product-image" onerror="this.src='https://via.placeholder.com/400x250/0055A4/FFFFFF?text=McCAIN+Aros'">
+        <img src="img/papas-onduladas.jpg" alt="Papas Corte Ondulado Ecofrots" class="product-image" onerror="this.src='https://via.placeholder.com/400x400/2E7D32/FFFFFF?text=ECOFROTS+Onduladas'">
+        <div class="click-hint">🔍 Ver ficha</div>
+      </div>
+      <div class="product-info">
+        <div class="product-brand">ECOFROTS</div>
+        <div class="product-name">Papas Corte Ondulado</div>
+        <div class="product-desc">Papas de corte ondulado clásico, prefritas y congeladas, listas para freír u hornear con textura crujiente.</div>
+        <div class="product-details">
+          <div class="detail-row"><span class="detail-label">Mayoreo:</span><span class="detail-value">Caja 10 kg (4 x 2.5 kg)</span></div>
+          <div class="detail-row"><span class="detail-label">Medio Mayoreo:</span><span class="detail-value">Bolsa 2.5 kg</span></div>
+          <div class="detail-row"><span class="detail-label">Menudeo:</span><span class="detail-value">Por Kilo</span></div>
+        </div>
+        <div class="product-code">CÓDIGO: 5153</div>
+      </div>
+    </div>
+
+    <!-- MCCAIN: Aros de Cebolla -->
+    <div class="product-card brand-mccain" data-brand="mccain" data-category="snacks"
+         data-name="Aros de Cebolla Chico" data-code="9636"
+         data-desc="Brew City Aros de Cebolla. Crujientes por fuera, suaves por dentro. El complemento perfecto para hamburguesas, alitas y snacks."
+         data-mayoreo="Caja 10.90 kg (12 bolsas x 907 g)" data-medio="Bolsa 907 g" data-menudeo="Por Kilo"
+         data-conservacion="Mantener congelado a -18°C o menor. No recongelar. Almacenar en lugar seco."
+         data-preparacion="Freír a 175-180°C por 3-4 minutos hasta dorar. Hornear a 220°C por 10-12 minutos volteando a la mitad."
+         data-manejo="Mantener cadena de frío. No apilar más de 5 cajas. Rotar inventario PEPS."
+         data-anaquel="12 meses desde fecha de producción."
+         data-alergenos="Contiene: Gluten (trigo), Huevo, Leche. Puede contener trazas de soya."
+         data-ingredientes="Cebolla, harina de trigo, agua, huevo, leche en polvo, sal, especias, aceite vegetal, levadura."
+         data-img="img/aros-cebolla.jpg">
+      <div class="product-image-container">
+        <img src="img/aros-cebolla.jpg" alt="Aros de Cebolla McCain" class="product-image" onerror="this.src='https://via.placeholder.com/400x400/0055A4/FFFFFF?text=McCAIN+Aros'">
+        <div class="click-hint">🔍 Ver ficha</div>
       </div>
       <div class="product-info">
         <div class="product-brand">McCAIN</div>
@@ -381,6 +710,35 @@
           <div class="detail-row"><span class="detail-label">Menudeo:</span><span class="detail-value">Por Kilo</span></div>
         </div>
         <div class="product-code">CÓDIGO: 9636</div>
+      </div>
+    </div>
+
+    <!-- BACHOCO: Hamburguesa -->
+    <div class="product-card brand-bachoco" data-brand="bachoco" data-category="res"
+         data-name="Hamburguesa Sirloin" data-code="8242"
+         data-desc="Carne molida de res y cerdo, condimentada, moldeada y congelada individualmente. Sabor premium garantizado con 150g por pieza."
+         data-mayoreo="Caja 4.5 kg (30 piezas de 150 g)" data-medio="Bolsa (Consultar)" data-menudeo="Por Pieza / Kilo"
+         data-conservacion="Mantener congelado a -18°C o menor. No recongelar una vez descongelado. Consumir dentro de las 24 horas posteriores al descongelamiento."
+         data-preparacion="Asar en parrilla o plancha a fuego medio-alto por 4-5 minutos por lado hasta alcanzar temperatura interna de 71°C. Nunca consumir cruda o poco cocida."
+         data-manejo="Mantener cadena de frío estricta. Almacenar separado de otros alimentos. No apilar más de 4 cajas. Rotar inventario PEPS."
+         data-anaquel="9 meses desde fecha de producción manteniendo cadena de frío."
+         data-alergenos="Libre de alérgenos principales. Elaborado en planta que procesa productos con gluten y soya."
+         data-ingredientes="Carne molida de res, carne molida de cerdo, sal, especias, fosfatos, antioxidantes (BHA, BHT)."
+         data-img="img/hamburguesa-sirloin.jpg">
+      <div class="product-image-container">
+        <img src="img/hamburguesa-sirloin.jpg" alt="Hamburguesa Sirloin Bachoco" class="product-image" onerror="this.src='https://via.placeholder.com/400x400/E31837/FFFFFF?text=BACHOCO+Hamburguesa'">
+        <div class="click-hint">🔍 Ver ficha</div>
+      </div>
+      <div class="product-info">
+        <div class="product-brand">BACHOCO</div>
+        <div class="product-name">Hamburguesa Sirloin</div>
+        <div class="product-desc">Carne molida de res y cerdo, condimentada, moldeada y congelada individualmente. Sabor premium garantizado.</div>
+        <div class="product-details">
+          <div class="detail-row"><span class="detail-label">Mayoreo:</span><span class="detail-value">Caja 4.5 kg (30 pzas x 150 g)</span></div>
+          <div class="detail-row"><span class="detail-label">Medio Mayoreo:</span><span class="detail-value">Bolsa (Consultar)</span></div>
+          <div class="detail-row"><span class="detail-label">Menudeo:</span><span class="detail-value">Por Pieza / Kilo</span></div>
+        </div>
+        <div class="product-code">CÓDIGO: 8242</div>
       </div>
     </div>
 
@@ -399,12 +757,85 @@
   </div>
 </div>
 
+<!-- MODAL FICHA TÉCNICA -->
+<div class="modal-overlay" id="productModal">
+  <div class="modal-content">
+    <button class="modal-close" onclick="closeModal()">✕</button>
+    <div class="modal-image-container">
+      <img src="" alt="" class="modal-image" id="modalImage">
+    </div>
+    <div class="modal-body">
+      <div class="modal-brand" id="modalBrand"></div>
+      <h2 class="modal-title" id="modalTitle"></h2>
+      <p class="modal-description" id="modalDescription"></p>
+
+      <div class="modal-section">
+        <h3 class="modal-section-title">📦 Presentaciones y Código</h3>
+        <table class="modal-table">
+          <thead>
+            <tr>
+              <th>Tipo de Venta</th>
+              <th>Presentación</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Mayoreo</strong></td>
+              <td id="modalMayoreo"></td>
+            </tr>
+            <tr>
+              <td><strong>Medio Mayoreo</strong></td>
+              <td id="modalMedio"></td>
+            </tr>
+            <tr>
+              <td><strong>Menudeo</strong></td>
+              <td id="modalMenudeo"></td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="modal-code" id="modalCode"></div>
+      </div>
+
+      <div class="modal-section">
+        <h3 class="modal-section-title">🔧 Información Técnica</h3>
+        <div class="info-grid">
+          <div class="info-card">
+            <div class="info-card-title">❄️ Conservación</div>
+            <div class="info-card-text" id="modalConservacion"></div>
+          </div>
+          <div class="info-card">
+            <div class="info-card-title">🍳 Preparación</div>
+            <div class="info-card-text" id="modalPreparacion"></div>
+          </div>
+          <div class="info-card">
+            <div class="info-card-title">📋 Manejo</div>
+            <div class="info-card-text" id="modalManejo"></div>
+          </div>
+          <div class="info-card">
+            <div class="info-card-title">📅 Vida de Anaquel</div>
+            <div class="info-card-text" id="modalAnaquel"></div>
+          </div>
+          <div class="info-card">
+            <div class="info-card-title">⚠️ Alérgenos</div>
+            <div class="info-card-text" id="modalAlergenos"></div>
+          </div>
+          <div class="info-card">
+            <div class="info-card-title">🧪 Ingredientes</div>
+            <div class="info-card-text" id="modalIngredientes"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
 <script>
-  // Lógica de Búsqueda y Filtros
+  // Search and Filter Logic
   const searchInput = document.getElementById('searchInput');
   const filterBtns = document.querySelectorAll('.filter-btn');
   const productCards = document.querySelectorAll('.product-card');
   const noResults = document.getElementById('noResults');
+  const modal = document.getElementById('productModal');
 
   function filterProducts() {
     const searchTerm = searchInput.value.toLowerCase();
@@ -438,6 +869,64 @@
       btn.classList.add('active');
       filterProducts();
     });
+  });
+
+  // Modal Logic
+  productCards.forEach(card => {
+    card.addEventListener('click', () => openModal(card));
+  });
+
+  function openModal(card) {
+    const img = card.querySelector('.product-image').src;
+    const brand = card.querySelector('.product-brand').innerText;
+    const name = card.dataset.name;
+    const desc = card.dataset.desc;
+    const code = card.dataset.code;
+    const mayoreo = card.dataset.mayoreo;
+    const medio = card.dataset.medio;
+    const menudeo = card.dataset.menudeo;
+    const conservacion = card.dataset.conservacion;
+    const preparacion = card.dataset.preparacion;
+    const manejo = card.dataset.manejo;
+    const anaquel = card.dataset.anaquel;
+    const alergenos = card.dataset.alergenos;
+    const ingredientes = card.dataset.ingredientes;
+
+    document.getElementById('modalImage').src = img;
+    document.getElementById('modalImage').alt = name;
+    document.getElementById('modalBrand').innerText = brand;
+    document.getElementById('modalTitle').innerText = name;
+    document.getElementById('modalDescription').innerText = desc;
+    document.getElementById('modalMayoreo').innerText = mayoreo;
+    document.getElementById('modalMedio').innerText = medio;
+    document.getElementById('modalMenudeo').innerText = menudeo;
+    document.getElementById('modalCode').innerText = 'CÓDIGO: ' + code;
+    document.getElementById('modalConservacion').innerText = conservacion;
+    document.getElementById('modalPreparacion').innerText = preparacion;
+    document.getElementById('modalManejo').innerText = manejo;
+    document.getElementById('modalAnaquel').innerText = anaquel;
+    document.getElementById('modalAlergenos').innerText = alergenos;
+    document.getElementById('modalIngredientes').innerText = ingredientes;
+
+    modal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeModal() {
+    modal.classList.remove('active');
+    document.body.style.overflow = 'auto';
+  }
+
+  modal.addEventListener('click', (e) => {
+    if (e.target === modal) {
+      closeModal();
+    }
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      closeModal();
+    }
   });
 </script>
 
