@@ -21,6 +21,7 @@
     --success: #4CAF50;
     --warning: #FF9800;
     --info: #2196F3;
+    --gray: #607D8B;
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -426,18 +427,20 @@
     font-size: 0.75em;
     font-weight: 700;
     text-transform: uppercase;
+    margin-right: 4px;
   }
 
   .badge.pendiente { background: #FFF3E0; color: var(--orange-dark); }
   .badge.aprobado { background: #E8F5E9; color: var(--success); }
   .badge.rechazado { background: #FFEBEE; color: var(--red); }
   .badge.activo { background: #E8F5E9; color: var(--success); }
-  .badge.inactivo { background: #ECEFF1; color: #607D8B; }
-  .badge.borrador { background: #ECEFF1; color: #607D8B; }
+  .badge.inactivo { background: #ECEFF1; color: var(--gray); }
+  .badge.borrador { background: #ECEFF1; color: var(--gray); }
   .badge.enviado { background: #E3F2FD; color: var(--info); }
   .badge.en_proceso { background: #FFF3E0; color: var(--warning); }
   .badge.surtido { background: #F3E5F5; color: #9C27B0; }
   .badge.entregado { background: #E8F5E9; color: var(--success); }
+  .badge.cancelado { background: #FFEBEE; color: var(--red); }
   .badge.nuevo { 
     background: var(--red); 
     color: white;
@@ -959,6 +962,7 @@
           <option value="en_proceso">En Proceso</option>
           <option value="surtido">Surtido</option>
           <option value="entregado">Entregado</option>
+          <option value="cancelado">Cancelado</option>
         </select>
       </div>
       <div class="table-container">
@@ -970,7 +974,7 @@
               <th>Productos</th>
               <th>Status Actual</th>
               <th>Fecha</th>
-              <th>Cambiar Estatus</th>
+              <th>Acciones</th>
             </tr>
           </thead>
           <tbody id="gestionPedidosTable">
@@ -1058,9 +1062,9 @@
 
   function tienePermiso(accion) {
     const permisos = {
-      admin: ['ver_todo', 'editar_productos', 'agregar_productos', 'cambiar_precios', 'aprobar_clientes', 'cambiar_estatus_pedido', 'ver_reportes'],
+      admin: ['ver_todo', 'editar_productos', 'agregar_productos', 'cambiar_precios', 'aprobar_clientes', 'cambiar_estatus_pedido', 'ver_reportes', 'eliminar_pedidos'],
       almacen: ['ver_todo', 'editar_productos', 'agregar_productos', 'cambiar_precios', 'ver_reportes'],
-      ventas: ['ver_todo', 'cambiar_estatus_pedido', 'ver_reportes'],
+      ventas: ['ver_todo', 'cambiar_estatus_pedido', 'ver_reportes', 'eliminar_pedidos'],
       asesor: ['ver_pedidos'],
       cliente: []
     };
@@ -1116,7 +1120,6 @@
     }
 
     tbody.innerHTML = lista.map(p => {
-      // CORRECCIÓN: leer precio desde precios.base
       const precioBase = p.precios?.base || 0;
       const stock = p.inventario?.stock;
       
@@ -1378,13 +1381,21 @@
     }
   };
 
-  // ====== PEDIDOS CON SISTEMA DE ALERTAS ======
+  // ====== PEDIDOS CON SISTEMA DE ALERTAS CORREGIDO ======
   async function cargarPedidos() {
     try {
       const q = query(collection(db, 'pedidos'), orderBy('creado', 'desc'));
       const snapshot = await getDocs(q);
       pedidosCache = [];
-      snapshot.forEach(docSnap => pedidosCache.push({ id: docSnap.id, ...docSnap.data() }));
+      snapshot.forEach(docSnap => {
+        const data = docSnap.data();
+        pedidosCache.push({ 
+          id: docSnap.id, 
+          ...data,
+          // Asegurar que visualizado sea booleano
+          visualizado: data.visualizado === true
+        });
+      });
 
       const hoy = new Date().toDateString();
       const pedidosHoy = pedidosCache.filter(p => p.creado && new Date(p.creado.seconds * 1000).toDateString() === hoy);
@@ -1421,13 +1432,14 @@
         'enviado': 'Enviado',
         'en_proceso': 'En Proceso',
         'surtido': 'Surtido',
-        'entregado': 'Entregado'
+        'entregado': 'Entregado',
+        'cancelado': 'Cancelado'
       }[statusClass] || statusClass;
 
-      // Badge "NUEVO" solo si no ha sido visualizado
-      const esNuevo = !p.visualizado;
+      // CORRECCIÓN: Validación explícita de visualizado
+      const esNuevo = p.visualizado === false || p.visualizado === undefined;
       const statusBadge = esNuevo 
-        ? `<span class="badge nuevo">NUEVO</span> <span class="badge ${statusClass}">${statusLabel}</span>`
+        ? `<span class="badge nuevo">NUEVO</span><span class="badge ${statusClass}">${statusLabel}</span>`
         : `<span class="badge ${statusClass}">${statusLabel}</span>`;
 
       let acciones = `<button class="btn-small btn-view ${esNuevo ? 'no-leido' : ''}" onclick="verDetallePedido('${p.id}')">${esNuevo ? 'Ver (Nuevo)' : 'Ver'}</button>`;
@@ -1440,7 +1452,9 @@
             <option value="en_proceso" ${statusClass === 'en_proceso' ? 'selected' : ''}>En Proceso</option>
             <option value="surtido" ${statusClass === 'surtido' ? 'selected' : ''}>Surtido</option>
             <option value="entregado" ${statusClass === 'entregado' ? 'selected' : ''}>Entregado</option>
+            <option value="cancelado" ${statusClass === 'cancelado' ? 'selected' : ''}>Cancelado</option>
           </select>
+          ${tienePermiso('eliminar_pedidos') ? `<button class="btn-small btn-delete" onclick="eliminarPedido('${p.id}')" style="margin-left: 5px;">Eliminar</button>` : ''}
         `;
       }
 
@@ -1469,8 +1483,13 @@
           visualizadoPor: currentUser.email,
           visualizadoEn: serverTimestamp()
         });
-        // Actualizar cache local
+        // Actualizar cache local INMEDIATAMENTE
         pedido.visualizado = true;
+        // Re-renderizar para actualizar badges
+        renderPedidos(pedidosCache, 'pedidosTable', false);
+        if (tienePermiso('cambiar_estatus_pedido')) {
+          renderPedidos(pedidosCache, 'gestionPedidosTable', true);
+        }
         // Actualizar contador
         const pedidosNuevos = pedidosCache.filter(p => !p.visualizado);
         const badgeNuevos = document.getElementById('countPedidosNuevos');
@@ -1488,7 +1507,8 @@
       'enviado': 'Enviado',
       'en_proceso': 'En Proceso',
       'surtido': 'Surtido',
-      'entregado': 'Entregado'
+      'entregado': 'Entregado',
+      'cancelado': 'Cancelado'
     }[pedido.status || 'borrador'] || pedido.status;
 
     const productosHtml = (pedido.productos || []).map(prod => `
@@ -1557,9 +1577,34 @@
         statusActualizadoEn: serverTimestamp()
       });
       showToast(`Estatus cambiado a: ${nuevoStatus}`);
+      // Recargar pedidos para actualizar UI
       await cargarPedidos();
     } catch (error) {
       showToast('Error: ' + error.message, 'error');
+    }
+  };
+
+  // ====== ELIMINAR PEDIDO ======
+  window.eliminarPedido = async function(pedidoId) {
+    if (!tienePermiso('eliminar_pedidos')) {
+      showToast('No tienes permisos para eliminar pedidos', 'error');
+      return;
+    }
+    
+    const pedido = pedidosCache.find(p => p.id === pedidoId);
+    if (!pedido) return;
+
+    const confirmacion = confirm(`¿Eliminar el pedido ${pedidoId}?\n\nCliente: ${pedido.clienteEmail || 'N/A'}\nProductos: ${(pedido.productos || []).length}\n\nEsta acción no se puede deshacer.`);
+    
+    if (!confirmacion) return;
+
+    try {
+      await deleteDoc(doc(db, 'pedidos', pedidoId));
+      showToast('Pedido eliminado');
+      await cargarPedidos();
+    } catch (error) {
+      console.error(error);
+      showToast('Error al eliminar: ' + error.message, 'error');
     }
   };
 
