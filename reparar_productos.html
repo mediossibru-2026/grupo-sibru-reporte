@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Reparar Productos con IDs Inválidos | GRUPO SIBRÜ</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background: linear-gradient(135deg, #1B5E20 0%, #264653 100%);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+  }
+  .container {
+    background: white;
+    border-radius: 20px;
+    padding: 40px;
+    max-width: 700px;
+    width: 100%;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+  }
+  h1 { color: #1B5E20; font-size: 1.8em; margin-bottom: 10px; }
+  .subtitle { color: #E76F51; font-weight: 600; margin-bottom: 25px; }
+  .status {
+    padding: 15px;
+    border-radius: 10px;
+    margin-bottom: 15px;
+    font-weight: 600;
+    display: none;
+  }
+  .status.show { display: block; }
+  .status.info { background: #E3F2FD; color: #1565C0; border-left: 4px solid #1565C0; }
+  .status.success { background: #E8F5E9; color: #1B5E20; border-left: 4px solid #1B5E20; }
+  .status.error { background: #FFEBEE; color: #D32F2F; border-left: 4px solid #D32F2F; }
+  .btn {
+    padding: 14px 30px;
+    border: none;
+    border-radius: 10px;
+    font-weight: 700;
+    font-size: 1em;
+    cursor: pointer;
+    margin-right: 10px;
+    text-transform: uppercase;
+  }
+  .btn-primary { background: #1B5E20; color: white; }
+  .btn-primary:hover { background: #2E7D32; }
+  .btn-primary:disabled { opacity: 0.5; cursor: not-allowed; }
+  .btn-secondary { background: white; color: #264653; border: 2px solid #264653; }
+  .product-list {
+    background: #f8f9fa;
+    padding: 20px;
+    border-radius: 10px;
+    margin: 20px 0;
+  }
+  .product-item {
+    padding: 12px;
+    border-bottom: 1px solid #e0e0e0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .product-item:last-child { border-bottom: none; }
+  .product-item.success { background: #E8F5E9; }
+  .product-item.error { background: #FFEBEE; }
+  .badge {
+    padding: 4px 12px;
+    border-radius: 12px;
+    font-size: 0.8em;
+    font-weight: 700;
+  }
+  .badge.pending { background: #ECEFF1; color: #607D8B; }
+  .badge.success { background: #1B5E20; color: white; }
+  .badge.error { background: #D32F2F; color: white; }
+  .warning-box {
+    background: #FFF3E0;
+    border-left: 4px solid #F4A261;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    font-size: 0.9em;
+  }
+  .code-change {
+    background: #E3F2FD;
+    padding: 10px;
+    border-radius: 8px;
+    margin: 10px 0;
+    font-family: monospace;
+    font-size: 0.9em;
+  }
+  .code-change .old { color: #D32F2F; text-decoration: line-through; }
+  .code-change .new { color: #1B5E20; font-weight: 700; }
+</style>
+</head>
+<body>
+<div class="container">
+  <h1>Reparar Productos Fallidos</h1>
+  <div class="subtitle">GRUPO SIBRÜ - Corrección de IDs inválidos</div>
+
+  <div class="warning-box">
+    <strong>Problema detectado:</strong> Los códigos <code>019835/4</code> y <code>020919/0.5</code> contienen el carácter <code>/</code> que no es válido como ID en Firestore.
+    <br><br>
+    <strong>Solución:</strong> Se guardarán con IDs alternativos válidos, manteniendo el código original como campo de búsqueda.
+  </div>
+
+  <div class="code-change">
+    <strong>Cambios de ID:</strong><br>
+    <span class="old">019835/4</span> → <span class="new">019835-4</span> (Salsa BBQ Original)<br>
+    <span class="old">020919/0.5</span> → <span class="new">020919-05</span> (Salsa Mango Habanero)
+  </div>
+
+  <div id="status" class="status"></div>
+
+  <div class="product-list" id="productList">
+    <div style="text-align: center; color: #888; padding: 20px;">Presiona "Reparar Productos" para iniciar</div>
+  </div>
+
+  <div style="text-align: center; margin-top: 25px;">
+    <button class="btn btn-primary" id="btnReparar" onclick="repararProductos()">Reparar Productos</button>
+    <button class="btn btn-secondary" onclick="window.location.href='admin.html'">Ir al Panel Admin</button>
+  </div>
+</div>
+
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+  import { getFirestore, doc, setDoc, getDoc } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyDVGalSna9z6lJGhNvycVyJF5TTd_LnRBc",
+    authDomain: "grupo-sibru-catalogo.firebaseapp.com",
+    projectId: "grupo-sibru-catalogo",
+    storageBucket: "grupo-sibru-catalogo.firebasestorage.app",
+    messagingSenderId: "1070838112131",
+    appId: "1:1070838112131:web:21db3ff96c889ba10160b6",
+    measurementId: "G-LWECZJK2S7"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const db = getFirestore(app);
+
+  // Los 2 productos que fallaron, con IDs corregidos
+  const productosAReparar = [
+    {
+      idFirebase: '019835-4',  // ID válido para Firestore
+      codigo: '019835/4',       // Código original (se mantiene como campo)
+      nombre: 'Salsa BBQ Original',
+      linea: 'Salsas',
+      marca: 'CUSTOM CULINARY',
+      categoria: 'salsas',
+      descripcion: 'Salsa ahumada con notas a tomate, naranja y especias. Balance entre dulce, ácido y ahumado.',
+      presentaciones: { mayoreo: 'Caja 4 piezas (4 kg c/u)', medio: 'Pieza 4 kg', menudeo: 'Por Kilo' },
+      precios: { base: 560, porCaja: 560, porTarima: 0 },
+      tecnico: {
+        conservacion: 'Lugar fresco y seco. Refrigerar una vez abierto (30 días).',
+        preparacion: 'Lista para usar. Ideal para marinar y glasear.',
+        manejo: 'Lugar fresco y seco. No luz solar directa.',
+        anaquel: '12 meses cerrado',
+        alergenos: 'Libre de alérgenos principales.',
+        ingredientes: 'Jarabe de maíz, agua, pasta de tomate, vinagre, especias.'
+      },
+      inventario: { stock: 30, minimo: 10, ubicacion: 'Almacén seco' },
+      activo: true
+    },
+    {
+      idFirebase: '020919-05',  // ID válido para Firestore
+      codigo: '020919/0.5',     // Código original (se mantiene como campo)
+      nombre: 'Salsa Mango Habanero',
+      linea: 'Salsas',
+      marca: 'CUSTOM CULINARY',
+      categoria: 'salsas',
+      descripcion: 'Combinación exótica entre lo frutal y lo picante del chile habanero. Picor alto.',
+      presentaciones: { mayoreo: 'Caja 12 piezas (570 gr c/u)', medio: 'Pieza 570 gr', menudeo: 'Por Pieza' },
+      precios: { base: 680, porCaja: 680, porTarima: 0 },
+      tecnico: {
+        conservacion: 'Lugar fresco y seco. Refrigerar una vez abierto (30 días).',
+        preparacion: 'Lista para usar. Ideal para alitas y botanas.',
+        manejo: 'Lugar fresco y seco.',
+        anaquel: '12 meses cerrado',
+        alergenos: 'Libre de alérgenos principales.',
+        ingredientes: 'Mango, chile habanero, vinagre, azúcar, sal.'
+      },
+      inventario: { stock: 25, minimo: 8, ubicacion: 'Almacén seco' },
+      activo: true
+    }
+  ];
+
+  function mostrarStatus(msg, type) {
+    const el = document.getElementById('status');
+    el.textContent = msg;
+    el.className = 'status show ' + type;
+  }
+
+  function renderLista(productos, resultados) {
+    const lista = document.getElementById('productList');
+    lista.innerHTML = productos.map((p, i) => {
+      const r = resultados[i];
+      let badge = '<span class="badge pending">Pendiente</span>';
+      let clase = '';
+      if (r === 'success') { badge = '<span class="badge success">Reparado</span>'; clase = 'success'; }
+      else if (r === 'error') { badge = '<span class="badge error">Error</span>'; clase = 'error'; }
+      return `<div class="product-item ${clase}">
+        <span><strong>${p.codigo}</strong> - ${p.nombre} <small style="color: #888;">(ID: ${p.idFirebase})</small></span>
+        ${badge}
+      </div>`;
+    }).join('');
+  }
+
+  window.repararProductos = async function() {
+    const btn = document.getElementById('btnReparar');
+    btn.disabled = true;
+    btn.textContent = 'Reparando...';
+
+    mostrarStatus('Iniciando reparación de 2 productos...', 'info');
+    const resultados = new Array(productosAReparar.length).fill(null);
+    renderLista(productosAReparar, resultados);
+
+    let exitosos = 0, errores = 0;
+
+    for (let i = 0; i < productosAReparar.length; i++) {
+      const p = productosAReparar[i];
+      try {
+        const docRef = doc(db, 'productos', p.idFirebase);
+        
+        // Verificar si ya existe
+        const docSnap = await getDoc(docRef);
+        
+        const data = {
+          ...p,
+          creado: docSnap.exists() ? docSnap.data().creado : new Date(),
+          creadoPor: docSnap.exists() ? docSnap.data().creadoPor : 'reparacion@gruposibru.com',
+          actualizado: new Date(),
+          actualizadoPor: 'reparacion@gruposibru.com'
+        };
+
+        await setDoc(docRef, data);
+        resultados[i] = 'success';
+        exitosos++;
+      } catch (error) {
+        console.error('Error con', p.codigo, error);
+        resultados[i] = 'error';
+        errores++;
+      }
+      renderLista(productosAReparar, resultados);
+    }
+
+    let msg = `Reparación completada: ${exitosos} productos reparados, ${errores} errores.`;
+    mostrarStatus(msg, errores > 0 ? 'error' : 'success');
+    btn.textContent = 'Reparación Completada';
+  };
+</script>
+</body>
+</html>
