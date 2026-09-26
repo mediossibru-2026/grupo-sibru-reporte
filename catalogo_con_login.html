@@ -9,7 +9,6 @@
   :root {
     --green-dark: #1B5E20;
     --green-medium: #2E7D32;
-    --green-light: #66BB6A;
     --orange: #F4A261;
     --orange-dark: #E76F51;
     --orange-light: #FFCC80;
@@ -19,7 +18,6 @@
     --text: #2C2C2C;
     --gray-light: #e0e0e0;
     --red: #D32F2F;
-    --success: #4CAF50;
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -33,10 +31,8 @@
 
   .container { max-width: 1200px; margin: 0 auto; padding: 30px 20px; }
 
-  /* HEADER con sesión */
   .header {
     background: linear-gradient(135deg, var(--white) 0%, #f1f8e9 100%);
-    color: var(--text);
     padding: 30px;
     border-radius: 20px;
     text-align: center;
@@ -110,7 +106,6 @@
     z-index: 1;
   }
 
-  /* Barra de sesión */
   .session-bar {
     display: flex;
     justify-content: space-between;
@@ -146,18 +141,10 @@
     font-size: 1.1em;
   }
 
-  .session-avatar.admin {
-    background: linear-gradient(135deg, var(--orange), var(--orange-dark));
-  }
+  .session-avatar.admin { background: linear-gradient(135deg, var(--orange), var(--orange-dark)); }
+  .session-avatar.asesor { background: linear-gradient(135deg, var(--blue-dark), #3d6b7e); }
 
-  .session-avatar.asesor {
-    background: linear-gradient(135deg, var(--blue-dark), #3d6b7e);
-  }
-
-  .session-details {
-    display: flex;
-    flex-direction: column;
-  }
+  .session-details { display: flex; flex-direction: column; }
 
   .session-name {
     font-family: 'Montserrat', sans-serif;
@@ -166,10 +153,7 @@
     color: var(--green-dark);
   }
 
-  .session-email {
-    font-size: 0.8em;
-    color: #888;
-  }
+  .session-email { font-size: 0.8em; color: #888; }
 
   .session-role {
     display: inline-block;
@@ -186,11 +170,7 @@
   .session-role.asesor { background: #E3F2FD; color: var(--blue-dark); }
   .session-role.cliente { background: #E8F5E9; color: var(--green-dark); }
 
-  .session-actions {
-    display: flex;
-    gap: 10px;
-    flex-wrap: wrap;
-  }
+  .session-actions { display: flex; gap: 10px; flex-wrap: wrap; }
 
   .btn-session {
     padding: 8px 18px;
@@ -212,10 +192,7 @@
     color: white;
   }
 
-  .btn-login:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(27, 94, 32, 0.3);
-  }
+  .btn-login:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(27, 94, 32, 0.3); }
 
   .btn-logout {
     background: var(--white);
@@ -223,20 +200,14 @@
     border: 2px solid var(--red);
   }
 
-  .btn-logout:hover {
-    background: var(--red);
-    color: white;
-  }
+  .btn-logout:hover { background: var(--red); color: white; }
 
   .btn-admin {
     background: linear-gradient(135deg, var(--orange), var(--orange-dark));
     color: white;
   }
 
-  .btn-admin:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(231, 111, 81, 0.3);
-  }
+  .btn-admin:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(231, 111, 81, 0.3); }
 
   .controls {
     background: var(--white);
@@ -293,6 +264,28 @@
     color: var(--white);
     box-shadow: 0 4px 12px rgba(27, 94, 32, 0.3);
     transform: translateY(-2px);
+  }
+
+  .loading-catalogo {
+    text-align: center;
+    padding: 60px 20px;
+    color: #888;
+    grid-column: 1 / -1;
+  }
+
+  .spinner {
+    border: 4px solid #f3f3f3;
+    border-top: 4px solid var(--green-dark);
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    animation: spin 1s linear infinite;
+    margin: 0 auto 20px;
+  }
+
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
   }
 
   .product-grid {
@@ -386,10 +379,7 @@
     box-shadow: 0 4px 12px rgba(231, 111, 81, 0.4);
   }
 
-  .product-card:hover .click-hint {
-    opacity: 1;
-    bottom: 20px;
-  }
+  .product-card:hover .click-hint { opacity: 1; bottom: 20px; }
 
   .product-info {
     padding: 25px;
@@ -487,14 +477,12 @@
     box-shadow: 0 5px 20px rgba(0,0,0,0.05);
   }
 
-  /* Modal ficha técnica */
+  /* Modal */
   .modal-overlay {
     display: none;
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
     background: rgba(0, 0, 0, 0.85);
     z-index: 1000;
     justify-content: center;
@@ -543,16 +531,8 @@
     padding: 0;
   }
 
-  .modal-close:hover {
-    transform: rotate(90deg) scale(1.15);
-  }
-
-  .modal-close::before {
-    content: '✕';
-    color: white;
-    font-size: 28px;
-    font-weight: 700;
-  }
+  .modal-close:hover { transform: rotate(90deg) scale(1.15); }
+  .modal-close::before { content: 'X'; color: white; font-size: 28px; font-weight: 700; }
 
   .modal-header {
     background: linear-gradient(135deg, #f1f8e9 0%, #fff8f0 100%);
@@ -574,12 +554,7 @@
     border-bottom: 4px solid var(--orange);
   }
 
-  .modal-main-image {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-    padding: 40px;
-  }
+  .modal-main-image { width: 100%; height: 100%; object-fit: contain; padding: 40px; }
 
   .gallery-strip {
     display: flex;
@@ -734,11 +709,7 @@
     letter-spacing: 1px;
   }
 
-  .info-card-text {
-    font-size: 0.98em;
-    color: #555;
-    line-height: 1.7;
-  }
+  .info-card-text { font-size: 0.98em; color: #555; line-height: 1.7; }
 
   .modal-code {
     display: inline-block;
@@ -754,7 +725,6 @@
     box-shadow: 0 5px 15px rgba(231, 111, 81, 0.3);
   }
 
-  /* Botón Agregar a pedido en modal */
   .add-to-order-section {
     background: linear-gradient(135deg, #f1f8e9 0%, #fff8f0 100%);
     padding: 25px;
@@ -769,9 +739,6 @@
     font-weight: 800;
     color: var(--green-dark);
     margin-bottom: 15px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
   }
 
   .order-quantity {
@@ -817,10 +784,7 @@
     transition: all 0.2s;
   }
 
-  .qty-btn:hover {
-    background: var(--green-dark);
-    color: white;
-  }
+  .qty-btn:hover { background: var(--green-dark); color: white; }
 
   .qty-value {
     flex: 1;
@@ -848,15 +812,7 @@
     box-shadow: 0 4px 15px rgba(231, 111, 81, 0.3);
   }
 
-  .btn-add-order:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(231, 111, 81, 0.4);
-  }
-
-  .btn-add-order:disabled {
-    opacity: 0.5;
-    cursor: not-allowed;
-  }
+  .btn-add-order:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(231, 111, 81, 0.4); }
 
   .login-prompt {
     text-align: center;
@@ -867,13 +823,9 @@
     font-weight: 600;
   }
 
-  .login-prompt a {
-    color: var(--green-dark);
-    font-weight: 800;
-    text-decoration: none;
-  }
+  .login-prompt a { color: var(--green-dark); font-weight: 800; text-decoration: none; }
 
-  /* CARRITO FLOTANTE */
+  /* Carrito */
   .cart-fab {
     position: fixed;
     bottom: 25px;
@@ -893,17 +845,8 @@
   }
 
   .cart-fab.visible { display: flex; }
-
-  .cart-fab:hover {
-    transform: scale(1.1);
-    box-shadow: 0 8px 25px rgba(231, 111, 81, 0.5);
-  }
-
-  .cart-fab svg {
-    width: 30px;
-    height: 30px;
-    fill: white;
-  }
+  .cart-fab:hover { transform: scale(1.1); }
+  .cart-fab svg { width: 30px; height: 30px; fill: white; }
 
   .cart-badge {
     position: absolute;
@@ -923,7 +866,6 @@
     border: 2px solid white;
   }
 
-  /* Panel del carrito */
   .cart-panel {
     position: fixed;
     top: 0;
@@ -950,11 +892,7 @@
     align-items: center;
   }
 
-  .cart-header h3 {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 1.2em;
-    font-weight: 800;
-  }
+  .cart-header h3 { font-family: 'Montserrat', sans-serif; font-size: 1.2em; font-weight: 800; }
 
   .cart-close {
     background: rgba(255,255,255,0.2);
@@ -968,28 +906,12 @@
     transition: all 0.3s;
   }
 
-  .cart-close:hover {
-    background: rgba(255,255,255,0.3);
-    transform: rotate(90deg);
-  }
+  .cart-close:hover { background: rgba(255,255,255,0.3); transform: rotate(90deg); }
 
-  .cart-body {
-    flex: 1;
-    overflow-y: auto;
-    padding: 20px;
-  }
+  .cart-body { flex: 1; overflow-y: auto; padding: 20px; }
 
-  .cart-empty {
-    text-align: center;
-    padding: 40px 20px;
-    color: #888;
-  }
-
-  .cart-empty-icon {
-    font-size: 3em;
-    opacity: 0.3;
-    margin-bottom: 10px;
-  }
+  .cart-empty { text-align: center; padding: 40px 20px; color: #888; }
+  .cart-empty-icon { font-size: 3em; opacity: 0.3; margin-bottom: 10px; }
 
   .cart-item {
     background: var(--gray-bg);
@@ -1032,17 +954,8 @@
     padding: 0 5px;
   }
 
-  .cart-item-qty {
-    display: flex;
-    gap: 15px;
-    font-size: 0.85em;
-    color: #555;
-  }
-
-  .cart-item-qty span {
-    font-weight: 700;
-    color: var(--green-dark);
-  }
+  .cart-item-qty { display: flex; gap: 15px; font-size: 0.85em; color: #555; }
+  .cart-item-qty span { font-weight: 700; color: var(--green-dark); }
 
   .cart-footer {
     padding: 20px;
@@ -1060,11 +973,7 @@
     color: var(--green-dark);
   }
 
-  .cart-actions {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 10px;
-  }
+  .cart-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
 
   .cart-btn {
     padding: 12px;
@@ -1078,27 +987,19 @@
     text-transform: uppercase;
   }
 
-  .cart-btn-save {
-    background: var(--green-dark);
-    color: white;
-  }
-
+  .cart-btn-save { background: var(--green-dark); color: white; }
   .cart-btn-save:hover { background: var(--green-medium); }
-
   .cart-btn-send {
     background: linear-gradient(135deg, var(--orange), var(--orange-dark));
     color: white;
     grid-column: 1 / -1;
   }
-
   .cart-btn-send:hover { transform: translateY(-2px); }
 
   .cart-overlay {
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
     background: rgba(0,0,0,0.5);
     z-index: 1050;
     display: none;
@@ -1106,7 +1007,6 @@
 
   .cart-overlay.visible { display: block; }
 
-  /* Toast notifications */
   .toast {
     position: fixed;
     bottom: 100px;
@@ -1131,14 +1031,11 @@
     to { transform: translateX(0); opacity: 1; }
   }
 
-  /* Lightbox */
   .lightbox {
     display: none;
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
     background: rgba(0, 0, 0, 0.95);
     z-index: 2000;
     justify-content: center;
@@ -1147,13 +1044,7 @@
   }
 
   .lightbox.active { display: flex; }
-
-  .lightbox-img {
-    max-width: 90%;
-    max-height: 90vh;
-    object-fit: contain;
-    border-radius: 12px;
-  }
+  .lightbox-img { max-width: 90%; max-height: 90vh; object-fit: contain; border-radius: 12px; }
 
   .lightbox-close {
     position: absolute;
@@ -1173,7 +1064,6 @@
 
   .lightbox-close:hover { background: rgba(244, 162, 97, 0.3); }
 
-  /* Footer */
   .footer {
     text-align: center;
     margin-top: 60px;
@@ -1203,7 +1093,6 @@
     margin-bottom: 15px;
   }
 
-  /* Responsive */
   @media (max-width: 1024px) {
     .product-grid { grid-template-columns: repeat(2, 1fr); gap: 20px; }
   }
@@ -1238,7 +1127,6 @@
 <body>
 
 <div class="container">
-  <!-- HEADER -->
   <div class="header">
     <img src="img/logo-sibru-horizontal.png" alt="GRUPO SIBRÜ" class="header-logo">
     <h1>CATÁLOGO DE PRODUCTOS 2026</h1>
@@ -1246,7 +1134,6 @@
     <div class="website">www.gruposibru.com</div>
   </div>
 
-  <!-- BARRA DE SESIÓN -->
   <div class="session-bar" id="sessionBar">
     <div class="session-info" id="sessionInfo">
       <span style="color: #888;">No has iniciado sesión</span>
@@ -1256,30 +1143,24 @@
     </div>
   </div>
 
-  <!-- CONTROLES -->
   <div class="controls">
     <input type="text" class="search-box" id="searchInput" placeholder="Buscar por producto, marca o código...">
-    <div class="filters">
+    <div class="filters" id="filtersContainer">
       <button class="filter-btn active" data-filter="all">Todos</button>
-      <button class="filter-btn" data-filter="bachoco">Bachoco</button>
-      <button class="filter-btn" data-filter="simplot">Simplot</button>
-      <button class="filter-btn" data-filter="richs">Rich's</button>
-      <button class="filter-btn" data-filter="capitan">Capitán</button>
-      <button class="filter-btn" data-filter="camanchaca">Camanchaca</button>
-      <button class="filter-btn" data-filter="custom">Custom Culinary</button>
     </div>
   </div>
 
-  <!-- PRODUCT GRID -->
   <div class="product-grid" id="productGrid">
-    <!-- Los productos se renderizan dinámicamente con JS -->
+    <div class="loading-catalogo">
+      <div class="spinner"></div>
+      <p>Cargando productos...</p>
+    </div>
   </div>
 
   <div class="no-results" id="noResults">
     No se encontraron productos que coincidan con tu búsqueda.
   </div>
 
-  <!-- FOOTER -->
   <div class="footer">
     <img src="img/logo-sibru-horizontal.png" alt="GRUPO SIBRÜ" class="footer-logo">
     <div class="brand">GRUPO SIBRÜ</div>
@@ -1330,34 +1211,30 @@
         </div>
       </div>
 
-      <!-- SECCIÓN AGREGAR A PEDIDO -->
       <div id="addToOrderSection"></div>
     </div>
   </div>
 </div>
 
-<!-- LIGHTBOX -->
 <div class="lightbox" id="lightbox" onclick="closeLightbox()">
-  <span class="lightbox-close">✕</span>
+  <span class="lightbox-close">X</span>
   <img src="" alt="Vista ampliada" class="lightbox-img" id="lightboxImg">
 </div>
 
-<!-- CARRITO FLOTANTE -->
 <div class="cart-fab" id="cartFab" onclick="toggleCart()">
   <svg viewBox="0 0 24 24"><path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49c.08-.14.12-.31.12-.48 0-.55-.45-1-1-1H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z"/></svg>
   <span class="cart-badge" id="cartBadge">0</span>
 </div>
 
-<!-- PANEL DEL CARRITO -->
 <div class="cart-overlay" id="cartOverlay" onclick="toggleCart()"></div>
 <div class="cart-panel" id="cartPanel">
   <div class="cart-header">
     <h3>Mi Pedido</h3>
-    <button class="cart-close" onclick="toggleCart()">✕</button>
+    <button class="cart-close" onclick="toggleCart()">X</button>
   </div>
   <div class="cart-body" id="cartBody">
     <div class="cart-empty">
-      <div class="cart-empty-icon">🛒</div>
+      <div class="cart-empty-icon"></div>
       <p>Tu carrito está vacío</p>
       <p style="font-size: 0.85em; margin-top: 10px;">Agrega productos desde las fichas técnicas</p>
     </div>
@@ -1368,19 +1245,18 @@
       <span id="cartTotalItems">0</span>
     </div>
     <div class="cart-actions">
-      <button class="cart-btn cart-btn-save" onclick="guardarBorrador()">💾 Borrador</button>
-      <button class="cart-btn cart-btn-send" onclick="enviarPedido()">📧 Enviar Pedido</button>
+      <button class="cart-btn cart-btn-save" onclick="guardarBorrador()">Guardar Borrador</button>
+      <button class="cart-btn cart-btn-send" onclick="enviarPedido()">Enviar Pedido</button>
     </div>
   </div>
 </div>
 
-<!-- TOAST -->
 <div class="toast" id="toast"></div>
 
 <script type="module">
   import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
   import { getAuth, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
-  import { getFirestore, doc, getDoc, addDoc, collection, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+  import { getFirestore, collection, getDocs, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
   const firebaseConfig = {
     apiKey: "AIzaSyDVGalSna9z6lJGhNvycVyJF5TTd_LnRBc",
@@ -1399,148 +1275,86 @@
   const ADMIN_EMAILS = ["mediossibru@gmail.com"];
   const ASESOR_EMAILS = [];
 
-  // ====== DATOS DE PRODUCTOS ======
-  const productos = [
-    {
-      id: '1950', brand: 'BACHOCO', brandKey: 'bachoco', category: 'pollo',
-      name: 'Tender Empanizado',
-      desc: 'Fajita y/o dedo de pechuga marinado y empanizado totalmente cubierto, prefrito y congelado individualmente.',
-      mayoreo: 'Caja 12 kg (6 x 2 kg)', medio: 'Bolsa 2 kg', menudeo: 'Por Kilo',
-      conservacion: 'Mantener congelado a -18°C o menor. No recongelar. Consumir dentro de 24 horas posteriores al descongelamiento.',
-      preparacion: 'Freír a 175-180°C durante 3-4 minutos. Hornear a 200°C por 12-15 minutos.',
-      manejo: 'Mantener cadena de frío. No exponer a temperatura ambiente más de 30 minutos.',
-      anaquel: '12 meses desde fecha de producción.',
-      alergenos: 'Contiene: Gluten, Soya, Huevo. Puede contener trazas de leche y mostaza.',
-      ingredientes: 'Pechuga de pollo, agua, harina de trigo, almidón modificado, sal, especias, aceite vegetal.',
-      img1: 'img/bachoco-tender-1.jpg', img2: 'img/bachoco-tender-2.jpg'
-    },
-    {
-      id: '1539', brand: 'BACHOCO', brandKey: 'bachoco', category: 'pollo',
-      name: 'Nugget de Pollo',
-      desc: 'Nuggets de pechuga de pollo, formados, empanizados con cobertura tempura, prefritos y congelados individualmente.',
-      mayoreo: 'Caja 14 kg (A granel)', medio: 'Bolsa (Consultar)', menudeo: 'Por Kilo',
-      conservacion: 'Mantener congelado a -18°C o menor. No recongelar.',
-      preparacion: 'Freír a 175-180°C por 3-4 min. Hornear a 200°C por 10-12 min. Air Fryer a 180°C por 8-10 min.',
-      manejo: 'Cadena de frío. No apilar más de 5 niveles. Rotar PEPS.',
-      anaquel: '12 meses.',
-      alergenos: 'Contiene: Gluten, Soya, Huevo.',
-      ingredientes: 'Pechuga de pollo, agua, harina de trigo, almidón de maíz, sal, especias.',
-      img1: 'img/bachoco-nugget-1.jpg', img2: 'img/bachoco-nugget-2.jpg'
-    },
-    {
-      id: '046165', brand: 'SIMPLOT', brandKey: 'simplot', category: 'papas',
-      name: 'Papa Gajo 6/5',
-      desc: 'Gajo corte 10 con cobertura sazonada, con cáscara.',
-      mayoreo: 'Caja 13.6 kg (6 x 2.270 kg)', medio: 'Bolsa 2.270 kg', menudeo: 'Por Kilo',
-      conservacion: 'Mantener congelado a -18°C o menor.',
-      preparacion: 'Freír a 175-180°C por 4-5 min. Hornear a 220°C por 18-22 min.',
-      manejo: 'Cadena de frío. No apilar más de 6 cajas.',
-      anaquel: '18 meses.',
-      alergenos: 'Libre de alérgenos principales.',
-      ingredientes: 'Papa, aceite vegetal, sal, especias.',
-      img1: 'img/simplot-papa-gajo-1.jpg', img2: 'img/simplot-papa-gajo-2.jpg'
-    },
-    {
-      id: 'X01', brand: 'SIMPLOT', brandKey: 'simplot', category: 'papas',
-      name: 'Papa Cáscara con Sal 13/8',
-      desc: 'Papas a la francesa corte steak con cáscara y sal de mar.',
-      mayoreo: 'Caja 13.6 kg (6 x 2.270 kg)', medio: 'Bolsa 2.270 kg', menudeo: 'Por Kilo',
-      conservacion: 'Mantener congelado a -18°C o menor.',
-      preparacion: 'Freír a 175-180°C por 3-4 min. Hornear a 220°C por 15-18 min.',
-      manejo: 'Cadena de frío ininterrumpida.',
-      anaquel: '18 meses.',
-      alergenos: 'Libre de alérgenos principales.',
-      ingredientes: 'Papa, aceite vegetal, sal de mar.',
-      img1: 'img/simplot-papa-cascara-1.jpg', img2: 'img/simplot-papa-cascara-2.jpg'
-    },
-    {
-      id: 'X02', brand: "RICH'S", brandKey: 'richs', category: 'salsas',
-      name: 'ICEHOT Fresa',
-      desc: 'Salsa topping de fresa para postres, helados y crepas.',
-      mayoreo: 'Caja 4 piezas (1.8 L c/u)', medio: 'Pieza 1.8 L', menudeo: 'Por Litro',
-      conservacion: 'Refrigerar a 4°C. Una vez abierto, consumir en 7 días.',
-      preparacion: 'Listo para usar. Agitar antes de servir.',
-      manejo: 'Refrigerar. No exponer a temperatura ambiente más de 2 horas.',
-      anaquel: '6 meses refrigerado.',
-      alergenos: 'Libre de alérgenos principales.',
-      ingredientes: 'Jarabe de maíz, fresa, agua, azúcar, almidón modificado.',
-      img1: 'img/richs-icehot-fresa-1.jpg', img2: 'img/richs-icehot-fresa-2.jpg'
-    },
-    {
-      id: '20128', brand: "RICH'S", brandKey: 'richs', category: 'snacks',
-      name: 'Dedos de Queso',
-      desc: 'Queso mozzarella en cobertura empanizada crujiente.',
-      mayoreo: 'Caja 1.47 kg', medio: 'Bolsa (Consultar)', menudeo: 'Por Kilo',
-      conservacion: 'Mantener congelado a -18°C o menor.',
-      preparacion: 'Freír a 175-180°C por 2-3 min. Hornear a 200°C por 8-10 min.',
-      manejo: 'Cadena de frío. No apilar más de 4 cajas.',
-      anaquel: '12 meses.',
-      alergenos: 'Contiene: Gluten, Leche, Huevo.',
-      ingredientes: 'Queso mozzarella, harina de trigo, agua, huevo, sal.',
-      img1: 'img/richs-dedos-queso-1.jpg', img2: 'img/richs-dedos-queso-2.jpg'
-    },
-    {
-      id: '0003', brand: 'CAPITÁN', brandKey: 'capitan', category: 'mariscos',
-      name: 'Steaks de Atún',
-      desc: 'Steaks de atún aleta amarilla, lo más selecto del mar.',
-      mayoreo: 'Caja 5 kg (10 x 500 gr)', medio: 'Bolsa (Consultar)', menudeo: 'Por Pieza / Kilo',
-      conservacion: 'Mantener congelado a -18°C o menor.',
-      preparacion: 'Sellar 1-2 min por lado. Temp. interna: 52-57°C.',
-      manejo: 'Cadena de frío estricta. No apilar más de 4 cajas.',
-      anaquel: '12 meses.',
-      alergenos: 'Contiene: Pescado (atún).',
-      ingredientes: 'Steak de atún aleta amarilla.',
-      img1: 'img/capitan-atun-1.jpg', img2: 'img/capitan-atun-2.jpg'
-    },
-    {
-      id: '0004', brand: 'CAMANCHACA', brandKey: 'camanchaca', category: 'mariscos',
-      name: 'Porción de Salmón',
-      desc: 'Porción de salmón Reserva Especial, producto de Chile. Criado sin antibióticos, alto en Omega 3.',
-      mayoreo: 'Caja 5 kg (20 x 250 gr)', medio: 'Bolsa (Consultar)', menudeo: 'Por Pieza / Kilo',
-      conservacion: 'Mantener congelado a -18°C o menor.',
-      preparacion: 'Asar 4-5 min por lado. Hornear a 200°C por 12-15 min.',
-      manejo: 'Cadena de frío estricta.',
-      anaquel: '12 meses.',
-      alergenos: 'Contiene: Pescado (salmón).',
-      ingredientes: 'Filete de salmón, producto de Chile.',
-      img1: 'img/camanchaca-salmon-1.jpg', img2: 'img/camanchaca-salmon-2.jpg'
-    },
-    {
-      id: '019835/4', brand: 'CUSTOM CULINARY', brandKey: 'custom', category: 'salsas',
-      name: 'Salsa BBQ Original',
-      desc: 'Salsa ahumada con notas a tomate, naranja y especias. Balance entre dulce, ácido y ahumado.',
-      mayoreo: 'Caja 4 piezas (4 kg c/u)', medio: 'Pieza 4 kg', menudeo: 'Por Kilo',
-      conservacion: 'Lugar fresco y seco. Refrigerar una vez abierto (30 días).',
-      preparacion: 'Lista para usar. Ideal para marinar y glasear.',
-      manejo: 'Lugar fresco y seco. No luz solar directa.',
-      anaquel: '12 meses cerrado.',
-      alergenos: 'Libre de alérgenos principales.',
-      ingredientes: 'Jarabe de maíz, agua, pasta de tomate, vinagre, especias.',
-      img1: 'img/custom-bbq-1.jpg', img2: 'img/custom-bbq-2.jpg'
-    },
-    {
-      id: '020919/0.5', brand: 'CUSTOM CULINARY', brandKey: 'custom', category: 'salsas',
-      name: 'Salsa Mango Habanero',
-      desc: 'Combinación exótica entre lo frutal y lo picante del chile habanero. Picor alto.',
-      mayoreo: 'Caja 12 piezas (570 gr c/u)', medio: 'Pieza 570 gr', menudeo: 'Por Pieza',
-      conservacion: 'Lugar fresco y seco. Refrigerar una vez abierto (30 días).',
-      preparacion: 'Lista para usar. Ideal para alitas y botanas.',
-      manejo: 'Lugar fresco y seco.',
-      anaquel: '12 meses cerrado.',
-      alergenos: 'Libre de alérgenos principales.',
-      ingredientes: 'Mango, chile habanero, vinagre, azúcar, sal.',
-      img1: 'img/custom-mango-habanero-1.jpg', img2: 'img/custom-mango-habanero-2.jpg'
-    }
-  ];
-
-  // ====== ESTADO GLOBAL ======
   let currentUser = null;
   let currentRol = null;
+  let productos = [];
   let cart = JSON.parse(localStorage.getItem('sibru_cart') || '[]');
   let currentProduct = null;
   let tempQty = { cajas: 0, tarimas: 0 };
+  let lineasUnicas = new Set();
 
-  // ====== RENDERIZAR PRODUCTOS ======
+  // ====== CARGAR PRODUCTOS DESDE FIREBASE ======
+  async function cargarProductosFirebase() {
+    try {
+      const snapshot = await getDocs(collection(db, 'productos'));
+      productos = [];
+      lineasUnicas = new Set();
+      
+      snapshot.forEach(docSnap => {
+        const data = docSnap.data();
+        if (data.activo !== false) {
+          productos.push({
+            id: docSnap.id,
+            codigo: data.codigo || docSnap.id,
+            nombre: data.nombre || 'Sin nombre',
+            brand: data.marca || 'SIN MARCA',
+            brandKey: (data.marca || 'otro').toLowerCase().replace(/\s+/g, '').replace(/[^a-z0-9]/g, ''),
+            linea: data.linea || 'Otros',
+            categoria: data.categoria || 'general',
+            desc: data.descripcion || '',
+            mayoreo: data.presentaciones?.mayoreo || 'Consultar',
+            medio: data.presentaciones?.medio || 'Consultar',
+            menudeo: data.presentaciones?.menudeo || 'Consultar',
+            conservacion: data.tecnico?.conservacion || '',
+            preparacion: data.tecnico?.preparacion || '',
+            manejo: data.tecnico?.manejo || '',
+            anaquel: data.tecnico?.anaquel || '',
+            alergenos: data.tecnico?.alergenos || '',
+            ingredientes: data.tecnico?.ingredientes || '',
+            precioBase: data.precios?.base || 0,
+            precioCaja: data.precios?.porCaja || data.precios?.base || 0,
+            precioTarima: data.precios?.porTarima || 0,
+            img1: data.imagenes?.principal || `https://via.placeholder.com/400x400/1B5E20/FFFFFF?text=${encodeURIComponent(data.nombre || 'Producto')}`,
+            img2: data.imagenes?.secundaria || data.imagenes?.principal || `https://via.placeholder.com/400x400/1B5E20/FFFFFF?text=${encodeURIComponent(data.nombre || 'Producto')}`
+          });
+          if (data.linea) lineasUnicas.add(data.linea);
+        }
+      });
+
+      renderFiltros();
+      renderProductos(productos);
+    } catch (error) {
+      console.error('Error cargando productos:', error);
+      document.getElementById('productGrid').innerHTML = '<div class="loading-catalogo"><p style="color: var(--red);">Error al cargar productos. Recarga la página.</p></div>';
+    }
+  }
+
+  function renderFiltros() {
+    const container = document.getElementById('filtersContainer');
+    let html = '<button class="filter-btn active" data-filter="all">Todos</button>';
+    
+    Array.from(lineasUnicas).sort().forEach(linea => {
+      html += `<button class="filter-btn" data-filter="linea-${linea.toLowerCase()}">${linea}</button>`;
+    });
+
+    const marcasUnicas = new Set(productos.map(p => p.brandKey));
+    Array.from(marcasUnicas).sort().forEach(marca => {
+      const marcaLabel = productos.find(p => p.brandKey === marca)?.brand || marca;
+      html += `<button class="filter-btn" data-filter="marca-${marca}">${marcaLabel}</button>`;
+    });
+
+    container.innerHTML = html;
+
+    container.querySelectorAll('.filter-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        container.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        activeFilter = btn.dataset.filter;
+        aplicarFiltros();
+      });
+    });
+  }
+
   function renderProductos(lista) {
     const grid = document.getElementById('productGrid');
     if (lista.length === 0) {
@@ -1550,60 +1364,54 @@
     }
     document.getElementById('noResults').style.display = 'none';
     grid.innerHTML = lista.map(p => `
-      <div class="product-card brand-${p.brandKey}" data-brand="${p.brandKey}" data-category="${p.category}" onclick="openModal('${p.id}')">
+      <div class="product-card brand-${p.brandKey}" onclick="openModal('${p.id}')">
         <div class="product-image-container">
-          <img src="${p.img1}" alt="${p.name}" class="product-image" onerror="this.src='https://via.placeholder.com/400x400/1B5E20/FFFFFF?text=${encodeURIComponent(p.brand)}'">
-          <img src="${p.img2}" alt="${p.name} Vista 2" class="product-image img-hover" onerror="this.style.display='none'">
+          <img src="${p.img1}" alt="${p.nombre}" class="product-image" onerror="this.src='https://via.placeholder.com/400x400/1B5E20/FFFFFF?text=${encodeURIComponent(p.brand)}'">
+          <img src="${p.img2}" alt="${p.nombre} Vista 2" class="product-image img-hover" onerror="this.style.display='none'">
           <img src="img/logo-sibru-icono.png" alt="SIBRÜ" class="brand-watermark" onerror="this.style.display='none'">
           <div class="click-hint">Ver ficha técnica</div>
         </div>
         <div class="product-info">
           <div class="product-brand">${p.brand}</div>
-          <div class="product-name">${p.name}</div>
+          <div class="product-name">${p.nombre}</div>
           <div class="product-desc">${p.desc}</div>
           <div class="product-details">
             <div class="detail-row"><span class="detail-label">Mayoreo:</span><span class="detail-value">${p.mayoreo}</span></div>
             <div class="detail-row"><span class="detail-label">Medio Mayoreo:</span><span class="detail-value">${p.medio}</span></div>
             <div class="detail-row"><span class="detail-label">Menudeo:</span><span class="detail-value">${p.menudeo}</span></div>
           </div>
-          <div class="product-code">CÓDIGO: ${p.id}</div>
+          <div class="product-code">CÓDIGO: ${p.codigo}</div>
         </div>
       </div>
     `).join('');
   }
 
-  // ====== FILTROS Y BÚSQUEDA ======
   let activeFilter = 'all';
   let searchTerm = '';
 
   function aplicarFiltros() {
     const filtrados = productos.filter(p => {
-      const matchFilter = activeFilter === 'all' || p.brandKey === activeFilter || p.category === activeFilter;
+      let matchFilter = true;
+      if (activeFilter === 'all') matchFilter = true;
+      else if (activeFilter.startsWith('linea-')) matchFilter = p.linea.toLowerCase() === activeFilter.replace('linea-', '');
+      else if (activeFilter.startsWith('marca-')) matchFilter = p.brandKey === activeFilter.replace('marca-', '');
+      
       const matchSearch = searchTerm === '' || 
-        p.name.toLowerCase().includes(searchTerm) || 
+        p.nombre.toLowerCase().includes(searchTerm) || 
         p.brand.toLowerCase().includes(searchTerm) || 
-        p.id.toLowerCase().includes(searchTerm) ||
+        p.codigo.toLowerCase().includes(searchTerm) ||
         p.desc.toLowerCase().includes(searchTerm);
       return matchFilter && matchSearch;
     });
     renderProductos(filtrados);
   }
 
-  document.querySelectorAll('.filter-btn').forEach(btn => {
-    btn.addEventListener('click', () => {
-      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      activeFilter = btn.dataset.filter;
-      aplicarFiltros();
-    });
-  });
-
   document.getElementById('searchInput').addEventListener('input', (e) => {
     searchTerm = e.target.value.toLowerCase();
     aplicarFiltros();
   });
 
-  // ====== MODAL FICHA TÉCNICA ======
+  // ====== MODAL ======
   window.openModal = function(productId) {
     const p = productos.find(x => x.id === productId);
     if (!p) return;
@@ -1612,12 +1420,12 @@
 
     document.getElementById('modalMainImage').src = p.img1;
     document.getElementById('modalBrand').textContent = p.brand;
-    document.getElementById('modalTitle').textContent = p.name;
+    document.getElementById('modalTitle').textContent = p.nombre;
     document.getElementById('modalDescription').textContent = p.desc;
     document.getElementById('modalMayoreo').textContent = p.mayoreo;
     document.getElementById('modalMedio').textContent = p.medio;
     document.getElementById('modalMenudeo').textContent = p.menudeo;
-    document.getElementById('modalCode').textContent = 'CÓDIGO: ' + p.id;
+    document.getElementById('modalCode').textContent = 'CÓDIGO: ' + p.codigo;
     document.getElementById('modalConservacion').textContent = p.conservacion;
     document.getElementById('modalPreparacion').textContent = p.preparacion;
     document.getElementById('modalManejo').textContent = p.manejo;
@@ -1625,7 +1433,6 @@
     document.getElementById('modalAlergenos').textContent = p.alergenos;
     document.getElementById('modalIngredientes').textContent = p.ingredientes;
 
-    // Galería
     const strip = document.getElementById('galleryStrip');
     strip.innerHTML = '';
     [p.img1, p.img2].forEach((src, i) => {
@@ -1642,9 +1449,7 @@
       strip.appendChild(thumb);
     });
 
-    // Sección "Agregar a pedido"
     renderAddToOrderSection();
-
     document.getElementById('productModal').classList.add('active');
     document.body.style.overflow = 'hidden';
   };
@@ -1655,8 +1460,8 @@
       section.innerHTML = `
         <div class="add-to-order-section">
           <div class="login-prompt">
-            🔒 Inicia sesión para agregar productos a tu pedido.<br>
-            <a href="login.html">Iniciar sesión →</a>
+            Inicia sesión para agregar productos a tu pedido.<br>
+            <a href="login.html">Iniciar sesión</a>
           </div>
         </div>
       `;
@@ -1665,12 +1470,12 @@
 
     section.innerHTML = `
       <div class="add-to-order-section">
-        <div class="add-to-order-title">🛒 Agregar a tu pedido</div>
+        <div class="add-to-order-title">Agregar a tu pedido</div>
         <div class="order-quantity">
           <div class="qty-group">
             <label class="qty-label">Cajas</label>
             <div class="qty-controls">
-              <button class="qty-btn" onclick="cambiarCantidad('cajas', -1)">−</button>
+              <button class="qty-btn" onclick="cambiarCantidad('cajas', -1)">-</button>
               <div class="qty-value" id="qtyCajas">0</div>
               <button class="qty-btn" onclick="cambiarCantidad('cajas', 1)">+</button>
             </div>
@@ -1678,7 +1483,7 @@
           <div class="qty-group">
             <label class="qty-label">Tarimas</label>
             <div class="qty-controls">
-              <button class="qty-btn" onclick="cambiarCantidad('tarimas', -1)">−</button>
+              <button class="qty-btn" onclick="cambiarCantidad('tarimas', -1)">-</button>
               <div class="qty-value" id="qtyTarimas">0</div>
               <button class="qty-btn" onclick="cambiarCantidad('tarimas', 1)">+</button>
             </div>
@@ -1708,10 +1513,12 @@
     } else {
       cart.push({
         id: currentProduct.id,
-        nombre: currentProduct.name,
+        nombre: currentProduct.nombre,
         marca: currentProduct.brand,
+        codigo: currentProduct.codigo,
         cajas: tempQty.cajas,
-        tarimas: tempQty.tarimas
+        tarimas: tempQty.tarimas,
+        precioUnitario: currentProduct.precioCaja
       });
     }
 
@@ -1719,7 +1526,7 @@
     actualizarCarritoUI();
     tempQty = { cajas: 0, tarimas: 0 };
     renderAddToOrderSection();
-    showToast(`✓ ${currentProduct.name} agregado al pedido`);
+    showToast('Agregado al pedido: ' + currentProduct.nombre);
   };
 
   window.closeModal = function() {
@@ -1731,7 +1538,6 @@
     if (e.target.id === 'productModal') closeModal();
   });
 
-  // ====== LIGHTBOX ======
   window.openLightbox = function(src) {
     document.getElementById('lightboxImg').src = src;
     document.getElementById('lightbox').classList.add('active');
@@ -1748,7 +1554,6 @@
     }
   });
 
-  // ====== CARRITO ======
   function actualizarCarritoUI() {
     const totalItems = cart.reduce((sum, item) => sum + item.cajas + item.tarimas, 0);
     document.getElementById('cartBadge').textContent = totalItems;
@@ -1756,12 +1561,7 @@
 
     const cartBody = document.getElementById('cartBody');
     if (cart.length === 0) {
-      cartBody.innerHTML = `
-        <div class="cart-empty">
-          <div class="cart-empty-icon">🛒</div>
-          <p>Tu carrito está vacío</p>
-        </div>
-      `;
+      cartBody.innerHTML = '<div class="cart-empty"><div class="cart-empty-icon"></div><p>Tu carrito está vacío</p></div>';
       return;
     }
 
@@ -1770,9 +1570,9 @@
         <div class="cart-item-header">
           <div>
             <div class="cart-item-name">${item.nombre}</div>
-            <span class="cart-item-code">${item.marca} · ${item.id}</span>
+            <span class="cart-item-code">${item.marca} - ${item.codigo}</span>
           </div>
-          <button class="cart-item-remove" onclick="removerDelCarrito(${i})">🗑</button>
+          <button class="cart-item-remove" onclick="removerDelCarrito(${i})">X</button>
         </div>
         <div class="cart-item-qty">
           ${item.cajas > 0 ? `<span>${item.cajas} caja${item.cajas > 1 ? 's' : ''}</span>` : ''}
@@ -1794,14 +1594,8 @@
   };
 
   window.guardarBorrador = async function() {
-    if (cart.length === 0) {
-      showToast('El carrito está vacío', 'error');
-      return;
-    }
-    if (!currentUser) {
-      showToast('Inicia sesión para guardar', 'error');
-      return;
-    }
+    if (cart.length === 0) { showToast('El carrito está vacío', 'error'); return; }
+    if (!currentUser) { showToast('Inicia sesión para guardar', 'error'); return; }
 
     try {
       await addDoc(collection(db, 'pedidos'), {
@@ -1810,9 +1604,10 @@
         clienteRol: currentRol,
         productos: cart,
         status: 'borrador',
+        visualizado: false,
         creado: serverTimestamp()
       });
-      showToast('✓ Borrador guardado exitosamente');
+      showToast('Borrador guardado exitosamente');
       cart = [];
       localStorage.setItem('sibru_cart', '[]');
       actualizarCarritoUI();
@@ -1824,14 +1619,8 @@
   };
 
   window.enviarPedido = async function() {
-    if (cart.length === 0) {
-      showToast('El carrito está vacío', 'error');
-      return;
-    }
-    if (!currentUser) {
-      showToast('Inicia sesión para enviar', 'error');
-      return;
-    }
+    if (cart.length === 0) { showToast('El carrito está vacío', 'error'); return; }
+    if (!currentUser) { showToast('Inicia sesión para enviar', 'error'); return; }
 
     if (!confirm('¿Enviar este pedido a ventasmayoreo@gruposibru.com?')) return;
 
@@ -1842,22 +1631,17 @@
         clienteRol: currentRol,
         productos: cart,
         status: 'enviado',
+        visualizado: false,
         creado: serverTimestamp()
       });
 
-      // Construir email
-      const linea = cart.map(p => 
-        `• ${p.nombre} (${p.marca}) - ${p.cajas} cajas, ${p.tarimas} tarimas`
-      ).join('%0D%0A');
-      
+      const linea = cart.map(p => `• ${p.nombre} (${p.marca}) - ${p.cajas} cajas, ${p.tarimas} tarimas`).join('%0D%0A');
       const asunto = encodeURIComponent('Nuevo Pedido SIBRÜ - ' + currentUser.email);
-      const cuerpo = encodeURIComponent(
-        `Nuevo pedido de: ${currentUser.email}%0D%0A%0D%0AProductos:%0D%0A${linea}%0D%0A%0D%0APor favor confirmar disponibilidad.`
-      );
+      const cuerpo = encodeURIComponent(`Nuevo pedido de: ${currentUser.email}%0D%0A%0D%0AProductos:%0D%0A${linea}%0D%0A%0D%0APor favor confirmar disponibilidad.`);
       
       window.open(`mailto:ventasmayoreo@gruposibru.com?subject=${asunto}&body=${cuerpo}`);
       
-      showToast('✓ Pedido enviado. Revisa tu cliente de correo.');
+      showToast('Pedido enviado. Revisa tu cliente de correo.');
       cart = [];
       localStorage.setItem('sibru_cart', '[]');
       actualizarCarritoUI();
@@ -1868,7 +1652,6 @@
     }
   };
 
-  // ====== TOAST ======
   function showToast(msg, type = 'success') {
     const toast = document.getElementById('toast');
     toast.textContent = msg;
@@ -1876,7 +1659,6 @@
     setTimeout(() => { toast.className = 'toast'; }, 3000);
   }
 
-  // ====== SESIÓN ======
   function determinarRol(email) {
     if (ADMIN_EMAILS.includes(email.toLowerCase())) return 'admin';
     if (ASESOR_EMAILS.includes(email.toLowerCase())) return 'asesor';
@@ -1914,7 +1696,6 @@
       botones = `<a href="admin.html" class="btn-session btn-admin">Panel Admin</a>` + botones;
     }
     actions.innerHTML = botones;
-
     cartFab.classList.add('visible');
   }
 
@@ -1932,14 +1713,10 @@
 
   onAuthStateChanged(auth, (user) => {
     actualizarUIsesion(user);
-    if (user) {
-      const rol = determinarRol(user.email);
-      localStorage.setItem('sibru_user', JSON.stringify({ uid: user.uid, email: user.email, rol }));
-    }
   });
 
   // ====== INICIALIZAR ======
-  renderProductos(productos);
+  cargarProductosFirebase();
   actualizarCarritoUI();
 </script>
 
