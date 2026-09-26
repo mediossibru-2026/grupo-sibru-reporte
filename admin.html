@@ -32,7 +32,6 @@
     line-height: 1.6;
   }
 
-  /* HEADER */
   .header {
     background: linear-gradient(135deg, var(--green-dark), var(--blue-dark));
     color: var(--white);
@@ -125,7 +124,6 @@
     transform: translateY(-2px);
   }
 
-  /* NAV TABS */
   .nav-tabs {
     background: var(--white);
     border-bottom: 3px solid var(--gray-light);
@@ -168,16 +166,20 @@
     color: var(--orange-dark);
   }
 
-  .nav-tab .badge-count {
+  .badge-count {
     background: var(--red);
     color: white;
     padding: 2px 7px;
     border-radius: 10px;
     font-size: 0.75em;
     margin-left: 5px;
+    font-weight: 700;
   }
 
-  /* CONTAINER */
+  .badge-count.hidden {
+    display: none;
+  }
+
   .container {
     max-width: 1400px;
     margin: 30px auto;
@@ -195,7 +197,6 @@
     to { opacity: 1; transform: translateY(0); }
   }
 
-  /* CARDS */
   .card {
     background: var(--white);
     border-radius: 15px;
@@ -222,7 +223,6 @@
     color: var(--green-dark);
   }
 
-  /* STATS */
   .stats {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -245,7 +245,6 @@
   .stat-number { font-size: 2.5em; font-weight: 800; margin-bottom: 5px; }
   .stat-label { font-size: 0.9em; opacity: 0.9; }
 
-  /* FORMULARIO ALTA PRODUCTO */
   .form-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -364,21 +363,11 @@
     color: var(--white);
   }
 
-  .btn-danger {
-    background: var(--red);
-    color: var(--white);
-  }
-
-  .btn-danger:hover {
-    background: #b71c1c;
-  }
-
   .btn:disabled {
     opacity: 0.5;
     cursor: not-allowed;
   }
 
-  /* TABLA PRODUCTOS */
   .table-filters {
     display: flex;
     gap: 12px;
@@ -449,6 +438,16 @@
   .badge.en_proceso { background: #FFF3E0; color: var(--warning); }
   .badge.surtido { background: #F3E5F5; color: #9C27B0; }
   .badge.entregado { background: #E8F5E9; color: var(--success); }
+  .badge.nuevo { 
+    background: var(--red); 
+    color: white;
+    animation: pulse 2s infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.7; }
+  }
 
   .btn-small {
     padding: 6px 12px;
@@ -470,8 +469,10 @@
   .btn-reject { background: var(--red); color: white; }
   .btn-reject:hover { background: #b71c1c; }
   .btn-view { background: var(--blue-dark); color: white; }
+  .btn-view:hover { background: #1a3a47; }
+  .btn-view.no-leido { background: var(--red); }
+  .btn-view.no-leido:hover { background: #b71c1c; }
 
-  /* TOAST */
   .toast {
     position: fixed;
     bottom: 30px;
@@ -496,7 +497,6 @@
     to { transform: translateX(0); opacity: 1; }
   }
 
-  /* LOADING */
   .loading {
     text-align: center;
     padding: 40px;
@@ -515,7 +515,6 @@
     opacity: 0.3;
   }
 
-  /* MODAL */
   .modal-overlay {
     display: none;
     position: fixed;
@@ -533,7 +532,7 @@
   .modal {
     background: var(--white);
     border-radius: 15px;
-    max-width: 600px;
+    max-width: 700px;
     width: 100%;
     max-height: 90vh;
     overflow-y: auto;
@@ -556,7 +555,51 @@
     color: #888;
   }
 
-  /* RESPONSIVE */
+  .pedido-item {
+    background: var(--gray-bg);
+    padding: 12px 15px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    border-left: 4px solid var(--green-dark);
+  }
+
+  .pedido-item-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+  }
+
+  .pedido-item-nombre {
+    font-weight: 700;
+    color: var(--blue-dark);
+  }
+
+  .pedido-item-cantidad {
+    font-size: 0.9em;
+    color: var(--green-dark);
+    font-weight: 600;
+  }
+
+  .pedido-info-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 0;
+    border-bottom: 1px solid var(--gray-light);
+  }
+
+  .pedido-info-row:last-child { border-bottom: none; }
+
+  .pedido-info-label {
+    font-weight: 600;
+    color: #666;
+  }
+
+  .pedido-info-value {
+    font-weight: 700;
+    color: var(--text);
+  }
+
   @media (max-width: 768px) {
     .header-content { flex-direction: column; text-align: center; }
     .stats { grid-template-columns: 1fr; }
@@ -571,7 +614,7 @@
 
 <div class="header">
   <div class="header-content">
-    <h1> Panel de Administración - GRUPO SIBRÜ</h1>
+    <h1>Panel de Administración - GRUPO SIBRÜ</h1>
     <div class="user-info">
       <div class="user-badge">
         <span class="user-email" id="userEmail">Cargando...</span>
@@ -585,12 +628,12 @@
 
 <div class="nav-tabs">
   <div class="nav-tabs-inner">
-    <button class="nav-tab active" data-tab="dashboard">📊 Dashboard</button>
-    <button class="nav-tab" data-tab="productos">📦 Productos <span class="badge-count" id="countProductos">0</span></button>
-    <button class="nav-tab" data-tab="alta-producto"> Alta Producto</button>
-    <button class="nav-tab" data-tab="clientes"> Clientes <span class="badge-count" id="countPendientes">0</span></button>
-    <button class="nav-tab" data-tab="pedidos">🛒 Pedidos <span class="badge-count" id="countPedidos">0</span></button>
-    <button class="nav-tab" data-tab="gestion-pedidos" id="tabGestionPedidos" style="display:none;"> Gestión Pedidos</button>
+    <button class="nav-tab active" data-tab="dashboard">Dashboard</button>
+    <button class="nav-tab" data-tab="productos">Productos <span class="badge-count hidden" id="countProductos">0</span></button>
+    <button class="nav-tab" data-tab="alta-producto">Alta Producto</button>
+    <button class="nav-tab" data-tab="clientes">Clientes <span class="badge-count hidden" id="countPendientes">0</span></button>
+    <button class="nav-tab" data-tab="pedidos">Pedidos <span class="badge-count hidden" id="countPedidosNuevos">0</span></button>
+    <button class="nav-tab" data-tab="gestion-pedidos" id="tabGestionPedidos" style="display:none;">Gestión Pedidos</button>
   </div>
 </div>
 
@@ -626,12 +669,12 @@
         Usa las pestañas superiores para navegar entre las diferentes secciones.
       </p>
       <div style="margin-top: 20px; padding: 15px; background: #FFF3E0; border-radius: 10px; border-left: 4px solid var(--orange);">
-        <strong>📌 Estado del sistema:</strong>
+        <strong>Estado del sistema:</strong>
         <ul style="margin-top: 10px; margin-left: 20px; color: #666;">
-          <li>✅ Autenticación activa</li>
-          <li>✅ Base de datos conectada</li>
-          <li> Módulo de productos: En desarrollo</li>
-          <li>🔄 Módulo de inventario: Pendiente</li>
+          <li>Autenticación activa</li>
+          <li>Base de datos conectada</li>
+          <li>Módulo de productos: En desarrollo</li>
+          <li>Módulo de inventario: Pendiente</li>
         </ul>
       </div>
     </div>
@@ -642,11 +685,11 @@
     <div class="card">
       <div class="card-header">
         <h2 class="card-title">Listado de Productos</h2>
-        <button class="btn btn-primary" onclick="mostrarTab('alta-producto')">➕ Nuevo Producto</button>
+        <button class="btn btn-primary" onclick="mostrarTab('alta-producto')">+ Nuevo Producto</button>
       </div>
 
       <div class="table-filters">
-        <input type="text" id="filterProducto" placeholder="🔍 Buscar por código o nombre...">
+        <input type="text" id="filterProducto" placeholder="Buscar por código o nombre...">
         <select id="filterLinea">
           <option value="">Todas las líneas</option>
           <option value="Abarrotes">Abarrotes</option>
@@ -691,16 +734,15 @@
   <div class="tab-content" id="alta-productoTab">
     <div class="card">
       <div class="card-header">
-        <h2 class="card-title" id="formTitle">➕ Alta de Nuevo Producto</h2>
-        <button class="btn btn-secondary" onclick="mostrarTab('productos')">← Volver al listado</button>
+        <h2 class="card-title" id="formTitle">Alta de Nuevo Producto</h2>
+        <button class="btn btn-secondary" onclick="mostrarTab('productos')">Volver al listado</button>
       </div>
 
       <form id="productoForm">
         <input type="hidden" id="prodId">
 
-        <!-- INFORMACIÓN BÁSICA -->
         <div class="form-section">
-          <div class="form-section-title">📋 Información Básica</div>
+          <div class="form-section-title">Información Básica</div>
           <div class="form-grid">
             <div class="form-group">
               <label>Código de Producto <span class="required">*</span></label>
@@ -735,8 +777,8 @@
             <div class="form-group">
               <label>Status</label>
               <select id="prodActivo">
-                <option value="true">✅ Activo</option>
-                <option value="false">️ Inactivo</option>
+                <option value="true">Activo</option>
+                <option value="false">Inactivo</option>
               </select>
             </div>
           </div>
@@ -746,9 +788,8 @@
           </div>
         </div>
 
-        <!-- PRESENTACIONES -->
         <div class="form-section">
-          <div class="form-section-title"> Presentaciones</div>
+          <div class="form-section-title">Presentaciones</div>
           <div class="form-grid">
             <div class="form-group">
               <label>Mayoreo</label>
@@ -765,9 +806,8 @@
           </div>
         </div>
 
-        <!-- PRECIOS -->
         <div class="form-section">
-          <div class="form-section-title">💰 Precios (MXN)</div>
+          <div class="form-section-title">Precios (MXN)</div>
           <div class="form-grid">
             <div class="form-group">
               <label>Precio Base Mayoreo <span class="required">*</span></label>
@@ -784,9 +824,8 @@
           </div>
         </div>
 
-        <!-- INFORMACIÓN TÉCNICA -->
         <div class="form-section">
-          <div class="form-section-title">🔬 Información Técnica</div>
+          <div class="form-section-title">Información Técnica</div>
           <div class="form-group">
             <label>Conservación</label>
             <textarea id="prodConservacion" placeholder="Condiciones de almacenamiento..."></textarea>
@@ -815,9 +854,8 @@
           </div>
         </div>
 
-        <!-- INVENTARIO -->
         <div class="form-section">
-          <div class="form-section-title"> Inventario</div>
+          <div class="form-section-title">Inventario</div>
           <div class="form-grid">
             <div class="form-group">
               <label>Stock Actual</label>
@@ -835,8 +873,8 @@
         </div>
 
         <div class="form-actions">
-          <button type="button" class="btn btn-secondary" onclick="limpiarFormulario()">🗑️ Limpiar</button>
-          <button type="submit" class="btn btn-primary" id="btnGuardarProducto">💾 Guardar Producto</button>
+          <button type="button" class="btn btn-secondary" onclick="limpiarFormulario()">Limpiar</button>
+          <button type="submit" class="btn btn-primary" id="btnGuardarProducto">Guardar Producto</button>
         </div>
       </form>
     </div>
@@ -881,7 +919,7 @@
     </div>
   </div>
 
-  <!-- PEDIDOS (Todos los roles) -->
+  <!-- PEDIDOS -->
   <div class="tab-content" id="pedidosTab">
     <div class="card">
       <div class="card-header">
@@ -907,7 +945,7 @@
     </div>
   </div>
 
-  <!-- GESTIÓN DE PEDIDOS (Solo Admin y Ventas) -->
+  <!-- GESTIÓN DE PEDIDOS -->
   <div class="tab-content" id="gestion-pedidosTab">
     <div class="card">
       <div class="card-header">
@@ -948,13 +986,12 @@
 <!-- MODAL DETALLE PEDIDO -->
 <div class="modal-overlay" id="modalDetalle">
   <div class="modal">
-    <button class="modal-close" onclick="cerrarModalDetalle()">✕</button>
+    <button class="modal-close" onclick="cerrarModalDetalle()">X</button>
     <h3>Detalle del Pedido</h3>
     <div id="modalDetalleContent"></div>
   </div>
 </div>
 
-<!-- TOAST -->
 <div class="toast" id="toast"></div>
 
 <script type="module">
@@ -980,15 +1017,15 @@
   const db = getFirestore(app);
 
   const ADMIN_EMAILS = ["mediossibru@gmail.com"];
-  const ALMACEN_EMAILS = []; // Agregar emails de almacén aquí
-  const VENTAS_EMAILS = [];  // Agregar emails de ventas aquí
-  const ASESOR_EMAILS = [];  // Agregar emails de asesores aquí
+  const ALMACEN_EMAILS = [];
+  const VENTAS_EMAILS = [];
+  const ASESOR_EMAILS = [];
 
   let currentUser = null;
   let currentRol = null;
   let productosCache = [];
+  let pedidosCache = [];
 
-  // ====== AUTENTICACIÓN ======
   onAuthStateChanged(auth, async (user) => {
     if (!user) {
       window.location.href = "login.html";
@@ -1001,10 +1038,8 @@
     document.getElementById('userEmail').textContent = user.email;
     document.getElementById('userRole').textContent = currentRol;
 
-    // Mostrar/ocultar tabs según rol
     configurarPermisosUI();
 
-    // Cargar datos
     await Promise.all([
       cargarProductos(),
       cargarClientes(),
@@ -1033,7 +1068,6 @@
   }
 
   function configurarPermisosUI() {
-    // Ocultar tabs según rol
     const tabAlta = document.querySelector('[data-tab="alta-producto"]');
     const tabGestion = document.getElementById('tabGestionPedidos');
 
@@ -1041,7 +1075,6 @@
     if (tabGestion) tabGestion.style.display = tienePermiso('cambiar_estatus_pedido') ? '' : 'none';
   }
 
-  // ====== NAVEGACIÓN TABS ======
   document.querySelectorAll('.nav-tab').forEach(tab => {
     tab.addEventListener('click', () => {
       if (tab.style.display === 'none') return;
@@ -1068,7 +1101,7 @@
       renderProductos(productosCache);
       document.getElementById('statProductos').textContent = productosCache.filter(p => p.activo).length;
       document.getElementById('countProductos').textContent = productosCache.length;
-      document.getElementById('statStockBajo').textContent = productosCache.filter(p => p.stock !== undefined && p.stock <= (p.stockMinimo || 10)).length;
+      document.getElementById('statStockBajo').textContent = productosCache.filter(p => p.inventario?.stock !== undefined && p.inventario.stock <= (p.inventario?.minimo || 10)).length;
     } catch (error) {
       console.error('Error cargando productos:', error);
       document.getElementById('productosTable').innerHTML = '<tr><td colspan="8" class="loading">Error al cargar productos</td></tr>';
@@ -1078,30 +1111,35 @@
   function renderProductos(lista) {
     const tbody = document.getElementById('productosTable');
     if (lista.length === 0) {
-      tbody.innerHTML = '<tr><td colspan="8" class="empty-state"><div class="empty-state-icon">📦</div><p>No hay productos registrados</p></td></tr>';
+      tbody.innerHTML = '<tr><td colspan="8" class="empty-state"><div class="empty-state-icon"></div><p>No hay productos registrados</p></td></tr>';
       return;
     }
 
-    tbody.innerHTML = lista.map(p => `
-      <tr>
-        <td><strong>${p.codigo}</strong></td>
-        <td>${p.nombre}</td>
-        <td>${p.linea || '-'}</td>
-        <td>${p.marca || '-'}</td>
-        <td>$${(p.precioBase || 0).toFixed(2)}</td>
-        <td>${p.stock !== undefined ? p.stock : '-'}</td>
-        <td><span class="badge ${p.activo ? 'activo' : 'inactivo'}">${p.activo ? 'Activo' : 'Inactivo'}</span></td>
-        <td>
-          ${tienePermiso('editar_productos') ? `
-            <button class="btn-small btn-edit" onclick="editarProducto('${p.id}')">✏️</button>
-            <button class="btn-small btn-delete" onclick="eliminarProducto('${p.id}', '${p.nombre}')">🗑</button>
-          ` : '-'}
-        </td>
-      </tr>
-    `).join('');
+    tbody.innerHTML = lista.map(p => {
+      // CORRECCIÓN: leer precio desde precios.base
+      const precioBase = p.precios?.base || 0;
+      const stock = p.inventario?.stock;
+      
+      return `
+        <tr>
+          <td><strong>${p.codigo}</strong></td>
+          <td>${p.nombre}</td>
+          <td>${p.linea || '-'}</td>
+          <td>${p.marca || '-'}</td>
+          <td><strong>$${precioBase.toFixed(2)}</strong></td>
+          <td>${stock !== undefined ? stock : '-'}</td>
+          <td><span class="badge ${p.activo ? 'activo' : 'inactivo'}">${p.activo ? 'Activo' : 'Inactivo'}</span></td>
+          <td>
+            ${tienePermiso('editar_productos') ? `
+              <button class="btn-small btn-edit" onclick="editarProducto('${p.id}')">Editar</button>
+              <button class="btn-small btn-delete" onclick="eliminarProducto('${p.id}', '${p.nombre.replace(/'/g, "\\'")}')">Eliminar</button>
+            ` : '-'}
+          </td>
+        </tr>
+      `;
+    }).join('');
   }
 
-  // Filtros de productos
   document.getElementById('filterProducto').addEventListener('input', aplicarFiltrosProductos);
   document.getElementById('filterLinea').addEventListener('change', aplicarFiltrosProductos);
   document.getElementById('filterStatus').addEventListener('change', aplicarFiltrosProductos);
@@ -1132,7 +1170,7 @@
 
     const btn = document.getElementById('btnGuardarProducto');
     btn.disabled = true;
-    btn.textContent = '💾 Guardando...';
+    btn.textContent = 'Guardando...';
 
     const producto = {
       codigo: document.getElementById('prodCodigo').value.trim().toUpperCase(),
@@ -1169,29 +1207,26 @@
       actualizadoPor: currentUser.email
     };
 
-    // Precio base = precio caja si no se especificó
     if (!producto.precios.porCaja) producto.precios.porCaja = producto.precios.base;
 
     try {
       const idExistente = document.getElementById('prodId').value;
       
       if (idExistente) {
-        // Editar
         await updateDoc(doc(db, 'productos', idExistente), producto);
-        showToast('✓ Producto actualizado exitosamente');
+        showToast('Producto actualizado exitosamente');
       } else {
-        // Verificar código único
         const existe = productosCache.find(p => p.codigo === producto.codigo);
         if (existe) {
-          showToast('⚠️ Ya existe un producto con ese código', 'error');
+          showToast('Ya existe un producto con ese código', 'error');
           btn.disabled = false;
-          btn.textContent = '💾 Guardar Producto';
+          btn.textContent = 'Guardar Producto';
           return;
         }
         producto.creado = serverTimestamp();
         producto.creadoPor = currentUser.email;
         await setDoc(doc(db, 'productos', producto.codigo), producto);
-        showToast('✓ Producto creado exitosamente');
+        showToast('Producto creado exitosamente');
       }
 
       limpiarFormulario();
@@ -1202,7 +1237,7 @@
       showToast('Error: ' + error.message, 'error');
     } finally {
       btn.disabled = false;
-      btn.textContent = '💾 Guardar Producto';
+      btn.textContent = 'Guardar Producto';
     }
   });
 
@@ -1234,8 +1269,8 @@
     document.getElementById('prodUbicacion').value = p.inventario?.ubicacion || '';
     document.getElementById('prodActivo').value = String(p.activo !== false);
 
-    document.getElementById('formTitle').textContent = '✏️ Editar Producto: ' + p.nombre;
-    document.getElementById('btnGuardarProducto').textContent = '💾 Actualizar Producto';
+    document.getElementById('formTitle').textContent = 'Editar Producto: ' + p.nombre;
+    document.getElementById('btnGuardarProducto').textContent = 'Actualizar Producto';
     mostrarTab('alta-producto');
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
@@ -1249,7 +1284,7 @@
 
     try {
       await deleteDoc(doc(db, 'productos', id));
-      showToast('✓ Producto eliminado');
+      showToast('Producto eliminado');
       await cargarProductos();
     } catch (error) {
       showToast('Error: ' + error.message, 'error');
@@ -1261,8 +1296,8 @@
     document.getElementById('prodId').value = '';
     document.getElementById('prodStock').value = 0;
     document.getElementById('prodStockMinimo').value = 10;
-    document.getElementById('formTitle').textContent = '➕ Alta de Nuevo Producto';
-    document.getElementById('btnGuardarProducto').textContent = '💾 Guardar Producto';
+    document.getElementById('formTitle').textContent = 'Alta de Nuevo Producto';
+    document.getElementById('btnGuardarProducto').textContent = 'Guardar Producto';
   };
 
   // ====== CLIENTES ======
@@ -1288,8 +1323,8 @@
               <td>${data.creado ? new Date(data.creado.seconds * 1000).toLocaleDateString() : 'N/A'}</td>
               <td><span class="badge pendiente">${data.status}</span></td>
               <td>
-                <button class="btn-small btn-approve" onclick="aprobarCliente('${docSnap.id}', '${data.email}')">✓</button>
-                <button class="btn-small btn-reject" onclick="rechazarCliente('${docSnap.id}')">✕</button>
+                <button class="btn-small btn-approve" onclick="aprobarCliente('${docSnap.id}', '${data.email}')">Aprobar</button>
+                <button class="btn-small btn-reject" onclick="rechazarCliente('${docSnap.id}')">Rechazar</button>
               </td>
             </tr>
           `;
@@ -1297,14 +1332,17 @@
       });
 
       if (html === '') {
-        html = '<tr><td colspan="8" class="empty-state"><div class="empty-state-icon">✅</div><p>No hay clientes pendientes</p></td></tr>';
+        html = '<tr><td colspan="8" class="empty-state"><div class="empty-state-icon"></div><p>No hay clientes pendientes</p></td></tr>';
       }
 
       document.getElementById('clientesTable').innerHTML = html;
       document.getElementById('totalPendientes').textContent = pendientes;
       document.getElementById('totalAprobados').textContent = aprobados;
       document.getElementById('statPendientes').textContent = pendientes;
-      document.getElementById('countPendientes').textContent = pendientes;
+      
+      const badgePendientes = document.getElementById('countPendientes');
+      badgePendientes.textContent = pendientes;
+      badgePendientes.classList.toggle('hidden', pendientes === 0);
     } catch (error) {
       console.error('Error cargando clientes:', error);
     }
@@ -1318,7 +1356,7 @@
         aprobadoPor: currentUser.email,
         fechaAprobacion: new Date().toISOString()
       });
-      showToast('✓ Cliente aprobado');
+      showToast('Cliente aprobado');
       await cargarClientes();
     } catch (error) {
       showToast('Error: ' + error.message, 'error');
@@ -1340,22 +1378,27 @@
     }
   };
 
-  // ====== PEDIDOS ======
+  // ====== PEDIDOS CON SISTEMA DE ALERTAS ======
   async function cargarPedidos() {
     try {
       const q = query(collection(db, 'pedidos'), orderBy('creado', 'desc'));
       const snapshot = await getDocs(q);
-      const pedidos = [];
-      snapshot.forEach(docSnap => pedidos.push({ id: docSnap.id, ...docSnap.data() }));
+      pedidosCache = [];
+      snapshot.forEach(docSnap => pedidosCache.push({ id: docSnap.id, ...docSnap.data() }));
 
       const hoy = new Date().toDateString();
-      const pedidosHoy = pedidos.filter(p => p.creado && new Date(p.creado.seconds * 1000).toDateString() === hoy);
+      const pedidosHoy = pedidosCache.filter(p => p.creado && new Date(p.creado.seconds * 1000).toDateString() === hoy);
       document.getElementById('statPedidosHoy').textContent = pedidosHoy.length;
-      document.getElementById('countPedidos').textContent = pedidos.length;
 
-      renderPedidos(pedidos, 'pedidosTable', false);
+      // Contar pedidos NO visualizados
+      const pedidosNuevos = pedidosCache.filter(p => !p.visualizado);
+      const badgeNuevos = document.getElementById('countPedidosNuevos');
+      badgeNuevos.textContent = pedidosNuevos.length;
+      badgeNuevos.classList.toggle('hidden', pedidosNuevos.length === 0);
+
+      renderPedidos(pedidosCache, 'pedidosTable', false);
       if (tienePermiso('cambiar_estatus_pedido')) {
-        renderPedidos(pedidos, 'gestionPedidosTable', true);
+        renderPedidos(pedidosCache, 'gestionPedidosTable', true);
       }
     } catch (error) {
       console.error('Error cargando pedidos:', error);
@@ -1365,7 +1408,7 @@
   function renderPedidos(pedidos, tableId, conGestion) {
     const tbody = document.getElementById(tableId);
     if (pedidos.length === 0) {
-      tbody.innerHTML = '<tr><td colspan="6" class="empty-state"><div class="empty-state-icon">📦</div><p>No hay pedidos</p></td></tr>';
+      tbody.innerHTML = '<tr><td colspan="6" class="empty-state"><div class="empty-state-icon"></div><p>No hay pedidos</p></td></tr>';
       return;
     }
 
@@ -1381,11 +1424,17 @@
         'entregado': 'Entregado'
       }[statusClass] || statusClass;
 
-      let acciones = `<button class="btn-small btn-view" onclick="verDetallePedido('${p.id}')"> Ver</button>`;
+      // Badge "NUEVO" solo si no ha sido visualizado
+      const esNuevo = !p.visualizado;
+      const statusBadge = esNuevo 
+        ? `<span class="badge nuevo">NUEVO</span> <span class="badge ${statusClass}">${statusLabel}</span>`
+        : `<span class="badge ${statusClass}">${statusLabel}</span>`;
+
+      let acciones = `<button class="btn-small btn-view ${esNuevo ? 'no-leido' : ''}" onclick="verDetallePedido('${p.id}')">${esNuevo ? 'Ver (Nuevo)' : 'Ver'}</button>`;
       
       if (conGestion) {
         acciones += `
-          <select onchange="cambiarEstatusPedido('${p.id}', this.value)" style="padding: 5px; border-radius: 5px; border: 1px solid #ddd;">
+          <select onchange="cambiarEstatusPedido('${p.id}', this.value)" style="padding: 5px; border-radius: 5px; border: 1px solid #ddd; margin-left: 5px;">
             <option value="borrador" ${statusClass === 'borrador' ? 'selected' : ''}>Borrador</option>
             <option value="enviado" ${statusClass === 'enviado' ? 'selected' : ''}>Enviado</option>
             <option value="en_proceso" ${statusClass === 'en_proceso' ? 'selected' : ''}>En Proceso</option>
@@ -1400,7 +1449,7 @@
           <td><strong>${p.id.substring(0, 8)}...</strong></td>
           <td>${p.clienteEmail || 'N/A'}<br><small>${p.clienteRol || '-'}</small></td>
           <td>${totalProductos} productos</td>
-          <td><span class="badge ${statusClass}">${statusLabel}</span></td>
+          <td>${statusBadge}</td>
           <td><small>${fecha}</small></td>
           <td>${acciones}</td>
         </tr>
@@ -1408,13 +1457,96 @@
     }).join('');
   }
 
+  window.verDetallePedido = async function(pedidoId) {
+    const pedido = pedidosCache.find(p => p.id === pedidoId);
+    if (!pedido) return;
+
+    // Marcar como visualizado si no lo estaba
+    if (!pedido.visualizado) {
+      try {
+        await updateDoc(doc(db, 'pedidos', pedidoId), {
+          visualizado: true,
+          visualizadoPor: currentUser.email,
+          visualizadoEn: serverTimestamp()
+        });
+        // Actualizar cache local
+        pedido.visualizado = true;
+        // Actualizar contador
+        const pedidosNuevos = pedidosCache.filter(p => !p.visualizado);
+        const badgeNuevos = document.getElementById('countPedidosNuevos');
+        badgeNuevos.textContent = pedidosNuevos.length;
+        badgeNuevos.classList.toggle('hidden', pedidosNuevos.length === 0);
+      } catch (error) {
+        console.error('Error marcando como visualizado:', error);
+      }
+    }
+
+    const totalProductos = (pedido.productos || []).reduce((sum, prod) => sum + (prod.cajas || 0) + (prod.tarimas || 0), 0);
+    const fecha = pedido.creado ? new Date(pedido.creado.seconds * 1000).toLocaleString() : 'N/A';
+    const statusLabel = {
+      'borrador': 'Borrador',
+      'enviado': 'Enviado',
+      'en_proceso': 'En Proceso',
+      'surtido': 'Surtido',
+      'entregado': 'Entregado'
+    }[pedido.status || 'borrador'] || pedido.status;
+
+    const productosHtml = (pedido.productos || []).map(prod => `
+      <div class="pedido-item">
+        <div class="pedido-item-header">
+          <span class="pedido-item-nombre">${prod.nombre}</span>
+          <span class="pedido-item-cantidad">${prod.cajas || 0} cajas, ${prod.tarimas || 0} tarimas</span>
+        </div>
+        <small style="color: #888;">${prod.marca} - Código: ${prod.id}</small>
+      </div>
+    `).join('');
+
+    document.getElementById('modalDetalleContent').innerHTML = `
+      <div class="pedido-info-row">
+        <span class="pedido-info-label">Folio:</span>
+        <span class="pedido-info-value">${pedidoId}</span>
+      </div>
+      <div class="pedido-info-row">
+        <span class="pedido-info-label">Cliente:</span>
+        <span class="pedido-info-value">${pedido.clienteEmail || 'N/A'}</span>
+      </div>
+      <div class="pedido-info-row">
+        <span class="pedido-info-label">Rol:</span>
+        <span class="pedido-info-value">${pedido.clienteRol || '-'}</span>
+      </div>
+      <div class="pedido-info-row">
+        <span class="pedido-info-label">Status:</span>
+        <span class="pedido-info-value"><span class="badge ${pedido.status || 'borrador'}">${statusLabel}</span></span>
+      </div>
+      <div class="pedido-info-row">
+        <span class="pedido-info-label">Total de productos:</span>
+        <span class="pedido-info-value">${totalProductos}</span>
+      </div>
+      <div class="pedido-info-row">
+        <span class="pedido-info-label">Fecha:</span>
+        <span class="pedido-info-value">${fecha}</span>
+      </div>
+      <div style="margin-top: 20px;">
+        <strong style="color: var(--green-dark);">Productos del pedido:</strong>
+        <div style="margin-top: 10px;">
+          ${productosHtml || '<p style="color: #888;">Sin productos</p>'}
+        </div>
+      </div>
+    `;
+    document.getElementById('modalDetalle').classList.add('active');
+  };
+
+  window.cerrarModalDetalle = function() {
+    document.getElementById('modalDetalle').classList.remove('active');
+  };
+
   window.cambiarEstatusPedido = async (pedidoId, nuevoStatus) => {
     if (!tienePermiso('cambiar_estatus_pedido')) {
       showToast('No tienes permisos', 'error');
       return;
     }
     if (!confirm(`¿Cambiar estatus a "${nuevoStatus}"?`)) {
-      await cargarPedidos(); // Revertir el select
+      await cargarPedidos();
       return;
     }
 
@@ -1424,28 +1556,13 @@
         statusActualizadoPor: currentUser.email,
         statusActualizadoEn: serverTimestamp()
       });
-      showToast(`✓ Estatus cambiado a: ${nuevoStatus}`);
+      showToast(`Estatus cambiado a: ${nuevoStatus}`);
       await cargarPedidos();
     } catch (error) {
       showToast('Error: ' + error.message, 'error');
     }
   };
 
-  window.verDetallePedido = function(pedidoId) {
-    const pedido = productosCache.find(p => p.id === pedidoId); // Placeholder
-    // En producción, buscar en pedidosCache
-    document.getElementById('modalDetalleContent').innerHTML = `
-      <p><strong>Folio:</strong> ${pedidoId}</p>
-      <p>Detalle completo disponible próximamente.</p>
-    `;
-    document.getElementById('modalDetalle').classList.add('active');
-  };
-
-  window.cerrarModalDetalle = function() {
-    document.getElementById('modalDetalle').classList.remove('active');
-  };
-
-  // ====== UTILIDADES ======
   function showToast(msg, type = 'success') {
     const toast = document.getElementById('toast');
     toast.textContent = msg;
