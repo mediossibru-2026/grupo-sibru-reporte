@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Reporte de Márgenes | GRUPO SIBRÜ</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background: #f5f5f5;
+    padding: 20px;
+  }
+  .container {
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+  .header {
+    background: linear-gradient(135deg, #1B5E20, #264653);
+    color: white;
+    padding: 30px;
+    border-radius: 15px;
+    margin-bottom: 30px;
+  }
+  .header h1 { font-size: 2em; margin-bottom: 10px; }
+  .card {
+    background: white;
+    border-radius: 15px;
+    padding: 25px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+    margin-bottom: 25px;
+  }
+  .card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 2px solid #e0e0e0;
+  }
+  .card-title {
+    font-size: 1.5em;
+    font-weight: 800;
+    color: #1B5E20;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9em;
+  }
+  th, td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #e0e0e0;
+  }
+  th {
+    background: #1B5E20;
+    color: white;
+    font-weight: 700;
+    position: sticky;
+    top: 0;
+  }
+  tr:hover { background: #f5f5f5; }
+  .margen-alto { color: #4caf50; font-weight: 700; }
+  .margen-medio { color: #ff9800; font-weight: 700; }
+  .margen-bajo { color: #f44336; font-weight: 700; }
+  .btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    font-weight: 700;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+  }
+  .btn-primary { background: #1B5E20; color: white; }
+  .btn-secondary { background: white; color: #264653; border: 2px solid #264653; }
+  .filters {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+  }
+  .filters select, .filters input {
+    padding: 10px;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    font-size: 14px;
+  }
+  .stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    margin-bottom: 30px;
+  }
+  .stat-card {
+    background: linear-gradient(135deg, #1B5E20, #2E7D32);
+    color: white;
+    padding: 20px;
+    border-radius: 12px;
+    text-align: center;
+  }
+  .stat-number { font-size: 2em; font-weight: 800; }
+  .stat-label { font-size: 0.9em; opacity: 0.9; }
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="header">
+    <h1>Reporte de Márgenes por Producto</h1>
+    <p>GRUPO SIBRÜ - Análisis de rentabilidad</p>
+  </div>
+
+  <div class="stats">
+    <div class="stat-card">
+      <div class="stat-number" id="totalProductos">0</div>
+      <div class="stat-label">Productos Analizados</div>
+    </div>
+    <div class="stat-card" style="background: linear-gradient(135deg, #f4a261, #e76f51);">
+      <div class="stat-number" id="margenPromedio">0%</div>
+      <div class="stat-label">Margen Promedio</div>
+    </div>
+    <div class="stat-card" style="background: linear-gradient(135deg, #2196f3, #1976d2);">
+      <div class="stat-number" id="margenMaximo">0%</div>
+      <div class="stat-label">Margen Máximo</div>
+    </div>
+    <div class="stat-card" style="background: linear-gradient(135deg, #f44336, #d32f2f);">
+      <div class="stat-number" id="margenMinimo">0%</div>
+      <div class="stat-label">Margen Mínimo</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <h2 class="card-title">Detalle de Márgenes</h2>
+      <div>
+        <a href="admin.html" class="btn btn-secondary">Volver al Panel</a>
+      </div>
+    </div>
+
+    <div class="filters">
+      <select id="filterLinea">
+        <option value="">Todas las líneas</option>
+      </select>
+      <select id="filterMarca">
+        <option value="">Todas las marcas</option>
+      </select>
+      <input type="text" id="searchProducto" placeholder="Buscar producto...">
+    </div>
+
+    <div style="overflow-x: auto;">
+      <table>
+        <thead>
+          <tr>
+            <th>Código</th>
+            <th>Producto</th>
+            <th>Marca</th>
+            <th>Línea</th>
+            <th>Costo Consolidado (Caja)</th>
+            <th>Precio Venta (Caja)</th>
+            <th>Margen $</th>
+            <th>Margen %</th>
+          </tr>
+        </thead>
+        <tbody id="margenesTable">
+          <tr><td colspan="8" style="text-align: center; padding: 40px;">Cargando...</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+  import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+  import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyDVGalSna9z6lJGhNvycVyJF5TTd_LnRBc",
+    authDomain: "grupo-sibru-catalogo.firebaseapp.com",
+    projectId: "grupo-sibru-catalogo",
+    storageBucket: "grupo-sibru-catalogo.firebasestorage.app",
+    messagingSenderId: "1070838112131",
+    appId: "1:1070838112131:web:21db3ff96c889ba10160b6",
+    measurementId: "G-LWECZJK2S7"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const db = getFirestore(app);
+  const auth = getAuth(app);
+
+  const ADMIN_EMAILS = ["mediossibru@gmail.com"];
+
+  onAuthStateChanged(auth, async (user) => {
+    if (!user) {
+      window.location.href = "login.html";
+      return;
+    }
+    if (!ADMIN_EMAILS.includes(user.email.toLowerCase())) {
+      alert('Acceso denegado. Solo administradores.');
+      window.location.href = "login.html";
+    }
+    await cargarReporte();
+  });
+
+  async function cargarReporte() {
+    try {
+      const snapshot = await getDocs(collection(db, 'productos'));
+      const productos = [];
+      const lineas = new Set();
+      const marcas = new Set();
+
+      snapshot.forEach(doc => {
+        const data = doc.data();
+        if (data.activo !== false) {
+          const costoConsolidado = data.costos?.consolidado?.caja || 0;
+          const precioVenta = data.precios?.base || 0;
+          const margenDinero = precioVenta - costoConsolidado;
+          const margenPorcentaje = costoConsolidado > 0 ? (margenDinero / costoConsolidado) * 100 : 0;
+
+          productos.push({
+            codigo: data.codigo || doc.id,
+            nombre: data.nombre,
+            marca: data.marca,
+            linea: data.linea,
+            costoConsolidado,
+            precioVenta,
+            margenDinero,
+            margenPorcentaje
+          });
+
+          if (data.linea) lineas.add(data.linea);
+          if (data.marca) marcas.add(data.marca);
+        }
+      });
+
+      // Llenar filtros
+      const filterLinea = document.getElementById('filterLinea');
+      lineas.forEach(linea => {
+        filterLinea.innerHTML += `<option value="${linea}">${linea}</option>`;
+      });
+
+      const filterMarca = document.getElementById('filterMarca');
+      marcas.forEach(marca => {
+        filterMarca.innerHTML += `<option value="${marca}">${marca}</option>`;
+      });
+
+      // Calcular estadísticas
+      const margenPromedio = productos.reduce((sum, p) => sum + p.margenPorcentaje, 0) / productos.length;
+      const margenMaximo = Math.max(...productos.map(p => p.margenPorcentaje));
+      const margenMinimo = Math.min(...productos.map(p => p.margenPorcentaje));
+
+      document.getElementById('totalProductos').textContent = productos.length;
+      document.getElementById('margenPromedio').textContent = margenPromedio.toFixed(1) + '%';
+      document.getElementById('margenMaximo').textContent = margenMaximo.toFixed(1) + '%';
+      document.getElementById('margenMinimo').textContent = margenMinimo.toFixed(1) + '%';
+
+      renderTabla(productos);
+    } catch (error) {
+      console.error('Error cargando reporte:', error);
+    }
+  }
+
+  function renderTabla(productos) {
+    const tbody = document.getElementById('margenesTable');
+    
+    if (productos.length === 0) {
+      tbody.innerHTML = '<tr><td colspan="8" style="text-align: center; padding: 40px;">No hay productos</td></tr>';
+      return;
+    }
+
+    tbody.innerHTML = productos.map(p => {
+      let claseMargen = 'margen-medio';
+      if (p.margenPorcentaje >= 15) claseMargen = 'margen-alto';
+      else if (p.margenPorcentaje < 5) claseMargen = 'margen-bajo';
+
+      return `
+        <tr>
+          <td><strong>${p.codigo}</strong></td>
+          <td>${p.nombre}</td>
+          <td>${p.marca}</td>
+          <td>${p.linea}</td>
+          <td>$${p.costoConsolidado.toFixed(2)}</td>
+          <td>$${p.precioVenta.toFixed(2)}</td>
+          <td>$${p.margenDinero.toFixed(2)}</td>
+          <td class="${claseMargen}">${p.margenPorcentaje.toFixed(1)}%</td>
+        </tr>
+      `;
+    }).join('');
+  }
+
+  // Filtros
+  document.getElementById('filterLinea').addEventListener('change', aplicarFiltros);
+  document.getElementById('filterMarca').addEventListener('change', aplicarFiltros);
+  document.getElementById('searchProducto').addEventListener('input', aplicarFiltros);
+
+  async function aplicarFiltros() {
+    const linea = document.getElementById('filterLinea').value;
+    const marca = document.getElementById('filterMarca').value;
+    const search = document.getElementById('searchProducto').value.toLowerCase();
+
+    const snapshot = await getDocs(collection(db, 'productos'));
+    const productos = [];
+
+    snapshot.forEach(doc => {
+      const data = doc.data();
+      if (data.activo !== false) {
+        const matchLinea = !linea || data.linea === linea;
+        const matchMarca = !marca || data.marca === marca;
+        const matchSearch = !search || data.nombre.toLowerCase().includes(search) || data.codigo.toLowerCase().includes(search);
+
+        if (matchLinea && matchMarca && matchSearch) {
+          const costoConsolidado = data.costos?.consolidado?.caja || 0;
+          const precioVenta = data.precios?.base || 0;
+          const margenDinero = precioVenta - costoConsolidado;
+          const margenPorcentaje = costoConsolidado > 0 ? (margenDinero / costoConsolidado) * 100 : 0;
+
+          productos.push({
+            codigo: data.codigo || doc.id,
+            nombre: data.nombre,
+            marca: data.marca,
+            linea: data.linea,
+            costoConsolidado,
+            precioVenta,
+            margenDinero,
+            margenPorcentaje
+          });
+        }
+      }
+    });
+
+    renderTabla(productos);
+  }
+</script>
+</body>
+</html>
