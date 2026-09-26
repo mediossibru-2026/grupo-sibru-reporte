@@ -4,18 +4,16 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Migrar Productos a Firebase | GRUPO SIBRÜ</title>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
   body {
-    font-family: 'Open Sans', sans-serif;
+    font-family: 'Segoe UI', Arial, sans-serif;
     background: linear-gradient(135deg, #1B5E20 0%, #264653 100%);
     min-height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
     padding: 20px;
-    color: #2C2C2C;
   }
   .container {
     background: white;
@@ -24,20 +22,9 @@
     max-width: 700px;
     width: 100%;
     box-shadow: 0 20px 60px rgba(0,0,0,0.3);
-    border-top: 6px solid #1B5E20;
-    border-bottom: 6px solid #F4A261;
   }
-  h1 {
-    font-family: 'Montserrat', sans-serif;
-    color: #1B5E20;
-    font-size: 1.8em;
-    margin-bottom: 10px;
-  }
-  .subtitle {
-    color: #E76F51;
-    font-weight: 600;
-    margin-bottom: 25px;
-  }
+  h1 { color: #1B5E20; font-size: 1.8em; margin-bottom: 10px; }
+  .subtitle { color: #E76F51; font-weight: 600; margin-bottom: 25px; }
   .status {
     padding: 15px;
     border-radius: 10px;
@@ -53,26 +40,16 @@
     padding: 14px 30px;
     border: none;
     border-radius: 10px;
-    font-family: 'Montserrat', sans-serif;
     font-weight: 700;
     font-size: 1em;
     cursor: pointer;
-    transition: all 0.3s;
     margin-right: 10px;
     text-transform: uppercase;
   }
-  .btn-primary {
-    background: linear-gradient(135deg, #1B5E20, #2E7D32);
-    color: white;
-    box-shadow: 0 4px 15px rgba(27, 94, 32, 0.3);
-  }
-  .btn-primary:hover { transform: translateY(-2px); }
+  .btn-primary { background: #1B5E20; color: white; }
+  .btn-primary:hover { background: #2E7D32; }
   .btn-primary:disabled { opacity: 0.5; cursor: not-allowed; }
-  .btn-secondary {
-    background: white;
-    color: #264653;
-    border: 2px solid #264653;
-  }
+  .btn-secondary { background: white; color: #264653; border: 2px solid #264653; }
   .btn-secondary:hover { background: #264653; color: white; }
   .product-list {
     background: #f8f9fa;
@@ -92,7 +69,6 @@
   .product-item:last-child { border-bottom: none; }
   .product-item.migrated { background: #E8F5E9; }
   .product-item.exists { background: #FFF3E0; }
-  .product-item.error { background: #FFEBEE; }
   .badge {
     padding: 3px 10px;
     border-radius: 12px;
@@ -102,7 +78,6 @@
   .badge.pending { background: #ECEFF1; color: #607D8B; }
   .badge.success { background: #1B5E20; color: white; }
   .badge.exists { background: #F4A261; color: white; }
-  .badge.error { background: #D32F2F; color: white; }
   .warning-box {
     background: #FFF3E0;
     border-left: 4px solid #F4A261;
@@ -111,7 +86,6 @@
     margin-bottom: 20px;
     font-size: 0.9em;
   }
-  .warning-box strong { color: #E76F51; }
 </style>
 </head>
 <body>
@@ -153,7 +127,6 @@
   const app = initializeApp(firebaseConfig);
   const db = getFirestore(app);
 
-  // Los 10 productos actuales del catálogo
   const productosAMigrar = [
     {
       codigo: '1950', nombre: 'Tender Empanizado', linea: 'Pollo', marca: 'BACHOCO',
