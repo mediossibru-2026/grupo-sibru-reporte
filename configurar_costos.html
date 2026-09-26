@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Configurar Costos de Congeladora | GRUPO SIBRÜ</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background: linear-gradient(135deg, #1B5E20 0%, #264653 100%);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+  }
+  .container {
+    background: white;
+    border-radius: 20px;
+    padding: 40px;
+    max-width: 600px;
+    width: 100%;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+  }
+  h1 { color: #1B5E20; font-size: 1.8em; margin-bottom: 10px; }
+  .subtitle { color: #E76F51; font-weight: 600; margin-bottom: 25px; }
+  .form-group { margin-bottom: 20px; }
+  .form-group label {
+    display: block;
+    font-weight: 700;
+    margin-bottom: 8px;
+    color: #264653;
+  }
+  .form-group input {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    font-size: 16px;
+  }
+  .form-group input:focus {
+    outline: none;
+    border-color: #1B5E20;
+  }
+  .btn {
+    padding: 14px 30px;
+    border: none;
+    border-radius: 10px;
+    font-weight: 700;
+    font-size: 1em;
+    cursor: pointer;
+    margin-right: 10px;
+    text-transform: uppercase;
+  }
+  .btn-primary { background: #1B5E20; color: white; }
+  .btn-primary:hover { background: #2E7D32; }
+  .btn-secondary { background: white; color: #264653; border: 2px solid #264653; }
+  .status {
+    padding: 15px;
+    border-radius: 10px;
+    margin-bottom: 15px;
+    font-weight: 600;
+    display: none;
+  }
+  .status.show { display: block; }
+  .status.success { background: #E8F5E9; color: #1B5E20; border-left: 4px solid #1B5E20; }
+  .status.error { background: #FFEBEE; color: #D32F2F; border-left: 4px solid #D32F2F; }
+  .info-box {
+    background: #E3F2FD;
+    border-left: 4px solid #2196F3;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    font-size: 0.9em;
+  }
+  .formula {
+    background: #f5f5f5;
+    padding: 15px;
+    border-radius: 8px;
+    margin-top: 15px;
+    font-family: monospace;
+    font-size: 0.9em;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+  <h1>Configurar Costos de Congeladora</h1>
+  <div class="subtitle">GRUPO SIBRÜ - Parámetros Globales</div>
+
+  <div class="info-box">
+    <strong>Fórmula de cálculo:</strong><br>
+    Costo Congeladora = (Peso en kg × Almacenaje por kg) + Maniobra Entrada + Maniobra Salida
+  </div>
+
+  <div id="status" class="status"></div>
+
+  <form id="configForm">
+    <div class="form-group">
+      <label>Costo de Almacenaje por Kg (mensual)</label>
+      <input type="number" id="almacenaje" step="0.01" value="3.25" required>
+      <small style="color: #666;">Actual: $3.25 por kg por mes</small>
+    </div>
+
+    <div class="form-group">
+      <label>Maniobra de Entrada</label>
+      <input type="number" id="maniobraEntrada" step="0.01" value="0.32" required>
+      <small style="color: #666;">Actual: $0.32 por producto</small>
+    </div>
+
+    <div class="form-group">
+      <label>Maniobra de Salida</label>
+      <input type="number" id="maniobraSalida" step="0.01" value="0.32" required>
+      <small style="color: #666;">Actual: $0.32 por producto</small>
+    </div>
+
+    <div class="form-group">
+      <label>Meses de Almacenaje</label>
+      <input type="number" id="meses" step="1" value="3" required>
+      <small style="color: #666;">Período de almacenaje considerado</small>
+    </div>
+
+    <div class="formula">
+      <strong>Ejemplo de cálculo:</strong><br>
+      Producto de 12 kg:<br>
+      (12 kg × $3.25 × 3 meses) + $0.32 + $0.32 = <strong>$117.64</strong>
+    </div>
+
+    <div style="margin-top: 25px; text-align: center;">
+      <button type="submit" class="btn btn-primary">Guardar Configuración</button>
+      <button type="button" class="btn btn-secondary" onclick="window.location.href='admin.html'">Ir al Panel Admin</button>
+    </div>
+  </form>
+</div>
+
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+  import { getFirestore, doc, setDoc, getDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+  import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyDVGalSna9z6lJGhNvycVyJF5TTd_LnRBc",
+    authDomain: "grupo-sibru-catalogo.firebaseapp.com",
+    projectId: "grupo-sibru-catalogo",
+    storageBucket: "grupo-sibru-catalogo.firebasestorage.app",
+    messagingSenderId: "1070838112131",
+    appId: "1:1070838112131:web:21db3ff96c889ba10160b6",
+    measurementId: "G-LWECZJK2S7"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const db = getFirestore(app);
+  const auth = getAuth(app);
+
+  const ADMIN_EMAILS = ["mediossibru@gmail.com"];
+
+  onAuthStateChanged(auth, (user) => {
+    if (!user) {
+      window.location.href = "login.html";
+      return;
+    }
+    if (!ADMIN_EMAILS.includes(user.email.toLowerCase())) {
+      alert('Acceso denegado. Solo administradores.');
+      window.location.href = "login.html";
+    }
+  });
+
+  document.getElementById('configForm').addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    const almacenaje = parseFloat(document.getElementById('almacenaje').value);
+    const maniobraEntrada = parseFloat(document.getElementById('maniobraEntrada').value);
+    const maniobraSalida = parseFloat(document.getElementById('maniobraSalida').value);
+    const meses = parseInt(document.getElementById('meses').value);
+
+    try {
+      await setDoc(doc(db, 'configuracion', 'costos_congeladora'), {
+        almacenajePorKg: almacenaje,
+        maniobraEntrada: maniobraEntrada,
+        maniobraSalida: maniobraSalida,
+        mesesAlmacenaje: meses,
+        actualizado: serverTimestamp(),
+        actualizadoPor: auth.currentUser.email
+      });
+
+      const status = document.getElementById('status');
+      status.textContent = 'Configuración guardada exitosamente';
+      status.className = 'status show success';
+
+      setTimeout(() => {
+        window.location.href = 'admin.html';
+      }, 2000);
+    } catch (error) {
+      const status = document.getElementById('status');
+      status.textContent = 'Error: ' + error.message;
+      status.className = 'status show error';
+    }
+  });
+</script>
+</body>
+</html>
