@@ -1369,6 +1369,7 @@
       </div>
       <p style="color: #666; margin-bottom: 20px;">
         Estos parámetros se usan para calcular automáticamente el costo de congeladora de los productos.
+        <strong>Cada campo es independiente:</strong> puedes llenar solo uno, dos o los tres.
       </p>
 
       <div class="form-section">
@@ -1376,27 +1377,31 @@
         <div class="form-grid">
           <div class="form-group">
             <label>Almacenaje por Kg (mensual)</label>
-            <input type="number" id="cfgAlmacenaje" step="0.01" value="3.25">
+            <input type="number" id="cfgAlmacenaje" step="0.01" min="0" placeholder="0.00">
+            <small style="color: #888;">Opcional - Si está vacío, se usa $0</small>
           </div>
           <div class="form-group">
             <label>Maniobra de Entrada</label>
-            <input type="number" id="cfgManiobraEntrada" step="0.01" value="0.32">
+            <input type="number" id="cfgManiobraEntrada" step="0.01" min="0" placeholder="0.00">
+            <small style="color: #888;">Opcional - Si está vacío, se usa $0</small>
           </div>
           <div class="form-group">
             <label>Maniobra de Salida</label>
-            <input type="number" id="cfgManiobraSalida" step="0.01" value="0.32">
+            <input type="number" id="cfgManiobraSalida" step="0.01" min="0" placeholder="0.00">
+            <small style="color: #888;">Opcional - Si está vacío, se usa $0</small>
           </div>
           <div class="form-group">
             <label>Meses de Almacenaje</label>
-            <input type="number" id="cfgMeses" step="1" value="3">
+            <input type="number" id="cfgMeses" step="1" min="0" placeholder="0">
+            <small style="color: #888;">Opcional - Si está vacío, se usa 1 mes</small>
           </div>
         </div>
 
         <div class="formula-box">
           <strong>Fórmula actual:</strong><br>
-          Costo Congeladora = (Peso kg × <span id="formulaAlm">3.25</span> × <span id="formulaMes">3</span>) + <span id="formulaEnt">0.32</span> + <span id="formulaSal">0.32</span>
+          Costo Congeladora = (Peso kg × <span id="formulaAlm">0.00</span> × <span id="formulaMes">1</span>) + <span id="formulaEnt">0.00</span> + <span id="formulaSal">0.00</span>
           <br><br>
-          <strong>Ejemplo para 12 kg:</strong> (12 × 3.25 × 3) + 0.32 + 0.32 = <strong id="formulaEjemplo">$117.64</strong>
+          <strong>Ejemplo para 12 kg:</strong> (12 × <span id="formulaAlm2">0.00</span> × <span id="formulaMes2">1</span>) + <span id="formulaEnt2">0.00</span> + <span id="formulaSal2">0.00</span> = <strong id="formulaEjemplo">$0.00</strong>
         </div>
 
         <div class="form-actions">
@@ -1495,7 +1500,7 @@
   let refreshInterval = null;
   let modalAbierto = false;
 
-  // Configuración de congeladora
+  // Configuración de congeladora con valores por defecto
   let configCongeladora = {
     almacenajePorKg: 3.25,
     maniobraEntrada: 0.32,
@@ -1548,6 +1553,7 @@
 
     configurarPermisosUI();
 
+    // Cargar configuración de congeladora PRIMERO
     await cargarConfigCongeladora();
 
     await Promise.all([
@@ -1592,12 +1598,10 @@
     if (tabGestion) tabGestion.style.display = tienePermiso('cambiar_estatus_pedido') ? '' : 'none';
     if (tabConfig) tabConfig.style.display = tienePermiso('configurar_sistema') ? '' : 'none';
     
-    // Mostrar sección de costos solo para admin/almacen
     if (seccionCostos) {
       seccionCostos.style.display = tienePermiso('ver_costos') ? 'block' : 'none';
     }
 
-    // Mostrar botón "Aplicar a Todos" solo para admin/almacen
     if (btnAplicarTodos) {
       btnAplicarTodos.style.display = tienePermiso('aplicar_todos') ? 'inline-block' : 'none';
     }
@@ -1627,16 +1631,28 @@
     try {
       const docSnap = await getDoc(doc(db, 'configuracion', 'costos_congeladora'));
       if (docSnap.exists()) {
-        configCongeladora = docSnap.data();
+        const data = docSnap.data();
+        // Usar valores guardados o defaults si no existen
+        configCongeladora = {
+          almacenajePorKg: data.almacenajePorKg !== undefined ? data.almacenajePorKg : 3.25,
+          maniobraEntrada: data.maniobraEntrada !== undefined ? data.maniobraEntrada : 0.32,
+          maniobraSalida: data.maniobraSalida !== undefined ? data.maniobraSalida : 0.32,
+          mesesAlmacenaje: data.mesesAlmacenaje !== undefined ? data.mesesAlmacenaje : 3
+        };
       }
+      // Actualizar UI con los valores cargados
       actualizarFormulaDetalle();
     } catch (error) {
       console.error('Error cargando config congeladora:', error);
+      // Usar defaults si hay error
+      actualizarFormulaDetalle();
     }
   }
 
   function actualizarFormulaDetalle() {
     const { almacenajePorKg, maniobraEntrada, maniobraSalida, mesesAlmacenaje } = configCongeladora;
+    
+    // Actualizar fórmula en formulario de producto
     const detalle = document.getElementById('formulaDetalle');
     if (detalle) {
       const totalAlm = (almacenajePorKg * mesesAlmacenaje).toFixed(2);
@@ -1649,11 +1665,20 @@
     const fm = document.getElementById('formulaMes');
     const fe = document.getElementById('formulaEnt');
     const fs = document.getElementById('formulaSal');
+    const fa2 = document.getElementById('formulaAlm2');
+    const fm2 = document.getElementById('formulaMes2');
+    const fe2 = document.getElementById('formulaEnt2');
+    const fs2 = document.getElementById('formulaSal2');
     const fej = document.getElementById('formulaEjemplo');
-    if (fa) fa.textContent = almacenajePorKg;
+    
+    if (fa) fa.textContent = almacenajePorKg.toFixed(2);
     if (fm) fm.textContent = mesesAlmacenaje;
-    if (fe) fe.textContent = maniobraEntrada;
-    if (fs) fs.textContent = maniobraSalida;
+    if (fe) fe.textContent = maniobraEntrada.toFixed(2);
+    if (fs) fs.textContent = maniobraSalida.toFixed(2);
+    if (fa2) fa2.textContent = almacenajePorKg.toFixed(2);
+    if (fm2) fm2.textContent = mesesAlmacenaje;
+    if (fe2) fe2.textContent = maniobraEntrada.toFixed(2);
+    if (fs2) fs2.textContent = maniobraSalida.toFixed(2);
     if (fej) {
       const ejemplo = (12 * almacenajePorKg * mesesAlmacenaje + maniobraEntrada + maniobraSalida).toFixed(2);
       fej.textContent = `$${ejemplo}`;
@@ -1665,6 +1690,7 @@
     document.getElementById('cfgManiobraEntrada').value = configCongeladora.maniobraEntrada;
     document.getElementById('cfgManiobraSalida').value = configCongeladora.maniobraSalida;
     document.getElementById('cfgMeses').value = configCongeladora.mesesAlmacenaje;
+    actualizarFormulaDetalle();
   }
 
   window.guardarConfiguracion = async function() {
@@ -1673,11 +1699,17 @@
       return;
     }
 
+    // Obtener valores, usar 0 si están vacíos
+    const almacenaje = parseFloat(document.getElementById('cfgAlmacenaje').value) || 0;
+    const maniobraEntrada = parseFloat(document.getElementById('cfgManiobraEntrada').value) || 0;
+    const maniobraSalida = parseFloat(document.getElementById('cfgManiobraSalida').value) || 0;
+    const meses = parseInt(document.getElementById('cfgMeses').value) || 1;
+
     const nuevaConfig = {
-      almacenajePorKg: parseFloat(document.getElementById('cfgAlmacenaje').value),
-      maniobraEntrada: parseFloat(document.getElementById('cfgManiobraEntrada').value),
-      maniobraSalida: parseFloat(document.getElementById('cfgManiobraSalida').value),
-      mesesAlmacenaje: parseInt(document.getElementById('cfgMeses').value),
+      almacenajePorKg: almacenaje,
+      maniobraEntrada: maniobraEntrada,
+      maniobraSalida: maniobraSalida,
+      mesesAlmacenaje: meses,
       actualizado: serverTimestamp(),
       actualizadoPor: currentUser.email
     };
@@ -1686,7 +1718,7 @@
       await setDoc(doc(db, 'configuracion', 'costos_congeladora'), nuevaConfig);
       configCongeladora = nuevaConfig;
       actualizarFormulaDetalle();
-      await registrarBitacora('editar', `Configuración de congeladora actualizada: almacenaje=$${nuevaConfig.almacenajePorKg}/kg/mes, meses=${nuevaConfig.mesesAlmacenaje}`);
+      await registrarBitacora('editar', `Configuración de congeladora actualizada: almacenaje=$${almacenaje}/kg/mes, meses=${meses}`);
       showToast('Configuración guardada exitosamente');
     } catch (error) {
       showToast('Error: ' + error.message, 'error');
@@ -1728,6 +1760,7 @@
     if (aplicarCongeladora) {
       const { almacenajePorKg, maniobraEntrada, maniobraSalida, mesesAlmacenaje } = configCongeladora;
       
+      // Cada campo es independiente - si es 0, no se suma
       costoCongCaja = (pesoCaja * almacenajePorKg * mesesAlmacenaje) + maniobraEntrada + maniobraSalida;
       costoCongBolsa = (pesoBolsa * almacenajePorKg * mesesAlmacenaje) + maniobraEntrada + maniobraSalida;
       costoCongKilo = (1 * almacenajePorKg * mesesAlmacenaje) + maniobraEntrada + maniobraSalida;
@@ -1780,14 +1813,12 @@
     input.classList.remove('costo-input-calculado');
     input.classList.add('costo-input-manual');
     
-    // Mostrar alerta
     const alertaId = 'alerta' + campoId.charAt(0).toUpperCase() + campoId.slice(1);
     const alerta = document.getElementById(alertaId);
     if (alerta) alerta.classList.add('show');
   };
 
   window.recalcularCongeladora = function() {
-    // Resetear marcadores manuales
     Object.keys(camposManuales).forEach(key => {
       camposManuales[key] = false;
       const input = document.getElementById(key);
@@ -2066,7 +2097,6 @@
       actualizadoPor: currentUser.email
     };
 
-    // Agregar costos si tiene permisos
     if (tienePermiso('ver_costos')) {
       producto.pesos = {
         caja: parseFloat(document.getElementById('pesoCaja').value) || 0,
@@ -2096,10 +2126,8 @@
 
     try {
       const idExistente = document.getElementById('prodId').value;
-      const esNuevo = !idExistente;
       
       if (idExistente) {
-        // Guardar historial de cambios de costos si hay cambios
         if (tienePermiso('ver_costos')) {
           const prodAnterior = productosCache.find(p => p.id === idExistente);
           if (prodAnterior && JSON.stringify(prodAnterior.costos) !== JSON.stringify(producto.costos)) {
@@ -2177,7 +2205,6 @@
     document.getElementById('prodUbicacion').value = p.inventario?.ubicacion || '';
     document.getElementById('prodActivo').value = String(p.activo !== false);
 
-    // Cargar costos si tiene permisos
     if (tienePermiso('ver_costos')) {
       document.getElementById('pesoCaja').value = p.pesos?.caja || 0;
       document.getElementById('pesoBolsa').value = p.pesos?.bolsa || 0;
@@ -2226,7 +2253,6 @@
     document.getElementById('formTitle').textContent = 'Alta de Nuevo Producto';
     document.getElementById('btnGuardarProducto').textContent = 'Guardar Producto';
     
-    // Resetear costos
     if (tienePermiso('ver_costos')) {
       document.getElementById('pesoCaja').value = 0;
       document.getElementById('pesoBolsa').value = 0;
@@ -2241,7 +2267,6 @@
       document.getElementById('costoConsolidadoBolsa').value = 0;
       document.getElementById('costoConsolidadoKilo').value = 0;
       
-      // Resetear marcadores manuales
       Object.keys(camposManuales).forEach(key => {
         camposManuales[key] = false;
         const input = document.getElementById(key);
