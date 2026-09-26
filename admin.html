@@ -56,6 +56,21 @@
     font-weight: 800;
   }
 
+  .header-right {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    flex-wrap: wrap;
+  }
+
+  .last-update {
+    font-size: 0.75em;
+    opacity: 0.8;
+    background: rgba(255,255,255,0.1);
+    padding: 4px 10px;
+    border-radius: 12px;
+  }
+
   .user-info {
     display: flex;
     align-items: center;
@@ -177,9 +192,7 @@
     font-weight: 700;
   }
 
-  .badge-count.hidden {
-    display: none;
-  }
+  .badge-count.hidden { display: none; }
 
   .container {
     max-width: 1400px;
@@ -270,9 +283,7 @@
     letter-spacing: 0.5px;
   }
 
-  .form-group {
-    margin-bottom: 15px;
-  }
+  .form-group { margin-bottom: 15px; }
 
   .form-group label {
     display: block;
@@ -285,9 +296,7 @@
     letter-spacing: 0.5px;
   }
 
-  .form-group label .required {
-    color: var(--red);
-  }
+  .form-group label .required { color: var(--red); }
 
   .form-group input,
   .form-group select,
@@ -310,10 +319,7 @@
     box-shadow: 0 0 0 3px rgba(27, 94, 32, 0.1);
   }
 
-  .form-group textarea {
-    resize: vertical;
-    min-height: 80px;
-  }
+  .form-group textarea { resize: vertical; min-height: 80px; }
 
   .form-row {
     display: grid;
@@ -364,10 +370,21 @@
     color: var(--white);
   }
 
-  .btn:disabled {
-    opacity: 0.5;
-    cursor: not-allowed;
+  .btn-warning {
+    background: var(--warning);
+    color: white;
   }
+
+  .btn-warning:hover { background: #F57C00; }
+
+  .btn-info {
+    background: var(--info);
+    color: white;
+  }
+
+  .btn-info:hover { background: #1976D2; }
+
+  .btn:disabled { opacity: 0.5; cursor: not-allowed; }
 
   .table-filters {
     display: flex;
@@ -391,9 +408,7 @@
     border-color: var(--green-dark);
   }
 
-  .table-container {
-    overflow-x: auto;
-  }
+  .table-container { overflow-x: auto; }
 
   table {
     width: 100%;
@@ -485,7 +500,7 @@
     padding: 15px 25px;
     border-radius: 10px;
     box-shadow: 0 5px 20px rgba(0,0,0,0.2);
-    z-index: 2000;
+    z-index: 3000;
     font-weight: 600;
     display: none;
     animation: slideIn 0.3s ease;
@@ -500,11 +515,7 @@
     to { transform: translateX(0); opacity: 1; }
   }
 
-  .loading {
-    text-align: center;
-    padding: 40px;
-    color: #888;
-  }
+  .loading { text-align: center; padding: 40px; color: #888; }
 
   .empty-state {
     text-align: center;
@@ -535,13 +546,15 @@
   .modal {
     background: var(--white);
     border-radius: 15px;
-    max-width: 700px;
+    max-width: 900px;
     width: 100%;
     max-height: 90vh;
     overflow-y: auto;
     padding: 30px;
     animation: fadeIn 0.3s ease;
   }
+
+  .modal.small { max-width: 500px; }
 
   .modal h3 {
     font-family: 'Montserrat', sans-serif;
@@ -558,6 +571,89 @@
     color: #888;
   }
 
+  /* Tabla editable de pedido */
+  .pedido-edit-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 15px 0;
+  }
+
+  .pedido-edit-table th {
+    background: var(--blue-dark);
+    color: white;
+    padding: 10px;
+    font-size: 0.8em;
+  }
+
+  .pedido-edit-table td {
+    padding: 8px;
+    border-bottom: 1px solid var(--gray-light);
+  }
+
+  .pedido-edit-table input {
+    width: 80px;
+    padding: 6px 8px;
+    border: 1px solid var(--gray-light);
+    border-radius: 4px;
+    font-size: 0.9em;
+  }
+
+  .pedido-edit-table input:focus {
+    outline: none;
+    border-color: var(--green-dark);
+  }
+
+  .pedido-edit-table .total-cell {
+    font-weight: 700;
+    color: var(--green-dark);
+    text-align: right;
+  }
+
+  .pedido-edit-total {
+    background: var(--gray-bg);
+    padding: 15px;
+    border-radius: 10px;
+    margin-top: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1.2em;
+    font-weight: 800;
+    color: var(--green-dark);
+  }
+
+  .add-product-row {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 15px;
+    padding: 15px;
+    background: #E8F5E9;
+    border-radius: 10px;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+
+  .add-product-row select {
+    flex: 1;
+    min-width: 200px;
+    padding: 8px;
+    border: 2px solid var(--green-dark);
+    border-radius: 6px;
+    font-size: 0.9em;
+  }
+
+  .pedido-info-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 0;
+    border-bottom: 1px solid var(--gray-light);
+  }
+
+  .pedido-info-row:last-child { border-bottom: none; }
+
+  .pedido-info-label { font-weight: 600; color: #666; }
+  .pedido-info-value { font-weight: 700; color: var(--text); }
+
   .pedido-item {
     background: var(--gray-bg);
     padding: 12px 15px;
@@ -573,35 +669,34 @@
     margin-bottom: 8px;
   }
 
-  .pedido-item-nombre {
+  .pedido-item-nombre { font-weight: 700; color: var(--blue-dark); }
+  .pedido-item-cantidad { font-size: 0.9em; color: var(--green-dark); font-weight: 600; }
+
+  .entrega-info {
+    background: #E3F2FD;
+    padding: 12px 15px;
+    border-radius: 8px;
+    margin-top: 15px;
+    border-left: 4px solid var(--info);
+  }
+
+  .entrega-info strong { color: var(--info); }
+
+  .bitacora-accion {
+    display: inline-block;
+    padding: 3px 8px;
+    border-radius: 4px;
+    font-size: 0.75em;
     font-weight: 700;
-    color: var(--blue-dark);
+    text-transform: uppercase;
   }
 
-  .pedido-item-cantidad {
-    font-size: 0.9em;
-    color: var(--green-dark);
-    font-weight: 600;
-  }
-
-  .pedido-info-row {
-    display: flex;
-    justify-content: space-between;
-    padding: 8px 0;
-    border-bottom: 1px solid var(--gray-light);
-  }
-
-  .pedido-info-row:last-child { border-bottom: none; }
-
-  .pedido-info-label {
-    font-weight: 600;
-    color: #666;
-  }
-
-  .pedido-info-value {
-    font-weight: 700;
-    color: var(--text);
-  }
+  .bitacora-accion.crear { background: #E8F5E9; color: var(--success); }
+  .bitacora-accion.editar { background: #E3F2FD; color: var(--info); }
+  .bitacora-accion.eliminar { background: #FFEBEE; color: var(--red); }
+  .bitacora-accion.ver { background: #F5F5F5; color: var(--gray); }
+  .bitacora-accion.estatus { background: #FFF3E0; color: var(--warning); }
+  .bitacora-accion.aprobar { background: #E8F5E9; color: var(--success); }
 
   @media (max-width: 768px) {
     .header-content { flex-direction: column; text-align: center; }
@@ -618,13 +713,16 @@
 <div class="header">
   <div class="header-content">
     <h1>Panel de Administración - GRUPO SIBRÜ</h1>
-    <div class="user-info">
-      <div class="user-badge">
-        <span class="user-email" id="userEmail">Cargando...</span>
-        <span class="user-role-tag" id="userRole">-</span>
+    <div class="header-right">
+      <span class="last-update" id="lastUpdate">Última actualización: --:--</span>
+      <div class="user-info">
+        <div class="user-badge">
+          <span class="user-email" id="userEmail">Cargando...</span>
+          <span class="user-role-tag" id="userRole">-</span>
+        </div>
+        <a href="catalogo_con_login.html" class="btn-catalog">Ir al Catálogo</a>
+        <button class="btn-logout" onclick="logout()">Cerrar Sesión</button>
       </div>
-      <a href="catalogo_con_login.html" class="btn-catalog">Ir al Catálogo</a>
-      <button class="btn-logout" onclick="logout()">Cerrar Sesión</button>
     </div>
   </div>
 </div>
@@ -637,6 +735,7 @@
     <button class="nav-tab" data-tab="clientes">Clientes <span class="badge-count hidden" id="countPendientes">0</span></button>
     <button class="nav-tab" data-tab="pedidos">Pedidos <span class="badge-count hidden" id="countPedidosNuevos">0</span></button>
     <button class="nav-tab" data-tab="gestion-pedidos" id="tabGestionPedidos" style="display:none;">Gestión Pedidos</button>
+    <button class="nav-tab" data-tab="bitacora">Bitácora</button>
   </div>
 </div>
 
@@ -671,14 +770,9 @@
         Desde este panel puedes gestionar productos, clientes y pedidos. 
         Usa las pestañas superiores para navegar entre las diferentes secciones.
       </p>
-      <div style="margin-top: 20px; padding: 15px; background: #FFF3E0; border-radius: 10px; border-left: 4px solid var(--orange);">
-        <strong>Estado del sistema:</strong>
-        <ul style="margin-top: 10px; margin-left: 20px; color: #666;">
-          <li>Autenticación activa</li>
-          <li>Base de datos conectada</li>
-          <li>Módulo de productos: En desarrollo</li>
-          <li>Módulo de inventario: Pendiente</li>
-        </ul>
+      <div style="margin-top: 20px; padding: 15px; background: #E3F2FD; border-radius: 10px; border-left: 4px solid var(--info);">
+        <strong>Auto-refresh:</strong> Los pedidos se actualizan automáticamente cada 5 minutos.
+        <br><small>Última actualización: <span id="lastUpdateDash">--:--</span></small>
       </div>
     </div>
   </div>
@@ -936,12 +1030,13 @@
               <th>Cliente</th>
               <th>Productos</th>
               <th>Status</th>
+              <th>Entrega</th>
               <th>Fecha</th>
               <th>Acciones</th>
             </tr>
           </thead>
           <tbody id="pedidosTable">
-            <tr><td colspan="6" class="loading">Cargando...</td></tr>
+            <tr><td colspan="7" class="loading">Cargando...</td></tr>
           </tbody>
         </table>
       </div>
@@ -952,7 +1047,7 @@
   <div class="tab-content" id="gestion-pedidosTab">
     <div class="card">
       <div class="card-header">
-        <h2 class="card-title">Gestión de Estatus de Pedidos</h2>
+        <h2 class="card-title">Gestión de Pedidos</h2>
       </div>
       <div class="table-filters">
         <select id="filterStatusPedido">
@@ -972,13 +1067,53 @@
               <th>Folio</th>
               <th>Cliente</th>
               <th>Productos</th>
-              <th>Status Actual</th>
+              <th>Status</th>
+              <th>Entrega Programada</th>
               <th>Fecha</th>
               <th>Acciones</th>
             </tr>
           </thead>
           <tbody id="gestionPedidosTable">
-            <tr><td colspan="6" class="loading">Cargando...</td></tr>
+            <tr><td colspan="7" class="loading">Cargando...</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- BITÁCORA -->
+  <div class="tab-content" id="bitacoraTab">
+    <div class="card">
+      <div class="card-header">
+        <h2 class="card-title">Bitácora de Actividad</h2>
+        <div class="table-filters" style="margin: 0;">
+          <select id="filterBitacoraUsuario">
+            <option value="">Todos los usuarios</option>
+          </select>
+          <select id="filterBitacoraAccion">
+            <option value="">Todas las acciones</option>
+            <option value="crear">Crear</option>
+            <option value="editar">Editar</option>
+            <option value="eliminar">Eliminar</option>
+            <option value="ver">Ver</option>
+            <option value="estatus">Cambiar estatus</option>
+            <option value="aprobar">Aprobar</option>
+          </select>
+        </div>
+      </div>
+      <div class="table-container">
+        <table>
+          <thead>
+            <tr>
+              <th>Fecha/Hora</th>
+              <th>Usuario</th>
+              <th>Rol</th>
+              <th>Acción</th>
+              <th>Detalle</th>
+            </tr>
+          </thead>
+          <tbody id="bitacoraTable">
+            <tr><td colspan="5" class="loading">Cargando bitácora...</td></tr>
           </tbody>
         </table>
       </div>
@@ -993,6 +1128,47 @@
     <button class="modal-close" onclick="cerrarModalDetalle()">X</button>
     <h3>Detalle del Pedido</h3>
     <div id="modalDetalleContent"></div>
+  </div>
+</div>
+
+<!-- MODAL EDITAR PEDIDO -->
+<div class="modal-overlay" id="modalEditar">
+  <div class="modal">
+    <button class="modal-close" onclick="cerrarModalEditar()">X</button>
+    <h3>Editar Pedido</h3>
+    <div id="modalEditarContent"></div>
+  </div>
+</div>
+
+<!-- MODAL AGREGAR PRODUCTO -->
+<div class="modal-overlay" id="modalAgregarProd">
+  <div class="modal small">
+    <button class="modal-close" onclick="cerrarModalAgregarProd()">X</button>
+    <h3>Agregar Producto al Pedido</h3>
+    <div class="form-group">
+      <label>Seleccionar producto</label>
+      <select id="selectProductoAgregar">
+        <option value="">-- Selecciona un producto --</option>
+      </select>
+    </div>
+    <div class="form-row">
+      <div class="form-group">
+        <label>Cajas</label>
+        <input type="number" id="newProdCajas" min="0" value="0">
+      </div>
+      <div class="form-group">
+        <label>Tarimas</label>
+        <input type="number" id="newProdTarimas" min="0" value="0">
+      </div>
+    </div>
+    <div class="form-group">
+      <label>Precio unitario (MXN)</label>
+      <input type="number" id="newProdPrecio" step="0.01" min="0" value="0">
+    </div>
+    <div class="form-actions">
+      <button class="btn btn-secondary" onclick="cerrarModalAgregarProd()">Cancelar</button>
+      <button class="btn btn-primary" onclick="confirmarAgregarProducto()">Agregar</button>
+    </div>
   </div>
 </div>
 
@@ -1029,6 +1205,29 @@
   let currentRol = null;
   let productosCache = [];
   let pedidosCache = [];
+  let pedidoEditando = null;
+  let refreshInterval = null;
+  let modalAbierto = false;
+
+  // ====== AUTO-REFRESH CADA 5 MINUTOS ======
+  function iniciarAutoRefresh() {
+    if (refreshInterval) clearInterval(refreshInterval);
+    refreshInterval = setInterval(() => {
+      if (!modalAbierto) {
+        cargarPedidos();
+        actualizarUltimaActualizacion();
+      }
+    }, 5 * 60 * 1000); // 5 minutos
+  }
+
+  function actualizarUltimaActualizacion() {
+    const ahora = new Date();
+    const hora = ahora.toLocaleTimeString('es-MX', { hour: '2-digit', minute: '2-digit' });
+    const el1 = document.getElementById('lastUpdate');
+    const el2 = document.getElementById('lastUpdateDash');
+    if (el1) el1.textContent = `Última actualización: ${hora}`;
+    if (el2) el2.textContent = hora;
+  }
 
   onAuthStateChanged(auth, async (user) => {
     if (!user) {
@@ -1047,8 +1246,12 @@
     await Promise.all([
       cargarProductos(),
       cargarClientes(),
-      cargarPedidos()
+      cargarPedidos(),
+      cargarBitacora()
     ]);
+
+    iniciarAutoRefresh();
+    actualizarUltimaActualizacion();
   });
 
   function determinarRol(email) {
@@ -1062,9 +1265,9 @@
 
   function tienePermiso(accion) {
     const permisos = {
-      admin: ['ver_todo', 'editar_productos', 'agregar_productos', 'cambiar_precios', 'aprobar_clientes', 'cambiar_estatus_pedido', 'ver_reportes', 'eliminar_pedidos'],
-      almacen: ['ver_todo', 'editar_productos', 'agregar_productos', 'cambiar_precios', 'ver_reportes'],
-      ventas: ['ver_todo', 'cambiar_estatus_pedido', 'ver_reportes', 'eliminar_pedidos'],
+      admin: ['ver_todo', 'editar_productos', 'agregar_productos', 'cambiar_precios', 'aprobar_clientes', 'cambiar_estatus_pedido', 'ver_reportes', 'eliminar_pedidos', 'editar_pedidos', 'ver_bitacora'],
+      almacen: ['ver_todo', 'editar_productos', 'agregar_productos', 'cambiar_precios', 'ver_reportes', 'editar_pedidos', 'ver_bitacora'],
+      ventas: ['ver_todo', 'cambiar_estatus_pedido', 'ver_reportes', 'eliminar_pedidos', 'editar_pedidos', 'ver_bitacora'],
       asesor: ['ver_pedidos'],
       cliente: []
     };
@@ -1092,7 +1295,98 @@
     const tab = document.querySelector(`[data-tab="${tabName}"]`);
     if (tab) tab.classList.add('active');
     document.getElementById(tabName + 'Tab').classList.add('active');
+    
+    if (tabName === 'bitacora') cargarBitacora();
   };
+
+  // ====== BITÁCORA ======
+  async function registrarBitacora(accion, detalle, pedidoId = null) {
+    try {
+      await addDoc(collection(db, 'bitacora'), {
+        fecha: serverTimestamp(),
+        usuario: currentUser.email,
+        rol: currentRol,
+        accion: accion,
+        detalle: detalle,
+        pedidoId: pedidoId
+      });
+    } catch (error) {
+      console.error('Error registrando bitácora:', error);
+    }
+  }
+
+  async function cargarBitacora() {
+    try {
+      const q = query(collection(db, 'bitacora'), orderBy('fecha', 'desc'));
+      const snapshot = await getDocs(q);
+      const bitacora = [];
+      const usuarios = new Set();
+      
+      snapshot.forEach(docSnap => {
+        const data = docSnap.data();
+        bitacora.push({ id: docSnap.id, ...data });
+        if (data.usuario) usuarios.add(data.usuario);
+      });
+
+      // Actualizar filtro de usuarios
+      const selectUsuario = document.getElementById('filterBitacoraUsuario');
+      if (selectUsuario) {
+        const valorActual = selectUsuario.value;
+        selectUsuario.innerHTML = '<option value="">Todos los usuarios</option>' + 
+          Array.from(usuarios).sort().map(u => `<option value="${u}" ${u === valorActual ? 'selected' : ''}>${u}</option>`).join('');
+      }
+
+      renderBitacora(bitacora);
+    } catch (error) {
+      console.error('Error cargando bitácora:', error);
+      document.getElementById('bitacoraTable').innerHTML = '<tr><td colspan="5" class="loading">Error al cargar bitácora</td></tr>';
+    }
+  }
+
+  function renderBitacora(lista) {
+    const tbody = document.getElementById('bitacoraTable');
+    if (!lista || lista.length === 0) {
+      tbody.innerHTML = '<tr><td colspan="5" class="empty-state"><p>No hay registros en la bitácora</p></td></tr>';
+      return;
+    }
+
+    tbody.innerHTML = lista.map(b => {
+      const fecha = b.fecha ? new Date(b.fecha.seconds * 1000).toLocaleString('es-MX') : 'N/A';
+      return `
+        <tr>
+          <td><small>${fecha}</small></td>
+          <td>${b.usuario || 'N/A'}</td>
+          <td><span class="badge ${b.rol === 'admin' ? 'aprobado' : 'pendiente'}">${b.rol || '-'}</span></td>
+          <td><span class="bitacora-accion ${b.accion}">${b.accion || '-'}</span></td>
+          <td>${b.detalle || '-'}</td>
+        </tr>
+      `;
+    }).join('');
+  }
+
+  document.getElementById('filterBitacoraUsuario').addEventListener('change', aplicarFiltrosBitacora);
+  document.getElementById('filterBitacoraAccion').addEventListener('change', aplicarFiltrosBitacora);
+
+  async function aplicarFiltrosBitacora() {
+    const usuario = document.getElementById('filterBitacoraUsuario').value;
+    const accion = document.getElementById('filterBitacoraAccion').value;
+
+    try {
+      let q = collection(db, 'bitacora');
+      const constraints = [orderBy('fecha', 'desc')];
+      
+      if (usuario) constraints.push(where('usuario', '==', usuario));
+      if (accion) constraints.push(where('accion', '==', accion));
+      
+      const queryFinal = query(q, ...constraints);
+      const snapshot = await getDocs(queryFinal);
+      const bitacora = [];
+      snapshot.forEach(docSnap => bitacora.push({ id: docSnap.id, ...docSnap.data() }));
+      renderBitacora(bitacora);
+    } catch (error) {
+      console.error('Error filtrando bitácora:', error);
+    }
+  }
 
   // ====== PRODUCTOS ======
   async function cargarProductos() {
@@ -1108,14 +1402,13 @@
       document.getElementById('statStockBajo').textContent = productosCache.filter(p => p.inventario?.stock !== undefined && p.inventario.stock <= (p.inventario?.minimo || 10)).length;
     } catch (error) {
       console.error('Error cargando productos:', error);
-      document.getElementById('productosTable').innerHTML = '<tr><td colspan="8" class="loading">Error al cargar productos</td></tr>';
     }
   }
 
   function renderProductos(lista) {
     const tbody = document.getElementById('productosTable');
     if (lista.length === 0) {
-      tbody.innerHTML = '<tr><td colspan="8" class="empty-state"><div class="empty-state-icon"></div><p>No hay productos registrados</p></td></tr>';
+      tbody.innerHTML = '<tr><td colspan="8" class="empty-state"><p>No hay productos registrados</p></td></tr>';
       return;
     }
 
@@ -1214,9 +1507,11 @@
 
     try {
       const idExistente = document.getElementById('prodId').value;
+      const esNuevo = !idExistente;
       
       if (idExistente) {
         await updateDoc(doc(db, 'productos', idExistente), producto);
+        await registrarBitacora('editar', `Producto actualizado: ${producto.nombre} (${producto.codigo})`);
         showToast('Producto actualizado exitosamente');
       } else {
         const existe = productosCache.find(p => p.codigo === producto.codigo);
@@ -1229,6 +1524,7 @@
         producto.creado = serverTimestamp();
         producto.creadoPor = currentUser.email;
         await setDoc(doc(db, 'productos', producto.codigo), producto);
+        await registrarBitacora('crear', `Producto creado: ${producto.nombre} (${producto.codigo})`);
         showToast('Producto creado exitosamente');
       }
 
@@ -1287,6 +1583,7 @@
 
     try {
       await deleteDoc(doc(db, 'productos', id));
+      await registrarBitacora('eliminar', `Producto eliminado: ${nombre} (${id})`);
       showToast('Producto eliminado');
       await cargarProductos();
     } catch (error) {
@@ -1326,8 +1623,8 @@
               <td>${data.creado ? new Date(data.creado.seconds * 1000).toLocaleDateString() : 'N/A'}</td>
               <td><span class="badge pendiente">${data.status}</span></td>
               <td>
-                <button class="btn-small btn-approve" onclick="aprobarCliente('${docSnap.id}', '${data.email}')">Aprobar</button>
-                <button class="btn-small btn-reject" onclick="rechazarCliente('${docSnap.id}')">Rechazar</button>
+                <button class="btn-small btn-approve" onclick="aprobarCliente('${docSnap.id}', '${data.email}', '${(data.nombre || '').replace(/'/g, "\\'")}')">Aprobar</button>
+                <button class="btn-small btn-reject" onclick="rechazarCliente('${docSnap.id}', '${data.email}')">Rechazar</button>
               </td>
             </tr>
           `;
@@ -1335,7 +1632,7 @@
       });
 
       if (html === '') {
-        html = '<tr><td colspan="8" class="empty-state"><div class="empty-state-icon"></div><p>No hay clientes pendientes</p></td></tr>';
+        html = '<tr><td colspan="8" class="empty-state"><p>No hay clientes pendientes</p></td></tr>';
       }
 
       document.getElementById('clientesTable').innerHTML = html;
@@ -1351,7 +1648,7 @@
     }
   }
 
-  window.aprobarCliente = async (uid, email) => {
+  window.aprobarCliente = async (uid, email, nombre) => {
     if (!confirm('¿Aprobar a este cliente?')) return;
     try {
       await updateDoc(doc(db, 'usuarios', uid), {
@@ -1359,6 +1656,7 @@
         aprobadoPor: currentUser.email,
         fechaAprobacion: new Date().toISOString()
       });
+      await registrarBitacora('aprobar', `Cliente aprobado: ${nombre} (${email})`, uid);
       showToast('Cliente aprobado');
       await cargarClientes();
     } catch (error) {
@@ -1366,7 +1664,7 @@
     }
   };
 
-  window.rechazarCliente = async (uid) => {
+  window.rechazarCliente = async (uid, email) => {
     if (!confirm('¿Rechazar a este cliente?')) return;
     try {
       await updateDoc(doc(db, 'usuarios', uid), {
@@ -1374,6 +1672,7 @@
         rechazadoPor: currentUser.email,
         fechaRechazo: new Date().toISOString()
       });
+      await registrarBitacora('eliminar', `Cliente rechazado: ${email}`, uid);
       showToast('Cliente rechazado');
       await cargarClientes();
     } catch (error) {
@@ -1381,7 +1680,7 @@
     }
   };
 
-  // ====== PEDIDOS CON SISTEMA DE ALERTAS CORREGIDO ======
+  // ====== PEDIDOS ======
   async function cargarPedidos() {
     try {
       const q = query(collection(db, 'pedidos'), orderBy('creado', 'desc'));
@@ -1392,7 +1691,6 @@
         pedidosCache.push({ 
           id: docSnap.id, 
           ...data,
-          // Asegurar que visualizado sea booleano
           visualizado: data.visualizado === true
         });
       });
@@ -1401,7 +1699,6 @@
       const pedidosHoy = pedidosCache.filter(p => p.creado && new Date(p.creado.seconds * 1000).toDateString() === hoy);
       document.getElementById('statPedidosHoy').textContent = pedidosHoy.length;
 
-      // Contar pedidos NO visualizados
       const pedidosNuevos = pedidosCache.filter(p => !p.visualizado);
       const badgeNuevos = document.getElementById('countPedidosNuevos');
       badgeNuevos.textContent = pedidosNuevos.length;
@@ -1419,11 +1716,15 @@
   function renderPedidos(pedidos, tableId, conGestion) {
     const tbody = document.getElementById(tableId);
     if (pedidos.length === 0) {
-      tbody.innerHTML = '<tr><td colspan="6" class="empty-state"><div class="empty-state-icon"></div><p>No hay pedidos</p></td></tr>';
+      tbody.innerHTML = '<tr><td colspan="7" class="empty-state"><p>No hay pedidos</p></td></tr>';
       return;
     }
 
-    tbody.innerHTML = pedidos.map(p => {
+    const filterStatus = tableId === 'gestionPedidosTable' ? document.getElementById('filterStatusPedido').value : '';
+
+    const pedidosFiltrados = filterStatus ? pedidos.filter(p => (p.status || 'borrador') === filterStatus) : pedidos;
+
+    tbody.innerHTML = pedidosFiltrados.map(p => {
       const totalProductos = (p.productos || []).reduce((sum, prod) => sum + (prod.cajas || 0) + (prod.tarimas || 0), 0);
       const fecha = p.creado ? new Date(p.creado.seconds * 1000).toLocaleString() : 'N/A';
       const statusClass = p.status || 'borrador';
@@ -1436,15 +1737,22 @@
         'cancelado': 'Cancelado'
       }[statusClass] || statusClass;
 
-      // CORRECCIÓN: Validación explícita de visualizado
       const esNuevo = p.visualizado === false || p.visualizado === undefined;
       const statusBadge = esNuevo 
         ? `<span class="badge nuevo">NUEVO</span><span class="badge ${statusClass}">${statusLabel}</span>`
         : `<span class="badge ${statusClass}">${statusLabel}</span>`;
 
+      // Fecha/hora de entrega
+      const entregaTexto = p.fechaEntrega 
+        ? `${p.fechaEntrega}${p.horaEntrega ? ' ' + p.horaEntrega : ''}`
+        : '<span style="color: #999;">Sin programar</span>';
+
       let acciones = `<button class="btn-small btn-view ${esNuevo ? 'no-leido' : ''}" onclick="verDetallePedido('${p.id}')">${esNuevo ? 'Ver (Nuevo)' : 'Ver'}</button>`;
       
       if (conGestion) {
+        if (tienePermiso('editar_pedidos')) {
+          acciones += `<button class="btn-small btn-edit" onclick="abrirModalEditar('${p.id}')">Editar</button>`;
+        }
         acciones += `
           <select onchange="cambiarEstatusPedido('${p.id}', this.value)" style="padding: 5px; border-radius: 5px; border: 1px solid #ddd; margin-left: 5px;">
             <option value="borrador" ${statusClass === 'borrador' ? 'selected' : ''}>Borrador</option>
@@ -1454,8 +1762,10 @@
             <option value="entregado" ${statusClass === 'entregado' ? 'selected' : ''}>Entregado</option>
             <option value="cancelado" ${statusClass === 'cancelado' ? 'selected' : ''}>Cancelado</option>
           </select>
-          ${tienePermiso('eliminar_pedidos') ? `<button class="btn-small btn-delete" onclick="eliminarPedido('${p.id}')" style="margin-left: 5px;">Eliminar</button>` : ''}
         `;
+        if (tienePermiso('eliminar_pedidos')) {
+          acciones += `<button class="btn-small btn-delete" onclick="eliminarPedido('${p.id}')" style="margin-left: 5px;">Eliminar</button>`;
+        }
       }
 
       return `
@@ -1464,6 +1774,7 @@
           <td>${p.clienteEmail || 'N/A'}<br><small>${p.clienteRol || '-'}</small></td>
           <td>${totalProductos} productos</td>
           <td>${statusBadge}</td>
+          <td><small>${entregaTexto}</small></td>
           <td><small>${fecha}</small></td>
           <td>${acciones}</td>
         </tr>
@@ -1471,11 +1782,16 @@
     }).join('');
   }
 
+  document.getElementById('filterStatusPedido').addEventListener('change', () => {
+    if (tienePermiso('cambiar_estatus_pedido')) {
+      renderPedidos(pedidosCache, 'gestionPedidosTable', true);
+    }
+  });
+
   window.verDetallePedido = async function(pedidoId) {
     const pedido = pedidosCache.find(p => p.id === pedidoId);
     if (!pedido) return;
 
-    // Marcar como visualizado si no lo estaba
     if (!pedido.visualizado) {
       try {
         await updateDoc(doc(db, 'pedidos', pedidoId), {
@@ -1483,14 +1799,12 @@
           visualizadoPor: currentUser.email,
           visualizadoEn: serverTimestamp()
         });
-        // Actualizar cache local INMEDIATAMENTE
         pedido.visualizado = true;
-        // Re-renderizar para actualizar badges
+        await registrarBitacora('ver', `Pedido visualizado: ${pedidoId}`, pedidoId);
         renderPedidos(pedidosCache, 'pedidosTable', false);
         if (tienePermiso('cambiar_estatus_pedido')) {
           renderPedidos(pedidosCache, 'gestionPedidosTable', true);
         }
-        // Actualizar contador
         const pedidosNuevos = pedidosCache.filter(p => !p.visualizado);
         const badgeNuevos = document.getElementById('countPedidosNuevos');
         badgeNuevos.textContent = pedidosNuevos.length;
@@ -1501,25 +1815,35 @@
     }
 
     const totalProductos = (pedido.productos || []).reduce((sum, prod) => sum + (prod.cajas || 0) + (prod.tarimas || 0), 0);
+    const totalGeneral = (pedido.productos || []).reduce((sum, prod) => {
+      const cantidad = (prod.cajas || 0) + (prod.tarimas || 0);
+      const precio = prod.precioUnitario || 0;
+      return sum + (cantidad * precio);
+    }, 0);
     const fecha = pedido.creado ? new Date(pedido.creado.seconds * 1000).toLocaleString() : 'N/A';
     const statusLabel = {
-      'borrador': 'Borrador',
-      'enviado': 'Enviado',
-      'en_proceso': 'En Proceso',
-      'surtido': 'Surtido',
-      'entregado': 'Entregado',
-      'cancelado': 'Cancelado'
+      'borrador': 'Borrador', 'enviado': 'Enviado', 'en_proceso': 'En Proceso',
+      'surtido': 'Surtido', 'entregado': 'Entregado', 'cancelado': 'Cancelado'
     }[pedido.status || 'borrador'] || pedido.status;
 
-    const productosHtml = (pedido.productos || []).map(prod => `
-      <div class="pedido-item">
-        <div class="pedido-item-header">
-          <span class="pedido-item-nombre">${prod.nombre}</span>
-          <span class="pedido-item-cantidad">${prod.cajas || 0} cajas, ${prod.tarimas || 0} tarimas</span>
+    const productosHtml = (pedido.productos || []).map(prod => {
+      const cantidad = (prod.cajas || 0) + (prod.tarimas || 0);
+      const precio = prod.precioUnitario || 0;
+      const subtotal = cantidad * precio;
+      return `
+        <div class="pedido-item">
+          <div class="pedido-item-header">
+            <span class="pedido-item-nombre">${prod.nombre}</span>
+            <span class="pedido-item-cantidad">$${subtotal.toFixed(2)}</span>
+          </div>
+          <small style="color: #888;">${prod.marca} - Código: ${prod.id} | ${prod.cajas || 0} cajas, ${prod.tarimas || 0} tarimas | $${precio.toFixed(2)} c/u</small>
         </div>
-        <small style="color: #888;">${prod.marca} - Código: ${prod.id}</small>
-      </div>
-    `).join('');
+      `;
+    }).join('');
+
+    const entregaHtml = pedido.fechaEntrega 
+      ? `<div class="entrega-info"><strong>Entrega programada:</strong> ${pedido.fechaEntrega}${pedido.horaEntrega ? ' a las ' + pedido.horaEntrega : ''}</div>`
+      : '';
 
     document.getElementById('modalDetalleContent').innerHTML = `
       <div class="pedido-info-row">
@@ -1540,12 +1864,17 @@
       </div>
       <div class="pedido-info-row">
         <span class="pedido-info-label">Total de productos:</span>
-        <span class="pedido-info-value">${totalProductos}</span>
+        <span class="pedido-info-value">${totalProductos} unidades</span>
+      </div>
+      <div class="pedido-info-row">
+        <span class="pedido-info-label">Total estimado:</span>
+        <span class="pedido-info-value" style="color: var(--green-dark); font-size: 1.2em;">$${totalGeneral.toFixed(2)} MXN</span>
       </div>
       <div class="pedido-info-row">
         <span class="pedido-info-label">Fecha:</span>
         <span class="pedido-info-value">${fecha}</span>
       </div>
+      ${entregaHtml}
       <div style="margin-top: 20px;">
         <strong style="color: var(--green-dark);">Productos del pedido:</strong>
         <div style="margin-top: 10px;">
@@ -1554,10 +1883,239 @@
       </div>
     `;
     document.getElementById('modalDetalle').classList.add('active');
+    modalAbierto = true;
   };
 
   window.cerrarModalDetalle = function() {
     document.getElementById('modalDetalle').classList.remove('active');
+    modalAbierto = false;
+  };
+
+  // ====== EDITAR PEDIDO ======
+  window.abrirModalEditar = async function(pedidoId) {
+    if (!tienePermiso('editar_pedidos')) {
+      showToast('No tienes permisos para editar pedidos', 'error');
+      return;
+    }
+
+    const pedido = pedidosCache.find(p => p.id === pedidoId);
+    if (!pedido) return;
+
+    pedidoEditando = JSON.parse(JSON.stringify(pedido)); // Copia profunda
+
+    renderModalEditar();
+    document.getElementById('modalEditar').classList.add('active');
+    modalAbierto = true;
+  };
+
+  function renderModalEditar() {
+    if (!pedidoEditando) return;
+
+    const productosHtml = (pedidoEditando.productos || []).map((prod, idx) => {
+      const cantidad = (prod.cajas || 0) + (prod.tarimas || 0);
+      const precio = prod.precioUnitario || 0;
+      const subtotal = cantidad * precio;
+      return `
+        <tr>
+          <td>${prod.nombre}<br><small style="color: #888;">${prod.marca} - ${prod.id}</small></td>
+          <td><input type="number" min="0" value="${prod.cajas || 0}" onchange="actualizarProductoEditado(${idx}, 'cajas', this.value)"></td>
+          <td><input type="number" min="0" value="${prod.tarimas || 0}" onchange="actualizarProductoEditado(${idx}, 'tarimas', this.value)"></td>
+          <td><input type="number" step="0.01" min="0" value="${precio}" onchange="actualizarProductoEditado(${idx}, 'precioUnitario', this.value)"></td>
+          <td class="total-cell">$${subtotal.toFixed(2)}</td>
+          <td><button class="btn-small btn-delete" onclick="eliminarProductoEditado(${idx})">Eliminar</button></td>
+        </tr>
+      `;
+    }).join('');
+
+    const totalGeneral = (pedidoEditando.productos || []).reduce((sum, prod) => {
+      const cantidad = (prod.cajas || 0) + (prod.tarimas || 0);
+      const precio = prod.precioUnitario || 0;
+      return sum + (cantidad * precio);
+    }, 0);
+
+    document.getElementById('modalEditarContent').innerHTML = `
+      <div class="pedido-info-row">
+        <span class="pedido-info-label">Folio:</span>
+        <span class="pedido-info-value">${pedidoEditando.id}</span>
+      </div>
+      <div class="pedido-info-row">
+        <span class="pedido-info-label">Cliente:</span>
+        <span class="pedido-info-value">${pedidoEditando.clienteEmail || 'N/A'}</span>
+      </div>
+      <div class="pedido-info-row">
+        <span class="pedido-info-label">Status:</span>
+        <span class="pedido-info-value">
+          <select id="editStatus" style="padding: 5px; border-radius: 5px; border: 1px solid #ddd;">
+            <option value="borrador" ${(pedidoEditando.status || 'borrador') === 'borrador' ? 'selected' : ''}>Borrador</option>
+            <option value="enviado" ${(pedidoEditando.status) === 'enviado' ? 'selected' : ''}>Enviado</option>
+            <option value="en_proceso" ${(pedidoEditando.status) === 'en_proceso' ? 'selected' : ''}>En Proceso</option>
+            <option value="surtido" ${(pedidoEditando.status) === 'surtido' ? 'selected' : ''}>Surtido</option>
+            <option value="entregado" ${(pedidoEditando.status) === 'entregado' ? 'selected' : ''}>Entregado</option>
+            <option value="cancelado" ${(pedidoEditando.status) === 'cancelado' ? 'selected' : ''}>Cancelado</option>
+          </select>
+        </span>
+      </div>
+
+      <div class="add-product-row">
+        <strong style="color: var(--green-dark);">Agregar producto:</strong>
+        <select id="selectProductoAgregar">
+          <option value="">-- Selecciona un producto --</option>
+          ${productosCache.filter(p => p.activo !== false).map(p => `<option value="${p.id}" data-precio="${p.precios?.base || 0}">${p.nombre} (${p.codigo}) - $${(p.precios?.base || 0).toFixed(2)}</option>`).join('')}
+        </select>
+        <button class="btn btn-info" onclick="abrirModalAgregarProd()" style="padding: 8px 16px; font-size: 0.85em;">+ Agregar</button>
+      </div>
+
+      <table class="pedido-edit-table">
+        <thead>
+          <tr>
+            <th>Producto</th>
+            <th>Cajas</th>
+            <th>Tarimas</th>
+            <th>Precio Unit.</th>
+            <th>Subtotal</th>
+            <th>Acción</th>
+          </tr>
+        </thead>
+        <tbody>
+          ${productosHtml || '<tr><td colspan="6" style="text-align: center; color: #888;">Sin productos</td></tr>'}
+        </tbody>
+      </table>
+
+      <div class="pedido-edit-total">
+        <span>Total del pedido:</span>
+        <span>$${totalGeneral.toFixed(2)} MXN</span>
+      </div>
+
+      <div class="form-section" style="margin-top: 20px;">
+        <div class="form-section-title">Programar Entrega</div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Fecha de entrega</label>
+            <input type="date" id="editFechaEntrega" value="${pedidoEditando.fechaEntrega || ''}">
+          </div>
+          <div class="form-group">
+            <label>Hora de entrega</label>
+            <input type="time" id="editHoraEntrega" value="${pedidoEditando.horaEntrega || ''}">
+          </div>
+        </div>
+      </div>
+
+      <div class="form-actions">
+        <button class="btn btn-secondary" onclick="cerrarModalEditar()">Cancelar</button>
+        <button class="btn btn-primary" onclick="guardarPedidoEditado()">Guardar Cambios</button>
+      </div>
+    `;
+  }
+
+  window.actualizarProductoEditado = function(idx, campo, valor) {
+    if (!pedidoEditando || !pedidoEditando.productos[idx]) return;
+    pedidoEditando.productos[idx][campo] = campo === 'precioUnitario' ? parseFloat(valor) || 0 : parseInt(valor) || 0;
+    renderModalEditar(); // Re-renderizar para actualizar subtotal y total
+  };
+
+  window.eliminarProductoEditado = function(idx) {
+    if (!pedidoEditando) return;
+    const prod = pedidoEditando.productos[idx];
+    if (!confirm(`¿Eliminar "${prod.nombre}" del pedido?`)) return;
+    pedidoEditando.productos.splice(idx, 1);
+    renderModalEditar();
+  };
+
+  window.abrirModalAgregarProd = function() {
+    const select = document.getElementById('selectProductoAgregar');
+    if (!select.value) {
+      showToast('Selecciona un producto primero', 'error');
+      return;
+    }
+    const option = select.options[select.selectedIndex];
+    document.getElementById('newProdPrecio').value = option.dataset.precio || 0;
+    document.getElementById('newProdCajas').value = 1;
+    document.getElementById('newProdTarimas').value = 0;
+    document.getElementById('modalAgregarProd').classList.add('active');
+  };
+
+  window.cerrarModalAgregarProd = function() {
+    document.getElementById('modalAgregarProd').classList.remove('active');
+  };
+
+  window.confirmarAgregarProducto = function() {
+    const select = document.getElementById('selectProductoAgregar');
+    const prodId = select.value;
+    if (!prodId) {
+      showToast('Selecciona un producto', 'error');
+      return;
+    }
+
+    const producto = productosCache.find(p => p.id === prodId);
+    if (!producto) return;
+
+    const cajas = parseInt(document.getElementById('newProdCajas').value) || 0;
+    const tarimas = parseInt(document.getElementById('newProdTarimas').value) || 0;
+    const precio = parseFloat(document.getElementById('newProdPrecio').value) || 0;
+
+    if (cajas === 0 && tarimas === 0) {
+      showToast('Agrega al menos 1 caja o 1 tarima', 'error');
+      return;
+    }
+
+    // Verificar si ya existe en el pedido
+    const existente = pedidoEditando.productos.find(p => p.id === prodId);
+    if (existente) {
+      existente.cajas = (existente.cajas || 0) + cajas;
+      existente.tarimas = (existente.tarimas || 0) + tarimas;
+      existente.precioUnitario = precio;
+    } else {
+      pedidoEditando.productos.push({
+        id: prodId,
+        nombre: producto.nombre,
+        marca: producto.marca,
+        cajas: cajas,
+        tarimas: tarimas,
+        precioUnitario: precio
+      });
+    }
+
+    cerrarModalAgregarProd();
+    renderModalEditar();
+    showToast('Producto agregado al pedido');
+  };
+
+  window.guardarPedidoEditado = async function() {
+    if (!pedidoEditando) return;
+
+    const btn = event.target;
+    btn.disabled = true;
+    btn.textContent = 'Guardando...';
+
+    try {
+      const cambios = {
+        productos: pedidoEditando.productos,
+        status: document.getElementById('editStatus').value,
+        fechaEntrega: document.getElementById('editFechaEntrega').value,
+        horaEntrega: document.getElementById('editHoraEntrega').value,
+        editadoPor: currentUser.email,
+        editadoEn: serverTimestamp()
+      };
+
+      await updateDoc(doc(db, 'pedidos', pedidoEditando.id), cambios);
+      await registrarBitacora('editar', `Pedido editado: ${pedidoEditando.id} - ${pedidoEditando.productos.length} productos, entrega: ${cambios.fechaEntrega || 'sin programar'}`, pedidoEditando.id);
+      
+      showToast('Pedido actualizado exitosamente');
+      cerrarModalEditar();
+      await cargarPedidos();
+    } catch (error) {
+      console.error(error);
+      showToast('Error: ' + error.message, 'error');
+    } finally {
+      btn.disabled = false;
+      btn.textContent = 'Guardar Cambios';
+    }
+  };
+
+  window.cerrarModalEditar = function() {
+    document.getElementById('modalEditar').classList.remove('active');
+    pedidoEditando = null;
+    modalAbierto = false;
   };
 
   window.cambiarEstatusPedido = async (pedidoId, nuevoStatus) => {
@@ -1576,15 +2134,14 @@
         statusActualizadoPor: currentUser.email,
         statusActualizadoEn: serverTimestamp()
       });
+      await registrarBitacora('estatus', `Estatus cambiado a "${nuevoStatus}"`, pedidoId);
       showToast(`Estatus cambiado a: ${nuevoStatus}`);
-      // Recargar pedidos para actualizar UI
       await cargarPedidos();
     } catch (error) {
       showToast('Error: ' + error.message, 'error');
     }
   };
 
-  // ====== ELIMINAR PEDIDO ======
   window.eliminarPedido = async function(pedidoId) {
     if (!tienePermiso('eliminar_pedidos')) {
       showToast('No tienes permisos para eliminar pedidos', 'error');
@@ -1600,6 +2157,7 @@
 
     try {
       await deleteDoc(doc(db, 'pedidos', pedidoId));
+      await registrarBitacora('eliminar', `Pedido eliminado: ${pedidoId} - Cliente: ${pedido.clienteEmail || 'N/A'}`, pedidoId);
       showToast('Pedido eliminado');
       await cargarPedidos();
     } catch (error) {
@@ -1617,6 +2175,7 @@
 
   window.logout = async () => {
     if (confirm('¿Cerrar sesión?')) {
+      if (refreshInterval) clearInterval(refreshInterval);
       await signOut(auth);
       window.location.href = "login.html";
     }
