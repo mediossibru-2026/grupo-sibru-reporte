@@ -9,6 +9,7 @@
   :root {
     --green-dark: #1B5E20;
     --green-medium: #2E7D32;
+    --green-light: #66BB6A;
     --orange: #F4A261;
     --orange-dark: #E76F51;
     --blue-dark: #264653;
@@ -18,6 +19,8 @@
     --gray-light: #e0e0e0;
     --red: #D32F2F;
     --success: #4CAF50;
+    --warning: #FF9800;
+    --info: #2196F3;
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -29,6 +32,7 @@
     line-height: 1.6;
   }
 
+  /* HEADER */
   .header {
     background: linear-gradient(135deg, var(--green-dark), var(--blue-dark));
     color: var(--white);
@@ -37,7 +41,7 @@
   }
 
   .header-content {
-    max-width: 1200px;
+    max-width: 1400px;
     margin: 0 auto;
     display: flex;
     justify-content: space-between;
@@ -48,7 +52,7 @@
 
   .header h1 {
     font-family: 'Montserrat', sans-serif;
-    font-size: 1.5em;
+    font-size: 1.4em;
     font-weight: 800;
   }
 
@@ -59,10 +63,29 @@
     flex-wrap: wrap;
   }
 
+  .user-badge {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(255,255,255,0.15);
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 0.85em;
+  }
+
+  .user-role-tag {
+    background: var(--orange);
+    padding: 2px 8px;
+    border-radius: 10px;
+    font-size: 0.75em;
+    font-weight: 700;
+    text-transform: uppercase;
+  }
+
   .user-email {
-    font-size: 0.9em;
+    font-size: 0.85em;
     opacity: 0.9;
-    max-width: 200px;
+    max-width: 180px;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -71,30 +94,30 @@
   .btn-catalog {
     background: var(--green-dark);
     color: var(--white);
-    padding: 8px 20px;
+    padding: 8px 18px;
     border-radius: 6px;
     font-weight: 700;
     text-decoration: none;
     transition: all 0.3s;
-    font-size: 0.9em;
+    font-size: 0.85em;
     border: 2px solid var(--white);
   }
 
   .btn-catalog:hover {
     background: var(--green-medium);
     transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(27, 94, 32, 0.3);
   }
 
   .btn-logout {
     background: var(--orange);
     color: var(--white);
     border: none;
-    padding: 8px 20px;
+    padding: 8px 18px;
     border-radius: 6px;
     font-weight: 700;
     cursor: pointer;
     transition: all 0.3s;
+    font-size: 0.85em;
   }
 
   .btn-logout:hover {
@@ -102,47 +125,66 @@
     transform: translateY(-2px);
   }
 
-  .container {
-    max-width: 1200px;
-    margin: 30px auto;
-    padding: 0 20px;
-  }
-
-  .tabs {
-    display: flex;
-    gap: 10px;
-    margin-bottom: 30px;
-    border-bottom: 3px solid var(--gray-light);
-    flex-wrap: wrap;
-  }
-
-  .tab {
-    padding: 12px 25px;
+  /* NAV TABS */
+  .nav-tabs {
     background: var(--white);
+    border-bottom: 3px solid var(--gray-light);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  }
+
+  .nav-tabs-inner {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: flex;
+    gap: 5px;
+    padding: 0 20px;
+    overflow-x: auto;
+  }
+
+  .nav-tab {
+    padding: 15px 22px;
+    background: none;
     border: none;
     border-bottom: 3px solid transparent;
     margin-bottom: -3px;
     font-family: 'Montserrat', sans-serif;
     font-weight: 700;
-    font-size: 0.95em;
+    font-size: 0.9em;
     color: #666;
     cursor: pointer;
     transition: all 0.3s;
+    white-space: nowrap;
   }
 
-  .tab.active {
+  .nav-tab.active {
     color: var(--green-dark);
     border-bottom-color: var(--green-dark);
   }
 
-  .tab:hover:not(.active) {
+  .nav-tab:hover:not(.active) {
     color: var(--orange-dark);
   }
 
-  .tab-content {
-    display: none;
+  .nav-tab .badge-count {
+    background: var(--red);
+    color: white;
+    padding: 2px 7px;
+    border-radius: 10px;
+    font-size: 0.75em;
+    margin-left: 5px;
   }
 
+  /* CONTAINER */
+  .container {
+    max-width: 1400px;
+    margin: 30px auto;
+    padding: 0 20px;
+  }
+
+  .tab-content { display: none; }
   .tab-content.active {
     display: block;
     animation: fadeIn 0.3s ease;
@@ -153,6 +195,7 @@
     to { opacity: 1; transform: translateY(0); }
   }
 
+  /* CARDS */
   .card {
     background: var(--white);
     border-radius: 15px;
@@ -168,6 +211,8 @@
     margin-bottom: 20px;
     padding-bottom: 15px;
     border-bottom: 2px solid var(--gray-light);
+    flex-wrap: wrap;
+    gap: 10px;
   }
 
   .card-title {
@@ -177,6 +222,7 @@
     color: var(--green-dark);
   }
 
+  /* STATS */
   .stats {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -192,19 +238,167 @@
     text-align: center;
   }
 
-  .stat-card.orange {
-    background: linear-gradient(135deg, var(--orange), var(--orange-dark));
+  .stat-card.orange { background: linear-gradient(135deg, var(--orange), var(--orange-dark)); }
+  .stat-card.blue { background: linear-gradient(135deg, var(--blue-dark), #3d6b7e); }
+  .stat-card.red { background: linear-gradient(135deg, var(--red), #b71c1c); }
+
+  .stat-number { font-size: 2.5em; font-weight: 800; margin-bottom: 5px; }
+  .stat-label { font-size: 0.9em; opacity: 0.9; }
+
+  /* FORMULARIO ALTA PRODUCTO */
+  .form-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 18px;
   }
 
-  .stat-number {
-    font-size: 2.5em;
+  .form-section {
+    background: var(--gray-bg);
+    padding: 20px;
+    border-radius: 12px;
+    margin-bottom: 20px;
+    border-left: 4px solid var(--green-dark);
+  }
+
+  .form-section-title {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1em;
     font-weight: 800;
-    margin-bottom: 5px;
+    color: var(--green-dark);
+    margin-bottom: 15px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
   }
 
-  .stat-label {
+  .form-group {
+    margin-bottom: 15px;
+  }
+
+  .form-group label {
+    display: block;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.8em;
+    font-weight: 700;
+    color: var(--blue-dark);
+    margin-bottom: 6px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .form-group label .required {
+    color: var(--red);
+  }
+
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    width: 100%;
+    padding: 10px 14px;
+    border: 2px solid var(--gray-light);
+    border-radius: 8px;
+    font-size: 14px;
+    font-family: 'Open Sans', sans-serif;
+    transition: all 0.3s;
+    background: var(--white);
+  }
+
+  .form-group input:focus,
+  .form-group select:focus,
+  .form-group textarea:focus {
+    outline: none;
+    border-color: var(--green-dark);
+    box-shadow: 0 0 0 3px rgba(27, 94, 32, 0.1);
+  }
+
+  .form-group textarea {
+    resize: vertical;
+    min-height: 80px;
+  }
+
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+  }
+
+  .form-actions {
+    display: flex;
+    gap: 12px;
+    justify-content: flex-end;
+    margin-top: 20px;
+    flex-wrap: wrap;
+  }
+
+  .btn {
+    padding: 12px 24px;
+    border: none;
+    border-radius: 8px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
     font-size: 0.9em;
-    opacity: 0.9;
+    cursor: pointer;
+    transition: all 0.3s;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .btn-primary {
+    background: linear-gradient(135deg, var(--green-dark), var(--green-medium));
+    color: var(--white);
+    box-shadow: 0 4px 12px rgba(27, 94, 32, 0.3);
+  }
+
+  .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(27, 94, 32, 0.4);
+  }
+
+  .btn-secondary {
+    background: var(--white);
+    color: var(--blue-dark);
+    border: 2px solid var(--blue-dark);
+  }
+
+  .btn-secondary:hover {
+    background: var(--blue-dark);
+    color: var(--white);
+  }
+
+  .btn-danger {
+    background: var(--red);
+    color: var(--white);
+  }
+
+  .btn-danger:hover {
+    background: #b71c1c;
+  }
+
+  .btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  /* TABLA PRODUCTOS */
+  .table-filters {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+  }
+
+  .table-filters input,
+  .table-filters select {
+    padding: 10px 14px;
+    border: 2px solid var(--gray-light);
+    border-radius: 8px;
+    font-size: 14px;
+    font-family: 'Open Sans', sans-serif;
+  }
+
+  .table-filters input:focus,
+  .table-filters select:focus {
+    outline: none;
+    border-color: var(--green-dark);
   }
 
   .table-container {
@@ -214,6 +408,7 @@
   table {
     width: 100%;
     border-collapse: collapse;
+    font-size: 0.9em;
   }
 
   th, td {
@@ -227,77 +422,81 @@
     color: var(--white);
     font-family: 'Montserrat', sans-serif;
     font-weight: 700;
-    font-size: 0.85em;
+    font-size: 0.8em;
     text-transform: uppercase;
+    position: sticky;
+    top: 0;
   }
 
-  tr:hover {
-    background: var(--gray-bg);
-  }
+  tr:hover { background: var(--gray-bg); }
 
   .badge {
     display: inline-block;
-    padding: 4px 12px;
+    padding: 4px 10px;
     border-radius: 20px;
-    font-size: 0.8em;
+    font-size: 0.75em;
     font-weight: 700;
     text-transform: uppercase;
   }
 
-  .badge.pendiente {
-    background: #FFF3E0;
-    color: var(--orange-dark);
-  }
+  .badge.pendiente { background: #FFF3E0; color: var(--orange-dark); }
+  .badge.aprobado { background: #E8F5E9; color: var(--success); }
+  .badge.rechazado { background: #FFEBEE; color: var(--red); }
+  .badge.activo { background: #E8F5E9; color: var(--success); }
+  .badge.inactivo { background: #ECEFF1; color: #607D8B; }
+  .badge.borrador { background: #ECEFF1; color: #607D8B; }
+  .badge.enviado { background: #E3F2FD; color: var(--info); }
+  .badge.en_proceso { background: #FFF3E0; color: var(--warning); }
+  .badge.surtido { background: #F3E5F5; color: #9C27B0; }
+  .badge.entregado { background: #E8F5E9; color: var(--success); }
 
-  .badge.aprobado {
-    background: #E8F5E9;
-    color: var(--success);
-  }
-
-  .badge.rechazado {
-    background: #FFEBEE;
-    color: var(--red);
-  }
-
-  .btn {
-    padding: 8px 16px;
+  .btn-small {
+    padding: 6px 12px;
+    font-size: 0.8em;
     border: none;
     border-radius: 6px;
-    font-weight: 700;
     cursor: pointer;
-    transition: all 0.3s;
-    font-size: 0.9em;
+    font-weight: 700;
+    transition: all 0.2s;
+    margin-right: 4px;
   }
 
-  .btn-approve {
-    background: var(--success);
-    color: var(--white);
+  .btn-edit { background: var(--info); color: white; }
+  .btn-edit:hover { background: #1976D2; }
+  .btn-delete { background: var(--red); color: white; }
+  .btn-delete:hover { background: #b71c1c; }
+  .btn-approve { background: var(--success); color: white; }
+  .btn-approve:hover { background: #388E3C; }
+  .btn-reject { background: var(--red); color: white; }
+  .btn-reject:hover { background: #b71c1c; }
+  .btn-view { background: var(--blue-dark); color: white; }
+
+  /* TOAST */
+  .toast {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background: var(--green-dark);
+    color: white;
+    padding: 15px 25px;
+    border-radius: 10px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+    z-index: 2000;
+    font-weight: 600;
+    display: none;
+    animation: slideIn 0.3s ease;
+    max-width: 350px;
   }
 
-  .btn-approve:hover {
-    background: #388E3C;
-    transform: translateY(-2px);
+  .toast.show { display: block; }
+  .toast.error { background: var(--red); }
+
+  @keyframes slideIn {
+    from { transform: translateX(400px); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
   }
 
-  .btn-reject {
-    background: var(--red);
-    color: var(--white);
-  }
-
-  .btn-reject:hover {
-    background: #C62828;
-    transform: translateY(-2px);
-  }
-
-  .btn-view {
-    background: var(--blue-dark);
-    color: var(--white);
-  }
-
-  .btn-view:hover {
-    background: #1a3a47;
-  }
-
+  /* LOADING */
   .loading {
     text-align: center;
     padding: 40px;
@@ -316,11 +515,55 @@
     opacity: 0.3;
   }
 
+  /* MODAL */
+  .modal-overlay {
+    display: none;
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0,0,0,0.7);
+    z-index: 1500;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+  }
+
+  .modal-overlay.active { display: flex; }
+
+  .modal {
+    background: var(--white);
+    border-radius: 15px;
+    max-width: 600px;
+    width: 100%;
+    max-height: 90vh;
+    overflow-y: auto;
+    padding: 30px;
+    animation: fadeIn 0.3s ease;
+  }
+
+  .modal h3 {
+    font-family: 'Montserrat', sans-serif;
+    color: var(--green-dark);
+    margin-bottom: 20px;
+  }
+
+  .modal-close {
+    float: right;
+    background: none;
+    border: none;
+    font-size: 1.5em;
+    cursor: pointer;
+    color: #888;
+  }
+
+  /* RESPONSIVE */
   @media (max-width: 768px) {
-    .header-content { flex-direction: column; gap: 15px; text-align: center; }
+    .header-content { flex-direction: column; text-align: center; }
     .stats { grid-template-columns: 1fr; }
-    .table-container { overflow-x: scroll; }
-    .user-info { justify-content: center; }
+    .form-row { grid-template-columns: 1fr; }
+    .nav-tabs-inner { padding: 0 10px; }
+    .nav-tab { padding: 12px 15px; font-size: 0.8em; }
+    .container { padding: 0 10px; }
   }
 </style>
 </head>
@@ -328,24 +571,279 @@
 
 <div class="header">
   <div class="header-content">
-    <h1>Panel de Administración - GRUPO SIBRÜ</h1>
+    <h1> Panel de Administración - GRUPO SIBRÜ</h1>
     <div class="user-info">
-      <span class="user-email" id="userEmail">Cargando...</span>
+      <div class="user-badge">
+        <span class="user-email" id="userEmail">Cargando...</span>
+        <span class="user-role-tag" id="userRole">-</span>
+      </div>
       <a href="catalogo_con_login.html" class="btn-catalog">Ir al Catálogo</a>
       <button class="btn-logout" onclick="logout()">Cerrar Sesión</button>
     </div>
   </div>
 </div>
 
+<div class="nav-tabs">
+  <div class="nav-tabs-inner">
+    <button class="nav-tab active" data-tab="dashboard">📊 Dashboard</button>
+    <button class="nav-tab" data-tab="productos">📦 Productos <span class="badge-count" id="countProductos">0</span></button>
+    <button class="nav-tab" data-tab="alta-producto"> Alta Producto</button>
+    <button class="nav-tab" data-tab="clientes"> Clientes <span class="badge-count" id="countPendientes">0</span></button>
+    <button class="nav-tab" data-tab="pedidos">🛒 Pedidos <span class="badge-count" id="countPedidos">0</span></button>
+    <button class="nav-tab" data-tab="gestion-pedidos" id="tabGestionPedidos" style="display:none;"> Gestión Pedidos</button>
+  </div>
+</div>
+
 <div class="container">
-  <div class="tabs">
-    <button class="tab active" data-tab="clientes">Clientes Pendientes</button>
-    <button class="tab" data-tab="pedidos">Pedidos</button>
-    <button class="tab" data-tab="precios">Carga de Precios</button>
+
+  <!-- DASHBOARD -->
+  <div class="tab-content active" id="dashboardTab">
+    <div class="stats">
+      <div class="stat-card">
+        <div class="stat-number" id="statProductos">0</div>
+        <div class="stat-label">Productos Activos</div>
+      </div>
+      <div class="stat-card orange">
+        <div class="stat-number" id="statPendientes">0</div>
+        <div class="stat-label">Clientes Pendientes</div>
+      </div>
+      <div class="stat-card blue">
+        <div class="stat-number" id="statPedidosHoy">0</div>
+        <div class="stat-label">Pedidos Hoy</div>
+      </div>
+      <div class="stat-card red">
+        <div class="stat-number" id="statStockBajo">0</div>
+        <div class="stat-label">Stock Bajo</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <h2 class="card-title">Bienvenido al Panel de Administración</h2>
+      </div>
+      <p style="color: #666; line-height: 1.8;">
+        Desde este panel puedes gestionar productos, clientes y pedidos. 
+        Usa las pestañas superiores para navegar entre las diferentes secciones.
+      </p>
+      <div style="margin-top: 20px; padding: 15px; background: #FFF3E0; border-radius: 10px; border-left: 4px solid var(--orange);">
+        <strong>📌 Estado del sistema:</strong>
+        <ul style="margin-top: 10px; margin-left: 20px; color: #666;">
+          <li>✅ Autenticación activa</li>
+          <li>✅ Base de datos conectada</li>
+          <li> Módulo de productos: En desarrollo</li>
+          <li>🔄 Módulo de inventario: Pendiente</li>
+        </ul>
+      </div>
+    </div>
   </div>
 
-  <!-- TAB: CLIENTES PENDIENTES -->
-  <div class="tab-content active" id="clientesTab">
+  <!-- LISTADO DE PRODUCTOS -->
+  <div class="tab-content" id="productosTab">
+    <div class="card">
+      <div class="card-header">
+        <h2 class="card-title">Listado de Productos</h2>
+        <button class="btn btn-primary" onclick="mostrarTab('alta-producto')">➕ Nuevo Producto</button>
+      </div>
+
+      <div class="table-filters">
+        <input type="text" id="filterProducto" placeholder="🔍 Buscar por código o nombre...">
+        <select id="filterLinea">
+          <option value="">Todas las líneas</option>
+          <option value="Abarrotes">Abarrotes</option>
+          <option value="Pescado">Pescado</option>
+          <option value="Pollo">Pollo</option>
+          <option value="Salsas">Salsas</option>
+          <option value="Cerdo">Cerdo</option>
+          <option value="Papas">Papas</option>
+          <option value="Postres">Postres</option>
+          <option value="Lacteos">Lácteos</option>
+        </select>
+        <select id="filterStatus">
+          <option value="">Todos los status</option>
+          <option value="true">Activos</option>
+          <option value="false">Inactivos</option>
+        </select>
+      </div>
+
+      <div class="table-container">
+        <table>
+          <thead>
+            <tr>
+              <th>Código</th>
+              <th>Nombre</th>
+              <th>Línea</th>
+              <th>Marca</th>
+              <th>Precio Base</th>
+              <th>Stock</th>
+              <th>Status</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+          <tbody id="productosTable">
+            <tr><td colspan="8" class="loading">Cargando productos...</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- ALTA DE PRODUCTO -->
+  <div class="tab-content" id="alta-productoTab">
+    <div class="card">
+      <div class="card-header">
+        <h2 class="card-title" id="formTitle">➕ Alta de Nuevo Producto</h2>
+        <button class="btn btn-secondary" onclick="mostrarTab('productos')">← Volver al listado</button>
+      </div>
+
+      <form id="productoForm">
+        <input type="hidden" id="prodId">
+
+        <!-- INFORMACIÓN BÁSICA -->
+        <div class="form-section">
+          <div class="form-section-title">📋 Información Básica</div>
+          <div class="form-grid">
+            <div class="form-group">
+              <label>Código de Producto <span class="required">*</span></label>
+              <input type="text" id="prodCodigo" required placeholder="Ej: 1950" style="text-transform: uppercase;">
+            </div>
+            <div class="form-group">
+              <label>Nombre del Producto <span class="required">*</span></label>
+              <input type="text" id="prodNombre" required placeholder="Ej: Tender Empanizado">
+            </div>
+            <div class="form-group">
+              <label>Línea <span class="required">*</span></label>
+              <select id="prodLinea" required>
+                <option value="">Selecciona una línea</option>
+                <option value="Abarrotes">Abarrotes</option>
+                <option value="Pescado">Pescado</option>
+                <option value="Pollo">Pollo</option>
+                <option value="Salsas">Salsas</option>
+                <option value="Cerdo">Cerdo</option>
+                <option value="Papas">Papas</option>
+                <option value="Postres">Postres</option>
+                <option value="Lacteos">Lácteos</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Marca <span class="required">*</span></label>
+              <input type="text" id="prodMarca" required placeholder="Ej: BACHOCO">
+            </div>
+            <div class="form-group">
+              <label>Categoría</label>
+              <input type="text" id="prodCategoria" placeholder="Ej: pollo, papas, salsas">
+            </div>
+            <div class="form-group">
+              <label>Status</label>
+              <select id="prodActivo">
+                <option value="true">✅ Activo</option>
+                <option value="false">️ Inactivo</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Descripción Corta <span class="required">*</span></label>
+            <textarea id="prodDescripcion" required placeholder="Descripción breve del producto (máx 200 caracteres)" maxlength="200"></textarea>
+          </div>
+        </div>
+
+        <!-- PRESENTACIONES -->
+        <div class="form-section">
+          <div class="form-section-title"> Presentaciones</div>
+          <div class="form-grid">
+            <div class="form-group">
+              <label>Mayoreo</label>
+              <input type="text" id="prodMayoreo" placeholder="Ej: Caja 12 kg (6 x 2 kg)">
+            </div>
+            <div class="form-group">
+              <label>Medio Mayoreo</label>
+              <input type="text" id="prodMedio" placeholder="Ej: Bolsa 2 kg">
+            </div>
+            <div class="form-group">
+              <label>Menudeo</label>
+              <input type="text" id="prodMenudeo" placeholder="Ej: Por Kilo">
+            </div>
+          </div>
+        </div>
+
+        <!-- PRECIOS -->
+        <div class="form-section">
+          <div class="form-section-title">💰 Precios (MXN)</div>
+          <div class="form-grid">
+            <div class="form-group">
+              <label>Precio Base Mayoreo <span class="required">*</span></label>
+              <input type="number" id="prodPrecioBase" required step="0.01" min="0" placeholder="0.00">
+            </div>
+            <div class="form-group">
+              <label>Precio por Caja</label>
+              <input type="number" id="prodPrecioCaja" step="0.01" min="0" placeholder="0.00">
+            </div>
+            <div class="form-group">
+              <label>Precio por Tarima</label>
+              <input type="number" id="prodPrecioTarima" step="0.01" min="0" placeholder="0.00">
+            </div>
+          </div>
+        </div>
+
+        <!-- INFORMACIÓN TÉCNICA -->
+        <div class="form-section">
+          <div class="form-section-title">🔬 Información Técnica</div>
+          <div class="form-group">
+            <label>Conservación</label>
+            <textarea id="prodConservacion" placeholder="Condiciones de almacenamiento..."></textarea>
+          </div>
+          <div class="form-group">
+            <label>Preparación</label>
+            <textarea id="prodPreparacion" placeholder="Instrucciones de preparación..."></textarea>
+          </div>
+          <div class="form-group">
+            <label>Manejo</label>
+            <textarea id="prodManejo" placeholder="Recomendaciones de manejo..."></textarea>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label>Vida de Anaquel</label>
+              <input type="text" id="prodAnaquel" placeholder="Ej: 12 meses">
+            </div>
+            <div class="form-group">
+              <label>Alérgenos</label>
+              <input type="text" id="prodAlergenos" placeholder="Ej: Gluten, Soya, Huevo">
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Ingredientes</label>
+            <textarea id="prodIngredientes" placeholder="Lista de ingredientes..."></textarea>
+          </div>
+        </div>
+
+        <!-- INVENTARIO -->
+        <div class="form-section">
+          <div class="form-section-title"> Inventario</div>
+          <div class="form-grid">
+            <div class="form-group">
+              <label>Stock Actual</label>
+              <input type="number" id="prodStock" min="0" value="0" placeholder="0">
+            </div>
+            <div class="form-group">
+              <label>Stock Mínimo (alerta)</label>
+              <input type="number" id="prodStockMinimo" min="0" value="10" placeholder="10">
+            </div>
+            <div class="form-group">
+              <label>Ubicación en Almacén</label>
+              <input type="text" id="prodUbicacion" placeholder="Ej: Cámara 2, Estante A">
+            </div>
+          </div>
+        </div>
+
+        <div class="form-actions">
+          <button type="button" class="btn btn-secondary" onclick="limpiarFormulario()">🗑️ Limpiar</button>
+          <button type="submit" class="btn btn-primary" id="btnGuardarProducto">💾 Guardar Producto</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- CLIENTES -->
+  <div class="tab-content" id="clientesTab">
     <div class="stats">
       <div class="stat-card">
         <div class="stat-number" id="totalPendientes">0</div>
@@ -383,39 +881,89 @@
     </div>
   </div>
 
-  <!-- TAB: PEDIDOS -->
+  <!-- PEDIDOS (Todos los roles) -->
   <div class="tab-content" id="pedidosTab">
     <div class="card">
       <div class="card-header">
-        <h2 class="card-title">Pedidos Recientes</h2>
+        <h2 class="card-title">Pedidos</h2>
       </div>
-      <div class="empty-state">
-        <div class="empty-state-icon"></div>
-        <p>No hay pedidos aún. Los pedidos aparecerán aquí cuando los clientes comiencen a usar el catálogo.</p>
+      <div class="table-container">
+        <table>
+          <thead>
+            <tr>
+              <th>Folio</th>
+              <th>Cliente</th>
+              <th>Productos</th>
+              <th>Status</th>
+              <th>Fecha</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+          <tbody id="pedidosTable">
+            <tr><td colspan="6" class="loading">Cargando...</td></tr>
+          </tbody>
+        </table>
       </div>
     </div>
   </div>
 
-  <!-- TAB: CARGA DE PRECIOS -->
-  <div class="tab-content" id="preciosTab">
+  <!-- GESTIÓN DE PEDIDOS (Solo Admin y Ventas) -->
+  <div class="tab-content" id="gestion-pedidosTab">
     <div class="card">
       <div class="card-header">
-        <h2 class="card-title">Carga Masiva de Precios</h2>
+        <h2 class="card-title">Gestión de Estatus de Pedidos</h2>
       </div>
-      <div class="empty-state">
-        <div class="empty-state-icon">📊</div>
-        <p>Esta funcionalidad estará disponible próximamente.</p>
-        <p style="margin-top: 10px; font-size: 0.9em;">Permitirá cargar precios por cliente, zona o tipo de cliente vía Excel.</p>
+      <div class="table-filters">
+        <select id="filterStatusPedido">
+          <option value="">Todos los estatus</option>
+          <option value="borrador">Borrador</option>
+          <option value="enviado">Enviado</option>
+          <option value="en_proceso">En Proceso</option>
+          <option value="surtido">Surtido</option>
+          <option value="entregado">Entregado</option>
+        </select>
+      </div>
+      <div class="table-container">
+        <table>
+          <thead>
+            <tr>
+              <th>Folio</th>
+              <th>Cliente</th>
+              <th>Productos</th>
+              <th>Status Actual</th>
+              <th>Fecha</th>
+              <th>Cambiar Estatus</th>
+            </tr>
+          </thead>
+          <tbody id="gestionPedidosTable">
+            <tr><td colspan="6" class="loading">Cargando...</td></tr>
+          </tbody>
+        </table>
       </div>
     </div>
+  </div>
+
+</div>
+
+<!-- MODAL DETALLE PEDIDO -->
+<div class="modal-overlay" id="modalDetalle">
+  <div class="modal">
+    <button class="modal-close" onclick="cerrarModalDetalle()">✕</button>
+    <h3>Detalle del Pedido</h3>
+    <div id="modalDetalleContent"></div>
   </div>
 </div>
 
-<!-- Firebase SDK -->
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+
 <script type="module">
   import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
   import { getAuth, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
-  import { getFirestore, collection, getDocs, doc, updateDoc, query, where } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+  import { 
+    getFirestore, collection, getDocs, doc, updateDoc, addDoc, deleteDoc, 
+    query, where, orderBy, serverTimestamp, setDoc 
+  } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
   const firebaseConfig = {
     apiKey: "AIzaSyDVGalSna9z6lJGhNvycVyJF5TTd_LnRBc",
@@ -432,121 +980,484 @@
   const db = getFirestore(app);
 
   const ADMIN_EMAILS = ["mediossibru@gmail.com"];
+  const ALMACEN_EMAILS = []; // Agregar emails de almacén aquí
+  const VENTAS_EMAILS = [];  // Agregar emails de ventas aquí
+  const ASESOR_EMAILS = [];  // Agregar emails de asesores aquí
 
-  // Verificar autenticación
+  let currentUser = null;
+  let currentRol = null;
+  let productosCache = [];
+
+  // ====== AUTENTICACIÓN ======
   onAuthStateChanged(auth, async (user) => {
     if (!user) {
       window.location.href = "login.html";
       return;
     }
 
-    if (!ADMIN_EMAILS.includes(user.email.toLowerCase())) {
-      alert('Acceso denegado. Solo administradores.');
-      await signOut(auth);
-      window.location.href = "login.html";
+    currentUser = user;
+    currentRol = determinarRol(user.email);
+
+    document.getElementById('userEmail').textContent = user.email;
+    document.getElementById('userRole').textContent = currentRol;
+
+    // Mostrar/ocultar tabs según rol
+    configurarPermisosUI();
+
+    // Cargar datos
+    await Promise.all([
+      cargarProductos(),
+      cargarClientes(),
+      cargarPedidos()
+    ]);
+  });
+
+  function determinarRol(email) {
+    const e = email.toLowerCase();
+    if (ADMIN_EMAILS.includes(e)) return 'admin';
+    if (ALMACEN_EMAILS.includes(e)) return 'almacen';
+    if (VENTAS_EMAILS.includes(e)) return 'ventas';
+    if (ASESOR_EMAILS.includes(e)) return 'asesor';
+    return 'cliente';
+  }
+
+  function tienePermiso(accion) {
+    const permisos = {
+      admin: ['ver_todo', 'editar_productos', 'agregar_productos', 'cambiar_precios', 'aprobar_clientes', 'cambiar_estatus_pedido', 'ver_reportes'],
+      almacen: ['ver_todo', 'editar_productos', 'agregar_productos', 'cambiar_precios', 'ver_reportes'],
+      ventas: ['ver_todo', 'cambiar_estatus_pedido', 'ver_reportes'],
+      asesor: ['ver_pedidos'],
+      cliente: []
+    };
+    return (permisos[currentRol] || []).includes(accion);
+  }
+
+  function configurarPermisosUI() {
+    // Ocultar tabs según rol
+    const tabAlta = document.querySelector('[data-tab="alta-producto"]');
+    const tabGestion = document.getElementById('tabGestionPedidos');
+
+    if (tabAlta) tabAlta.style.display = tienePermiso('agregar_productos') ? '' : 'none';
+    if (tabGestion) tabGestion.style.display = tienePermiso('cambiar_estatus_pedido') ? '' : 'none';
+  }
+
+  // ====== NAVEGACIÓN TABS ======
+  document.querySelectorAll('.nav-tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+      if (tab.style.display === 'none') return;
+      mostrarTab(tab.dataset.tab);
+    });
+  });
+
+  window.mostrarTab = function(tabName) {
+    document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+    const tab = document.querySelector(`[data-tab="${tabName}"]`);
+    if (tab) tab.classList.add('active');
+    document.getElementById(tabName + 'Tab').classList.add('active');
+  };
+
+  // ====== PRODUCTOS ======
+  async function cargarProductos() {
+    try {
+      const snapshot = await getDocs(collection(db, 'productos'));
+      productosCache = [];
+      snapshot.forEach(docSnap => {
+        productosCache.push({ id: docSnap.id, ...docSnap.data() });
+      });
+      renderProductos(productosCache);
+      document.getElementById('statProductos').textContent = productosCache.filter(p => p.activo).length;
+      document.getElementById('countProductos').textContent = productosCache.length;
+      document.getElementById('statStockBajo').textContent = productosCache.filter(p => p.stock !== undefined && p.stock <= (p.stockMinimo || 10)).length;
+    } catch (error) {
+      console.error('Error cargando productos:', error);
+      document.getElementById('productosTable').innerHTML = '<tr><td colspan="8" class="loading">Error al cargar productos</td></tr>';
+    }
+  }
+
+  function renderProductos(lista) {
+    const tbody = document.getElementById('productosTable');
+    if (lista.length === 0) {
+      tbody.innerHTML = '<tr><td colspan="8" class="empty-state"><div class="empty-state-icon">📦</div><p>No hay productos registrados</p></td></tr>';
       return;
     }
 
-    document.getElementById('userEmail').textContent = user.email;
-    cargarClientes();
-  });
-
-  // Tabs
-  document.querySelectorAll('.tab').forEach(tab => {
-    tab.addEventListener('click', () => {
-      document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-      document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
-      tab.classList.add('active');
-      document.getElementById(tab.dataset.tab + 'Tab').classList.add('active');
-    });
-  });
-
-  // Cargar clientes
-  async function cargarClientes() {
-    const tbody = document.getElementById('clientesTable');
-    const q = query(collection(db, 'usuarios'));
-    const snapshot = await getDocs(q);
-    
-    let pendientes = 0;
-    let aprobados = 0;
-    let html = '';
-
-    snapshot.forEach(docSnap => {
-      const data = docSnap.data();
-      
-      if (data.status === 'pendiente') pendientes++;
-      if (data.status === 'aprobado') aprobados++;
-
-      if (data.status === 'pendiente') {
-        html += `
-          <tr>
-            <td>${data.nombre || 'N/A'}</td>
-            <td>${data.empresa || 'N/A'}</td>
-            <td>${data.email}</td>
-            <td>${data.telefono || 'N/A'}</td>
-            <td>${data.zona || 'N/A'}</td>
-            <td>${data.creado ? new Date(data.creado.seconds * 1000).toLocaleDateString() : 'N/A'}</td>
-            <td><span class="badge pendiente">${data.status}</span></td>
-            <td>
-              <button class="btn btn-approve" onclick="aprobarCliente('${docSnap.id}', '${data.email}')">Aprobar</button>
-              <button class="btn btn-reject" onclick="rechazarCliente('${docSnap.id}')">Rechazar</button>
-            </td>
-          </tr>
-        `;
-      }
-    });
-
-    if (html === '') {
-      html = '<tr><td colspan="8" class="empty-state"><div class="empty-state-icon">✅</div><p>No hay clientes pendientes de aprobación</p></td></tr>';
-    }
-
-    tbody.innerHTML = html;
-    document.getElementById('totalPendientes').textContent = pendientes;
-    document.getElementById('totalAprobados').textContent = aprobados;
+    tbody.innerHTML = lista.map(p => `
+      <tr>
+        <td><strong>${p.codigo}</strong></td>
+        <td>${p.nombre}</td>
+        <td>${p.linea || '-'}</td>
+        <td>${p.marca || '-'}</td>
+        <td>$${(p.precioBase || 0).toFixed(2)}</td>
+        <td>${p.stock !== undefined ? p.stock : '-'}</td>
+        <td><span class="badge ${p.activo ? 'activo' : 'inactivo'}">${p.activo ? 'Activo' : 'Inactivo'}</span></td>
+        <td>
+          ${tienePermiso('editar_productos') ? `
+            <button class="btn-small btn-edit" onclick="editarProducto('${p.id}')">✏️</button>
+            <button class="btn-small btn-delete" onclick="eliminarProducto('${p.id}', '${p.nombre}')">🗑</button>
+          ` : '-'}
+        </td>
+      </tr>
+    `).join('');
   }
 
-  // Aprobar cliente
-  window.aprobarCliente = async (uid, email) => {
-    if (!confirm('¿Aprobar a este cliente? Recibirá acceso al catálogo.')) return;
+  // Filtros de productos
+  document.getElementById('filterProducto').addEventListener('input', aplicarFiltrosProductos);
+  document.getElementById('filterLinea').addEventListener('change', aplicarFiltrosProductos);
+  document.getElementById('filterStatus').addEventListener('change', aplicarFiltrosProductos);
 
+  function aplicarFiltrosProductos() {
+    const texto = document.getElementById('filterProducto').value.toLowerCase();
+    const linea = document.getElementById('filterLinea').value;
+    const status = document.getElementById('filterStatus').value;
+
+    const filtrados = productosCache.filter(p => {
+      const matchTexto = !texto || p.codigo.toLowerCase().includes(texto) || p.nombre.toLowerCase().includes(texto);
+      const matchLinea = !linea || p.linea === linea;
+      const matchStatus = status === '' || String(p.activo) === status;
+      return matchTexto && matchLinea && matchStatus;
+    });
+
+    renderProductos(filtrados);
+  }
+
+  // ====== FORMULARIO ALTA PRODUCTO ======
+  document.getElementById('productoForm').addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    if (!tienePermiso('agregar_productos') && !tienePermiso('editar_productos')) {
+      showToast('No tienes permisos para esta acción', 'error');
+      return;
+    }
+
+    const btn = document.getElementById('btnGuardarProducto');
+    btn.disabled = true;
+    btn.textContent = '💾 Guardando...';
+
+    const producto = {
+      codigo: document.getElementById('prodCodigo').value.trim().toUpperCase(),
+      nombre: document.getElementById('prodNombre').value.trim(),
+      linea: document.getElementById('prodLinea').value,
+      marca: document.getElementById('prodMarca').value.trim().toUpperCase(),
+      categoria: document.getElementById('prodCategoria').value.trim().toLowerCase(),
+      descripcion: document.getElementById('prodDescripcion').value.trim(),
+      presentaciones: {
+        mayoreo: document.getElementById('prodMayoreo').value.trim(),
+        medio: document.getElementById('prodMedio').value.trim(),
+        menudeo: document.getElementById('prodMenudeo').value.trim()
+      },
+      precios: {
+        base: parseFloat(document.getElementById('prodPrecioBase').value) || 0,
+        porCaja: parseFloat(document.getElementById('prodPrecioCaja').value) || 0,
+        porTarima: parseFloat(document.getElementById('prodPrecioTarima').value) || 0
+      },
+      tecnico: {
+        conservacion: document.getElementById('prodConservacion').value.trim(),
+        preparacion: document.getElementById('prodPreparacion').value.trim(),
+        manejo: document.getElementById('prodManejo').value.trim(),
+        anaquel: document.getElementById('prodAnaquel').value.trim(),
+        alergenos: document.getElementById('prodAlergenos').value.trim(),
+        ingredientes: document.getElementById('prodIngredientes').value.trim()
+      },
+      inventario: {
+        stock: parseInt(document.getElementById('prodStock').value) || 0,
+        minimo: parseInt(document.getElementById('prodStockMinimo').value) || 10,
+        ubicacion: document.getElementById('prodUbicacion').value.trim()
+      },
+      activo: document.getElementById('prodActivo').value === 'true',
+      actualizado: serverTimestamp(),
+      actualizadoPor: currentUser.email
+    };
+
+    // Precio base = precio caja si no se especificó
+    if (!producto.precios.porCaja) producto.precios.porCaja = producto.precios.base;
+
+    try {
+      const idExistente = document.getElementById('prodId').value;
+      
+      if (idExistente) {
+        // Editar
+        await updateDoc(doc(db, 'productos', idExistente), producto);
+        showToast('✓ Producto actualizado exitosamente');
+      } else {
+        // Verificar código único
+        const existe = productosCache.find(p => p.codigo === producto.codigo);
+        if (existe) {
+          showToast('⚠️ Ya existe un producto con ese código', 'error');
+          btn.disabled = false;
+          btn.textContent = '💾 Guardar Producto';
+          return;
+        }
+        producto.creado = serverTimestamp();
+        producto.creadoPor = currentUser.email;
+        await setDoc(doc(db, 'productos', producto.codigo), producto);
+        showToast('✓ Producto creado exitosamente');
+      }
+
+      limpiarFormulario();
+      await cargarProductos();
+      mostrarTab('productos');
+    } catch (error) {
+      console.error(error);
+      showToast('Error: ' + error.message, 'error');
+    } finally {
+      btn.disabled = false;
+      btn.textContent = '💾 Guardar Producto';
+    }
+  });
+
+  window.editarProducto = function(id) {
+    const p = productosCache.find(x => x.id === id);
+    if (!p) return;
+
+    document.getElementById('prodId').value = p.id;
+    document.getElementById('prodCodigo').value = p.codigo || '';
+    document.getElementById('prodNombre').value = p.nombre || '';
+    document.getElementById('prodLinea').value = p.linea || '';
+    document.getElementById('prodMarca').value = p.marca || '';
+    document.getElementById('prodCategoria').value = p.categoria || '';
+    document.getElementById('prodDescripcion').value = p.descripcion || '';
+    document.getElementById('prodMayoreo').value = p.presentaciones?.mayoreo || '';
+    document.getElementById('prodMedio').value = p.presentaciones?.medio || '';
+    document.getElementById('prodMenudeo').value = p.presentaciones?.menudeo || '';
+    document.getElementById('prodPrecioBase').value = p.precios?.base || 0;
+    document.getElementById('prodPrecioCaja').value = p.precios?.porCaja || 0;
+    document.getElementById('prodPrecioTarima').value = p.precios?.porTarima || 0;
+    document.getElementById('prodConservacion').value = p.tecnico?.conservacion || '';
+    document.getElementById('prodPreparacion').value = p.tecnico?.preparacion || '';
+    document.getElementById('prodManejo').value = p.tecnico?.manejo || '';
+    document.getElementById('prodAnaquel').value = p.tecnico?.anaquel || '';
+    document.getElementById('prodAlergenos').value = p.tecnico?.alergenos || '';
+    document.getElementById('prodIngredientes').value = p.tecnico?.ingredientes || '';
+    document.getElementById('prodStock').value = p.inventario?.stock || 0;
+    document.getElementById('prodStockMinimo').value = p.inventario?.minimo || 10;
+    document.getElementById('prodUbicacion').value = p.inventario?.ubicacion || '';
+    document.getElementById('prodActivo').value = String(p.activo !== false);
+
+    document.getElementById('formTitle').textContent = '✏️ Editar Producto: ' + p.nombre;
+    document.getElementById('btnGuardarProducto').textContent = '💾 Actualizar Producto';
+    mostrarTab('alta-producto');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  window.eliminarProducto = async function(id, nombre) {
+    if (!tienePermiso('editar_productos')) {
+      showToast('No tienes permisos', 'error');
+      return;
+    }
+    if (!confirm(`¿Eliminar el producto "${nombre}"?\n\nEsta acción no se puede deshacer.`)) return;
+
+    try {
+      await deleteDoc(doc(db, 'productos', id));
+      showToast('✓ Producto eliminado');
+      await cargarProductos();
+    } catch (error) {
+      showToast('Error: ' + error.message, 'error');
+    }
+  };
+
+  window.limpiarFormulario = function() {
+    document.getElementById('productoForm').reset();
+    document.getElementById('prodId').value = '';
+    document.getElementById('prodStock').value = 0;
+    document.getElementById('prodStockMinimo').value = 10;
+    document.getElementById('formTitle').textContent = '➕ Alta de Nuevo Producto';
+    document.getElementById('btnGuardarProducto').textContent = '💾 Guardar Producto';
+  };
+
+  // ====== CLIENTES ======
+  async function cargarClientes() {
+    try {
+      const snapshot = await getDocs(collection(db, 'usuarios'));
+      let pendientes = 0, aprobados = 0;
+      let html = '';
+
+      snapshot.forEach(docSnap => {
+        const data = docSnap.data();
+        if (data.status === 'pendiente') pendientes++;
+        if (data.status === 'aprobado') aprobados++;
+
+        if (data.status === 'pendiente') {
+          html += `
+            <tr>
+              <td>${data.nombre || 'N/A'}</td>
+              <td>${data.empresa || 'N/A'}</td>
+              <td>${data.email}</td>
+              <td>${data.telefono || 'N/A'}</td>
+              <td>${data.zona || 'N/A'}</td>
+              <td>${data.creado ? new Date(data.creado.seconds * 1000).toLocaleDateString() : 'N/A'}</td>
+              <td><span class="badge pendiente">${data.status}</span></td>
+              <td>
+                <button class="btn-small btn-approve" onclick="aprobarCliente('${docSnap.id}', '${data.email}')">✓</button>
+                <button class="btn-small btn-reject" onclick="rechazarCliente('${docSnap.id}')">✕</button>
+              </td>
+            </tr>
+          `;
+        }
+      });
+
+      if (html === '') {
+        html = '<tr><td colspan="8" class="empty-state"><div class="empty-state-icon">✅</div><p>No hay clientes pendientes</p></td></tr>';
+      }
+
+      document.getElementById('clientesTable').innerHTML = html;
+      document.getElementById('totalPendientes').textContent = pendientes;
+      document.getElementById('totalAprobados').textContent = aprobados;
+      document.getElementById('statPendientes').textContent = pendientes;
+      document.getElementById('countPendientes').textContent = pendientes;
+    } catch (error) {
+      console.error('Error cargando clientes:', error);
+    }
+  }
+
+  window.aprobarCliente = async (uid, email) => {
+    if (!confirm('¿Aprobar a este cliente?')) return;
     try {
       await updateDoc(doc(db, 'usuarios', uid), {
         status: 'aprobado',
-        aprobadoPor: auth.currentUser.email,
+        aprobadoPor: currentUser.email,
         fechaAprobacion: new Date().toISOString()
       });
-
-      alert('Cliente aprobado exitosamente. Email: ' + email);
-      cargarClientes();
+      showToast('✓ Cliente aprobado');
+      await cargarClientes();
     } catch (error) {
-      console.error(error);
-      alert('Error al aprobar cliente: ' + error.message);
+      showToast('Error: ' + error.message, 'error');
     }
   };
 
-  // Rechazar cliente
   window.rechazarCliente = async (uid) => {
-    if (!confirm('¿Rechazar a este cliente? No podrá acceder al catálogo.')) return;
-
+    if (!confirm('¿Rechazar a este cliente?')) return;
     try {
       await updateDoc(doc(db, 'usuarios', uid), {
         status: 'rechazado',
-        rechazadoPor: auth.currentUser.email,
+        rechazadoPor: currentUser.email,
         fechaRechazo: new Date().toISOString()
       });
-
-      alert('Cliente rechazado.');
-      cargarClientes();
+      showToast('Cliente rechazado');
+      await cargarClientes();
     } catch (error) {
-      console.error(error);
-      alert('Error al rechazar cliente: ' + error.message);
+      showToast('Error: ' + error.message, 'error');
     }
   };
 
-  // Logout
+  // ====== PEDIDOS ======
+  async function cargarPedidos() {
+    try {
+      const q = query(collection(db, 'pedidos'), orderBy('creado', 'desc'));
+      const snapshot = await getDocs(q);
+      const pedidos = [];
+      snapshot.forEach(docSnap => pedidos.push({ id: docSnap.id, ...docSnap.data() }));
+
+      const hoy = new Date().toDateString();
+      const pedidosHoy = pedidos.filter(p => p.creado && new Date(p.creado.seconds * 1000).toDateString() === hoy);
+      document.getElementById('statPedidosHoy').textContent = pedidosHoy.length;
+      document.getElementById('countPedidos').textContent = pedidos.length;
+
+      renderPedidos(pedidos, 'pedidosTable', false);
+      if (tienePermiso('cambiar_estatus_pedido')) {
+        renderPedidos(pedidos, 'gestionPedidosTable', true);
+      }
+    } catch (error) {
+      console.error('Error cargando pedidos:', error);
+    }
+  }
+
+  function renderPedidos(pedidos, tableId, conGestion) {
+    const tbody = document.getElementById(tableId);
+    if (pedidos.length === 0) {
+      tbody.innerHTML = '<tr><td colspan="6" class="empty-state"><div class="empty-state-icon">📦</div><p>No hay pedidos</p></td></tr>';
+      return;
+    }
+
+    tbody.innerHTML = pedidos.map(p => {
+      const totalProductos = (p.productos || []).reduce((sum, prod) => sum + (prod.cajas || 0) + (prod.tarimas || 0), 0);
+      const fecha = p.creado ? new Date(p.creado.seconds * 1000).toLocaleString() : 'N/A';
+      const statusClass = p.status || 'borrador';
+      const statusLabel = {
+        'borrador': 'Borrador',
+        'enviado': 'Enviado',
+        'en_proceso': 'En Proceso',
+        'surtido': 'Surtido',
+        'entregado': 'Entregado'
+      }[statusClass] || statusClass;
+
+      let acciones = `<button class="btn-small btn-view" onclick="verDetallePedido('${p.id}')"> Ver</button>`;
+      
+      if (conGestion) {
+        acciones += `
+          <select onchange="cambiarEstatusPedido('${p.id}', this.value)" style="padding: 5px; border-radius: 5px; border: 1px solid #ddd;">
+            <option value="borrador" ${statusClass === 'borrador' ? 'selected' : ''}>Borrador</option>
+            <option value="enviado" ${statusClass === 'enviado' ? 'selected' : ''}>Enviado</option>
+            <option value="en_proceso" ${statusClass === 'en_proceso' ? 'selected' : ''}>En Proceso</option>
+            <option value="surtido" ${statusClass === 'surtido' ? 'selected' : ''}>Surtido</option>
+            <option value="entregado" ${statusClass === 'entregado' ? 'selected' : ''}>Entregado</option>
+          </select>
+        `;
+      }
+
+      return `
+        <tr>
+          <td><strong>${p.id.substring(0, 8)}...</strong></td>
+          <td>${p.clienteEmail || 'N/A'}<br><small>${p.clienteRol || '-'}</small></td>
+          <td>${totalProductos} productos</td>
+          <td><span class="badge ${statusClass}">${statusLabel}</span></td>
+          <td><small>${fecha}</small></td>
+          <td>${acciones}</td>
+        </tr>
+      `;
+    }).join('');
+  }
+
+  window.cambiarEstatusPedido = async (pedidoId, nuevoStatus) => {
+    if (!tienePermiso('cambiar_estatus_pedido')) {
+      showToast('No tienes permisos', 'error');
+      return;
+    }
+    if (!confirm(`¿Cambiar estatus a "${nuevoStatus}"?`)) {
+      await cargarPedidos(); // Revertir el select
+      return;
+    }
+
+    try {
+      await updateDoc(doc(db, 'pedidos', pedidoId), {
+        status: nuevoStatus,
+        statusActualizadoPor: currentUser.email,
+        statusActualizadoEn: serverTimestamp()
+      });
+      showToast(`✓ Estatus cambiado a: ${nuevoStatus}`);
+      await cargarPedidos();
+    } catch (error) {
+      showToast('Error: ' + error.message, 'error');
+    }
+  };
+
+  window.verDetallePedido = function(pedidoId) {
+    const pedido = productosCache.find(p => p.id === pedidoId); // Placeholder
+    // En producción, buscar en pedidosCache
+    document.getElementById('modalDetalleContent').innerHTML = `
+      <p><strong>Folio:</strong> ${pedidoId}</p>
+      <p>Detalle completo disponible próximamente.</p>
+    `;
+    document.getElementById('modalDetalle').classList.add('active');
+  };
+
+  window.cerrarModalDetalle = function() {
+    document.getElementById('modalDetalle').classList.remove('active');
+  };
+
+  // ====== UTILIDADES ======
+  function showToast(msg, type = 'success') {
+    const toast = document.getElementById('toast');
+    toast.textContent = msg;
+    toast.className = 'toast show' + (type === 'error' ? ' error' : '');
+    setTimeout(() => { toast.className = 'toast'; }, 3000);
+  }
+
   window.logout = async () => {
-    await signOut(auth);
-    window.location.href = "login.html";
+    if (confirm('¿Cerrar sesión?')) {
+      await signOut(auth);
+      window.location.href = "login.html";
+    }
   };
 </script>
 
