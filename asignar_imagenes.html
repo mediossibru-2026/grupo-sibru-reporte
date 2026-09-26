@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Asignar Imágenes GitHub | GRUPO SIBRÜ</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background: linear-gradient(135deg, #1B5E20 0%, #264653 100%);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+  }
+  .container {
+    background: white;
+    border-radius: 20px;
+    padding: 40px;
+    max-width: 800px;
+    width: 100%;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+  }
+  h1 { color: #1B5E20; font-size: 1.8em; margin-bottom: 10px; }
+  .subtitle { color: #E76F51; font-weight: 600; margin-bottom: 25px; }
+  .status {
+    padding: 15px;
+    border-radius: 10px;
+    margin-bottom: 15px;
+    font-weight: 600;
+    display: none;
+  }
+  .status.show { display: block; }
+  .status.info { background: #E3F2FD; color: #1565C0; border-left: 4px solid #1565C0; }
+  .status.success { background: #E8F5E9; color: #1B5E20; border-left: 4px solid #1B5E20; }
+  .status.error { background: #FFEBEE; color: #D32F2F; border-left: 4px solid #D32F2F; }
+  .btn {
+    padding: 14px 30px;
+    border: none;
+    border-radius: 10px;
+    font-weight: 700;
+    font-size: 1em;
+    cursor: pointer;
+    margin-right: 10px;
+    text-transform: uppercase;
+  }
+  .btn-primary { background: #1B5E20; color: white; }
+  .btn-primary:hover { background: #2E7D32; }
+  .btn-primary:disabled { opacity: 0.5; cursor: not-allowed; }
+  .btn-secondary { background: white; color: #264653; border: 2px solid #264653; }
+  .product-list {
+    background: #f8f9fa;
+    padding: 20px;
+    border-radius: 10px;
+    margin: 20px 0;
+    max-height: 400px;
+    overflow-y: auto;
+  }
+  .product-item {
+    padding: 12px;
+    border-bottom: 1px solid #e0e0e0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+  }
+  .product-item:last-child { border-bottom: none; }
+  .product-item.success { background: #E8F5E9; }
+  .product-item.error { background: #FFEBEE; }
+  .product-info { flex: 1; min-width: 0; }
+  .product-name { font-weight: 700; margin-bottom: 4px; }
+  .product-urls { font-size: 0.75em; color: #666; word-break: break-all; }
+  .badge {
+    padding: 4px 12px;
+    border-radius: 12px;
+    font-size: 0.8em;
+    font-weight: 700;
+    white-space: nowrap;
+  }
+  .badge.pending { background: #ECEFF1; color: #607D8B; }
+  .badge.success { background: #1B5E20; color: white; }
+  .badge.error { background: #D32F2F; color: white; }
+  .warning-box {
+    background: #E3F2FD;
+    border-left: 4px solid #2196F3;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    font-size: 0.9em;
+  }
+  .preview-img {
+    width: 60px;
+    height: 60px;
+    object-fit: contain;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    background: white;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+  <h1>Asignar Imágenes a Productos</h1>
+  <div class="subtitle">GRUPO SIBRÜ - URLs desde GitHub Pages</div>
+
+  <div class="warning-box">
+    <strong>Este script actualizará automáticamente los 10 productos</strong> con las URLs de las imágenes que ya están en la carpeta <code>img/</code> de tu repositorio.
+    <br><br>
+    <strong>Base URL:</strong> https://mediossibru-2026.github.io/grupo-sibru-reporte/img/
+  </div>
+
+  <div id="status" class="status"></div>
+
+  <div class="product-list" id="productList">
+    <div style="text-align: center; color: #888; padding: 20px;">
+      Presiona "Asignar Imágenes" para iniciar
+    </div>
+  </div>
+
+  <div style="text-align: center; margin-top: 25px;">
+    <button class="btn btn-primary" id="btnAsignar" onclick="asignarImagenes()">Asignar Imágenes</button>
+    <button class="btn btn-secondary" onclick="window.location.href='catalogo_con_login.html'">Ver Catálogo</button>
+  </div>
+</div>
+
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+  import { getFirestore, doc, updateDoc } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyDVGalSna9z6lJGhNvycVyJF5TTd_LnRBc",
+    authDomain: "grupo-sibru-catalogo.firebaseapp.com",
+    projectId: "grupo-sibru-catalogo",
+    storageBucket: "grupo-sibru-catalogo.firebasestorage.app",
+    messagingSenderId: "1070838112131",
+    appId: "1:1070838112131:web:21db3ff96c889ba10160b6",
+    measurementId: "G-LWECZJK2S7"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const db = getFirestore(app);
+
+  const BASE_URL = 'https://mediossibru-2026.github.io/grupo-sibru-reporte/img/';
+
+  // Mapeo de productos a sus archivos de imagen
+  const productosImagenes = [
+    { codigo: '1950', nombre: 'Tender Empanizado', img1: 'bachoco-tender-1.jpg', img2: 'bachoco-tender-2.jpg' },
+    { codigo: '1539', nombre: 'Nugget de Pollo', img1: 'bachoco-nugget-1.jpg', img2: 'bachoco-nugget-2.jpg' },
+    { codigo: '046165', nombre: 'Papa Gajo 6/5', img1: 'simplot-papa-gajo-1.jpg', img2: 'simplot-papa-gajo-2.jpg' },
+    { codigo: 'X01', nombre: 'Papa Cáscara con Sal 13/8', img1: 'simplot-papa-cascara-1.jpg', img2: 'simplot-papa-cascara-2.jpg' },
+    { codigo: 'X02', nombre: 'ICEHOT Fresa', img1: 'richs-icehot-fresa-1.jpg', img2: 'richs-icehot-fresa-2.jpg' },
+    { codigo: '20128', nombre: 'Dedos de Queso', img1: 'richs-dedos-queso-1.jpg', img2: 'richs-dedos-queso-2.jpg' },
+    { codigo: '0003', nombre: 'Steaks de Atún', img1: 'capitan-atun-1.jpg', img2: 'capitan-atun-2.jpg' },
+    { codigo: '0004', nombre: 'Porción de Salmón', img1: 'camanchaca-salmon-1.jpg', img2: 'camanchaca-salmon-2.jpg' },
+    { codigo: '019835-4', nombre: 'Salsa BBQ Original', img1: 'custom-bbq-1.jpg', img2: 'custom-bbq-2.jpg' },
+    { codigo: '020919-05', nombre: 'Salsa Mango Habanero', img1: 'custom-mango-habanero-1.jpg', img2: 'custom-mango-habanero-2.jpg' }
+  ];
+
+  function renderLista() {
+    const lista = document.getElementById('productList');
+    lista.innerHTML = productosImagenes.map((p, i) => {
+      const url1 = BASE_URL + p.img1;
+      const url2 = BASE_URL + p.img2;
+      return `
+        <div class="product-item" id="item-${i}">
+          <img src="${url1}" class="preview-img" onerror="this.src='https://via.placeholder.com/60x60/cccccc/666666?text=?'" alt="${p.nombre}">
+          <div class="product-info">
+            <div class="product-name">${p.codigo} - ${p.nombre}</div>
+            <div class="product-urls">
+              <div>1: ${p.img1}</div>
+              <div>2: ${p.img2}</div>
+            </div>
+          </div>
+          <span class="badge pending" id="badge-${i}">Pendiente</span>
+        </div>
+      `;
+    }).join('');
+  }
+
+  function mostrarStatus(msg, type) {
+    const el = document.getElementById('status');
+    el.textContent = msg;
+    el.className = 'status show ' + type;
+  }
+
+  window.asignarImagenes = async function() {
+    const btn = document.getElementById('btnAsignar');
+    btn.disabled = true;
+    btn.textContent = 'Asignando...';
+
+    mostrarStatus('Asignando imágenes a 10 productos...', 'info');
+    renderLista();
+
+    let exitosos = 0, errores = 0;
+
+    for (let i = 0; i < productosImagenes.length; i++) {
+      const p = productosImagenes[i];
+      const url1 = BASE_URL + p.img1;
+      const url2 = BASE_URL + p.img2;
+
+      try {
+        await updateDoc(doc(db, 'productos', p.codigo), {
+          imagenes: {
+            principal: url1,
+            secundaria: url2
+          },
+          actualizado: new Date(),
+          actualizadoPor: 'asignar-imagenes@gruposibru.com'
+        });
+
+        document.getElementById(`badge-${i}`).textContent = 'Actualizado';
+        document.getElementById(`badge-${i}`).className = 'badge success';
+        document.getElementById(`item-${i}`).classList.add('success');
+        exitosos++;
+      } catch (error) {
+        console.error('Error con', p.codigo, error);
+        document.getElementById(`badge-${i}`).textContent = 'Error';
+        document.getElementById(`badge-${i}`).className = 'badge error';
+        document.getElementById(`item-${i}`).classList.add('error');
+        errores++;
+      }
+
+      // Pausa pequeña entre cada actualización
+      await new Promise(r => setTimeout(r, 200));
+    }
+
+    const msg = `Completado: ${exitosos} productos actualizados, ${errores} errores.`;
+    mostrarStatus(msg, errores > 0 ? 'error' : 'success');
+    btn.textContent = 'Completado';
+  };
+
+  // Mostrar vista previa al cargar
+  renderLista();
+</script>
+</body>
+</html>
